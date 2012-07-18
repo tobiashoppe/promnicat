@@ -56,7 +56,7 @@ public class PetriNetSerializer {
 		NetSystem netSystem = new NetSystem();
 		netSystem.addNodes(petriNet.getNodes());
 		for(Flow edge : petriNet.getEdges()) {
-			netSystem.addFlow(edge.getSource(), edge.getTarget());
+			netSystem.addFreshFlow(edge.getSource(), edge.getTarget());
 		}
 		netSystem.loadNaturalMarking();
 		return netSystem;
@@ -72,7 +72,7 @@ public class PetriNetSerializer {
 		PetriNet pn = new PetriNet();
 		pn.addNodes(netSystem.getNodes());
 		for(Flow edge : netSystem.getEdges()) {
-			pn.addFlow(edge.getSource(), edge.getTarget());
+			pn.addFreshFlow(edge.getSource(), edge.getTarget());
 		}
 		return pn;
 	}

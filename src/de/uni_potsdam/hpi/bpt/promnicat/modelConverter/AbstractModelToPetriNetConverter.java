@@ -24,6 +24,7 @@ import java.util.Map;
 import org.jbpt.algo.tree.rpst.RPST;
 import org.jbpt.algo.tree.rpst.RPSTNode;
 import org.jbpt.algo.tree.tctree.TCType;
+import org.jbpt.graph.Fragment;
 import org.jbpt.hypergraph.abs.GObject;
 import org.jbpt.petri.Flow;
 import org.jbpt.petri.Node;
@@ -65,11 +66,6 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 	protected Map<FlowNode, Node> nodeMapping = new HashMap<FlowNode, Node>();
 	
 	/**
-	 * {@link RPST} of the model to transform. Needed for structural checks of {@link OrGateway}-mappings.
-	 */
-	protected RPST<ControlFlow<FlowNode>, FlowNode> rpsTree = null;
-	
-	/**
 	 * Identifier used for additional created model elements. Shall be
 	 * extended by prefix or suffix to guaranty uniqueness.
 	 */
@@ -97,13 +93,13 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 		}
 		//remove multiple incoming or outgoing edges by transforming model
 		ProcessModel transformedModel = preProcessProcessModel(model);
+		transformedModel = preProcessOrGateways(transformedModel);
 		
 		//initialize internal data structures
 		this.petriNet = new PetriNet();
 		this.nodeMapping.clear();
-		this.rpsTree = new RPST<ControlFlow<FlowNode>, FlowNode>(transformedModel);
 		//copy id, name, desc, and tag
-		copyAttributes(model, this.petriNet);
+		copyAttributes(model, this.petriNet);		
 		
 		return transformedModel;
 	}
@@ -144,6 +140,87 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 			}			
 		}
 		return result;
+	}
+
+	protected ProcessModel preProcessOrGateways(ProcessModel model) throws TransformationException {
+		@SuppressWarnings("unchecked")
+		Collection<OrGateway> orGateways = (Collection<OrGateway>) model.filter(OrGateway.class);
+		RPST<ControlFlow<FlowNode>, FlowNode> rpsTree = new RPST<ControlFlow<FlowNode>, FlowNode>(model);
+		//search for an OR-gateway that can not be mapped
+		for (RPSTNode<ControlFlow<FlowNode>, FlowNode> rigidNode : rpsTree.getRPSTNodes(TCType.RIGID)) {
+			Fragment<ControlFlow<FlowNode>, FlowNode> fragment = rigidNode.getFragment();
+			for(OrGateway orGateway : orGateways) {
+				if (fragment.contains(orGateway)) {
+					throw new TransformationException(THE_GIVEN_PROCESS_MODEL_CONTAINS_AT_LEAST_ONE_OR_GATEWAY);
+				}
+			}
+		}
+		//transform OR-gateways into other gateway types
+		transformOrGateways(model, orGateways, rpsTree);
+		//check for remaining OR-gateways, which can not be mapped
+		if (model.filter(OrGateway.class).size() > 0) {
+			throw new TransformationException(THE_GIVEN_PROCESS_MODEL_CONTAINS_AT_LEAST_ONE_OR_GATEWAY);
+		}
+		return model;
+	}
+
+	/**
+	 * Transform {@link OrGateway}s into {@link AndGateway}s and {@link XorGateway}s
+	 * using the following transformation rule:
+	 * <blockquote>
+	 * 												   |->skip_t1->|
+	 * 	  |->t1...->|							 |->XOR1->t1----->XOR1----->|
+	 * 	  |			|							 |							|
+	 * 	  |			|							 |		|-->skip_t2->|		|
+	 * OR--->t2...->OR			transformed to: AND-->XOR2-->t2--->XOR2--->AND
+	 * 	  |			|							 |							|
+	 *    |->t3...->|							 |->XOR3->t3----->XOR3----->|
+	 *    											   |->skip_t3->|
+	 * </blockquote>
+	 * @param model to transform
+	 * @param orGateways {@link OrGateway}s of the given {@link ProcessModel}
+	 * @param rpsTree {@link RPST} of given {@link ProcessModel}
+	 */
+	protected void transformOrGateways(ProcessModel model, Collection<OrGateway> orGateways,
+			RPST<ControlFlow<FlowNode>, FlowNode> rpsTree) {
+		for (RPSTNode<ControlFlow<FlowNode>, FlowNode> bondNode : rpsTree.getRPSTNodes(TCType.BOND)) {
+			if(orGateways.contains(bondNode.getEntry())) {
+				OrGateway entry = (OrGateway) bondNode.getEntry();
+				//replace OR-gateway by AND-gateway and for each outgoing edge add an XOR-split 
+				// to enable the skipping of an outgoing sequence
+				AndGateway andSplit = new AndGateway(entry.getName());
+				model.addFlowNode(andSplit);
+				for(ControlFlow<FlowNode> e : model.getIncomingEdges(entry)) {
+					e.setTarget(andSplit);
+				}
+				Gateway exit = (Gateway) bondNode.getExit();
+				AndGateway andJoin = new AndGateway(exit.getName());
+				model.addFlowNode(andJoin);
+				for(ControlFlow<FlowNode> e : model.getOutgoingEdges(exit)) {
+					e.setSource(andJoin);
+				}
+				for( ControlFlow<FlowNode> outgoingEdge : model.getOutgoingControlFlow(entry)) {
+					//handle split
+					XorGateway xorSplit = new XorGateway("orGatewaySplit");
+					model.addControlFlow(andSplit, xorSplit);
+					outgoingEdge.setSource(xorSplit);
+					Activity skippingActivity = new Activity("skip" + outgoingEdge.getTarget().getName());
+					model.addControlFlow(xorSplit, skippingActivity);
+					//handle join
+					XorGateway xorJoin = new XorGateway("orGatewayJoin");
+					model.addControlFlow(skippingActivity, xorJoin);
+					ControlFlow<FlowNode> edge = outgoingEdge;
+					while (!edge.getTarget().equals(exit)){
+						edge = model.getOutgoingControlFlow(edge.getTarget()).iterator().next();
+					}
+					model.addControlFlow(edge.getSource(), xorJoin);
+					model.addControlFlow(xorJoin, andJoin);
+					model.removeControlFlow(edge);
+				}
+				model.removeFlowNode(entry);
+				model.removeFlowNode(exit);
+			}			
+		}
 	}
 
 	/**
@@ -199,14 +276,6 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 			copyAttributes(gateway, p);
 			this.petriNet.addPlace(p);
 			this.nodeMapping.put(gateway, p);
-		} else if (gateway instanceof OrGateway) {
-			for (RPSTNode<ControlFlow<FlowNode>, FlowNode> rigidNode : rpsTree.getVertices(TCType.R)) {
-				if (rigidNode.getSkeleton().contains(gateway)) {
-					throw new TransformationException(THE_GIVEN_PROCESS_MODEL_CONTAINS_AT_LEAST_ONE_OR_GATEWAY);
-				}
-			}
-			//TODO map OrGateway
-			throw new TransformationException(THE_GIVEN_PROCESS_MODEL_CONTAINS_AT_LEAST_ONE_OR_GATEWAY);
 		}
 	}
 	
@@ -249,22 +318,21 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 			// might result in not semantically correct PetriNets
 			if (f.getSource() instanceof XorGateway && f.getTarget() instanceof AndGateway) {			
 				Transition t = new Transition();
-				t.setId("xor/and_helper_" + this.getNextId());
+				t.setId("xorAndHelper" + this.getNextId());
 				this.petriNet.addTransition(t);
-				this.petriNet.addFlow(source, source);
-				this.connectTwoTransitions(t, (Transition) target, "xor/and_helper_");
-				continue;				
+				this.petriNet.addFreshFlow(source, t);
+				this.connectTwoTransitions(t, (Transition) target, "xorAndHelper");
+				continue;
 			}
-			
 			if ((source instanceof Place && target instanceof Transition)
 					|| (source instanceof Transition && target instanceof Place)) {
-				this.petriNet.addFlow(source, target);
+				this.petriNet.addFreshFlow(source, target);
 			}
 			else if ((source instanceof Place && target instanceof Place)) {
-				this.connectTwoPlaces((Place) source, (Place) target, "helper_transition_for_edge_" + f.getId());
+				this.connectTwoPlaces((Place) source, (Place) target, "helperTransitionForEdge" + f.getId());
 			}
 			else if ((source instanceof Transition && target instanceof Transition)) {
-				this.connectTwoTransitions((Transition) source, (Transition) target, "helper_place_for_edge_" + f.getId());
+				this.connectTwoTransitions((Transition) source, (Transition) target, "helperPlaceForEdge" + f.getId());
 			}
 		}
 		addInitialAndFinalPlaces();
@@ -316,7 +384,7 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 		this.petriNet.addFlow(source, p);
 		this.petriNet.addFlow(p, target);
 	}
-
+	
 	/**
 	 * Converts the given {@link Activity} to a {@link Transition}.
 	 * @param activity {@link Activity} to convert

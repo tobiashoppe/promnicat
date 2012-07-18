@@ -311,6 +311,32 @@ public class TestModelBuilder {
 		return model;
 	}
 	
+	/**
+	 * @return the following {@link ProcessModel}:</br>
+	 * 	  |-->t1-->|
+	 * 	  |		   |
+	 * OR--->t2--->OR
+	 * 	  |		   |
+	 *    |-->t3-->|
+	 */
+	public static ProcessModel getOrGatewayBlockModel() {
+		ProcessModel model = new ProcessModel();
+		OrGateway orSplit = new OrGateway("orSplit");
+		Activity t1 = new Activity("t1");
+		Activity t2 = new Activity("t2");
+		Activity t3 = new Activity("t3");
+		model.addControlFlow(orSplit, t1);
+		model.addControlFlow(orSplit, t2);
+		model.addControlFlow(orSplit, t3);
+		
+		OrGateway orJoin = new OrGateway("orJoin");
+		model.addControlFlow(t1, orJoin);
+		model.addControlFlow(t2, orJoin);
+		model.addControlFlow(t3, orJoin);
+		
+		return model;
+	}
+
 	/** 
 	 * @param size the total number of {@link FlowNode}s of this sequence
 	 * @param type The type of model to create. Must be one of 

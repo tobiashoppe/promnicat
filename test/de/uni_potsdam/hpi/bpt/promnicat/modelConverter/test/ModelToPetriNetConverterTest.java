@@ -133,7 +133,29 @@ public class ModelToPetriNetConverterTest {
 	}
 	
 	@Test
-	public void testGatewayConverting() {
+	public void testOrGatewayConverting() {
+		IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
+		try {
+			PetriNet pn = converter.convertToPetriNet(TestModelBuilder.getOrGatewayBlockModel());
+			assertEquals(1, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(22, pn.getNodes().size());
+			assertEquals(26, pn.getFlow().size());
+			assertEquals(11, pn.getPlaces().size());
+			assertEquals(11, pn.getTransitions().size());
+			assertEquals(5, pn.getSilentTransitions().size());
+		} catch (TransformationException e) {
+			fail(GOT_UNEXPECTED_TRANSFORMATION_EXCEPTION);
+		}
+	}
+	
+	@Test
+	public void testAndGatewayConverting() {
+		//TODO implement me
+	}
+	
+	@Test
+	public void testXorGatewayConverting() {
 		//TODO implement me
 	}
 	
