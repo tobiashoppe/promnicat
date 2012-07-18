@@ -142,10 +142,27 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 		return result;
 	}
 
+	/**
+	 * Transforms blocks starting and finishing with an {@link OrGateway} and throws
+	 * an exception for all other {@link OrGateway}s being found, because those models
+	 * can not be transformed into a {@link PetriNet}.
+	 * @param model to transform
+	 * @return the original model containing the structural changes from {@link OrGateway} transformation
+	 * @throws TransformationException if at least one not mappable {@link OrGateway} has been found.
+	 */
 	protected ProcessModel preProcessOrGateways(ProcessModel model) throws TransformationException {
 		@SuppressWarnings("unchecked")
 		Collection<OrGateway> orGateways = (Collection<OrGateway>) model.filter(OrGateway.class);
-		RPST<ControlFlow<FlowNode>, FlowNode> rpsTree = new RPST<ControlFlow<FlowNode>, FlowNode>(model);
+		RPST<ControlFlow<FlowNode>, FlowNode> rpsTree = null;
+		try {
+			rpsTree = new RPST<ControlFlow<FlowNode>, FlowNode>(model);
+		} catch (Exception e) {
+			if(!orGateways.isEmpty()) {
+				throw new TransformationException(THE_GIVEN_PROCESS_MODEL_CONTAINS_AT_LEAST_ONE_OR_GATEWAY);				
+			} else {
+				return model;
+			}
+		}
 		//search for an OR-gateway that can not be mapped
 		for (RPSTNode<ControlFlow<FlowNode>, FlowNode> rigidNode : rpsTree.getRPSTNodes(TCType.RIGID)) {
 			Fragment<ControlFlow<FlowNode>, FlowNode> fragment = rigidNode.getFragment();

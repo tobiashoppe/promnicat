@@ -21,8 +21,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.jbpt.petri.PetriNet;
+import org.jbpt.pm.Activity;
+import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
+import org.jbpt.pm.bpmn.BpmnControlFlow;
+import org.jbpt.pm.bpmn.BpmnEventTypes.BPMN_EVENT_TYPES;
+import org.jbpt.pm.bpmn.Subprocess;
+import org.jbpt.pm.bpmn.ThrowingEvent;
 import org.jbpt.pm.epc.Epc;
 import org.jbpt.throwable.TransformationException;
 import org.junit.Test;
@@ -127,9 +133,62 @@ public class ModelToPetriNetConverterTest {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testSubprocessConverting() {
+		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> model = new Bpmn<BpmnControlFlow<FlowNode>, FlowNode>();
+		Activity t = new Activity("t");
+		Subprocess sp = new Subprocess("sp");
+		model.addControlFlow(t, sp, true);
+		sp.setCollapsed(false);
+		try {
+			sp.setSubProcess((Bpmn<BpmnControlFlow<FlowNode>, FlowNode>) TestModelBuilder.getSequence(3, Bpmn.class));
+			Activity t1 = new Activity("t1");
+			model.addControlFlow(sp, t1, true);			
+			IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
+			PetriNet pn = converter.convertToPetriNet(model);
+			assertEquals(1, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(11, pn.getNodes().size());
+			assertEquals(10, pn.getFlow().size());
+			assertEquals(6, pn.getPlaces().size());
+			assertEquals(5, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());
+		} catch (Exception e) {
+			fail("Got unexpected exception!");
+		}
+	}
+	
+	@Test
+	public void testSubprocessAttachedEventConverting() {
 		//TODO implement me
+	}
+	
+	@Test
+	public void testAdhocSubprocessConverting() {
+		IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
+		try {
+			PetriNet pn = converter.convertToPetriNet(TestModelBuilder.getAdHocSubprocessModel(true));
+			assertEquals(1, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(14, pn.getNodes().size());
+			assertEquals(18, pn.getFlow().size());
+			assertEquals(7, pn.getPlaces().size());
+			assertEquals(7, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());
+			
+			pn = converter.convertToPetriNet(TestModelBuilder.getAdHocSubprocessModel(false));
+			System.out.println(pn.toDOT());
+			assertEquals(1, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(10, pn.getNodes().size());
+			assertEquals(12, pn.getFlow().size());
+			assertEquals(4, pn.getPlaces().size());
+			assertEquals(6, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());
+		} catch (TransformationException e) {
+			fail(GOT_UNEXPECTED_TRANSFORMATION_EXCEPTION);
+		}
 	}
 	
 	@Test
@@ -184,7 +243,29 @@ public class ModelToPetriNetConverterTest {
 	}
 	
 	@Test
-	public void testBoundaryEventConverting() {
-		//TODO implement me
+	public void testAttachedEventConverting() {
+		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> model = new Bpmn<BpmnControlFlow<FlowNode>, FlowNode>();
+		Activity t = new Activity("t");
+		Activity t1 = new Activity("t1");
+		ThrowingEvent event = new ThrowingEvent("e2");
+		event.setAttached(true);
+		event.setEventType(BPMN_EVENT_TYPES.CANCEL);
+		BpmnControlFlow<FlowNode> edge = model.addControlFlow(t, t1, false);
+		edge.attachEvent(event);
+		Activity t2 = new Activity("t2");
+		model.addControlFlow(t,t2, true);
+		IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
+		try {
+			PetriNet pn = converter.convertToPetriNet(model);
+			assertEquals(2, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(8, pn.getNodes().size());
+			assertEquals(7, pn.getFlow().size());
+			assertEquals(5, pn.getPlaces().size());
+			assertEquals(3, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());
+		} catch (TransformationException e) {
+			fail(GOT_UNEXPECTED_TRANSFORMATION_EXCEPTION);
+		}
 	}
 }

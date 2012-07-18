@@ -18,6 +18,7 @@
 package de.uni_potsdam.hpi.bpt.promnicat.modelConverter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.jbpt.petri.Flow;
@@ -34,16 +35,17 @@ import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.Gateway;
 import org.jbpt.pm.OrGateway;
 import org.jbpt.pm.ProcessModel;
+import org.jbpt.pm.bpmn.AdHocOrdering;
 import org.jbpt.pm.bpmn.Bpmn;
 import org.jbpt.pm.bpmn.BpmnControlFlow;
 import org.jbpt.pm.bpmn.BpmnEvent;
+import org.jbpt.pm.bpmn.BpmnMessageFlow;
 import org.jbpt.pm.bpmn.Subprocess;
 import org.jbpt.throwable.TransformationException;
 
 /**
  * This class converts a {@link Bpmn} model to the corresponding {@link PetriNet}.
- * TODO handle specifics of certain event types(e.g. Link event)
- * TODO handle message flow and data flow(in subclasses?!)
+ * TODO handle data flow(in subclass?!)
  * 
  * @author Tobias Hoppe
  *
@@ -75,9 +77,31 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 		convertFlowNodes(transformedModel.getFlowNodes());
 		//add edges according to the control flow of the model
 		convertControlFlowEdges(transformedModel.getControlFlow());
+		convertMessageFlowEdges(transformedModel);
 		return this.petriNet;
 	}
 	
+	/**
+	 * Transform the {@link BpmnMessageFlow}s of the given {@link ProcessModel}.
+	 * @param transformedModel model to handle
+	 */
+	protected void convertMessageFlowEdges(ProcessModel transformedModel) {
+		for(BpmnMessageFlow messageFlow : ((Bpmn<?,?>) transformedModel).getMessageFlowEdges()) {
+			Node source = this.nodeMapping.get(messageFlow.getSource());
+			Node target = this.nodeMapping.get(messageFlow.getTarget());
+			if ((source instanceof Place && target instanceof Transition)
+					|| (source instanceof Transition && target instanceof Place)) {
+				this.petriNet.addFreshFlow(source, target);
+			}
+			else if ((source instanceof Place && target instanceof Place)) {
+				this.connectTwoPlaces((Place) source, (Place) target, "transitionForMsgFlow" + messageFlow.getId());
+			}
+			else if ((source instanceof Transition && target instanceof Transition)) {
+				this.connectTwoTransitions((Transition) source, (Transition) target, "placeForMsgFlow" + messageFlow.getId());
+			}
+		}
+	}
+
 	/**
 	 * Transform {@link Activity}s or {@link Event}s with multiple outgoing edges
 	 * by inserting additional {@link Gateway}s.
@@ -128,11 +152,9 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 			if (((Subprocess) activity).isCollapsed()) {
 				super.convertActivity(activity);
 			} else if (((Subprocess) activity).isAdhoc()) {
-				//TODO handle ad hoc subprocess converting
-				throw new TransformationException("Ad hoc supbrocesses could not be handled.");
+				convertAdHocSubprocess((Subprocess) activity);
 			} else if (((Subprocess) activity).isEventDriven()) {
-				//TODO check how to handle
-				throw new TransformationException("Event driven subprocess could not be handled.");
+				convertEventDrivenSubprocess((Subprocess) activity);
 			} else {				
 				convertSubprocess((Subprocess)activity);
 			}
@@ -143,7 +165,74 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	}
 	
 	/**
-	 * Handles boundary events before creation of {@link Flow}s.
+	 * @param subprocess event-driven subprocess to convert
+	 * @throws TransformationException
+	 */
+	protected void convertEventDrivenSubprocess(Subprocess subprocess) throws TransformationException {
+		// TODO Auto-generated method stub
+		throw new TransformationException("Event driven subprocess could not be handled.");
+	}
+
+	/**
+	 * Convert an adhoc subprocess into it's corresponding {@link PetriNet} part.
+	 * Adhoc subprocesses with parallel execution order are transformed into a
+	 * {@link Transition} putting a marking into each place followed by the 
+	 * mapping of the corresponding node. If it is sequential execution order,
+	 * all nodes share the same initial {@link Place}. The end of the adhoc subprocess
+	 * is mapped to a {@link Transition} which took all markings.
+	 * @param subprocess adhoc subprocess to convert
+	 * @throws TransformationException if adhoc subprocess has attached events
+	 */
+	protected void convertAdHocSubprocess(Subprocess subprocess) throws TransformationException {
+		ProcessModel model = subprocess.getModel();
+		Collection<ControlFlow<FlowNode>> edges = model.getOutgoingControlFlow(subprocess);
+		if(edges.size() > 1) {
+			//TODO handle attached events here
+			throw new TransformationException("Ad hoc supbrocesses with attached events could not be handled.");
+		}
+		Transition end = new Transition("adhocEnd");
+		Place start = new Place("adhocStart");
+		this.nodeMapping.put(subprocess, start);
+		if(subprocess.getAdhocOrder().equals(AdHocOrdering.Parallel)){
+			Transition tSplit = new Transition("adHocSplit");
+			this.petriNet.addFlow(start, tSplit);
+			for(FlowNode node : subprocess.getSubProcess().getFlowNodes()) {
+				convertFlowNodes(Arrays.asList(node));
+				Place p = new Place();
+				this.petriNet.addFlow(tSplit, p);
+				Node mappedNode = this.nodeMapping.get(node);
+				if (mappedNode instanceof Transition) {
+					this.petriNet.addFlow(p, (Transition) mappedNode);
+					this.petriNet.addFlow((Transition) mappedNode, p);
+				} else {
+					connectTwoPlaces(p, (Place) mappedNode, "");
+					connectTwoPlaces((Place) mappedNode, p, "");
+				}
+				this.petriNet.addFlow(p, end);
+			}
+		} else {
+			for(FlowNode node : subprocess.getSubProcess().getFlowNodes()) {
+				convertFlowNodes(Arrays.asList(node));
+				Node mappedNode = this.nodeMapping.get(node);
+				if (mappedNode instanceof Transition) {
+					this.petriNet.addFlow(start, (Transition) mappedNode);
+					this.petriNet.addFlow((Transition) mappedNode, start);
+				} else {
+					connectTwoPlaces(start, (Place) mappedNode, "");
+					connectTwoPlaces((Place) mappedNode, start, "");					
+				}
+				this.petriNet.addFlow(start, end);
+			}
+		}
+		if(edges.size() > 0){
+			Activity dummy = new Activity("placeholder");
+			edges.iterator().next().setSource(dummy);
+			this.nodeMapping.put(dummy, end);
+		}
+	}
+
+	/**
+	 * Handles attached events before creation of {@link Flow}s.
 	 * @see AbstractModelToPetriNetConverter#convertControlFlowEdges(Collection)
 	 */
 	@Override
@@ -188,7 +277,7 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	 * @param edge containing the attached {@link Event}.
 	 */
 	protected void convertAttachedEventForSubprocess(BpmnControlFlow<FlowNode> edge) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 	}
 
 	/**

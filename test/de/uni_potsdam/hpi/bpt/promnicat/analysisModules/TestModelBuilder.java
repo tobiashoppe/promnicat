@@ -401,4 +401,27 @@ public class TestModelBuilder {
 		model.addControlFlow(t2, andJoin);
 		return model;
 	}
+	
+	/**
+	 * @param parallel <code>true</code> if adhoc subprocess execution order should be parallel.
+	 * <code>false</code> otherwise.
+	 * @return an {@link Bpmn} consisting of a sequence of an {@link Activity}, an adhoc {@link Subprocess}
+	 * and a further {@link Activity}. The adhoc {@link Subprocess} contains two {@link Activity}s and one
+	 * {@link Event}.
+	 */
+	public static Bpmn<BpmnControlFlow<FlowNode>, FlowNode> getAdHocSubprocessModel(boolean parallel) {
+		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> model = new Bpmn<BpmnControlFlow<FlowNode>, FlowNode>();
+		Subprocess subprocess = new Subprocess();
+		if (parallel) {
+			subprocess.setParallelAdhoc();
+		} else {
+			subprocess.setSequentialAdhoc();
+		}
+		model.addControlFlow(new Activity("t"), subprocess, true);
+		model.addControlFlow(subprocess, new Activity("t3"), true);
+		subprocess.addFlowNode(new Activity("t1"));
+		subprocess.addFlowNode(new Event("e"));
+		subprocess.addFlowNode(new Activity("t2"));
+		return model;
+	}
 }
