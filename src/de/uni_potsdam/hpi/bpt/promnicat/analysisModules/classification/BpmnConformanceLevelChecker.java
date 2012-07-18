@@ -222,7 +222,7 @@ public class BpmnConformanceLevelChecker {
 		}
 		
 		//send and receive tasks are not allowed
-		for(BpmnMessageFlow msgFlowEdge : this.model.getMessageflows()) {
+		for(BpmnMessageFlow msgFlowEdge : this.model.getMessageFlowEdges()) {
 			if(msgFlowEdge.getSource() instanceof Activity ||
 					msgFlowEdge.getTarget() instanceof Activity) {
 				return false;

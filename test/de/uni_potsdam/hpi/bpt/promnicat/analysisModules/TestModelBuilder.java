@@ -363,4 +363,42 @@ public class TestModelBuilder {
 		}
 		return model;
 	}
+
+	/**
+	 * @return the following {@link ProcessModel}:
+	 * 	|--->t1--->|
+	 * 	|		   |
+	 * AND-->t2-->AND
+	 */
+	public static ProcessModel getAndGatewayBlockModel() {
+		ProcessModel model = new ProcessModel();
+		AndGateway and = new AndGateway();
+		Activity t1 = new Activity("t1");
+		model.addControlFlow(and, t1);
+		Activity t2 = new Activity("t2");
+		model.addControlFlow(and, t2);
+		AndGateway andJoin = new AndGateway();
+		model.addControlFlow(t1, andJoin);
+		model.addControlFlow(t2, andJoin);
+		return model;
+	}
+	
+	/**
+	 * @return the following {@link ProcessModel}:
+	 * 	|--->t1--->|
+	 * 	|		   |
+	 * XOR-->t2-->XOR
+	 */
+	public static ProcessModel getXorGatewayBlockModel() {
+		ProcessModel model = new ProcessModel();
+		XorGateway and = new XorGateway();
+		Activity t1 = new Activity("t1");
+		model.addControlFlow(and, t1);
+		Activity t2 = new Activity("t2");
+		model.addControlFlow(and, t2);
+		XorGateway andJoin = new XorGateway();
+		model.addControlFlow(t1, andJoin);
+		model.addControlFlow(t2, andJoin);
+		return model;
+	}
 }

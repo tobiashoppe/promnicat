@@ -151,12 +151,36 @@ public class ModelToPetriNetConverterTest {
 	
 	@Test
 	public void testAndGatewayConverting() {
-		//TODO implement me
+		IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
+		try {
+			PetriNet pn = converter.convertToPetriNet(TestModelBuilder.getAndGatewayBlockModel());
+			assertEquals(1, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(10, pn.getNodes().size());
+			assertEquals(10, pn.getFlow().size());
+			assertEquals(6, pn.getPlaces().size());
+			assertEquals(4, pn.getTransitions().size());
+			assertEquals(2, pn.getSilentTransitions().size());
+		} catch (TransformationException e) {
+			fail(GOT_UNEXPECTED_TRANSFORMATION_EXCEPTION);
+		}
 	}
 	
 	@Test
 	public void testXorGatewayConverting() {
-		//TODO implement me
+		IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
+		try {
+			PetriNet pn = converter.convertToPetriNet(TestModelBuilder.getXorGatewayBlockModel());
+			assertEquals(1, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(4, pn.getNodes().size());
+			assertEquals(4, pn.getFlow().size());
+			assertEquals(2, pn.getPlaces().size());
+			assertEquals(2, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());
+		} catch (TransformationException e) {
+			fail(GOT_UNEXPECTED_TRANSFORMATION_EXCEPTION);
+		}
 	}
 	
 	@Test

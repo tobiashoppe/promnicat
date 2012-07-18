@@ -67,8 +67,16 @@ public class PetriNetAnalyzerUnitTest {
 		} catch (Exception e) {
 			fail("Model to PetriNet convertion failed with: " + e.getMessage());
 		}
-		//TODO check all attributes coming from LoLA Soundness checker
 		assertTrue(unitData.getSoundnessResults().isClassicalSound());
+		assertTrue(unitData.getSoundnessResults().isWeakSound());
+		assertTrue(unitData.getSoundnessResults().isRelaxedSound());
+		assertTrue(unitData.getSoundnessResults().getDeadTransitions().isEmpty());
+		assertTrue(unitData.getSoundnessResults().getUncoveredTransitions().isEmpty());
+		assertTrue(unitData.getSoundnessResults().getUnboundedPlaces().isEmpty());
+		assertTrue(unitData.getSoundnessResults().hasQuasiLiveness());
+		assertTrue(unitData.getSoundnessResults().hasLiveness());
+		assertTrue(unitData.getSoundnessResults().hasTransitioncover());
+		assertTrue(unitData.getSoundnessResults().isBounded());
 		assertFalse(unitData.isCyclic());
 		assertTrue(unitData.isFreeChoice());
 		assertTrue(unitData.isExtendedFreeChoice());
