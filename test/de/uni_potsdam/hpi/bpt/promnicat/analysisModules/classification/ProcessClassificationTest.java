@@ -47,8 +47,8 @@ public class ProcessClassificationTest {
 			try {
 				RPST<ControlFlow<FlowNode>, FlowNode> rpst = new RPST<ControlFlow<FlowNode>, FlowNode>(model);
 				orLoop: for (IVertex sp : model.filter(OrGateway.class)) {
-					for (RPSTNode<ControlFlow<FlowNode>, FlowNode> rigidNode : rpst.getVertices(TCType.R)) {
-						if (rigidNode.getSkeleton().contains((OrGateway)sp)) {
+					for (RPSTNode<ControlFlow<FlowNode>, FlowNode> rigidNode : rpst.getRPSTNodes(TCType.RIGID)) {
+						if (rigidNode.getFragment().contains((OrGateway)sp)) {
 							notMappableOrGateway++;
 							break orLoop;
 						}

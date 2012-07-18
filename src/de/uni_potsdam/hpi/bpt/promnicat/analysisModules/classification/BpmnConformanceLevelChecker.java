@@ -138,7 +138,6 @@ public class BpmnConformanceLevelChecker {
 			}
 		}
 		
-		//TODO check for further attributes
 		this.setAnalyticConform();
 		return this.isAnalyticConform;
 	}

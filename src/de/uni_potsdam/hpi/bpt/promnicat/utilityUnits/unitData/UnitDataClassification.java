@@ -18,7 +18,7 @@
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 
 import org.jbpt.petri.PetriNet;
-import org.jbpt.petri.bevahior.LolaSoundnessCheckerResult;
+import org.jbpt.petri.behavior.LolaSoundnessCheckerResult;
 import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
 

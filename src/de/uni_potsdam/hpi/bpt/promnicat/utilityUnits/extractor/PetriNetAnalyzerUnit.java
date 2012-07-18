@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import org.jbpt.petri.Flow;
 import org.jbpt.petri.NetSystem;
 import org.jbpt.petri.PetriNet;
-import org.jbpt.petri.bevahior.LolaSoundnessChecker;
+import org.jbpt.petri.behavior.LolaSoundnessChecker;
 import org.jbpt.petri.structure.PetriNetPathUtils;
 import org.jbpt.petri.structure.PetriNetStructuralClassChecks;
 
@@ -75,7 +75,7 @@ public class PetriNetAnalyzerUnit implements IUnit<IUnitData<Object>, IUnitData<
 				NetSystem netSystem = new NetSystem();
 				netSystem.addNodes(petriNet.getNodes());
 				for(Flow edge : petriNet.getEdges()) {
-					netSystem.addFlow(edge.getSource(), edge.getTarget());
+					netSystem.addFreshFlow(edge.getSource(), edge.getTarget());
 				}
 				netSystem.loadNaturalMarking();
 				((IUnitDataClassification<?>) input).setSoundnessResults(LolaSoundnessChecker.analyzeSoundness(netSystem));

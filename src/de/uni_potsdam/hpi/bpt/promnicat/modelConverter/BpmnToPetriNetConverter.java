@@ -54,6 +54,7 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	 * Transforms the given {@link ProcessModel} into a {@link PetriNet}.
 	 * {@link DataNode}s are not converted.
 	 * <b><br/>Assumptions:</b><br/>
+	 * TODO check
 	 * - Model does not contain any {@link OrGateway}s or Ad-hoc-{@link Subprocess}es
 	 * or event-based-{@link Subprocess}es
 	 * 
@@ -168,7 +169,7 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 			for (ControlFlow<FlowNode> e : edge.getSource().getModel().getOutgoingControlFlow(edge.getSource())) {
 				if (e != edge) {
 					Place p = new Place();
-					this.petriNet.addFlow(this.nodeMapping.get(e.getSource()), p);
+					this.petriNet.addFreshFlow(this.nodeMapping.get(e.getSource()), p);
 					this.nodeMapping.put(e.getSource(), p);
 					this.petriNet.addFlow(p, attachedEventTransition);
 					if (!edge.getAttachedEvent().isInterrupting()) {
@@ -212,13 +213,13 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 		}
 		this.petriNet.addNodes(pn.getNodes());
 		for (Flow f : pn.getFlow()) {
-			this.petriNet.addFlow(f.getSource(), f.getTarget());
+			this.petriNet.addFreshFlow(f.getSource(), f.getTarget());
 		}
 		//insert place to connecting to all start nodes of subprocess net
 		if (pn.getSourceNodes().size() > 1) {
 			Place p = new Place("subprocesses_start" + getNextId());
 			for(Node n : pn.getSourceNodes()) {
-				this.petriNet.addFlow(p, n);
+				this.petriNet.addFreshFlow(p, n);
 			}
 			this.nodeMapping.put(subprocess, p);
 		} else if (!pn.getSourceNodes().isEmpty()){
@@ -237,7 +238,7 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 				//insert place to connect all ends
 				Place p = new Place("subprocesses_end" + getNextId());
 				for(Node n : pn.getSinkNodes()) {
-					this.petriNet.addFlow(n, p);
+					this.petriNet.addFreshFlow(n, p);
 				}
 				this.nodeMapping.put(dummy, p);
 			} else if (!pn.getSinkNodes().isEmpty()) {

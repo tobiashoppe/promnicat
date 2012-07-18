@@ -74,7 +74,7 @@ public class StructuralModelChecker {
 		}
 		try{
 			RPST<ControlFlow<FlowNode>, FlowNode> rpst = new RPST<ControlFlow<FlowNode>, FlowNode>(copy);
-			return rpst.getVertices(TCType.R).size() == 0;
+			return rpst.getRPSTNodes(TCType.RIGID).size() == 0;
 		} catch (Exception e) {
 			logger.warning("Error during structural check:" + e.getClass().getName() + ": " + e.getMessage());
 			return false;
