@@ -56,8 +56,7 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	 * {@link DataNode}s are not converted.
 	 * <b><br/>Assumptions:</b><br/>
 	 * TODO check
-	 * - Model does not contain any {@link OrGateway}s or Ad-hoc-{@link Subprocess}es
-	 * or event-based-{@link Subprocess}es
+	 * - Model does not contain any {@link OrGateway}s or event-based-{@link Subprocess}es
 	 * 
 	 * @param model to transform
 	 * @return the created {@link PetriNet}
@@ -68,7 +67,8 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 		if(!(model instanceof Bpmn<?, ?>)) {
 			throw new IllegalArgumentException(THE_GIVEN_PROCESS_MODEL_CAN_NOT_BE_HANDELED_BY_THIS_CONVERTER);
 		}
-		ProcessModel transformedModel = prepareProcessModel(model);
+		@SuppressWarnings("unchecked")
+		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> transformedModel = (Bpmn<BpmnControlFlow<FlowNode>, FlowNode>) prepareProcessModel(model);
 		if(transformedModel == null) {
 			return null;
 		}
@@ -81,10 +81,10 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	}
 	
 	/**
-	 * Transform the {@link BpmnMessageFlow}s of the given {@link ProcessModel}.
+	 * Transform the {@link BpmnMessageFlow}s of the given {@link Bpmn}.
 	 * @param transformedModel model to handle
 	 */
-	protected void convertMessageFlowEdges(ProcessModel transformedModel) {
+	protected void convertMessageFlowEdges(Bpmn<BpmnControlFlow<FlowNode>, FlowNode> transformedModel) {
 		for(BpmnMessageFlow messageFlow : ((Bpmn<?,?>) transformedModel).getMessageFlowEdges()) {
 			Node source = this.nodeMapping.get(messageFlow.getSource());
 			Node target = this.nodeMapping.get(messageFlow.getTarget());
@@ -180,7 +180,7 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	 * all nodes share the same initial {@link Place}. The end of the adhoc subprocess
 	 * is mapped to a {@link Transition} which took all markings.
 	 * @param subprocess adhoc subprocess to convert
-	 * @throws TransformationException if adhoc subprocess has attached events
+	 * @throws TransformationException if adhoc subprocess' internal model can not be converted
 	 */
 	protected void convertAdHocSubprocess(Subprocess subprocess) throws TransformationException {
 		ProcessModel model = subprocess.getModel();
@@ -302,12 +302,15 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	 */
 	@Override
 	protected void convertControlFlowEdges(Collection<ControlFlow<FlowNode>> edges) {
+		Collection<ControlFlow<FlowNode>> edgesToConvert = new ArrayList<ControlFlow<FlowNode>>();
 		for(ControlFlow<FlowNode> edge : edges) {
 			if ((edge instanceof BpmnControlFlow<?>) && ((BpmnControlFlow<FlowNode>)edge).hasAttachedEvent()) {
 				convertAttachedEvent((BpmnControlFlow<FlowNode>) edge);
+			} else {
+				edgesToConvert.add(edge);
 			}
 		}
-		super.convertControlFlowEdges(edges);
+		super.convertControlFlowEdges(edgesToConvert);
 	}
 
 	/**
@@ -336,24 +339,23 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 			// connect input/output accordingly
 			BpmnEvent attachedEvent = edge.getAttachedEvent();
 			Transition attachedEventTransition = new Transition(attachedEvent.getLabel());
-			for (ControlFlow<FlowNode> e : edge.getSource().getModel().getOutgoingControlFlow(edge.getSource())) {
-				if (e != edge) {
-					Place p = new Place();
-					Node source = this.nodeMapping.get(e.getSource());
-					if (source instanceof Transition) {
-						this.petriNet.addFreshFlow(source, p);
-					} else {
-						this.connectTwoPlaces((Place) source, p, "helperTransitionForEdge" + edge.getId());
-					}
-					this.nodeMapping.put(e.getSource(), p);
-					this.petriNet.addFlow(p, attachedEventTransition);
-					if (!edge.getAttachedEvent().isInterrupting()) {
-						this.petriNet.addFlow(attachedEventTransition, p);
-					}
+			Node source = this.nodeMapping.get(edge.getSource());
+			if (source instanceof Place) {
+				this.petriNet.addFreshFlow(source, attachedEventTransition);
+			} else {
+				this.connectTwoTransitions((Transition) source, attachedEventTransition, "helperPlaceForEdge" + edge.getId());
+				Place p = this.petriNet.getPreset(attachedEventTransition).iterator().next();
+				this.nodeMapping.put(edge.getSource(), p);
+				if(!attachedEvent.isInterrupting()) {
+					this.petriNet.addFlow(attachedEventTransition, p);
 				}
 			}
-			edge.setSource(attachedEvent);
-			this.nodeMapping.put(attachedEvent, attachedEventTransition);
+			Node target = this.nodeMapping.get(edge.getTarget());
+			if (target instanceof Place) {
+				this.petriNet.addFreshFlow(attachedEventTransition, target);
+			} else {
+				this.connectTwoTransitions(attachedEventTransition ,(Transition) target , "helperPlaceForEdge" + edge.getId());
+			}
 		}
 	}
 
@@ -371,24 +373,26 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	 * @throws TransformationException if the {@link Subprocess} could not be converted
 	 */
 	protected void convertSubprocess(Subprocess subprocess) throws TransformationException {
-		//TODO handle attached events
 		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> process = subprocess.getSubProcess();
-		//convert subprocess to Petrinet and add it to the resulting net
+		//convert subprocess to Petri net
 		PetriNet pn = new BpmnToPetriNetConverter().convertToPetriNet(process);
 		if(pn.getNodes().isEmpty()) {
+			//if subprocess is empty handle it like an activity
 			super.convertActivity(subprocess);
 			return;
 		}
-		Collection<ControlFlow<FlowNode>> edges = subprocess.getModel().getOutgoingControlFlow(subprocess);
+		//identify attached events and initialize place for state 'ok' and 'not ok' for each attached event
 		ControlFlow<FlowNode> outgoingControlFlowEdge = null;
 		Collection<TransformationContext> attachedEventContexts = new ArrayList<TransformationContext>();
 		//identify attached events
-		for(ControlFlow<FlowNode> edge : edges) {
+		for(ControlFlow<FlowNode> edge : subprocess.getModel().getOutgoingControlFlow(subprocess)) {
 			if(edge instanceof BpmnControlFlow) {
 				if (((BpmnControlFlow<?>) edge).hasAttachedEvent()) {
 					String name = ((BpmnControlFlow<?>) edge).getAttachedEvent().getName();
-					TransformationContext context = new TransformationContext(new Place("placeOkFor" + name), new Place("placeNotOkFor" + name), new Transition(name));
+					TransformationContext context = new TransformationContext(((BpmnControlFlow<?>) edge).getAttachedEvent(),
+							new Place("placeOkFor" + name), new Place("placeNotOkFor" + name), new Transition(name));
 					attachedEventContexts.add(context);
+					this.nodeMapping.put(((BpmnControlFlow<?>) edge).getAttachedEvent(), context.getException());
 				} else {
 					outgoingControlFlowEdge = edge;
 				}
@@ -396,38 +400,104 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 				outgoingControlFlowEdge = edge;
 			}
 		}
-		
+		Collection<Transition> originalTransitions = pn.getTransitions();
+		//new transitions for start and end of subprocess
+		Transition subprocessStart = new Transition("subprocessStart" + getNextId());
+		Transition subprocessEnd = new Transition("subprocessEnd" + getNextId());
+
+		connectStartAndEndOfSubprocess(subprocess, pn, outgoingControlFlowEdge, subprocessStart, subprocessEnd);		
+		//handle attached events
+		handleSubprocessAttachedEvent(pn, attachedEventContexts, originalTransitions, subprocessStart, subprocessEnd);
+		//add converted subprocess net to final Petri net
 		this.petriNet.addNodes(pn.getNodes());
 		for (Flow f : pn.getFlow()) {
 			this.petriNet.addFreshFlow(f.getSource(), f.getTarget());
 		}
+	}
+
+	/**
+	 * Connects the start and end nodes of the {@link Subprocess} to the given start- and end-{@link Transition}s
+	 * @param subprocess {@link Subprocess} to convert
+	 * @param pn {@link PetriNet} converted from given {@link Subprocess}
+	 * @param outgoingControlFlowEdge outgoing {@link ControlFlow} edge of the {@link Subprocess}
+	 * @param subprocessStart start {@link Transition} of {@link Subprocess}
+	 * @param subprocessEnd end {@link Transition} of {@link Subprocess}
+	 */
+	private void connectStartAndEndOfSubprocess(Subprocess subprocess, PetriNet pn,
+			ControlFlow<FlowNode> outgoingControlFlowEdge, Transition subprocessStart, Transition subprocessEnd) {
 		//insert place connecting all start nodes of subprocess net
 		if (pn.getSourceNodes().size() > 1) {
-			Place p = new Place("subprocesses_start" + getNextId());
+			Place p = new Place("subprocessesStartPlace" + getNextId());
 			for(Node n : pn.getSourceNodes()) {
-				this.petriNet.addFreshFlow(p, n);
+				pn.addFreshFlow(p, n);
 			}
-			this.nodeMapping.put(subprocess, p);
+			pn.addFlow(subprocessStart, p);
 		} else if (!pn.getSourceNodes().isEmpty()){
-			this.nodeMapping.put(subprocess, pn.getSourceNodes().iterator().next());
+			pn.addFreshFlow(subprocessStart, pn.getSourceNodes().iterator().next());
 		}
+		this.nodeMapping.put(subprocess, subprocessStart);
 		//add dummy activity to original process model to handle end of subprocess
 		if (outgoingControlFlowEdge != null) {
 			Activity dummy = new Activity();
 			outgoingControlFlowEdge.setSource(dummy);
-			//handle integration of end of subprocess into Petrinet
+			//handle integration of end of subprocess into Petri net
 			if (pn.getSinkNodes().size() > 1) {
 				//insert place to connect all ends
-				Place p = new Place("subprocesses_end" + getNextId());
+				Place p = new Place("subprocessesEndPlace" + getNextId());
 				for(Node n : pn.getSinkNodes()) {
-					this.petriNet.addFreshFlow(n, p);
+					pn.addFreshFlow(n, p);
 				}
-				this.nodeMapping.put(dummy, p);
+				pn.addFlow(p, subprocessEnd);
 			} else if (!pn.getSinkNodes().isEmpty()) {
-				this.nodeMapping.put(dummy, pn.getSinkNodes().iterator().next());
+				pn.addFlow((Place) pn.getSinkNodes().iterator().next(), subprocessEnd);
+			}
+			this.nodeMapping.put(dummy, subprocessEnd);
+		}
+	}
+
+	/**
+	 * Adds skipping {@link Transition}s and {@link Flow}s according to the transformation rules.
+	 * @param pn {@link PetriNet} representing the {@link Subprocess} to convert
+	 * @param attachedEventContexts the contexts of all attached events
+	 * @param originalTransitions the transitions of the converted inner {@link Subprocess}
+	 * @param subprocessStart start {@link Transition} of {@link Subprocess}
+	 * @param subprocessEnd end {@link Transition} of {@link Subprocess}
+	 */
+	private void handleSubprocessAttachedEvent(PetriNet pn, Collection<TransformationContext> attachedEventContexts,
+			Collection<Transition> originalTransitions, Transition subprocessStart, Transition subprocessEnd) {
+		Place lastSubprocessPlace = (Place) pn.getFirstDirectPredecessor(subprocessEnd);
+		for(TransformationContext context : attachedEventContexts) {
+			//connect places for state 'ok' and 'not ok' accordingly
+			pn.addFlow(subprocessStart, context.getPlaceOk());
+			pn.addFlow(context.getPlaceOk(), subprocessEnd);
+			String exceptionName = context.getException().getName();
+			Transition exception = new Transition("ExFor" + exceptionName);
+			pn.addFlow(context.getPlaceOk(), exception);
+			if(!context.getAttachedEvent().isInterrupting()) {
+				pn.addFlow(exception, context.getPlaceOk());
+				connectTwoTransitions(exception, context.getException(), "helperForNonInterruptingFor" + exceptionName);
+			} else {
+				for(Transition t : originalTransitions) {
+					//add skip transition for each transition of original mapped Petri net
+					Transition tSkip = new Transition("skip" + t.getName());
+					if(pn.getEdgesWithTarget(t).isEmpty()) {
+						pn.addFlow(new Place(), t);
+					}
+					pn.addFlow((Place) pn.getEdgesWithTarget(t).iterator().next().getSource(), tSkip);
+					if(pn.getEdgesWithSource(t).isEmpty()) {
+						pn.addFlow(t, new Place());
+					}
+					pn.addFlow(tSkip, (Place)pn.getEdgesWithSource(t).iterator().next().getTarget());
+					pn.addFlow(context.getPlaceOk(), t);
+					pn.addFlow(t, context.getPlaceOk());
+					pn.addFlow(context.getPlaceNotOk(), tSkip);
+					pn.addFlow(tSkip, context.getPlaceNotOk());
+				}
+				pn.addFlow(exception, context.getPlaceNotOk());
+				pn.addFlow(context.getPlaceNotOk(), context.getException());
+				pn.addFlow(lastSubprocessPlace, context.getException());
 			}
 		}
-		
 	}
 
 }

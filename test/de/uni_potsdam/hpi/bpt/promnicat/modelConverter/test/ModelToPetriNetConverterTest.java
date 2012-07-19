@@ -26,7 +26,7 @@ import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
 import org.jbpt.pm.bpmn.BpmnControlFlow;
-import org.jbpt.pm.bpmn.BpmnEventTypes.BPMN_EVENT_TYPES;
+import org.jbpt.pm.bpmn.BpmnEvent;
 import org.jbpt.pm.bpmn.Subprocess;
 import org.jbpt.pm.bpmn.ThrowingEvent;
 import org.jbpt.pm.epc.Epc;
@@ -51,19 +51,19 @@ public class ModelToPetriNetConverterTest {
 		ModelToPetriNetConverter converter = new ModelToPetriNetConverter();		
 		try {
 			//as ProcessModel
-			PetriNet pn = converter.convertToPetriNet(TestModelBuilder.getSequence(5, ProcessModel.class));			
-			assertEquals(11, pn.getNodes().size());
-			assertEquals(10, pn.getFlow().size());
-			assertEquals(6, pn.getPlaces().size());
-			assertEquals(5, pn.getTransitions().size());
+			PetriNet pn = converter.convertToPetriNet(TestModelBuilder.getSequence(6, ProcessModel.class));			
+			assertEquals(13, pn.getNodes().size());
+			assertEquals(12, pn.getFlow().size());
+			assertEquals(7, pn.getPlaces().size());
+			assertEquals(6, pn.getTransitions().size());
 			assertEquals(1, pn.getSinkNodes().size());
 			assertEquals(1, pn.getSourceNodes().size());
 			//as epc
-			pn = converter.convertToPetriNet(TestModelBuilder.getSequence(5, Epc.class));			
-			assertEquals(5, pn.getNodes().size());
-			assertEquals(4, pn.getFlow().size());
-			assertEquals(3, pn.getPlaces().size());
-			assertEquals(2, pn.getTransitions().size());
+			pn = converter.convertToPetriNet(TestModelBuilder.getSequence(6, Epc.class));			
+			assertEquals(7, pn.getNodes().size());
+			assertEquals(6, pn.getFlow().size());
+			assertEquals(4, pn.getPlaces().size());
+			assertEquals(3, pn.getTransitions().size());
 			assertEquals(1, pn.getSinkNodes().size());
 			assertEquals(1, pn.getSourceNodes().size());
 		} catch (TransformationException e) {
@@ -137,31 +137,61 @@ public class ModelToPetriNetConverterTest {
 	@Test
 	public void testSubprocessConverting() {
 		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> model = new Bpmn<BpmnControlFlow<FlowNode>, FlowNode>();
-		Activity t = new Activity("t");
 		Subprocess sp = new Subprocess("sp");
-		model.addControlFlow(t, sp, true);
+		model.addControlFlow(new Activity("t"), sp, true);
 		sp.setCollapsed(false);
 		try {
-			sp.setSubProcess((Bpmn<BpmnControlFlow<FlowNode>, FlowNode>) TestModelBuilder.getSequence(3, Bpmn.class));
-			Activity t1 = new Activity("t1");
-			model.addControlFlow(sp, t1, true);			
+			sp.setSubProcess((Bpmn<BpmnControlFlow<FlowNode>, FlowNode>) TestModelBuilder.getSequence(4, Bpmn.class));
+			model.addControlFlow(sp, new Activity("t1"), true);			
 			IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
 			PetriNet pn = converter.convertToPetriNet(model);
 			assertEquals(1, pn.getSinkNodes().size());
 			assertEquals(1, pn.getSourceNodes().size());
-			assertEquals(11, pn.getNodes().size());
-			assertEquals(10, pn.getFlow().size());
-			assertEquals(6, pn.getPlaces().size());
-			assertEquals(5, pn.getTransitions().size());
+			assertEquals(17, pn.getNodes().size());
+			assertEquals(16, pn.getFlow().size());
+			assertEquals(9, pn.getPlaces().size());
+			assertEquals(8, pn.getTransitions().size());
 			assertEquals(0, pn.getSilentTransitions().size());
 		} catch (Exception e) {
 			fail("Got unexpected exception!");
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testSubprocessAttachedEventConverting() {
-		//TODO implement me
+		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> model = new Bpmn<BpmnControlFlow<FlowNode>, FlowNode>();
+		Subprocess sp = new Subprocess("sp");
+		model.addControlFlow(new Activity("t"), sp, true);
+		sp.setCollapsed(false);
+		try {
+			sp.setSubProcess((Bpmn<BpmnControlFlow<FlowNode>, FlowNode>) TestModelBuilder.getSequence(2, Bpmn.class));
+			model.addControlFlow(sp, new Activity("t1"), true);
+			BpmnEvent attachedEvent = new ThrowingEvent("attachedEvent");
+			attachedEvent.setInterrupted(true);
+			model.addControlFlow(sp, new Activity("tEx"), false).attachEvent(attachedEvent);			
+			IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
+			PetriNet pn = converter.convertToPetriNet(model);
+			assertEquals(2, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(22, pn.getNodes().size());
+			assertEquals(33, pn.getFlow().size());
+			assertEquals(11, pn.getPlaces().size());
+			assertEquals(11, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());			
+			//with non-interrupting event
+			attachedEvent.setInterrupted(false);
+			pn = converter.convertToPetriNet(model);
+			assertEquals(2, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(20, pn.getNodes().size());
+			assertEquals(21, pn.getFlow().size());
+			assertEquals(11, pn.getPlaces().size());
+			assertEquals(9, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());
+		} catch (Exception e) {
+			fail("Got unexpected exception!");
+		}
 	}
 	
 	@Test
@@ -245,23 +275,30 @@ public class ModelToPetriNetConverterTest {
 	public void testAttachedEventConverting() {
 		Bpmn<BpmnControlFlow<FlowNode>, FlowNode> model = new Bpmn<BpmnControlFlow<FlowNode>, FlowNode>();
 		Activity t = new Activity("t");
-		Activity t1 = new Activity("t1");
-		ThrowingEvent event = new ThrowingEvent("e2");
-		event.setAttached(true);
-		event.setEventType(BPMN_EVENT_TYPES.CANCEL);
-		BpmnControlFlow<FlowNode> edge = model.addControlFlow(t, t1, false);
-		edge.attachEvent(event);
-		Activity t2 = new Activity("t2");
-		model.addControlFlow(t,t2, true);
+		BpmnEvent attachedEvent = new ThrowingEvent("e");
+		attachedEvent.setInterrupted(true);
+		model.addControlFlow(t, new Activity("t1"), false).attachEvent(attachedEvent);
+		model.addControlFlow(t,new Activity("t2"), true);
 		IModelToPetriNetConverter converter = new ModelToPetriNetConverter();
 		try {
 			PetriNet pn = converter.convertToPetriNet(model);
 			assertEquals(2, pn.getSinkNodes().size());
 			assertEquals(1, pn.getSourceNodes().size());
-			assertEquals(8, pn.getNodes().size());
-			assertEquals(7, pn.getFlow().size());
+			assertEquals(9, pn.getNodes().size());
+			assertEquals(8, pn.getFlow().size());
 			assertEquals(5, pn.getPlaces().size());
-			assertEquals(3, pn.getTransitions().size());
+			assertEquals(4, pn.getTransitions().size());
+			assertEquals(0, pn.getSilentTransitions().size());
+			
+			//change to non-interrupting attached event
+			attachedEvent.setInterrupted(false);
+			pn = converter.convertToPetriNet(model);
+			assertEquals(2, pn.getSinkNodes().size());
+			assertEquals(1, pn.getSourceNodes().size());
+			assertEquals(9, pn.getNodes().size());
+			assertEquals(9, pn.getFlow().size());
+			assertEquals(5, pn.getPlaces().size());
+			assertEquals(4, pn.getTransitions().size());
 			assertEquals(0, pn.getSilentTransitions().size());
 		} catch (TransformationException e) {
 			fail(GOT_UNEXPECTED_TRANSFORMATION_EXCEPTION);

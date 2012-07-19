@@ -362,12 +362,12 @@ public abstract class AbstractModelToPetriNetConverter implements IModelToPetriN
 	 */
 	protected void addInitialAndFinalPlaces() {
 		for(Transition t : this.petriNet.getSinkTransitions()) {
-			Place p = new Place("final_for_" + t.getName());
+			Place p = new Place("finalFor" + t.getName());
 			this.petriNet.addPlace(p);
 			this.petriNet.addFlow(t, p);
 		}
 		for(Transition t : this.petriNet.getSourceTransitions()) {
-			Place p = new Place("start_for_" + t.getName());
+			Place p = new Place("startFor" + t.getName());
 			this.petriNet.addPlace(p);
 			this.petriNet.addFlow(p, t);
 		}

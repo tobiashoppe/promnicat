@@ -17,8 +17,10 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.modelConverter;
 
+import org.jbpt.petri.PetriNet;
 import org.jbpt.petri.Place;
 import org.jbpt.petri.Transition;
+import org.jbpt.pm.bpmn.BpmnEvent;
 
 /**
  * @author Tobias Hoppe
@@ -29,49 +31,63 @@ public class TransformationContext {
 	/**
 	 * {@link Place} indicating that the attached event is not activated
 	 */
-	Place pOk;
+	private Place pOk;
 	
 	/**
 	 * {@link Place} indicating that the attached event is activated
 	 */
-	Place pNotOk;
+	private Place pNotOk;
 	
 	/**
 	 * Mapped {@link Transition} of the attached event
 	 */
-	Transition exception;
+	private Transition exception;
 	
-	public TransformationContext(Place pOk, Place pNotOk, Transition exception) {
-		this.pOk = pOk;
-		this.pNotOk = pNotOk;
+	/**
+	 * Attached event to handle with this {@link TransformationContext}.
+	 */
+	private BpmnEvent attachedEvent;
+	
+	/**
+	 * Container for {@link Place}s and {@link Transition} for attached {@link BpmnEvent} to convert
+	 * into {@link PetriNet}.
+	 * @param attachedEvent to convert
+	 * @param placeOk {@link Place} for state without exception
+	 * @param placeNotOk {@link Place} for state with exception
+	 * @param exception {@link Transition} representing the converted attached {@link BpmnEvent}
+	 */
+	public TransformationContext(BpmnEvent attachedEvent, Place placeOk, Place placeNotOk, Transition exception) {
+		this.pOk = placeOk;
+		this.pNotOk = placeNotOk;
 		this.exception = exception;
+		this.attachedEvent = attachedEvent;
 	}
 
 	/**
 	 * @return the {@link Place} indicating that the attached event is not activated
 	 */
-	public Place getpOk() {
+	public Place getPlaceOk() {
 		return pOk;
 	}
 
 	/**
 	 * @param pOk the {@link Place} indicating that the attached event is not activated to set
 	 */
-	public void setpOk(Place pOk) {
+	public void setPlaceOk(Place pOk) {
 		this.pOk = pOk;
 	}
 
 	/**
 	 * @return the {@link Place} indicating that the attached event is activated
 	 */
-	public Place getpNotOk() {
+	public Place getPlaceNotOk() {
 		return pNotOk;
 	}
 
 	/**
 	 * @param pNotOk the {@link Place} indicating that the attached event is activated to set
 	 */
-	public void setpNotOk(Place pNotOk) {
+	public void setPlaceNotOk(Place pNotOk) {
 		this.pNotOk = pNotOk;
 	}
 
@@ -87,6 +103,20 @@ public class TransformationContext {
 	 */
 	public void setException(Transition exception) {
 		this.exception = exception;
+	}
+
+	/**
+	 * @return the attachedEvent
+	 */
+	public BpmnEvent getAttachedEvent() {
+		return attachedEvent;
+	}
+
+	/**
+	 * @param attachedEvent the attachedEvent to set
+	 */
+	public void setAttachedEvent(BpmnEvent attachedEvent) {
+		this.attachedEvent = attachedEvent;
 	}
 	
 	
