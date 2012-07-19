@@ -98,8 +98,8 @@
 		<!-- Compile test files -->
 		<javac srcdir="${dir.test}" destdir="${dir.build}/bin" includeantruntime="false" source="1.6" target="1.6" debug="on" nowarn="on">
 			<classpath>
-				<fileset dir="${dir.lib}" includes="**/*.jar"/>
 				<fileset dir="${dir.build}" includes="*.jar"/>
+				<fileset dir="${dir.lib}" includes="**/*.jar"/>
 			</classpath>
 		</javac>
 		<jar destfile="${dir.build}/${project.shortName}_Tests.jar" basedir="${dir.build}/bin"></jar>
