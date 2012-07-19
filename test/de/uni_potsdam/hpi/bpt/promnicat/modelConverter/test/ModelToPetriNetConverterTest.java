@@ -171,21 +171,20 @@ public class ModelToPetriNetConverterTest {
 			PetriNet pn = converter.convertToPetriNet(TestModelBuilder.getAdHocSubprocessModel(true));
 			assertEquals(1, pn.getSinkNodes().size());
 			assertEquals(1, pn.getSourceNodes().size());
-			assertEquals(14, pn.getNodes().size());
-			assertEquals(18, pn.getFlow().size());
-			assertEquals(7, pn.getPlaces().size());
-			assertEquals(7, pn.getTransitions().size());
-			assertEquals(0, pn.getSilentTransitions().size());
+			assertEquals(26, pn.getNodes().size());
+			assertEquals(30, pn.getFlow().size());
+			assertEquals(13, pn.getPlaces().size());
+			assertEquals(13, pn.getTransitions().size());
+			assertEquals(6, pn.getSilentTransitions().size());
 			
 			pn = converter.convertToPetriNet(TestModelBuilder.getAdHocSubprocessModel(false));
-			System.out.println(pn.toDOT());
 			assertEquals(1, pn.getSinkNodes().size());
 			assertEquals(1, pn.getSourceNodes().size());
-			assertEquals(10, pn.getNodes().size());
-			assertEquals(12, pn.getFlow().size());
-			assertEquals(4, pn.getPlaces().size());
-			assertEquals(6, pn.getTransitions().size());
-			assertEquals(0, pn.getSilentTransitions().size());
+			assertEquals(22, pn.getNodes().size());
+			assertEquals(24, pn.getFlow().size());
+			assertEquals(10, pn.getPlaces().size());
+			assertEquals(12, pn.getTransitions().size());
+			assertEquals(6, pn.getSilentTransitions().size());
 		} catch (TransformationException e) {
 			fail(GOT_UNEXPECTED_TRANSFORMATION_EXCEPTION);
 		}
