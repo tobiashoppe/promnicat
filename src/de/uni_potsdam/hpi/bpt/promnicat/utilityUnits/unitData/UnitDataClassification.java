@@ -189,6 +189,36 @@ public class UnitDataClassification<V extends Object> extends UnitDataJbpt<V> im
 	}
 
 	@Override
+	public LolaSoundnessCheckerResult getSoundnessResults() {
+		return soundnessResults;
+	}
+
+	 @Override
+	public void setSoundnessResults(LolaSoundnessCheckerResult soundnessResults) {
+		this.soundnessResults = soundnessResults;
+	}
+
+	@Override
+	public boolean isStructured() {
+		return isStructured;
+	}
+
+	@Override
+	public void setStructured(boolean isStructured) {
+		this.isStructured = isStructured;
+	}
+
+	@Override
+	public boolean canBeStructured() {
+		return canBeStructured;
+	}
+
+	@Override
+	public void setAsStructurable(boolean canBeStructured) {
+		this.canBeStructured = canBeStructured;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder(super.toString() + "\n");
 		builder.append("UnitDataClassification [isDecriptiveModelingConform=");
@@ -264,36 +294,6 @@ public class UnitDataClassification<V extends Object> extends UnitDataJbpt<V> im
 		} else {
 			return "0";
 		}
-	}
-
-	@Override
-	public LolaSoundnessCheckerResult getSoundnessResults() {
-		return soundnessResults;
-	}
-
-	 @Override
-	public void setSoundnessResults(LolaSoundnessCheckerResult soundnessResults) {
-		this.soundnessResults = soundnessResults;
-	}
-
-	@Override
-	public boolean isStructured() {
-		return isStructured;
-	}
-
-	@Override
-	public void setStructured(boolean isStructured) {
-		this.isStructured = isStructured;
-	}
-
-	@Override
-	public boolean canBeStructured() {
-		return canBeStructured;
-	}
-
-	@Override
-	public void setAsStructurable(boolean canBeStructured) {
-		this.canBeStructured = canBeStructured;
 	}
 
 }

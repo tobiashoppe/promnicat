@@ -78,9 +78,7 @@ public class ProcessClassification implements IAnalysisModule{
 		long startTime = System.currentTimeMillis();
 		
 		//build up chain
-		//set to true if the whole DB data should be used for analysis otherwise only a small sub set is used.
-		boolean useFullDB = false;
-		IUnitChainBuilder chainBuilder = buildUpUnitChain(useFullDB);
+		IUnitChainBuilder chainBuilder = buildUpUnitChain();
 		
 		logger.info(chainBuilder.getChain().toString() + "\n");
 		
@@ -112,14 +110,13 @@ public class ProcessClassification implements IAnalysisModule{
 	 * @throws IOException if the given configuration file path could not be found
 	 * @throws IllegalTypeException if the units of the chain have incompatible input/output types
 	 */
-	private IUnitChainBuilder buildUpUnitChain(boolean useFullDB) throws IOException, IllegalTypeException {
+	private IUnitChainBuilder buildUpUnitChain() throws IOException, IllegalTypeException {
 		IUnitChainBuilder chainBuilder = null;
-		String configPath = "";
-		if (useFullDB){
-			configPath = "configuration(full).properties";
-		}
+		//set to true if the whole DB data should be used for analysis otherwise only a small sub set is used.
+		String configPath = "configuration(full).properties";
 		ConfigurationParser configParser = new ConfigurationParser(configPath);
 		IPersistenceApi persistenceApi = configParser.getDbInstance(Constants.DATABASE_TYPES.ORIENT_DB);
+		persistenceApi.openDb();
 		chainBuilder = new UnitChainBuilder(persistenceApi, configParser.getThreadCount(), UnitDataClassification.class);
 		//build db query
 		DbFilterConfig dbFilter = new DbFilterConfig();
@@ -128,7 +125,7 @@ public class ProcessClassification implements IAnalysisModule{
 		dbFilter.addNotation(Constants.NOTATIONS.BPMN1_1);
 		dbFilter.addNotation(Constants.NOTATIONS.BPMN2_0);
 		dbFilter.addNotation(Constants.NOTATIONS.EPC);
-//		dbFilter.setLatestRevisionsOnly(true);
+		dbFilter.setLatestRevisionsOnly(true);
 		chainBuilder.addDbFilterConfig(dbFilter);
 		//transform to jBPT
 		chainBuilder.createBpmaiJsonToJbptUnit(false);
@@ -137,9 +134,8 @@ public class ProcessClassification implements IAnalysisModule{
 		//perform structural checks
 		chainBuilder.createModelStructuringUnit();
 		//transform to PetriNet
-		//TODO save result in db later on
 		chainBuilder.createProcessModelToPetriNetUnit();
-		//analyse petri nets
+		//analyse Petri net
 		chainBuilder.createPetriNetAnalyzerUnit();
 		
 		//collect results

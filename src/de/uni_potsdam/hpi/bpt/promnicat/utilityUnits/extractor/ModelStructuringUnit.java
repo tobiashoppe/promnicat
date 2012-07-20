@@ -56,7 +56,7 @@ public class ModelStructuringUnit implements IUnit<IUnitData<Object>, IUnitData<
 		if (input instanceof IUnitDataClassification<?>){
 			((IUnitDataClassification<Object>) input).setStructured(StructuralModelChecker.isStructured((ProcessModel) input.getValue()));
 			ProcessModel structuredProcess = StructuralModelChecker.structure((ProcessModel) input.getValue());
-			//TODO save structured model
+			//TODO save structured model in database
 			((IUnitDataClassification<Object>) input).setAsStructurable(structuredProcess != null ? true : false);
 			
 		}

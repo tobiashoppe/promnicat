@@ -31,13 +31,18 @@ import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.XorGateway;
 
 /**
+ * This class uses BpStruct to check whether a {@link ProcessModel} can be structured or is structured.
+ *  
  * TODO use bpstruct-lib's BPStructAPI class if it gets updated to a compatible jBPT version.
+ * the current implementation only checks, whether a {@link ProcessModel} is structured using jBPT's 
+ * {@link RPST} implementation.
  * @author Tobias Hoppe
  *
  */
 public class StructuralModelChecker {
 
 	private static final Logger logger = Logger.getLogger(StructuralModelChecker.class.getName());
+	
 	/**
 	 * Check if a process is already structured.
 	 * @param process to check

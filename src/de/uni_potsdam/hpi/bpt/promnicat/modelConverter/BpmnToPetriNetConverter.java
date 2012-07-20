@@ -44,7 +44,6 @@ import org.jbpt.throwable.TransformationException;
 
 /**
  * This class converts a {@link Bpmn} model to the corresponding {@link PetriNet}.
- * TODO handle data flow(in subclass?!)
  * 
  * @author Tobias Hoppe
  *
@@ -52,15 +51,18 @@ import org.jbpt.throwable.TransformationException;
 public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 
 	/**
-	 * Transforms the given {@link ProcessModel} into a {@link PetriNet}.
-	 * {@link DataNode}s are not converted.
-	 * <b><br/>Assumptions:</b><br/>
-	 * TODO check
-	 * - Model does not contain any {@link OrGateway}s or event-based-{@link Subprocess}es
-	 * 
+	 * Transforms the given {@link Bpmn} into a {@link PetriNet}.
+	 * Therefore, {@link ControlFlow}s, {@link BpmnMessageFlow}s as well as {@link FlowNode}s
+	 * are converted. {@link DataNode}s are not considered.
+	 * <b></br>Exceptions:</b>
+	 * <li>{@link Bpmn} containing Event-based {@link Subprocess}es.</li>
+	 * <li>{@link Bpmn} containing {@link OrGateway}s, where split and join do not form a 
+	 * single-entry-single-exit block.</li>
+	 * </br></br>
 	 * @param model to transform
 	 * @return the created {@link PetriNet}
-	 * @throws TransformationException if assumptions are violated.
+	 * @throws TransformationException if a model containing at least
+	 * one of the elements that can not be converted is given.
 	 */
 	@Override
 	public PetriNet convertToPetriNet(ProcessModel model) throws TransformationException {
@@ -164,11 +166,12 @@ public class BpmnToPetriNetConverter extends AbstractModelToPetriNetConverter {
 	}
 	
 	/**
+	 * Convert the given event-driven subprocess into it's {@link PetriNet} representation.
 	 * @param subprocess event-driven subprocess to convert
 	 * @throws TransformationException
 	 */
 	protected void convertEventDrivenSubprocess(Subprocess subprocess) throws TransformationException {
-		// TODO Auto-generated method stub
+		// TODO implement transformation
 		throw new TransformationException("Event driven subprocess could not be handled.");
 	}
 
