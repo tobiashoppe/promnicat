@@ -20,6 +20,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.util;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.jbpt.pm.Activity;
 import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.ProcessModel;
 
@@ -37,17 +38,29 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMe
 public class ProcessFeatureConstants extends ProcessMetricConstants {
 
 	public static final String PROCESS_NAME = "ProcessName";
+	public static final String PROCESS_DESCRIPTION = "ProcessDescription";
 	public static final String FIRST_FLOWNODE_LABEL = "FirstFlowNodeLabel";
+	public static final String ALL_ACTIVITY_LABELS = "AllActivityLabels";
 	
 	public enum PROCESS_LABELS{
 		PROCESS_NAME(ProcessFeatureConstants.PROCESS_NAME){
 			/** returns the name of the process model */
 			public String getAttribute(IUnitDataProcessMetrics<?> input){
-				String result = ((ProcessModel)input.getValue()).getName();
-				if (result == null){
+				String name = ((ProcessModel)input.getValue()).getName();
+				if ((name == null) || (name.equals(""))){
 					return "no title";
 				}
-				return result;
+				return name;
+			}
+		},
+		PROCESS_DESCRIPTION(ProcessFeatureConstants.PROCESS_DESCRIPTION){
+			/** returns the name of the process model */
+			public String getAttribute(IUnitDataProcessMetrics<?> input){
+				String description = ((ProcessModel)input.getValue()).getDescription();
+				if ((description == null) || (description.equals(""))){
+					return "no description";
+				}
+				return description;
 			}
 		},
 		FIRST_FLOWNODE_LABEL(ProcessFeatureConstants.FIRST_FLOWNODE_LABEL){
@@ -58,15 +71,40 @@ public class ProcessFeatureConstants extends ProcessMetricConstants {
 				Collection<FlowNode> coll = ((ProcessModel)input.getValue()).getFlowNodes();
 				Iterator<FlowNode> it = coll.iterator();
 				FlowNode n;
-				if ((n = it.next()) != null){
-					result = n.getName();
-					if (result == ""){
-						return "no title";
+				if (coll.size() >0){
+					if ((n = it.next()) != null){
+						result = n.getName();
+						if (result == ""){
+							return "no title";
+						}
+						return result;
+					} else {
+						return "no name";
 					}
-					return result;
-				} else {
-					return "no name";
+				} 
+				return "no name";
+			}
+		},
+		ALL_ACTIVITY_LABELS(ProcessFeatureConstants.ALL_ACTIVITY_LABELS){
+			/** returns the label of the all activities of the process model */
+			public String getAttribute(IUnitDataProcessMetrics<?> input){
+				String activityLabels = ((ProcessModel)input.getValue()).getName();
+				activityLabels = "";
+				Collection<FlowNode> coll = ((ProcessModel)input.getValue()).getFlowNodes();
+				Iterator<FlowNode> it = coll.iterator();
+				FlowNode n;
+				while (it.hasNext()){
+					n = it.next();
+					if (n instanceof Activity){
+						if ((!n.getName().equals("")) || (n.getName() != null))
+						activityLabels += " " + n.getName();
+					}
 				}
+				if (activityLabels.equals("")){
+					return "no activty labels";
+				}
+				
+				return activityLabels;
 			};
 		};
 		

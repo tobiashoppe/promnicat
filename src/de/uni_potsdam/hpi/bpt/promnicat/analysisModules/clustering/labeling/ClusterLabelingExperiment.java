@@ -37,6 +37,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.WeightedEuclideanDistance;
 public class ClusterLabelingExperiment {
 	static HashMap<String, ProcessModel> models = new HashMap<String,ProcessModel>();
 	
+	public static final String PARSER_PATH = "src/de/uni_potsdam/hpi/bpt/promnicat/analysisModules/clustering/labeling/englishPCFG.ser.gz";
 	public static HierarchicalProcessClusterer clusterer;
 	public static ClusterLabeler clusterLabeler;
 	public static FastVector numericAttributes; 
@@ -111,8 +112,7 @@ public class ClusterLabelingExperiment {
 	 */
 	public static void labelClusters(ClusterTree<ProcessInstances> dendrogram, ProcessInstances data){
 		//set system path for wordnet database
-		//System.setProperty("wordnet.database.dir", "E:\\Programs\\WordNet\\dict\\");
-		ExternalResourceEnhancer enhancer = new WordnetEnhancer("E:/Cindy/Studium/Master/3.Semester/Masterprojekt/repo/mpws2011w1/code/PromniCAT/src/de/uni_potsdam/hpi/bpt/promnicat/analysisModules/clustering/labeling/englishPCFG.ser.gz");
+		ExternalResourceEnhancer enhancer = new WordnetEnhancer(PARSER_PATH);
 		clusterLabeler = new HierarchicalClusterLabeler(enhancer);
 		((HierarchicalClusterLabeler)clusterLabeler).analyzeCorpus(data);
 		((TfIdfClusterLabeler)clusterLabeler).setRootNode(dendrogram.getRootElement());
