@@ -19,11 +19,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 import weka.core.FastVector;
-import weka.core.Stopwords;
-import de.uni_potsdam.hpi.bpt.promnicat.util.Range;
 
 /**
  * Represents a node of the {@link ClusterTree<T>} class. The ClusterNode<T> is
@@ -40,7 +37,21 @@ public class ClusterNode<T> {
 	/** the children of this node --> "subclusters" */
 	public ArrayList<ClusterNode<T>> children;
 
+	public ClusterNode<T> parent;
+
 	public String name = "";
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Setter for cluster name
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	/** the name of this cluster */
 	public HashMap<String, Object> clusterName = new HashMap<String, Object>();
 	/**
@@ -49,6 +60,14 @@ public class ClusterNode<T> {
 	public ClusterNode() {
 		super();
 		children = new ArrayList<ClusterNode<T>>();
+	}
+	
+	public ClusterNode<T> getParent() {
+		return parent;
+	}
+
+	public void setParent(ClusterNode<T> parent) {
+		this.parent = parent;
 	}
 
 	/**
@@ -60,42 +79,6 @@ public class ClusterNode<T> {
 	public ClusterNode(ProcessInstances data) {
 		this();
 		setData(data);
-	}
-	
-	/** Transform the different feature value names 
-	 * into a string representation
-	 * @return a String representation of the the cluster name
-	 */
-	public String getClusterNameString(){
-		StringBuilder name = new StringBuilder();
-		for (Entry<String, Object> feature : clusterName.entrySet()){
-			name.append(feature.getKey()).append(": ");
-			if (feature.getValue() instanceof Range){
-				Range interval =(Range)feature.getValue();
-				name.append(interval.getMinValue()).append("-").append(interval.getMaxValue()).append(" ");
-			} else {
-				//TODO add string implementation here
-				@SuppressWarnings("unchecked")
-				HashMap<String, Integer> labelNames = (HashMap<String, Integer>) feature.getValue();
-				//find out the ones with highest indices
-				Entry<String, Integer> maxValue = new HashMap.SimpleEntry<String, Integer>("", 0);
-				Entry<String, Integer> secondMaxValue = new HashMap.SimpleEntry<String, Integer>("", 0);
-				for (Entry<String, Integer> entry : labelNames.entrySet()){
-					if (entry.getValue() >= maxValue.getValue()){
-						secondMaxValue = maxValue;
-						maxValue = entry;
-					} else {
-						if ((entry.getValue() <= maxValue.getValue())&& (entry.getValue() >= secondMaxValue.getValue())){
-							secondMaxValue = entry;
-						}
-					}
-				}
-				name.append(maxValue.getKey()).append(" ").append(secondMaxValue.getKey()).append(" ");
-			}
-			name.append(";");
-		}
-		//return this.clusterName.toString();
-		return name.toString();
 	}
 	
 	/** Returns the values for the cluster name
@@ -110,107 +93,6 @@ public class ClusterNode<T> {
 		this.clusterName = name;
 	}
 	
-	public void addFeatureLabel(int index, Range interval){
-		String feature = data.attribute(index).name();
-		clusterName.put(feature, interval);
-	}
-	
-	public void updateFeatureLabel(int index, double number){
-		String feature = data.attribute(index).name();
-		updateFeatureLabel(feature, number);
-	}
-	
-	public void updateFeatureLabel(String key, double number){
-		
-		if (clusterName.get(key) == null){
-			clusterName.put(key,  new Range(number));
-		} else {
-			((Range)clusterName.get(key)).updateRange(number);
-		}
-	}
-	
-	public void updateFeatureLabel(String key, Range newInterval){
-		
-		if (clusterName.get(key) == null){
-			clusterName.put(key, newInterval.copy());
-		} else {
-			((Range)clusterName.get(key)).updateRange(newInterval);
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void updateFeatureLabel(String key, HashMap<String, Integer> newStringMap){
-		if (clusterName.get(key) == null){
-			clusterName.put(key, new HashMap<String, Integer>(newStringMap));
-		} else {//merge with current string hashmap
-			HashMap<String, Integer> stringFeature = (HashMap<String, Integer>)clusterName.get(key);
-			for (String labelKey : newStringMap.keySet()){
-				if (stringFeature.keySet().contains(labelKey)){
-					stringFeature.put(labelKey, stringFeature.get(labelKey) + newStringMap.get(labelKey));
-				} else {
-					stringFeature.put(labelKey, newStringMap.get(labelKey));
-				}
-			}
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void updateFeatureLabel(int index, String labelName){
-		String key = data.strAttribute(index).name();
-		if (clusterName.get(key) == null){
-			clusterName.put(key,  new HashMap<String, Integer>());
-		}
-		HashMap<String, Integer> labelNames = (HashMap<String, Integer>)clusterName.get(key);
-		//fill hashmap
-		String[] words = labelName.split(" ");
-		Stopwords stopper = new Stopwords();
-		for (String word : words){
-			if (!stopper.is(word)){
-				if (labelNames.keySet().contains(word)){//already existing, count 1 up
-					labelNames.put(word, labelNames.get(key) + 1);
-				} else {
-					labelNames.put(word,  1);
-				}
-			}
-		}
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	public void assignNamesToClusters(){
-		//TODO extend by numeric values
-		ArrayList<HashMap<String, Object>> childClusterNames = new ArrayList<HashMap<String, Object>>();
-		//assign names to child clusters
-		for (ClusterNode<T> element : this.children) {
-			element.assignNamesToClusters();
-			childClusterNames.add(element.getClusterName());
-		}
-		
-		if (childClusterNames.size() == 0){
-			//no children, means leaf
-			for (int i = 0; i < this.data.numInstances(); i++){
-				ProcessInstance inst = this.data.getInstance(i);
-				for (int j = 0; j < this.data.numAttributes(); j++){
-					updateFeatureLabel(j, inst.value(j));
-					updateFeatureLabel(j, inst.strValue(j));
-				}
-			}
-		} else {//build an average value
-			//iterate over all clusternames 
-			for (HashMap<String, Object> featureNames : childClusterNames){
-				for (String key : featureNames.keySet()){
-					if (featureNames.get(key) instanceof Range){
-						updateFeatureLabel(key, (Range)featureNames.get(key));
-					} else {
-						updateFeatureLabel(key, (HashMap<String, Integer>) featureNames.get(key));
-					}
-				}
-			}
-		}
-		//assign the cluster name
-		name = this.getClusterNameString();
-	}
 	/**
 	 * Return the children of ClusterNode<T>. The Tree<T> is represented by a
 	 * single root ClusterNode<T> whose children are represented by a
@@ -434,7 +316,7 @@ public class ClusterNode<T> {
 	public int getClusterSize(){
 		int clustersize = 0;
 		
-		if ((getData() == null) || (getData().getInstances().size() == 0)){ //this is a leaf, so cluster size is 1
+		if ((getData() == null) || (getData().getInstances().size() == 0) || (getData().getFirstInstance().process == null)){ //this is a leaf, so cluster size is 1
 			for (ClusterNode<T> child : children){
 				clustersize += child.getClusterSize();
 			}

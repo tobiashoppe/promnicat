@@ -26,5 +26,9 @@
 	<classpathentry kind="lib" path="lib/bpmai.jar"/>
 	<classpathentry kind="lib" path="lib/jbpt.jar"/>
 	<classpathentry kind="lib" path="lib/oryx-bpmn2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jwnl.jar"/>
+	<classpathentry kind="lib" path="lib/uma.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-parser.jar"/>
+	<classpathentry kind="lib" path="lib/pnapi-java.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

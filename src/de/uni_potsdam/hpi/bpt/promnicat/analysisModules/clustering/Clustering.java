@@ -24,14 +24,18 @@ import java.util.logging.Logger;
 
 import weka.core.Attribute;
 import weka.core.FastVector;
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.ExternalResourceEnhancer;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.HierarchicalClusterLabeler;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.ClusterLabeler;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.TfIdfClusterLabeler;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.WordnetEnhancer;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
-import de.uni_potsdam.hpi.bpt.promnicat.util.WeightedEuclideanDistance;
 import de.uni_potsdam.hpi.bpt.promnicat.util.FeatureConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessFeatureConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.WeightedEditDistance;
+import de.uni_potsdam.hpi.bpt.promnicat.util.WeightedEuclideanDistance;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
@@ -45,21 +49,17 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataProcessMet
  * @author Cindy Fähnrich
  *
  */
-public class Clustering implements IAnalysisModule {
+public class Clustering {
 
-	private final static Logger logger = Logger.getLogger(Clustering.class.getName());
-	
-	protected HierarchicalProcessClusterer clusterer;
-	protected FastVector numericAttributes; 
-	protected FastVector stringAttributes;
+private final static Logger logger = Logger.getLogger(Clustering.class.getName());
+
+public static HierarchicalProcessClusterer clusterer;
+public static ClusterLabeler clusterLabeler;
+public static FastVector numericAttributes; 
+public static FastVector stringAttributes;
 	
 	public static void main(String[] args) throws IllegalTypeException, IOException {
-		Clustering clustering = new Clustering();
-		clustering.execute(args);
-	}
-	
-	@Override
-	public Object execute(String[] parameter) throws IOException, IllegalTypeException {
+		
 		//configure for time measurement
 		long startTime = System.currentTimeMillis();
 		
@@ -79,16 +79,15 @@ public class Clustering implements IAnalysisModule {
 		//finish time measurement
 		long time = System.currentTimeMillis() - startTime;
 		System.out.println("Time needed: " + (time / 1000 / 60) + " min " + (time / 1000 % 60) + " sec \n\n");
-	
-		return result;
+		printResult();
 	}
-
+	
 	/**
 	 * Configures and builds up the {@link UnitChain} by invoking the corresponding builder methods.
 	 * @param chainBuilder
 	 * @throws IllegalTypeException 
 	 */
-	public void buildUpUnitChain(IUnitChainBuilder chainBuilder) throws IllegalTypeException {
+	private static void buildUpUnitChain(IUnitChainBuilder chainBuilder) throws IllegalTypeException {
 		//build db query
 		chainBuilder.addDbFilterConfig(createDbFilterConfig());
 		chainBuilder.createBpmaiJsonToJbptUnit(false);
@@ -105,10 +104,9 @@ public class Clustering implements IAnalysisModule {
 	 * of entries and exists. 
 	 * @param results from the execution of the {@link UnitChain}
 	 */
-	@SuppressWarnings("unused")
-	private void printResult(Collection<ClusterTree<ClusterNode<ProcessInstance>>> results){
+	private static void printResult(){
 		//TODO implement
-		results.clear();
+		System.out.println("FINISH");
 	}
 	
 	/**
@@ -118,18 +116,23 @@ public class Clustering implements IAnalysisModule {
 	 * @return the configuration containing the selected features for clustering
 	 */
 	
-	private FeatureConfig createMetricsConfig(){
+	private static FeatureConfig createMetricsConfig(){
 		FeatureConfig features = new FeatureConfig();
 		numericAttributes = new FastVector();
 		stringAttributes = new FastVector();
 		
 		features.addMetric(ProcessFeatureConstants.METRICS.NUM_ACTIVITIES);
 		Attribute att = new Attribute(ProcessFeatureConstants.METRICS.NUM_ACTIVITIES.name());
-		att.setWeight(3);
+		att.setWeight(1);
 		numericAttributes.addElement(att);
+		
+		features.addMetric(ProcessFeatureConstants.METRICS.NUM_EDGES);
+		Attribute att2 = new Attribute(ProcessFeatureConstants.METRICS.NUM_EDGES.name());
+		att2.setWeight(1);
+		numericAttributes.addElement(att2);
 	
-		features.addLabel(ProcessFeatureConstants.PROCESS_LABELS.FIRST_FLOWNODE_LABEL);
-		Attribute att4 = new Attribute(ProcessFeatureConstants.PROCESS_LABELS.FIRST_FLOWNODE_LABEL.name(), (FastVector)null, 0);
+		features.addLabel(ProcessFeatureConstants.PROCESS_LABELS.ALL_ACTIVITY_LABELS);
+		Attribute att4 = new Attribute(ProcessFeatureConstants.PROCESS_LABELS.ALL_ACTIVITY_LABELS.name(), (FastVector)null, 0);
 		att4.setWeight(1);
 		
 		stringAttributes.addElement(att4);
@@ -140,7 +143,7 @@ public class Clustering implements IAnalysisModule {
 	 * Create database filter configuration
 	 * @return a new filter config for the database access
 	 */
-	private DbFilterConfig createDbFilterConfig(){
+	private static DbFilterConfig createDbFilterConfig(){
 		DbFilterConfig dbFilter = new DbFilterConfig();
 		dbFilter.addOrigin(Constants.ORIGINS.BPMAI);
 		dbFilter.addFormat(Constants.FORMATS.BPMAI_JSON);
@@ -151,12 +154,12 @@ public class Clustering implements IAnalysisModule {
 	/**
 	 * Create hierarchical clusterer with his attributes
 	 */
-	public void setupClusterer(Collection<UnitDataFeatureVector<Object>> result){
+	public static void setupClusterer(Collection<UnitDataFeatureVector<Object>> result){
 		clusterer = new HierarchicalProcessClusterer();
 		clusterer.setStringDistanceFunction(new WeightedEditDistance());
 		clusterer.setNumericDistanceFunction(new WeightedEuclideanDistance(normalizeValues(result)));
-		clusterer.setLinkType("CENTROID");
-		clusterer.setNumClusters(3);
+		clusterer.setLinkType("SINGLE");
+		clusterer.setNumClusters(2);
 		clusterer.setDebug(true);
 		clusterer.setAttributes(numericAttributes);
 		clusterer.setStringAttributes(stringAttributes);
@@ -165,7 +168,7 @@ public class Clustering implements IAnalysisModule {
 	 * Computes the maximum number of all feature values 
 	 * @param result
 	 */
-	public ArrayList<double[]> normalizeValues(Collection<UnitDataFeatureVector<Object>> result){
+	public static ArrayList<double[]> normalizeValues(Collection<UnitDataFeatureVector<Object>> result){
 		
 		double[] maxFeatureValues = new double[numericAttributes.size()];
 		double[] minFeatureValues = new double[numericAttributes.size()];
@@ -193,21 +196,39 @@ public class Clustering implements IAnalysisModule {
 	
 	
 	@SuppressWarnings("unused")
-	public void clusterResult(Collection<UnitDataFeatureVector<Object>> result){
+	public static void clusterResult(Collection<UnitDataFeatureVector<Object>> result){
 		ProcessInstances data = new ProcessInstances("", numericAttributes, stringAttributes, result.size());
+		int i = 0;
 		for (UnitDataFeatureVector<Object> vector : result){
+			vector.getInstance().setId(i++);
 			data.add(vector.getInstance());
 		}
 			
 		try {//cluster the results
 			clusterer.buildClusterer(data);
-			ClusterTree<ProcessInstances> clusters = clusterer.getClusters();
-			int maxDepth = clusters.getRootElement().getMaxDepthOfSubtree();
-			int maxSize = clusters.getRootElement().getSizeOfSubtree();
-			ClusterTree<ProcessInstances> newCluster = clusters.getSubtreeWithMinClusterSize(2);
+			ClusterTree<ProcessInstances> dendrogram = clusterer.getClusters();
+			labelClusters(dendrogram, data);
+			int maxDepth = dendrogram.getRootElement().getMaxDepthOfSubtree();
+			int maxSize = dendrogram.getRootElement().getSizeOfSubtree();
+			ClusterTree<ProcessInstances> newCluster = dendrogram.getSubtreeWithMinClusterSize(2);
 			//go on with analyses of the clusters here...
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Configures the hierarchical cluster labeler and triggers the cluster labeling process.
+	 * @param dendrogram the cluster tree to label
+	 * @param data the data that has been clustered
+	 */
+	public static void labelClusters(ClusterTree<ProcessInstances> dendrogram, ProcessInstances data){
+		//set system path for wordnet database
+		System.setProperty("wordnet.database.dir", "E:\\Programs\\WordNet\\dict\\");
+		ExternalResourceEnhancer enhancer = new WordnetEnhancer("E:/Cindy/Studium/Master/3.Semester/Masterprojekt/repo/mpws2011w1/code/PromniCAT/src/de/uni_potsdam/hpi/bpt/promnicat/analysisModules/clustering/labeling/englishPCFG.ser.gz");
+		clusterLabeler = new HierarchicalClusterLabeler(enhancer);
+		((HierarchicalClusterLabeler)clusterLabeler).analyzeCorpus(data);
+		((TfIdfClusterLabeler)clusterLabeler).setRootNode(dendrogram.getRootElement());
+		clusterLabeler.assignLabelToCluster(dendrogram.getRootElement());
 	}
 }

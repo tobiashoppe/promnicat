@@ -91,15 +91,6 @@ public class ClusterTree<T> implements Cloneable{
 		nodes.addAll(this.rootElement.getNodesOnLevel(0, level));
 		return nodes;
 	}
-	
-	/**
-	 * Assigns a name to each cluster contained in this {@link ClusterTree<T>}
-	 *
-	 */
-	public void assignNamesToClusters(){
-		
-		this.rootElement.assignNamesToClusters();
-	}
 
 	/**
 	 * Returns a new tree that is a subtree from the current tree, where the leafs are

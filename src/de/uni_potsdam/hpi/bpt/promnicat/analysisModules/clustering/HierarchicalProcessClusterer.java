@@ -26,6 +26,7 @@ import java.util.PriorityQueue;
 import java.util.Vector;
 
 import weka.clusterers.HierarchicalClusterer;
+import weka.core.Attribute;
 import weka.core.CapabilitiesHandler;
 import weka.core.DistanceFunction;
 import weka.core.Drawable;
@@ -94,16 +95,24 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 	}
 
 	/** distance function used for comparing NUMERIC attributes of members of a cluster**/
-	protected DistanceFunction m_DistanceFunction = new EuclideanDistance();
+	protected DistanceFunction m_DistanceFunction = null;
 
 	/** distance function used for comparing STRING attributes of members of a cluster **/
-	protected DistanceFunction m_StringDistanceFunction = new EditDistance();
+	protected DistanceFunction m_StringDistanceFunction = null;
 	
 	/** boolean indicating whether to use clustering ONLY of string members or not
 	 * if value is set to null, both string and numeric values shall be clustered
 	**/
 	protected Boolean useStrings = new Boolean(false);
 	
+	public Boolean getUseStrings() {
+		return useStrings;
+	}
+
+	public void setUseStrings(Boolean useStrings) {
+		this.useStrings = useStrings;
+	}
+
 	/**
 	 * Returns the distance function for numeric attribute values.
 	 * @return m_DistanceFunction
@@ -173,20 +182,30 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 	 */
 	public double calcDistanceWithFunction(ProcessInstance instance1, ProcessInstance instance2){
 		
+		double overallWeights = 0.0;
 		if (useStrings == null){//calc both
 			double result1 = m_StringDistanceFunction.distance(instance1, instance2);
 			double result2 = m_DistanceFunction.distance(instance1, instance2);
-			
-			return (result1 + result2)/2;	
+			for (int i = 0; i < strAttributes.size(); i++){
+				overallWeights += ((Attribute)strAttributes.elementAt(i)).weight();
+			}
+			for (int i = 0; i < attributes.size(); i++){
+				overallWeights += ((Attribute)attributes.elementAt(i)).weight();
+			}
+			return Math.sqrt((result1 + result2)/overallWeights);
 		}
 		if (useStrings.booleanValue()){
 			double result = m_StringDistanceFunction.distance(instance1, instance2);
-			
-			return result;
+			for (int i = 0; i < strAttributes.size(); i++){
+				overallWeights += ((Attribute)strAttributes.elementAt(i)).weight();
+			}
+			return Math.sqrt(result/overallWeights);
 		} else {
 			double result =  m_DistanceFunction.distance(instance1, instance2);
-			
-			return result;
+			for (int i = 0; i < attributes.size(); i++){
+				overallWeights += ((Attribute)attributes.elementAt(i)).weight();
+			}
+			return Math.sqrt(result/overallWeights);
 		}
 	}
 	
@@ -439,12 +458,14 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 			ProcessInstances newLeaf = new ProcessInstances((ProcessInstance) m_instances
 							.instance(oldCluster.m_iLeftInstance), attributes, strAttributes, 0);
 			ClusterNode<ProcessInstances> child = new ClusterNode<ProcessInstances>(newLeaf);
+			child.setParent(cluster);
 			cluster.addChild(child);
 			
 		} else {
 			// traverse again and add
 			ClusterNode<ProcessInstances> child = new ClusterNode<ProcessInstances>(new ProcessInstances
 					(new ProcessInstance(0), attributes, strAttributes, 0));
+			child.setParent(cluster);
 			cluster.addChild(child);
 			createClusters(child, oldCluster.m_left);
 		}
@@ -453,13 +474,16 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 			ProcessInstances newLeaf = new ProcessInstances((ProcessInstance) m_instances
 			.instance(oldCluster.m_iRightInstance), attributes, strAttributes, 0);
 			ClusterNode<ProcessInstances> child = new ClusterNode<ProcessInstances>(newLeaf);
+			child.setParent(cluster);
 			cluster.addChild(child);
+			
 			 
 		} else {
 			// traverse again and add
 				ClusterNode<ProcessInstances> child = new ClusterNode<ProcessInstances>(new ProcessInstances
 					(new ProcessInstance(0), attributes, strAttributes, 0));
 				cluster.addChild(child);
+				child.setParent(cluster);
 				createClusters(child, oldCluster.m_right);
 		}
 		return cluster;
@@ -496,17 +520,20 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 		ClusterNode<ProcessInstances> root = new ClusterNode<ProcessInstances>();
 		tree.setRootElement(root);
 		for (int i = 0; i < m_clusters.length; i++) {
-			if (m_clusters[i].m_iRightInstance == -1) {//a single item cluster has been found
-				ClusterNode<ProcessInstances> cluster = createSingleCluster(m_clusters[i]);
-				root.addChild(cluster);
-			} else {
-				ProcessInstances inst = new ProcessInstances("", attributes, strAttributes, 0);
-				ClusterNode<ProcessInstances> cluster = new ClusterNode<ProcessInstances>(inst);
-				cluster = createClusters(cluster, m_clusters[i]);
-				root.addChild(cluster);
+			if (m_clusters[i] != null) {
+				if (m_clusters[i].m_iRightInstance == -1) {//a single item cluster has been found
+					ClusterNode<ProcessInstances> cluster = createSingleCluster(m_clusters[i]);
+					cluster.setParent(root);
+					root.addChild(cluster);
+				} else {
+					ProcessInstances inst = new ProcessInstances("", attributes, strAttributes, 0);
+					ClusterNode<ProcessInstances> cluster = new ClusterNode<ProcessInstances>(inst);
+					cluster = createClusters(cluster, m_clusters[i]);
+					cluster.setParent(root);
+					root.addChild(cluster);
+				}
 			}
 		}
-		tree.assignNamesToClusters();
 		return tree;
 	}
 
@@ -839,6 +866,8 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 			System.err.println("Merging " + iMin1 + " " + iMin2 + " " + fDist1
 					+ " " + fDist2);
 		}
+		System.out.println("Merging " + iMin1 + " " + iMin2 + " " + fDist1
+				+ " " + fDist2);
 		if (iMin1 > iMin2) {
 			int h = iMin1;
 			iMin1 = iMin2;
@@ -1089,11 +1118,11 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 						//compare and add to matrix
 						String val1 = atts.get(k);
 						String val2 = atts.get(j);
-						Double similarity = ((WeightedEditDistance) m_StringDistanceFunction).getStringDistance(val1, val2);
+						Double distance = ((WeightedEditDistance) m_StringDistanceFunction).getStringDistance(val1, val2);
 						if (matrix.get(val1) == null){
-							matrix.put(val1, similarity);
+							matrix.put(val1, distance);
 						} else {
-							matrix.put(val1, matrix.get(val1) + similarity);
+							matrix.put(val1, matrix.get(val1) + distance);
 						}
 					}
 				}
@@ -1102,7 +1131,7 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 				double currentMin = 1;
 				int bestKey = 0;
 				int k = 0;
-				//iterate over array and take highest value
+				//iterate over array and take smallest value
 				for (String key : matrix.keySet()){
 					if (currentMin >= matrix.get(key)){
 						currentMin = matrix.get(key);
@@ -1185,11 +1214,11 @@ public class HierarchicalProcessClusterer extends HierarchicalClusterer
 					//compare and add to matrix
 					String val1 = atts.get(k);
 					String val2 = atts.get(j);
-					Double similarity = ((WeightedEditDistance) m_StringDistanceFunction).getStringDistance(val1, val2);
+					Double distance = ((WeightedEditDistance) m_StringDistanceFunction).getStringDistance(val1, val2);
 					if (matrix.get(val1) == null){
-						matrix.put(val1, similarity);
+						matrix.put(val1, distance);
 					} else {
-						matrix.put(val1, matrix.get(val1) + similarity);
+						matrix.put(val1, matrix.get(val1) + distance);
 					}
 				}
 			}

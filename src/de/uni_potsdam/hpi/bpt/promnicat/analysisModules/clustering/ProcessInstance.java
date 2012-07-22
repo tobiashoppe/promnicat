@@ -34,6 +34,15 @@ public class ProcessInstance extends Instance {
 	/** for serialization */
 	static final long serialVersionUID = 4L;
 
+	private int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	/** process model that is clustered */
 	public ProcessModel process;
 	
@@ -55,6 +64,7 @@ public class ProcessInstance extends Instance {
 		m_AttValues = instance.m_AttValues;
 		m_StringAttValues = instance.m_StringAttValues;
 		m_Weight = instance.m_Weight;
+		this.id = instance.getId();
 		m_Dataset = null;
 	}
 	
