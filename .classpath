@@ -31,5 +31,13 @@
 	<classpathentry kind="lib" path="lib/stanford-parser.jar"/>
 	<classpathentry kind="lib" path="lib/pnapi-java.jar"/>
 	<classpathentry kind="lib" path="lib/javaGeom-0.10.2.jar"/>
+	<classpathentry kind="lib" path="lib/simmetrics.jar"/>
+	<classpathentry kind="lib" path="lib/wordnet/jwnl.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://www.stanford.edu/class/archive/cs/cs276a/cs276a.1032/projects/docs/jwnl/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jws/edu.sussex.nlp.jws.beta.11.jar"/>
+	<classpathentry kind="lib" path="lib/jws/edu.mit.jwi_2.1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
