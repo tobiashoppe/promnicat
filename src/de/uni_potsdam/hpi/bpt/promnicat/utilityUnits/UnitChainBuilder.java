@@ -60,14 +60,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
  */
 public class UnitChainBuilder implements IUnitChainBuilder {
 
-	private static final String INCOMPATIBLE_OUTPUT_INPUT_TYPES_FOR_UNITS = "Incompatible output/input types for units.";
+	protected static final String INCOMPATIBLE_OUTPUT_INPUT_TYPES_FOR_UNITS = "Incompatible output/input types for units.";
 
 	private Logger logger = Logger.getLogger(UnitChainBuilder.class.getName());
 	
 	/**
 	 * internal chain
 	 */
-	private IUnitChain<IUnitData<Object>, IUnitData<Object> > unitChain = null;
+	protected IUnitChain<IUnitData<Object>, IUnitData<Object> > unitChain = null;
 	
 	/**
 	 * Creates a new {@link UnitChainBuilder} with a {@link DatabaseFilterUnit} as first unit

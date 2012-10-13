@@ -30,5 +30,6 @@
 	<classpathentry kind="lib" path="lib/uma.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-parser.jar"/>
 	<classpathentry kind="lib" path="lib/pnapi-java.jar"/>
+	<classpathentry kind="lib" path="lib/javaGeom-0.10.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

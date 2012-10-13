@@ -62,6 +62,7 @@ public class BpmaiJsonToDiagramUnit implements IUnit<IUnitData<Object>, IUnitDat
 		try {
 			String json = ((Representation) input.getValue()).convertDataContentToString();
 			Diagram diagram = DiagramBuilder.parseJson(json);
+			diagram.setMeta(json, ((Representation)input.getValue()).getOriginalFilePath());
 			input.setValue(diagram);
 			return input;
 		} catch (JSONException e) {

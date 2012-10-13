@@ -24,12 +24,12 @@ import java.util.logging.Logger;
 import org.jbpt.pm.bpmn.Bpmn;
 import org.jbpt.pm.epc.Epc;
 
+import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.CorrectionUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataJbpt;
 
@@ -56,7 +56,7 @@ public class CorrectModels implements IAnalysisModule {
 		long startTime = System.currentTimeMillis();
 
 		//build up chain
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataJbpt.class);
+		IUnitChainBuilder chainBuilder = new CorrectionUnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataJbpt.class);
 		buildUpUnitChain(chainBuilder);
 
 		logger.info(chainBuilder.getChain().toString());
