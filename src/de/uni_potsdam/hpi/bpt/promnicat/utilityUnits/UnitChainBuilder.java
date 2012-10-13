@@ -31,6 +31,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.FeatureConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector.ICollectorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector.SimpleCollectorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.BpmnConformanceLevelCheckerUnit;
@@ -254,6 +255,11 @@ public class UnitChainBuilder implements IUnitChainBuilder {
 		checkForCompatibility(metricsUnit);
 	}
 	
+	@Override
+	public void createProcessModelMetricsCalulatorUnit(Collection<METRICS> metricsToCalculate, boolean handleSubProcesses) throws IllegalTypeException {		ProcessModelMetricsCalculatorUnit metricsUnit = new ProcessModelMetricsCalculatorUnit(metricsToCalculate, handleSubProcesses);
+		checkForCompatibility(metricsUnit);	
+	}
+
 	@Override
 	public void createProcessModelToPetriNetUnit() throws IllegalTypeException {
 		ModelToPetriNetUnit pmToPnUnit = new ModelToPetriNetUnit();

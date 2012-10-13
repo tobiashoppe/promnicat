@@ -64,7 +64,6 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
  * 
  */
 public class SapReferenceModelImporter extends AbstractImporter {
-    @SuppressWarnings("unused")
     private IPersistenceApi persistenceApi = null;
 
     /**

@@ -527,6 +527,7 @@ public class BpmnParser implements IParser {
 				}
 			}
 		}
+		if (flow != null) flow.setId(s.getResourceId());
 		this.controlflowIds.put(s.getResourceId(), flow);
 	}
 	
