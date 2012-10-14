@@ -17,10 +17,6 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.util;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
-
 /**
  * Class containing all necessary constants regarding the configuration of the {@link UnitChain} via the
  * {@link UnitChainBuilder}.

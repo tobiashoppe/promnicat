@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.utilityUnits.collector
+Bundle-SymbolicName: promnicat.utilityUnits.collector
+Bundle-Version: 0.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

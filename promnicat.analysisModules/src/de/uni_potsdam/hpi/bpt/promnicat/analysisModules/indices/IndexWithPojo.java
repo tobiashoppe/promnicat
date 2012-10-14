@@ -20,13 +20,13 @@ package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.indices;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.metrics.ProcessMetricsCalculator;
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.LabelStorage;
 import de.uni_potsdam.hpi.bpt.promnicat.parser.ModelParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexElement;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessMetricsCalculator;
 
 /**
  * This is an example of how to use PromniCAT indices to store some pojos, in this case {@link LabelStorage}.

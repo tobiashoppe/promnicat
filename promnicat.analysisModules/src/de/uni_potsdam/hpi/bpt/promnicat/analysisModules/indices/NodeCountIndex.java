@@ -27,7 +27,6 @@ import org.json.JSONException;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.ai.diagram.DiagramBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.metrics.ProcessMetricsCalculator;
 import de.uni_potsdam.hpi.bpt.promnicat.parser.BpmnParser;
 import de.uni_potsdam.hpi.bpt.promnicat.parser.EpcParser;
 import de.uni_potsdam.hpi.bpt.promnicat.parser.ModelParser;
@@ -38,6 +37,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexEl
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessMetricsCalculator;
 
 /**
  * This is an example of how to use PromniCAT indices to store the number of nodes of {@link Representation} instances.

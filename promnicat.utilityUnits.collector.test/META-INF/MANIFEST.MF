@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.utilityUnits.collector.test
+Bundle-SymbolicName: promnicat.utilityUnits.collector.test;singleton:=true
+Bundle-Version: 0.0.0
+Fragment-Host: promnicat.utilityUnits.collector
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
