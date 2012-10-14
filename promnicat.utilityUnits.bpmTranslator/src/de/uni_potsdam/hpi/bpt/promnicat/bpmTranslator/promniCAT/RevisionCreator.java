@@ -16,6 +16,7 @@ import java.util.zip.DataFormatException;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.refactoring.StringOperations;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.translations.Translator;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.tsvProcessing.TsvProcessor;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
@@ -36,7 +37,7 @@ public class RevisionCreator {
 	private Translator translator;
 	private TsvProcessor tsvProcessor;
 	private StringOperations stringOperator;
-	static PersistenceApiOrientDbObj papi;
+	static IPersistenceApi papi;
 	
 	/**
 	 * RevisionCreator constructor.

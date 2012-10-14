@@ -37,7 +37,6 @@ import weka.core.Instance;
 import weka.core.OptionHandler;
 import weka.core.SelectedTag;
 import weka.core.Tag;
-import de.uni_potsdam.hpi.bpt.promnicat.util.WeightedEditDistance;
 
 /**
  * Extends WEKAs {@link HierarchicalClusterer} by creating a clustertree

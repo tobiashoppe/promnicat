@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
+package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.unitData;
 
 import java.util.logging.Logger;
 
@@ -26,6 +26,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.ProcessInstan
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
 
 /**
  * {@link IUnitChain} result type implementation containing the {@link Representation} id of the used 

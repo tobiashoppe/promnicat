@@ -4,3 +4,10 @@ Bundle-Name: promnicat.utilityUnits.Clustering
 Bundle-SymbolicName: promnicat.utilityUnits.Clustering;singleton:=true
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: promnicat.utilityUnits,
+ promnicat.util,
+ promnicat.persistenceAPI
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering,
+ de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling,
+ de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.unitData
+Import-Package: org.apache.log4j

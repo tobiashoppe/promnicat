@@ -4,3 +4,8 @@ Bundle-Name: promnicat.util
 Bundle-SymbolicName: promnicat.util
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: promnicat;visibility:=reexport
+Bundle-ClassPath: .
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.util,
+ de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder,
+ de.uni_potsdam.hpi.bpt.promnicat.util.serializer

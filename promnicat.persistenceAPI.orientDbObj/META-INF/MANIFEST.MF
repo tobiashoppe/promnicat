@@ -4,4 +4,7 @@ Bundle-Name: promnicat.persistenceAPI.orientDbObj
 Bundle-SymbolicName: promnicat.persistenceAPI.orientDbObj;singleton:=true
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: promnicat.persistenceAPI;visibility:=reexport
+Require-Bundle: promnicat.persistenceAPI;visibility:=reexport,
+ promnicat.util
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj,
+ de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index

@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.NoSqlBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**

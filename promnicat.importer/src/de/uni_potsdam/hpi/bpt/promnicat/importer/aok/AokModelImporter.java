@@ -21,7 +21,6 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.AbstractImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 
@@ -53,7 +52,7 @@ public class AokModelImporter extends AbstractImporter {
 	public void importModelsFrom(String modelDirectory) throws IOException, JSONException {
 		//File rootDir = super.checkModelPath(modelDirectory, false);
 		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		throw new java.lang.AbstractMethodError();
 	}
 
 }
