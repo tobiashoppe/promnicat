@@ -1,0 +1,51 @@
+BUSINESS PROCESS MODEL TRANSLATOR (BPMT) --- README
+---------------------------------------------------
+
+Note: Since the BPMT is based on the Moses Translation System,
+the primary development platform for Moses is Linux,
+and this is the recommended platform since you will find it easier to get support for it.
+For other platforms, have a look at 'http://www.statmt.org/moses/?n=Development.GetStarted'.
+
+Please make sure that the files 'bin/translations/moses' and 'bin/translations/runMosesTranslation.sh'
+are executable.
+
+The entrance point to the BPMT is the config file (config.properties) of the current directory.
+In this file you can specify several options for the translation process. Those options are
+described at the top of the file.
+
+After having specified all the values, you can execute the main class ('src/main/Main.java', 'bin/main/Main.class').
+
+Basically, there are two ways of how to use the BPMT:
+
+On the one hand, you can choose to translate a .tsv file of annotated labels.
+(see config.properties for information about the content of this file.)
+This .tsv file is specified as the value of the key 'annotatedLabels'
+and contains the labels that will be translated.
+There is another similar key called 'annotatedLabelsContext'.
+Normally, this key will have the same value as 'annotatedLabels'.
+However, if the .tsv file of 'annotatedLabels' was extracted from a larger .tsv file
+that contains much more labels, you can specify this larger .tsv file as the value
+of 'annotatedLabelsContext'. The labels of this file will not be translated but used
+as context information for the translation of the labels of 'annotatedLabels'.
+For example, the directory 'resources/testData/SignavioAI' contains the files 'SignavioAI_Every10thRow.tsv'
+and 'SignavioAI.tsv'. 'SignavioAI_Every10thRow.tsv' contains every 10th row of 'SignavioAI.tsv'.
+If you specify 'SignavioAI_Every10thRow.tsv' as the value of 'annotatedLabels' and 'SignavioAI.tsv'
+as the value of 'annotatedLabelsContext', every 10th row of the the SignavioAI will be translated but 
+all the other labels will be used as context information.
+If you don't want to include this additional context information, just specify 'SignavioAI_Every10thRow.tsv'
+as the value of 'annotatedLabelsContext'.
+
+On the other hand, you can specify the PromniCAT database ID of an .svg representation
+of a process model together with the path to a PromniCAT database config file.
+This model will be translated and a new revision (.svg representation only) of the translated 
+model will be saved in the specified database stored in the same directory as the original model.
+Note that also in this case you should specify values for 'annotatedLabels' and 'annotatedLabelsContext' because
+the information in this files is used during the translation process.
+If you don't have annotations for the labels of the model, the Stanford Tagger is used to annotate them.
+For example, if you specified the 'SignavioAI.tsv' file, the translator will try to find annotations of the labels of
+the model specified by the database ID in this file. If it doesn't find any, it will use the Stanford Tagger.
+
+The key 'outputDirectory' is used to specify the directory in which information about the translation results are stored.
+It will contain a list of translations of the two translators (Moses, BPMT), BLEU hypotheses and a Statistics file.
+The Statistics file tells you how many times BPMT and Moses chose the same translations. Moreover, it lists the translations
+that differ between Moses and BPMT.

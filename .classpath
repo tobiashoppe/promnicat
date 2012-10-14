@@ -39,5 +39,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jws/edu.sussex.nlp.jws.beta.11.jar"/>
 	<classpathentry kind="lib" path="lib/jws/edu.mit.jwi_2.1.4.jar"/>
+	<classpathentry kind="lib" path="lib/jaws-bin.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-1.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
