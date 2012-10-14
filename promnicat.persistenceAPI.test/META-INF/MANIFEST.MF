@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.persistenceAPI.test
+Bundle-SymbolicName: promnicat.persistenceAPI.test;singleton:=true
+Bundle-Version: 0.0.0
+Fragment-Host: promnicat.persistenceAPI
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

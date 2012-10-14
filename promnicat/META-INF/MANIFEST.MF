@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Created-By: Cindy Faehnrich, Tobias Hoppe, Andrina Mascher
+Main-Class: de/uni_potsdam/hpi/bpt/promnicat/launch/ModelImporterLauncher
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat
+Bundle-SymbolicName: promnicat;singleton:=true
+Bundle-Version: 0.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

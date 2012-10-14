@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.utilityUnits.bpmTranslator.test
+Bundle-SymbolicName: promnicat.utilityUnits.bpmTranslator.test;singleton:=true
+Bundle-Version: 0.0.0
+Fragment-Host: promnicat.utilityUnits.bpmTranslator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

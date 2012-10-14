@@ -1,8 +1,7 @@
 
-/bin
-/resources/orientDBsmall
-/resources/2011-04-19_signavio_academic_processes
-/resources/NPB_complete
-/resources/orientDB
-/target
-/resources/SignavioAcademicExport20120810
+bin
+/promnicat/resources/2011-04-19_signavio_academic_processes
+/promnicat/resources/SignavioAcademicExport20120810
+/promnicat/resources/orientDB
+/promnicat/resources/orientDBsmall
+/promnicat/resources/NPB_complete

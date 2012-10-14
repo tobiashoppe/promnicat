@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.persistenceAPI.orientDbObj.test
+Bundle-SymbolicName: promnicat.persistenceAPI.orientDbObj.test;singleton:=true
+Bundle-Version: 0.0.0
+Fragment-Host: promnicat.persistenceAPI.orientDbObj
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

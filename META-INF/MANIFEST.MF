@@ -1,4 +1,0 @@
-Manifest-Version: 1.2
-Ant-Version: Apache Ant 1.8.2
-Created-By: Cindy Faehnrich, Tobias Hoppe, Andrina Mascher
-Main-Class: de/uni_potsdam/hpi/bpt/promnicat/launch/ModelImporterLauncher
