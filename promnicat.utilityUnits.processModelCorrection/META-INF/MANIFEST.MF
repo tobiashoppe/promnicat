@@ -4,3 +4,4 @@ Bundle-Name: promnicat.utilityUnits.processModelCorrection
 Bundle-SymbolicName: promnicat.utilityUnits.processModelCorrection
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: promnicat.utilityUnits

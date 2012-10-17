@@ -5,3 +5,5 @@ Bundle-SymbolicName: promnicat.utilityUnits.collector
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Require-Bundle: promnicat.utilityUnits
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector

@@ -29,12 +29,11 @@ import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.ErrorDetec
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.UnparsableModelFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.wrapper.DiagramWrapper;
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.wrapper.ShapeWrapper;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataProcessMetrics;
 
 
 /**
@@ -63,7 +62,7 @@ public class DiagramCorrector  {
 	 * @throws IOException
 	 */
 	private static CorrectionUnitChainBuilder prepareUnitChainBuilder(boolean onlyLatestRevision) throws IOException{
-		CorrectionUnitChainBuilder chainBuilder = new CorrectionUnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataProcessMetrics.class);
+		CorrectionUnitChainBuilder chainBuilder = new CorrectionUnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitData.class);
 		
 		//build db query
 		DbFilterConfig dbFilter = new DbFilterConfig();

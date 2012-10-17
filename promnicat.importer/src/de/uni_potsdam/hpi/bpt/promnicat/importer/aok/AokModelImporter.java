@@ -52,7 +52,7 @@ public class AokModelImporter extends AbstractImporter {
 	public void importModelsFrom(String modelDirectory) throws IOException, JSONException {
 		//File rootDir = super.checkModelPath(modelDirectory, false);
 		// TODO Auto-generated method stub
-		throw new java.lang.AbstractMethodError();
+		throw new AbstractMethodError();
 	}
 
 }

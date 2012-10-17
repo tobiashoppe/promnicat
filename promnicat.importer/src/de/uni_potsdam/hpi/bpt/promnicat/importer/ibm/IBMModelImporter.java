@@ -44,10 +44,10 @@ import de.hpi.bpmn2_0.model.FlowElement;
 import de.hpi.bpmn2_0.model.RootElement;
 import de.hpi.bpmn2_0.model.connector.Edge;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.AbstractImporter;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -81,7 +81,7 @@ public class IBMModelImporter extends AbstractImporter {
 	    	    String id = file.getAbsolutePath().replace(rootDir.getAbsolutePath(), "");
 	    	    //PromniCat does not support slashes in ids
 	    	    id = id .replace(File.separator, "_");
-		    Model model = this.persistenceApi.loadCompleteModelWithImportedId(id);
+		    IModel model = this.persistenceApi.loadCompleteModelWithImportedId(id);
 	    	if (model == null){
 			//create and save new Model
 			model = parseModel(file, id);
@@ -95,12 +95,13 @@ public class IBMModelImporter extends AbstractImporter {
 	    	persistenceApi.closeDb();
 	}
 
-	private Model parseModel(File file, String id) {
-	    Model model = new Model(file.getName(), Constants.ORIGIN_IBM, id);
-	    Revision revision = new Revision(0);
-	    revision.connectRepresentation(new Representation(Constants.FORMAT_XML, Constants.NOTATION_BPMN2_0, file ));
+	private IModel parseModel(File file, String id) {
+		IPojoFactory pojoFac = this.persistenceApi.getPojoFactory();
+	    IModel model = pojoFac.createModel(file.getName(), Constants.ORIGIN_IBM, id);
+	    IRevision revision = pojoFac.createRevision(0);
+	    revision.connectRepresentation(pojoFac.createRepresentation(Constants.FORMAT_XML, Constants.NOTATION_BPMN2_0, file ));
 	    try {
-		revision.connectRepresentation(new Representation(Constants.FORMAT_BPMAI_JSON, Constants.NOTATION_BPMN2_0, parseIBMBPMN2Diagram(file).getBytes() ));
+		revision.connectRepresentation(pojoFac.createRepresentation(Constants.FORMAT_BPMAI_JSON, Constants.NOTATION_BPMN2_0, parseIBMBPMN2Diagram(file).getBytes() ));
 	    } catch (JAXBException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

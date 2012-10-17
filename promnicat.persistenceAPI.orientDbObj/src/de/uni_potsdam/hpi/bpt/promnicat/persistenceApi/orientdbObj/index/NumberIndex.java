@@ -24,7 +24,7 @@ import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 
 /**

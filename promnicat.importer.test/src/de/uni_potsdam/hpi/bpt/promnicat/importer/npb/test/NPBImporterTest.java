@@ -28,7 +28,7 @@ import org.junit.Test;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.npb.NPBImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.test.ImporterTest;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**

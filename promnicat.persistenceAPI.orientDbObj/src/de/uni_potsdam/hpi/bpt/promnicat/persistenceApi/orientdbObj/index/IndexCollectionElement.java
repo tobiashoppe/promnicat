@@ -19,8 +19,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
 import java.util.HashSet;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 
 /**

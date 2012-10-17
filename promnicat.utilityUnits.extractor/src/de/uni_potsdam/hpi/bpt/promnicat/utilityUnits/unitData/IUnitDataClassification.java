@@ -22,6 +22,7 @@ import org.jbpt.petri.behavior.LolaSoundnessCheckerResult;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataJbpt;
 
 /**
  * Interface for classes that can be used as {@link IUnit} input and output.

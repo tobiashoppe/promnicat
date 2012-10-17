@@ -25,10 +25,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.aok.AokModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -61,9 +60,10 @@ public class AokModelImporterTest {
 			AokModelImporter modelImporter = new AokModelImporter(persistenceApi);
 			modelImporter.importModelsFrom("unknown.file");
 			fail("Expected exception has not been raised!");
-		} catch (NotImplementedException e) {
-			// expected exception
-		} catch (Exception e) {
+		} catch (AbstractMethodError e) {
+			//expected exception
+		}
+		catch (Exception e) {
 			fail("Unexpected exception occurred: " + e.getMessage());
 		}
 	}

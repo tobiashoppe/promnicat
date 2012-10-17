@@ -5,3 +5,5 @@ Bundle-SymbolicName: promnicat.utilityUnits.processModelConverter.test;singleton
 Bundle-Version: 0.0.0
 Fragment-Host: promnicat.utilityUnits.processModelConverter
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit4,
+ promnicat.util

@@ -24,7 +24,7 @@ import org.jbpt.pm.DataNode;
 import org.jbpt.pm.Event;
 import org.jbpt.pm.Gateway;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 

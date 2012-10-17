@@ -17,7 +17,7 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 
 /**

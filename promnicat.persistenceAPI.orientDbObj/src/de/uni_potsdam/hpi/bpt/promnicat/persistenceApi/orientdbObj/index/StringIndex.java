@@ -24,7 +24,7 @@ import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 import com.orientechnologies.orient.core.exception.OStorageException;
 import com.orientechnologies.orient.core.id.ORecordId;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 
 /**

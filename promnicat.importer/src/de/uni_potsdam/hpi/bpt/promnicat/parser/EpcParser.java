@@ -37,6 +37,7 @@ import org.jbpt.pm.epc.XorConnector;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.ai.diagram.Shape;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.EpcConstants;
 
 /**
  * Retrieves a Diagram instance (JSON format) of the EPC process model and maps it

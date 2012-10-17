@@ -33,9 +33,9 @@ import org.jbpt.pm.epc.Epc;
 import org.jbpt.throwable.TransformationException;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.TestModelBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.modelConverter.IModelToPetriNetConverter;
 import de.uni_potsdam.hpi.bpt.promnicat.modelConverter.ModelToPetriNetConverter;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
 
 /**
  * Test class for {@link ModelToPetriNetConverter}.

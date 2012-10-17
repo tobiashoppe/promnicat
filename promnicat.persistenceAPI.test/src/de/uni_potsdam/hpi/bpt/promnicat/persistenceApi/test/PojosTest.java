@@ -25,9 +25,11 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.PojoFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
 /**
  * Test class for methods on {@link PersistanceApiOrientDB} that change database content 
@@ -38,12 +40,13 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
 public class PojosTest {
 
 	static Model mockModel = null;
+	private static final PojoFactory fac = IPojoFactory.INSTANCE;
 
 	@Test
 	public void testSetLatestRevision() {
-		Model model = new Model();
-		Revision rev1 = new Revision();
-		Revision rev2 = new Revision();
+		Model model = fac.createModel();
+		Revision rev1 = fac.createRevision();
+		Revision rev2 = fac.createRevision();
 		model.connectRevision(rev1);
 		model.connectRevision(rev2);
 		
@@ -61,7 +64,7 @@ public class PojosTest {
 		assertTrue(rev2.isLatestRevision());
 		assertFalse(rev1.isLatestRevision());
 		
-		Revision rev3 = new Revision();
+		Revision rev3 = fac.createRevision();
 		model.connectLatestRevision(rev3);
 		assertTrue(model.getNrOfRevisions() == 3); 
 		assertTrue(model.getLatestRevision() == rev3);
@@ -71,8 +74,8 @@ public class PojosTest {
 	
 	@Test
 	public void testConnectRevisions() {
-		Model model = new Model();
-		Revision rev1 = new Revision();
+		Model model = fac.createModel();
+		Revision rev1 = fac.createRevision();
 		model.connectRevision(rev1);
 		assertTrue(model.getNrOfRevisions() == 1);
 		
@@ -87,8 +90,8 @@ public class PojosTest {
 		assertTrue(model.getNrOfRevisions() == 1);
 		
 		//set 2 other revisions
-		Revision rev2 = new Revision();
-		Revision rev3 = new Revision();
+		Revision rev2 = fac.createRevision();
+		Revision rev3 = fac.createRevision();
 		list.add(rev2);
 		list.add(rev3);
 		model.setAndConnectRevisions(list);
@@ -98,9 +101,9 @@ public class PojosTest {
 	
 	@Test
 	public void testConnectNull() {
-		Model model = new Model();
-		Revision rev = new Revision();
-		Representation rep = new Representation();
+		Model model = fac.createModel();
+		Revision rev = fac.createRevision();
+		Representation rep = fac.createRepresentation();
 		
 		model.connectRevision(rev);
 		assertTrue(model.getNrOfRevisions() == 1);
@@ -118,7 +121,7 @@ public class PojosTest {
 
 	@Test
 	public void testUnconnectedObjects() {
-		Representation rep = new Representation();
+		Representation rep = fac.createRepresentation();
 		assertNull(rep.getRevision());
 		assertNull(rep.getModel());
 		assertNull(rep.getTitle());
@@ -126,7 +129,7 @@ public class PojosTest {
 		assertFalse(rep.belongsToLatestRevision());
 		assertFalse(rep.hasDataContent());
 		
-		Revision rev = new Revision();
+		Revision rev = fac.createRevision();
 		assertNull(rev.getModel());
 		assertNull(rev.getTitle());
 		assert(rev.getNrOfRepresentations() == 0);
@@ -141,9 +144,9 @@ public class PojosTest {
 	
 	@Test
 	public void testConnectionDeferment() {
-		Representation rep = new Representation();
-		Revision rev = new Revision();
-		Model mod = new Model();
+		Representation rep = fac.createRepresentation();
+		Revision rev = fac.createRevision();
+		Model mod = fac.createModel();
 		rep.connectRevision(rev);
 		rev.connectModel(mod);
 		assert(rep.getRevision() == rev);
@@ -153,7 +156,7 @@ public class PojosTest {
 	
 	@Test
 	public void testMetadata() {
-		Revision r = new Revision();
+		Revision r = fac.createRevision();
 		r.setMetadata(null);
 		assert(r.getMetadata().size() == 0);
 		r.addMetadataAtKey("k1", "v1");

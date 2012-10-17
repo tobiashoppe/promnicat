@@ -25,10 +25,10 @@ import java.io.File;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.BpmaiJsonToDiagramUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.UnitDataJbpt;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataJbpt;
 
 /**
  * Test class for {@link BpmaiJsonToDiagramUnit}

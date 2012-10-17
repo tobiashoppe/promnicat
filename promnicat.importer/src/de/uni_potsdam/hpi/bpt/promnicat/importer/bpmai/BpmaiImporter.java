@@ -36,11 +36,13 @@ import de.uni_potsdam.hpi.bpt.ai.collection.BPMAIExport;
 import de.uni_potsdam.hpi.bpt.ai.collection.BPMAIExportBuilder;
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.AbstractImporter;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.ConstantsMapper;
 
@@ -187,22 +189,22 @@ public class BpmaiImporter extends AbstractImporter {
 		BPMAIExport directoryWalker = BPMAIExportBuilder.parseDirectory(rootDir);
 		for (de.uni_potsdam.hpi.bpt.ai.collection.Model bpmAiModel : directoryWalker.getModels()) {
 	
-			Model model = this.persistenceApi.loadCompleteModelWithImportedId(bpmAiModel.getId().toString());
+			IModel model = this.persistenceApi.loadCompleteModelWithImportedId(bpmAiModel.getId().toString());
 			if (model == null){
 				//create and save new Model
 				model = parseModel(bpmAiModel);
-				((PersistenceApiOrientDbObj)this.persistenceApi).savePojo(model);
+				this.persistenceApi.savePojo(model);
 			} else {
 				//check for new revision
 				boolean found = false;
 				for (de.uni_potsdam.hpi.bpt.ai.collection.Revision bpmAiRev : bpmAiModel.getRevisions()){
 					found = false;
-					for (Revision revision : model.getRevisions()){
+					for (IRevision revision : model.getRevisions()){
 						if (revision.getRevisionNumber().equals(bpmAiRev.getNumber())){
 							//search for new representations
 							boolean containsJsonRepresentation = false;
 							boolean containsSvgRepresentation = false;
-							for(Representation representation : revision.getRepresentations()){
+							for(IRepresentation representation : revision.getRepresentations()){
 								if (representation.getFormat().equals(Constants.FORMAT_BPMAI_JSON)) {
 									containsJsonRepresentation = true;
 									continue;
@@ -214,13 +216,13 @@ public class BpmaiImporter extends AbstractImporter {
 							}
 							//if the representations for Json or Svg do not exist, they are parsed
 							if (!containsJsonRepresentation) {
-								Representation representation = parseRepresentation(bpmAiRev, Constants.FORMAT_BPMAI_JSON);
+								IRepresentation representation = parseRepresentation(bpmAiRev, Constants.FORMAT_BPMAI_JSON);
 								if (representation != null) {
 									revision.connectRepresentation(representation);								
 								}
 							}
 							if (!containsSvgRepresentation) {
-								Representation representation = parseRepresentation(bpmAiRev, Constants.FORMAT_SVG);
+								IRepresentation representation = parseRepresentation(bpmAiRev, Constants.FORMAT_SVG);
 								if (representation != null) {
 									revision.connectRepresentation(representation);								
 								}
@@ -234,7 +236,7 @@ public class BpmaiImporter extends AbstractImporter {
 					}
 					if (!found){
 						//create new revision
-						Revision revision = parseRevision(bpmAiRev);
+						IRevision revision = parseRevision(bpmAiRev);
 						if (model.getLatestRevision().getRevisionNumber() < bpmAiRev.getNumber()) {
 							model.connectLatestRevision(revision);
 						}
@@ -278,15 +280,15 @@ public class BpmaiImporter extends AbstractImporter {
 	 * 
 	 * @param bpmAiModel the BPM AI process model to parse
 	 * 
-	 * @return the parsed {@link Model} referencing it's {@link Revision}s and {@link Representation}s.
+	 * @return the parsed {@link IModel} referencing it's {@link Revision}s and {@link Representation}s.
 	 * 
 	 * @throws JSONException if JSON parsing is erroneous 
 	 * @throws IOException if the given source path could not be found or read
 	 */
-	private Model parseModel(de.uni_potsdam.hpi.bpt.ai.collection.Model bpmAiModel)	throws JSONException, IOException {
+	private IModel parseModel(de.uni_potsdam.hpi.bpt.ai.collection.Model bpmAiModel)	throws JSONException, IOException {
 
-		Model model = new Model(bpmAiModel.getName(), Constants.ORIGIN_BPMAI, bpmAiModel.getId().toString());
-		Revision revision = null;
+		IModel model = this.persistenceApi.getPojoFactory().createModel(bpmAiModel.getName(), Constants.ORIGIN_BPMAI, bpmAiModel.getId().toString());
+		IRevision revision = null;
 
 		// one model has several revisions
 		for (de.uni_potsdam.hpi.bpt.ai.collection.Revision oldRev : bpmAiModel.getRevisions()) {
@@ -316,23 +318,23 @@ public class BpmaiImporter extends AbstractImporter {
 	 * and creates all available {@link Representation}s.
 	 * 
 	 * @param bpmAiRev revision to parse the meta data from
-	 * @return a new {@link Revision} with the given index and the meta data parsed from the given {@link Diagram}.
+	 * @return a new {@link IRevision} with the given index and the meta data parsed from the given {@link Diagram}.
 	 * @throws IOException if JSON parsing is erroneous
 	 * @throws JSONException if the given source path could not be found or read
 	 */
-	private Revision parseRevision(de.uni_potsdam.hpi.bpt.ai.collection.Revision bpmAiRev) throws JSONException, IOException {
-		Revision revision = new Revision(bpmAiRev.getNumber());
+	private IRevision parseRevision(de.uni_potsdam.hpi.bpt.ai.collection.Revision bpmAiRev) throws JSONException, IOException {
+		IRevision revision = this.persistenceApi.getPojoFactory().createRevision(bpmAiRev.getNumber());
 		Diagram diagram = bpmAiRev.getDiagram();
 		revision.setMetadata(parseMetadata(diagram.getProperties()));
 		revision.setAuthor(parseProperty(diagram, PROPERTY_AUTHOR));
 		this.createdRevisionsCount++;
 		
 		//create available representations
-		Representation JsonRep = parseRepresentation(bpmAiRev, Constants.FORMAT_BPMAI_JSON);
+		IRepresentation JsonRep = parseRepresentation(bpmAiRev, Constants.FORMAT_BPMAI_JSON);
 		if (JsonRep != null) {
 			revision.connectRepresentation(JsonRep);
 		}
-		Representation SvgRep = parseRepresentation(bpmAiRev, Constants.FORMAT_SVG);
+		IRepresentation SvgRep = parseRepresentation(bpmAiRev, Constants.FORMAT_SVG);
 		if (SvgRep != null) {
 			revision.connectRepresentation(SvgRep);
 		}
@@ -346,8 +348,8 @@ public class BpmaiImporter extends AbstractImporter {
 	 * @param format the format of the new {@link Representation}
 	 * @return the parsed {@link Representation}
 	 */
-	private Representation parseRepresentation(de.uni_potsdam.hpi.bpt.ai.collection.Revision bpmAiRev, String format) {	
-		Representation representation = null;
+	private IRepresentation parseRepresentation(de.uni_potsdam.hpi.bpt.ai.collection.Revision bpmAiRev, String format) {	
+		IRepresentation representation = null;
 		Diagram diagram = null;
 		try{
 			diagram = bpmAiRev.getDiagram();
@@ -358,11 +360,11 @@ public class BpmaiImporter extends AbstractImporter {
 		
 		// one revision can have two representations: JSON and SVG
 		if (format.equals(Constants.FORMAT_BPMAI_JSON) && bpmAiRev.getJson() != null) {
-			representation = new Representation(Constants.FORMAT_BPMAI_JSON, getNotation(diagram), bpmAiRev.getJson());
+			representation = this.persistenceApi.getPojoFactory().createRepresentation(Constants.FORMAT_BPMAI_JSON, getNotation(diagram), bpmAiRev.getJson());
 			representation.setLanguage(parseProperty(diagram, PROPERTY_LANGUAGE));
 			this.createdRepresentationsCount++;
 		} else if (format.equals(Constants.FORMAT_SVG) && bpmAiRev.getSvg() != null) {
-			representation = new Representation(Constants.FORMAT_SVG, getNotation(diagram), bpmAiRev.getSvg());
+			representation = this.persistenceApi.getPojoFactory().createRepresentation(Constants.FORMAT_SVG, getNotation(diagram), bpmAiRev.getSvg());
 			representation.setLanguage(parseProperty(diagram, PROPERTY_LANGUAGE));
 			this.createdRepresentationsCount++;
 		}

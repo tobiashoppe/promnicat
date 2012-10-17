@@ -15,9 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
 
-import com.orientechnologies.orient.core.annotation.OId;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 
 /**
  * This class ensures the mapping of the databaseId.
@@ -32,10 +32,9 @@ import com.orientechnologies.orient.core.annotation.OId;
  * @author Andrina Mascher
  *
  */
-public abstract class AbstractPojo {
+public abstract class AbstractPojo implements IPojo{
 
 	// the id used in the database
-	@OId //used on OrientDb 
 	protected String dbId = null;
 	
 	

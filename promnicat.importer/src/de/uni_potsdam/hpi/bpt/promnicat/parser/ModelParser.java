@@ -23,6 +23,9 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.Bpmn1_1Constants;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.Bpmn2_0Constants;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.EpcConstants;
 
 /**
  * Parser for transforming a given JSON process model into jBPT format. Delegates the transformation

@@ -55,11 +55,6 @@ public interface Constants {
 	public static final String DB_PASSWD = "db.password";
 	
 	/**
-	 * Database Orient DB
-	 */
-	public static final String ORIENT_DB = "OrientDb";
-	
-	/**
 	 * Name used for Business Process Model Academic Initiative.
 	 */
 	public static final String ORIGIN_BPMAI = "BPMAI";

@@ -25,7 +25,7 @@ import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessMetricConstants;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataProcessMetrics;
 
 /**
  *  Class containing all necessary constants regarding the configuration of the 

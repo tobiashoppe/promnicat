@@ -15,40 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.util;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.IConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
- * This class parses the PromniCAT configuration file.
- * 
+ * This class parses the PromniCAT configuration file used for
+ * Orient DB database instances.
  * @author Tobias Hoppe
  *
  */
-public class ConfigurationParser {
+public class OrientDbConfigurationParser extends ConfigurationParser implements IConfigurationParser {
 
-	private Properties properties;
-	
 	/**
 	 * @param configPath the path to the configuration file being used. If an empty {@link String} is given,
 	 *  the default path '{@link Constants#DEFAULT_CONFIG_PATH}' is used.
 	 * @throws IOException if the configuration file could not be found.
 	 */
-	public ConfigurationParser(String configPath) throws IOException {
-		this.properties = new Properties();
-		if (configPath.isEmpty()) {
-			configPath = Constants.DEFAULT_CONFIG_PATH;
-		}
-		BufferedInputStream stream = new BufferedInputStream(new FileInputStream(configPath));
-		this.properties.load(stream);
-		stream.close();
+	public OrientDbConfigurationParser(String configPath) throws IOException {
+		super(configPath);
 	}
 	
 	/**
@@ -59,38 +50,7 @@ public class ConfigurationParser {
 	 * 
 	 * @return a {@link IPersistenceApi} instance as specified in the given configuration.
 	 */
-	public IPersistenceApi getDbInstance(Constants.DATABASE_TYPES database) {
-		switch (database){
-			case ORIENT_DB: {
-				return parseOrientDbConfiguration();
-			}
-			default: {
-				return null;
-			}
-		}
-	}
-	
-	/**
-	 * The configuration file is parsed and the maximum number of {@link Thread}s to be used for {@link IUnitChain}
-	 * execution is extracted.
-	 * 
-	 * @return the maximum number of {@link Thread}s used for {@link IUnitChain} execution.
-	 */
-	public Integer getThreadCount(){
-		String maxNumberOfThreadsString = this.properties.getProperty(Constants.MAX_NUMBER_OF_THREADS);
-		if (maxNumberOfThreadsString == null){
-			throw new IllegalArgumentException("The provided configuration file is invalid.");
-		}
-		return new Integer(maxNumberOfThreadsString);
-	}
-	
-	/**
-	 * The configuration file is parsed and a new {@link IPersistenceApi} instance is created.
-	 * 
-	 * @return a {@link IPersistenceApi} instance as specified in the given configuration.
-	 */
-	private IPersistenceApi parseOrientDbConfiguration() {
-		
+	public IPersistenceApi getDbInstance() {
 		String dbPath = properties.getProperty(Constants.DB_Path);
 		String dbUser = properties.getProperty(Constants.DB_USER);
 		String dbPassword = properties.getProperty(Constants.DB_PASSWD);

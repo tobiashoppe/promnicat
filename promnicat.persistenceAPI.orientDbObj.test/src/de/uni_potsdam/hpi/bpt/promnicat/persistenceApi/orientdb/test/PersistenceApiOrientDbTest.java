@@ -35,10 +35,10 @@ import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.AnalysisRun;
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.LabelStorage;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 

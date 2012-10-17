@@ -51,10 +51,11 @@ import org.xml.sax.SAXException;
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.ai.diagram.DiagramBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.AbstractImporter;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -109,7 +110,7 @@ public class SapReferenceModelImporter extends AbstractImporter {
 	for(int i = 0; i < epcNodes.getLength(); i ++ ){
 	    String epcName = epcNodes.item(i).getAttributes().getNamedItem("name").getNodeValue();
 
-	    Model model = this.persistenceApi.loadCompleteModelWithImportedId(epcName);
+	    IModel model = this.persistenceApi.loadCompleteModelWithImportedId(epcName);
 	    if (model != null){
 		continue;
 	    }
@@ -144,12 +145,13 @@ public class SapReferenceModelImporter extends AbstractImporter {
 	    String json =  RdfJsonTransformation.toJson(rdfDoc, "").toString();
 
 	    //Diagram diagram = DiagramBuilder.parseJson(json);
-	    Representation representation = new Representation(Constants.FORMAT_BPMAI_JSON, Constants.NOTATION_EPC);
+	    IPojoFactory pojoFactory = this.persistenceApi.getPojoFactory();
+	    IRepresentation representation = pojoFactory.createRepresentation(Constants.FORMAT_BPMAI_JSON, Constants.NOTATION_EPC);
 	    Diagram parseJson = DiagramBuilder.parseJson(json);
 	    representation.setDataContent(json.getBytes());
-	    model = new Model(epcName, Constants.ORIGIN_SAP_RM);
+	    model = pojoFactory.createModel(epcName, Constants.ORIGIN_SAP_RM);
 	    model.setImportedId(epcName);
-	    Revision revision = new Revision(0);
+	    IRevision revision = pojoFactory.createRevision(0);
 	    revision.connectRepresentation(representation);
 	    model.connectLatestRevision(revision); 
 	    revision.connectModel(model);

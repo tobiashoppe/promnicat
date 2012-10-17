@@ -24,12 +24,12 @@ import org.json.JSONException;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.ai.diagram.DiagramBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataClassification;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataProcessMetrics;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
 
 /**
  * Utility Unit to parse a process model given as BPM AI JSON string into a {@link Diagram}.
@@ -62,7 +62,7 @@ public class BpmaiJsonToDiagramUnit implements IUnit<IUnitData<Object>, IUnitDat
 		try {
 			String json = ((Representation) input.getValue()).convertDataContentToString();
 			Diagram diagram = DiagramBuilder.parseJson(json);
-			diagram.setMeta(json, ((Representation)input.getValue()).getOriginalFilePath());
+			diagram.setPath(((Representation)input.getValue()).getOriginalFilePath());
 			input.setValue(diagram);
 			return input;
 		} catch (JSONException e) {

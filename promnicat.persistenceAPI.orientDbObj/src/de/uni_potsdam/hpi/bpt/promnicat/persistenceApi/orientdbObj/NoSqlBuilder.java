@@ -23,8 +23,8 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 
 
 /**

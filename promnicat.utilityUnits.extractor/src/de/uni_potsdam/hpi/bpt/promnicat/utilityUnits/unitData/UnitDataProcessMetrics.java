@@ -19,7 +19,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 
 import org.jbpt.pm.ProcessModel;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 

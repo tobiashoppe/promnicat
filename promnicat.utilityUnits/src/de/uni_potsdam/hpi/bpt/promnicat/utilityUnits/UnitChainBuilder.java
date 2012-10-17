@@ -25,9 +25,9 @@ import java.util.regex.Pattern;
 
 import org.jbpt.hypergraph.abs.Vertex;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.FeatureConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;

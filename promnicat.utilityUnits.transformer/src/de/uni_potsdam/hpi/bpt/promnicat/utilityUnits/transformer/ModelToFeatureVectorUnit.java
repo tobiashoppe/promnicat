@@ -28,10 +28,10 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessFeatureConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataFeatureVector;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataProcessMetrics;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.UnitDataFeatureVector;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataFeatureVector;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataFeatureVector;
 
 /**
  * This class transforms the given metrics of a {@link ProcessModel} in a

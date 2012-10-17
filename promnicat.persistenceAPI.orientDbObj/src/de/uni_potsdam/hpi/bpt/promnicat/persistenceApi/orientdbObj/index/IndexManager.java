@@ -19,7 +19,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
 import java.util.HashSet;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
 
 /**
  * This class is used to store the available index names for later retrieval and internal checking.

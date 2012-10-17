@@ -15,12 +15,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
+
 
 
 /**
@@ -32,41 +36,37 @@ import java.io.IOException;
  * @author Andrina Mascher, Tobias Hoppe
  *
  */
-public class Representation extends AbstractPojo{
+public class Representation extends AbstractPojo implements IRepresentation {
 
 	// the format such as XML, JSON used in the dataContent
-	private String format = "";
+	protected String format = "";
 	// the modeling notation such as EPC or BPMN
-	private String notation = "";
+	protected String notation = "";
 	// the original file path that was used to import the data content
-	private String originalFilePath = "";
+	protected String originalFilePath = "";
 	// the actual data content used for analysis
-	private byte[] dataContent = new byte[0];
+	protected byte[] dataContent = new byte[0];
 	// the connected revision
-	Revision revision = null;
+	protected IRevision revision = null;
 	//name of the used language in the model, e.g. English or German
-	private String language = "";
+	protected String language = "";
 
-	public Representation() {
+	protected Representation() {
 	}
 	
-	public Representation(String format, String notation) {
+	protected Representation(String format, String notation) {
 		super();
 		this.format = format;
 		this.notation = notation;
 	}
 	
-	public Representation(String format, String notation, File dataFile) {
-		super();
-		this.format = format;
-		this.notation = notation;
+	protected Representation(String format, String notation, File dataFile) {
+		this(format, notation);
 		importFile(dataFile);
 	}
 	
-	public Representation(String format, String notation, byte[] dataContent) {
-		super();
-		this.format = format;
-		this.notation = notation;
+	protected Representation(String format, String notation, byte[] dataContent) {
+		this(format, notation);
 		this.setOriginalFilePath("");
 		this.dataContent = dataContent;
 	}
@@ -83,44 +83,31 @@ public class Representation extends AbstractPojo{
 								+ "]";
 	}
 	
-	/**
-	 * @return the language used to model, e.g. English
-	 */
+	@Override
 	public String getLanguage() {
 		return language;
 	}
 
-	/**
-	 * @param language set the language used to model, e.g. English
-	 */
+	@Override
 	public void setLanguage(String language) {
 		this.language = language;
 	}
 	
-	/**
-	 * @return the connected model via the connected revision
-	 */
+	@Override
 	public Model getModel() {
 		if(revision == null) {
 			return null;
 		} else {
-			return revision.getModel();
+			return (Model) revision.getModel();
 		}
 	}
 
-	/**
-	 * 
-	 * @return the connected {@link Revision}
-	 */
+	@Override
 	public Revision getRevision() {
-		return revision;
+		return (Revision) revision;
 	}
 	
-	/**
-	 * Connects this {@link Representation} to a {@link Revision} and vice versa
-	 * 
-	 * @param newRevision the revision to connect
-	 */
+	@Override
 	public void connectRevision(Revision newRevision) {
 		if(newRevision != null) {
 			//defer responsibility
@@ -128,9 +115,7 @@ public class Representation extends AbstractPojo{
 		}
 	}
 	
-	/**
-	 * @return the title of the connected {@link Model}
-	 */
+	@Override
 	public String getTitle() {
 		if(revision == null) {
 			return null;
@@ -138,9 +123,7 @@ public class Representation extends AbstractPojo{
 		return revision.getTitle();
 	}
 
-	/**
-	 * @return the revision number from the connected {@link Revision}
-	 */
+	@Override
 	public Integer getRevisionNumber() {
 		if(revision == null) {
 			return null;
@@ -148,9 +131,7 @@ public class Representation extends AbstractPojo{
 		return revision.getRevisionNumber();
 	}
 
-	/**
-	 * @return true if the connected {@link Revision} is a latest revision
-	 */
+	@Override
 	public boolean belongsToLatestRevision() {
 		if(revision != null) {
 			return revision.isLatestRevision();
@@ -158,11 +139,7 @@ public class Representation extends AbstractPojo{
 		return false;
 	}
 	
-	/**
-	 * Import a file by saving the file content and the file path used.
-	 * Assumes UTF8 content. If not, prepare and save byte[] directly.
-	 * @param file the file to import
-	 */
+	@Override
 	public void importFile(File file) {
 		this.setOriginalFilePath(file.getAbsolutePath());
 		this.importDataContent(file);
@@ -185,77 +162,59 @@ public class Representation extends AbstractPojo{
 		}
 	}
 	
-	/**
-	 * @return the data content as String instead of bytes
-	 */
+	@Override
 	public String convertDataContentToString() {
 		return new String(dataContent);
 	}
 	
-	/**
-	 * @return the data content written in the specified format
-	 */
+	@Override
 	public byte[] getDataContent() {
 		return dataContent;
 	}
 
-	/**
-	 * @param dataContent the dataContent to set
-	 */
+	@Override
 	public void setDataContent(byte[] dataContent) {
 		this.dataContent = dataContent;
 	}
 	
 	
-	/**
-	 * @return the original file path of the data content
-	 */
+	@Override
 	public String getOriginalFilePath() {
 		return originalFilePath;
 	}
 
-	/**
-	 * @param originalFilePath the originalFilePath to set
-	 */
+	@Override
 	public void setOriginalFilePath(String originalFilePath) {
 		this.originalFilePath = originalFilePath;
 	}
 
-	/**
-	 * @return true if dataContent is not empty
-	 */
+	@Override
 	public boolean hasDataContent() {
 		return dataContent.length > 0;
 	}
 
-	/**
-	 * @return the format used for the data content, e.g. XML or JSON
-	 */
+	@Override
 	public String getFormat() {
 		getModel();
 		return format;
 	}
 
-	/**
-	 * @param format the format of the data content, e.g. XML or JSON
-	 */
+	@Override
 	public void setFormat(String format) {
 		this.format = format;
 	}
 
-	/**
-	 * 
-	 * @return the notation language used to model, e.g. EPC or BPMN
-	 */
+	@Override
 	public String getNotation() {
 		return notation;
 	}
 
-	/**
-	 * 
-	 * @param notation the modeling notation language to set, e.g. EPC or BPMN
-	 */
+	@Override
 	public void setNotation(String notation) {
 		this.notation = notation;
+	}
+	
+	void setRevision(IRevision revToSet) {
+		revision = revToSet;
 	}
 }

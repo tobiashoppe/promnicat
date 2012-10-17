@@ -55,6 +55,8 @@ import org.jbpt.pm.bpmn.ThrowingEvent;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.ai.diagram.Shape;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.Bpmn1_1Constants;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.IBpmnConstants;
 
 /**
  * Retrieves a Diagram instance (JSON format) of the BPMN process model and maps it

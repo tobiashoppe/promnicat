@@ -1,11 +1,10 @@
 package de.uni_potsdam.hpi.bpt.promnicat.correctionModule;
 
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.util.FileCopyUtils;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.ai.diagram.DiagramBuilder;
@@ -22,11 +21,17 @@ import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.wrapper.DiagramWrapper;
 public class TestModelBuilder {
 	
 	public static String readFromFile(String filepath) throws Exception {
+		StringBuilder result = new StringBuilder();
 		try {
-			return FileCopyUtils.copyToString(new InputStreamReader(new FileInputStream(filepath), "UTF-8"));
+			BufferedReader br = new BufferedReader(new FileReader(filepath));
+			String currentLine;
+			while ((currentLine = br.readLine()) != null) {
+				result.append(currentLine);
+			}
 		} catch (Exception e) {
 			throw new Exception("Could not initialize modeldata for "+filepath, e);
 		}
+		return result.toString();
 	}
 
 	public static Diagram getModelFromFile(String filename) throws Exception {

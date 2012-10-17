@@ -30,7 +30,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.importer.bpmai.BpmaiImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.npb.NPBImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.sap_rm.SapReferenceModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -73,7 +73,7 @@ public class ModelImporter {
 
 		try {
 			//read configuration file
-			IPersistenceApi persistenceApi = new ConfigurationParser(args[0]).getDbInstance(Constants.DATABASE_TYPES.ORIENT_DB);
+			IPersistenceApi persistenceApi = new OrientDbConfigurationParser(args[0]).getDbInstance();
 			
 			//import models			
 			// BPMAI model?

@@ -33,8 +33,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ElementLabelExtractorUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilter;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataLabelFilter;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataLabelFilter;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.UnitDataLabelFilter;
 
 /**
  * Test class for {@link ElementLabelExtractorUnit}

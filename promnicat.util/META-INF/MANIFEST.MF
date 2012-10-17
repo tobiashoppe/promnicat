@@ -8,4 +8,5 @@ Require-Bundle: promnicat;visibility:=reexport
 Bundle-ClassPath: .
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.util,
  de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder,
+ de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants,
  de.uni_potsdam.hpi.bpt.promnicat.util.serializer

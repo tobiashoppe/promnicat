@@ -45,17 +45,18 @@ import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config.OrientDbConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.OrientDbPojoFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexManager;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringIndexStorage;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
-import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
  * This is the connection to the database to load, save, delete {@link Model}, {@link Revision}, 
@@ -108,7 +109,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 */
 	public static PersistenceApiOrientDbObj getInstance(String configurationFilePath) {
 		try {
-			return (PersistenceApiOrientDbObj) new ConfigurationParser(configurationFilePath).getDbInstance(Constants.DATABASE_TYPES.ORIENT_DB);
+			return (PersistenceApiOrientDbObj) new OrientDbConfigurationParser(configurationFilePath).getDbInstance();
 		} catch (IOException e) {
 			logger.severe(e.getMessage());
 		}
@@ -788,5 +789,10 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 		mod.setAndConnectRevisions(revisions);
 
 		return rep;
+	}
+
+	@Override
+	public IPojoFactory getPojoFactory() {
+		return OrientDbPojoFactory.init();
 	}
 }

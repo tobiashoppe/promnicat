@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Logger;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**

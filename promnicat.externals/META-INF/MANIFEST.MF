@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: promnicat.external
-Bundle-SymbolicName: promnicat.externals;singleton:=true
+Bundle-Name: promnicat.externals
+Bundle-SymbolicName: promnicat.externals
 Bundle-Version: 0.0.0
-Bundle-ClassPath: bpmai.jar,
- jbpt.jar
+Bundle-ClassPath: lib/bpmai.jar,
+ lib/jbpt.jar,
+ lib/org.json.jar
 Export-Package: de.uni_potsdam.hpi.bpt.ai.collection,
  de.uni_potsdam.hpi.bpt.ai.collection.impl,
  de.uni_potsdam.hpi.bpt.ai.diagram,
@@ -47,5 +48,6 @@ Export-Package: de.uni_potsdam.hpi.bpt.ai.collection,
  org.jbpt.test.petri.unfolding,
  org.jbpt.test.tree,
  org.jbpt.throwable,
- org.jbpt.utils
+ org.jbpt.utils,
+ org.json
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

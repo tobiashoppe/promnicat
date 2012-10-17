@@ -5,7 +5,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/jdom-1.1.2.jar"/>
-	<classpathentry kind="lib" path="lib/org.json.jar"/>
 	<classpathentry kind="lib" path="lib/oryx-bpmn2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

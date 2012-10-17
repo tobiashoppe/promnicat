@@ -27,18 +27,18 @@ import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.TestModelBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.classification.PetriNetSerializer;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.util.serializer.PetriNetSerializer;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.ModelToPetriNetUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataClassification;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataClassification;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.UnitDataClassification;
 
 /**
  * Test class for {@link ModelToPetriNetUnit}

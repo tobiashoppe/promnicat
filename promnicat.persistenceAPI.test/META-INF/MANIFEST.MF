@@ -5,3 +5,4 @@ Bundle-SymbolicName: promnicat.persistenceAPI.test;singleton:=true
 Bundle-Version: 0.0.0
 Fragment-Host: promnicat.persistenceAPI
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit4

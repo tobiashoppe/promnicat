@@ -8,8 +8,8 @@ import java.util.Set;
 import de.uni_potsdam.hpi.bpt.ai.util.BpmMetrics;
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.UnsupportedModelException;
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.wrapper.ShapeWrapper;
-import de.uni_potsdam.hpi.bpt.promnicat.parser.Bpmn1_1Constants;
-import de.uni_potsdam.hpi.bpt.promnicat.parser.Bpmn2_0Constants;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.Bpmn1_1Constants;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.Bpmn2_0Constants;
 
 /**
  * Defines common rules for Bpmn 2.0 and Bpmn 1.1 process models

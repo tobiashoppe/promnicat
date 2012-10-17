@@ -30,8 +30,8 @@ import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.bpmn.Task;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;

@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.parser;
+package de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants;
 
 /**
  * Constants for id matching of a Json Diagram for Epc

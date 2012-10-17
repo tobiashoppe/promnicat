@@ -17,9 +17,9 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 /**
  * @author Andrina Mascher

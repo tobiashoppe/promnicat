@@ -22,9 +22,10 @@ import org.jbpt.petri.behavior.LolaSoundnessCheckerResult;
 import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.UnitDataJbpt;
 
 /**
  * {@link IUnitChain} result type implementation containing the {@link Representation} id of the used 

@@ -24,8 +24,8 @@ import org.jbpt.hypergraph.abs.Vertex;
 import org.jbpt.petri.PetriNet;
 import org.jbpt.pm.ProcessModel;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.FeatureConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants;

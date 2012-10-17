@@ -7,4 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: promnicat.persistenceAPI;visibility:=reexport,
  promnicat.util
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj,
+ de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config,
+ de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index

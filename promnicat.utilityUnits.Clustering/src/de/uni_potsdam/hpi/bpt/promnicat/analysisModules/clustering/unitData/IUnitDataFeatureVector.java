@@ -18,7 +18,7 @@
 package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.unitData;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.FeatureVector;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;

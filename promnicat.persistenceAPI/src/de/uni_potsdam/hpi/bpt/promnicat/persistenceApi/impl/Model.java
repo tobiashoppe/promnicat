@@ -15,11 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
+
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 
 
 
@@ -32,37 +38,37 @@ import java.util.logging.Logger;
  * @author Andrina Mascher
  *
  */
-public class Model extends AbstractPojo {
+public class Model extends AbstractPojo implements IModel {
 
 	/**
 	 * id used for identification of {@link Model} 
 	 * is independent of database id, needs to be managed by user
 	 */
-	private String importedId = "";
+	protected String importedId = "";
 	// the title of ths process model as given by the user
-	private String title = "";
+	protected String title = "";
 	// the original process model collection's name
-	private String origin = "";
+	protected String origin = "";
 	// group of connected revisions
-	private HashSet<Revision> revisions = new HashSet<Revision>();
+	protected Set<IRevision> revisions = new HashSet<IRevision>();
 	// indicates whether all revisions and all their representations are loaded from the database, or just 1 of them.
-	private boolean completelyLoaded; 
+	protected boolean completelyLoaded; 
 	
 	private final static Logger logger = Logger.getLogger(Model.class.getName());
 
 
-	public Model() {
+	protected Model() {
 		completelyLoaded = true;
 	}
 	
-	public Model(String title, String origin) {
+	protected Model(String title, String origin) {
 		super();
 		this.title = title;
 		this.origin = origin;
 		completelyLoaded = true;
 	}
 
-	public Model(String title, String origin, String id) {
+	protected Model(String title, String origin, String id) {
 		this(title, origin);
 		this.importedId = id;
 	}
@@ -79,12 +85,13 @@ public class Model extends AbstractPojo {
 						+ "]";
 	}
 	
+	@Override
 	public String toStringExtended() {
 		String s = toString();
 		try {
-			for(Revision rev : getRevisions()) {
+			for(IRevision rev : getRevisions()) {
 				s +="\n\t" + rev.toString();
-				for(Representation rep : rev.getRepresentations()) {
+				for(IRepresentation rep : rev.getRepresentations()) {
 					s +="\n\t\t" + rep.toString();
 				}
 			}
@@ -94,19 +101,13 @@ public class Model extends AbstractPojo {
 		return s;
 	}
 	
-	/**
-	 * Resets all values in this model by the values found in the database for this dbId.
-	 * Loads all revisions from the database and all their representations.
-	 * 
-	 * @param papi the IPersistanceApi to use
-	 * @return the new Model
-	 */
+	@Override
 	public Model loadCompleteModel(IPersistenceApi papi) {
 		if(!hasDbId()) {
 			logger.info("This model has no database id yet, save it in database first to create this id");
 			return this;
 		}
-		Model newM = papi.loadCompleteModelWithDbId(getDbId());
+		IModel newM = papi.loadCompleteModelWithDbId(getDbId());
 		this.title = newM.getTitle();
 		this.origin = newM.getOrigin();
 		setAndConnectRevisions(newM.getRevisions());
@@ -114,69 +115,49 @@ public class Model extends AbstractPojo {
 		return this;
 	}
 
-	/**
-	 * @return the number of connected and loaded {@link Representation}s that are connected to the set of {@link Revision}s
-	 */
+	@Override
 	public int getNrOfRepresentations() {
 		int i = 0;
-		for(Revision r : revisions) {
+		for(IRevision r : revisions) {
 			i += r.getNrOfRepresentations();
 		}
 		return i;
 	}
 	
-	/**
-	 * @return the number of connected and loaded {@link Revision}s
-	 */
+	@Override
 	public int getNrOfRevisions() {
 		return revisions.size();
 	}
 
-	/**
-	 * Get all Revisions currently connected/loaded.
-	 * 
-	 * @return all connected {@link Revision}s
-	 */
-	public HashSet<Revision> getRevisions() {
+	@Override
+	public Set<IRevision> getRevisions() {
 		return revisions;
 	}
 
-	/**
-	 * Does not set a latestRevision, it will be null afterwards. Call connectLatestRevision.
-	 * @param revisions
-	 */
-	public void setAndConnectRevisions(Collection<Revision> revisions) {
+	@Override
+	public void setAndConnectRevisions(Collection<IRevision> revisions) {
 		this.revisions.clear();
 		if(revisions == null) {
 			return;
 		}
-		for(Revision rev : revisions) {
+		for(IRevision rev : revisions) {
 			this.revisions.add(rev);
 			connectRevision(rev);
 		}
 	}
 	
-	/**
-	 * Connect a new {@link Revision}, no duplicates are added
-	 * 
-	 * @param revision
-	 */
-	public void connectRevision(Revision revision) {
+	@Override
+	public void connectRevision(IRevision revision) {
 		if(revision != null) {
-			revision.model = this;
+			((Revision) revision).setModel(this);
 			this.revisions.add(revision);
 		}
 	}
 	
-	/**
-	 * Connects a {@link Revision} (without creating duplicates) and sets it's status to the latest Revision.
-	 * The previous lates revision is unset.
-	 * 
-	 * @param revision
-	 */
-	public void connectLatestRevision(Revision revision) {
+	@Override
+	public void connectLatestRevision(IRevision revision) {
 		if(revision != null) {
-			revision.model = this;
+			((Revision) revision).setModel(this);
 			this.revisions.add(revision);
 			setLatestRevision(revision);
 		}
@@ -188,18 +169,16 @@ public class Model extends AbstractPojo {
 	 * 
 	 * @param revision
 	 */
-	private void setLatestRevision(Revision revision) {
+	private void setLatestRevision(IRevision revision) {
 		if(getLatestRevision() != null) {
 			getLatestRevision().setLatestRevision(false);
 		}
 		revision.setLatestRevision(true);
 	}
 	
-	/**
-	 * @return the latest revision, if any.
-	 */
-	public Revision getLatestRevision() {
-		for(Revision r : getRevisions()) {
+	@Override
+	public IRevision getLatestRevision() {
+		for(IRevision r : getRevisions()) {
 			if(r.isLatestRevision()) {
 				return r;
 			}
@@ -207,63 +186,42 @@ public class Model extends AbstractPojo {
 		return null;
 	}
 
-	/**
-	 * @return the id used for {@link Model} identification
-	 */
+	@Override
 	public String getImportedId() {
 		return importedId;
 	}
 
-	/**
-	 * Set the id used to identify a {@link Model}
-	 * @param id the id to set
-	 */
+	@Override
 	public void setImportedId(String id) {
 		this.importedId = id;
 	}
 
-	/**
-	 * @return the title
-	 */
+	@Override
 	public String getTitle() {
 		return title;
 	}
 
-	/**
-	 * @param title the title to set
-	 */
+	@Override
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	/**
-	 * @return the original collection name
-	 */
+	@Override
 	public String getOrigin() {
 		return origin;
 	}
 
-	/**
-	 * @param origin the original collection name to set
-	 */
+	@Override
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
 
-	/**
-	 * Indicates whether all {@link Revision}s and their {@link Representation}s are loaded from the database or just one of them.
-	 * 
-	 * @return the completelyLoaded
-	 */
+	@Override
 	public boolean isCompletelyLoaded() {
 		return completelyLoaded;
 	}	
 	
-	/**
-	 * Set if all {@link Revision}s and their {@link Representation}s are loaded from the database or just one of them.
-	 * 
-	 * @param completelyLoaded
-	 */
+	@Override
 	public void setCompletelyLoaded(boolean completelyLoaded) {
 		this.completelyLoaded = completelyLoaded;
 	}

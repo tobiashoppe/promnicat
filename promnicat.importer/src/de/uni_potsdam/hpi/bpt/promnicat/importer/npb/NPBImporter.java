@@ -36,10 +36,13 @@ import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
 import de.uni_potsdam.hpi.bpt.promnicat.importer.AbstractImporter;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -148,18 +151,18 @@ public class NPBImporter extends AbstractImporter {
 			logger.info("Tried to import model without identifier. This file has been skipped: " + file.getPath());
 			return;
 		}
-		Model model = this.persistenceApi.loadCompleteModelWithImportedId(modelId);
+		IModel model = this.persistenceApi.loadCompleteModelWithImportedId(modelId);
 		if (model == null){
 			//create new model
 			Map<String, Collection<String>> metaData = parseMetaData(rootElement);
-			model = new Model(metaData.get(KEY_PROCESS_NAME).iterator().next(), Constants.ORIGIN_NPB, modelId);
+			model = this.persistenceApi.getPojoFactory().createModel(metaData.get(KEY_PROCESS_NAME).iterator().next(), Constants.ORIGIN_NPB, modelId);
 			this.createdModelsCount++;
-			Revision revision = createRevisionAndRepresentations(metaData, getRevisionNumber(rootElement));
+			IRevision revision = createRevisionAndRepresentations(metaData, getRevisionNumber(rootElement));
 			revision.connectModel(model);			
 		} else {
 			int revisionNumber = getRevisionNumber(rootElement);
 			//check for new revision
-			for (Revision revision : model.getRevisions()){
+			for (IRevision revision : model.getRevisions()){
 				if (revision.getRevisionNumber() == revisionNumber){
 					//revision already exists, nothing to do
 					return;
@@ -167,7 +170,7 @@ public class NPBImporter extends AbstractImporter {
 			}			
 			//create new revision and it's representation. Finally, connect model and revision
 			Map<String, Collection<String>> metaData = parseMetaData(rootElement);
-			Revision revision = createRevisionAndRepresentations(metaData, revisionNumber);
+			IRevision revision = createRevisionAndRepresentations(metaData, revisionNumber);
 			revision.connectModel(model);			
 		}
 		this.persistenceApi.savePojo(model);
@@ -186,8 +189,8 @@ public class NPBImporter extends AbstractImporter {
 	 * @param metaData the data to use for {@link Revision} and {@link Representation} creation.
 	 * @param revisionNumber number to use for new {@link Revision}
 	 */
-	private Revision createRevisionAndRepresentations(Map<String, Collection<String>> metaData, int revisionNumber) {
-		Revision revision = new Revision(revisionNumber);
+	private IRevision createRevisionAndRepresentations(Map<String, Collection<String>> metaData, int revisionNumber) {
+		IRevision revision = this.persistenceApi.getPojoFactory().createRevision(revisionNumber);
 		revision.setLatestRevision(true);
 		
 		//set meta data
@@ -290,12 +293,12 @@ public class NPBImporter extends AbstractImporter {
 	 * 
 	 * @return a new {@link Representation} with the given notation, data content and data format
 	 */
-	private Representation createRepresentation(Collection<String> dataContent, String notation) {
+	private IRepresentation createRepresentation(Collection<String> dataContent, String notation) {
 		Iterator<String> it = dataContent.iterator();
 		byte[] data = DatatypeConverter.parseBase64Binary(it.next());
 		String format[] = it.next().split("\\.");
 		this.createdRepresentationsCount++;
-		return new Representation(format[format.length - 1], notation, data);
+		return this.persistenceApi.getPojoFactory().createRepresentation(format[format.length - 1], notation, data);
 	}
 
 }

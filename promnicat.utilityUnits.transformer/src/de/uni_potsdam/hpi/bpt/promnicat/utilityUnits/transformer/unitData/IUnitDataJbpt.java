@@ -15,15 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
+package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData;
 
 import org.jbpt.petri.PetriNet;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataClassification;
 
 /**
  * Interface for classes that can be used as {@link IUnit} input and output.
