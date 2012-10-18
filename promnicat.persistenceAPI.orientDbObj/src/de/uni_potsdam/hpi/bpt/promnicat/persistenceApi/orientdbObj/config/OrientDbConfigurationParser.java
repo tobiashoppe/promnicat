@@ -22,7 +22,7 @@ import java.io.IOException;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.IConfigurationParser;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**

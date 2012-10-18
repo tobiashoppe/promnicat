@@ -15,40 +15,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
+import com.orientechnologies.orient.core.annotation.OId;
+
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractRevision;
 
 /**
- * This class ensures the mapping of the databaseId.
- * Field types that can automatically be mapped to the database are:
- * boolean, String, short, int, double, long, float and their classes
- * References to other objects are stored also.
- * Arrays, Lists, Sets and Maps can be stored if their content is not too complex.
- * For details see: http://code.google.com/p/orient/wiki/Types
- * <br>
- * Make sure to add an empty constructor! Getter and Setter for all fields are not needed.
- * 
- * @author Andrina Mascher
+ * @author Tobias Hoppe
  *
  */
-public abstract class AbstractPojo implements IPojo{
-
+public class RevisionOrientDb extends AbstractRevision implements IRevision {
+	
 	// the id used in the database
+	@OId //used on OrientDb
 	protected String dbId = null;
 	
-	
-	/**
-	 * @return the database identifier used by the database, 
-	 * if null save it in database first to create one
+	protected RevisionOrientDb() {
+		super();
+	}
+
+	protected RevisionOrientDb(Integer number) {
+		super(number);
+	}
+
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
 	 */
+	@Override
 	public String getDbId() {
 		return dbId;
 	}
 
-	/**
-	 * @return true if the database id is set, if not store it in database first to create one
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
 	 */
+	@Override
 	public boolean hasDbId() {
 		return dbId != null;
 	}

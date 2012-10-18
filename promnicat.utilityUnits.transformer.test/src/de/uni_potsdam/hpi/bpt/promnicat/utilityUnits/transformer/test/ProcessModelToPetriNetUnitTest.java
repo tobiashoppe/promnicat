@@ -28,7 +28,7 @@ import org.jbpt.pm.bpmn.Bpmn;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
@@ -102,7 +102,7 @@ public class ProcessModelToPetriNetUnitTest {
 		assertSame(unitData.getValue(), pn);
 		
 		//check successful saving in and loading from database
-		Model model = persistenceApi.loadCompleteModelWithDbId(repr.getModel().getDbId());
+		AbstractModel model = persistenceApi.loadCompleteModelWithDbId(repr.getModel().getDbId());
 		boolean found = false;
 		for(Representation representation : model.getLatestRevision().getRepresentations()) {
 			if(representation.getFormat().equals(Constants.FORMATS.PNML.toString()) && representation.getNotation().equals(Constants.NOTATIONS.PETRINET.toString())) {

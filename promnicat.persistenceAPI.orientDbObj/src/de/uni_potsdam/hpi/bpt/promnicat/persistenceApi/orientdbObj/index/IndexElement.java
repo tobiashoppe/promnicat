@@ -17,9 +17,9 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 /**
  * This represents one entry in the index and is given to the user after loading from the index.
@@ -29,7 +29,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceAp
  * @param <K> the Keytype of this key/value index element, such as String or Numbers
  * @param <V> the Valuetype of this key/value index element, such as {@link Representation}.
  */
-public class IndexElement<K, V extends AbstractPojo> { 
+public class IndexElement<K, V extends IPojo> { 
 
 	protected AbstractIndex<K,V> index = null;	// the index this element belongs to
 	protected String valueDbId = "";			// the value's database id

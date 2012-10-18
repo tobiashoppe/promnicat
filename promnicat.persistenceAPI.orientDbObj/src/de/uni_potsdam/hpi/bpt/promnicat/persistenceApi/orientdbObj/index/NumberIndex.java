@@ -24,8 +24,8 @@ import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 /**
  * This class is used to store index elements with numeric keys and any values of type V.
@@ -37,7 +37,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceAp
  * @param <K> the numeric Keytype of the key/value index elements, e.g. Integer, Double, Float, Long
  * @param <V> the Valuetype of the key/value index elements
  */
-public class NumberIndex<K extends Number, V extends AbstractPojo> 
+public class NumberIndex<K extends Number, V extends IPojo> 
 						extends AbstractIndex<K, V>{
 	
 	public NumberIndex(String name, PersistenceApiOrientDbObj papi) {

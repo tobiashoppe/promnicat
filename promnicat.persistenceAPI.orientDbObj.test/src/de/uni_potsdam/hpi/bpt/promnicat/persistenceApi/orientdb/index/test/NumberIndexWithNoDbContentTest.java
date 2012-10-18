@@ -29,14 +29,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.LabelStorage;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexElement;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos.LabelStorage;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -47,7 +47,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 public class NumberIndexWithNoDbContentTest {
 	
 	private static PersistenceApiOrientDbObj papi;
-	private static NumberIndex<Float, Representation> nIndex = null;
+	private static NumberIndex<Float, IRepresentation> nIndex = null;
 	static String mockModelId, mockRepresentationId, mockRepresentationId2;
 	
 	@BeforeClass
@@ -65,14 +65,14 @@ public class NumberIndexWithNoDbContentTest {
 	public void setUp(){
 		papi.openDb();
 		
-		Model mockModel = ModelFactory.createModelWithMultipleLinks();
+		IModel mockModel = ModelFactory.createModelWithMultipleLinks();
 		mockModelId = papi.savePojo(mockModel);
-		Representation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+		IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
 		mockRepresentationId = papi.savePojo(mockRepresentation);
-		Representation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
+		IRepresentation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
 		mockRepresentationId2 = papi.savePojo(mockRepresentation2);
 		
-		nIndex = new NumberIndex<Float, Representation>("myTestNumberIndex",papi);
+		nIndex = new NumberIndex<Float, IRepresentation>("myTestNumberIndex",papi);
 	}
 	
 	@After
@@ -91,9 +91,9 @@ public class NumberIndexWithNoDbContentTest {
 			nIndex.createIndex();
 			assertEquals(0,nIndex.load().size());
 			nIndex.add(1.2f, mockRepresentationId);
-			List<IndexElement<Float, Representation>> result = nIndex.load();
+			List<IndexElement<Float, IRepresentation>> result = nIndex.load();
 			assertEquals(1,result.size());
-			IndexElement<Float, Representation> e = result.get(0);
+			IndexElement<Float, IRepresentation> e = result.get(0);
 			assertEquals(new Float(1.2), e.getKey());
 			assertEquals(mockRepresentationId, e.getDbId());
 			assertEquals(RepresentationFactory.createLightweightRepresentation().getTitle(), e.getPojo().getTitle());

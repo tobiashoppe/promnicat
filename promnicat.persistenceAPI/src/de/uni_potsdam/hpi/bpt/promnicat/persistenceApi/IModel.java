@@ -20,7 +20,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 import java.util.Collection;
 import java.util.Set;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
@@ -90,12 +90,12 @@ public interface IModel extends IPojo {
 	public IRevision getLatestRevision();
 
 	/**
-	 * @return the id used for {@link Model} identification
+	 * @return the id used for {@link AbstractModel} identification
 	 */
 	public String getImportedId();
 
 	/**
-	 * Set the id used to identify a {@link Model}
+	 * Set the id used to identify a {@link AbstractModel}
 	 * @param id the id to set
 	 */
 	public void setImportedId(String id);

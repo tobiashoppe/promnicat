@@ -15,33 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj;
 
-import java.io.File;
-
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PojoFactoryOrientDb;
 
 /**
  * @author Tobias Hoppe
  *
  */
-public class OrientDbRepresentation extends Representation implements IRepresentation {
-
-	protected OrientDbRepresentation() {
-		super();
-	}
-
-	protected OrientDbRepresentation(String format, String notation) {
-		super(format, notation);
-	}
-
-	protected OrientDbRepresentation(String format, String notation, File dataFile) {
-		super(format, notation, dataFile);
-	}
-
-	protected OrientDbRepresentation(String format, String notation, byte[] dataContent) {
-		super(format, notation, dataContent);
-	}
+public interface IPojoFactoryOrientDb extends IPojoFactory {
+	
+	IPojoFactoryOrientDb INSTANCE = PojoFactoryOrientDb.init();
 	
 }

@@ -36,14 +36,16 @@ import com.orientechnologies.orient.core.exception.OQueryParsingException;
 import com.orientechnologies.orient.core.sql.OSQLEngine;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.LabelStorage;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.DbConstants;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.ModelOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.RevisionOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos.LabelStorage;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.util.DbConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -64,8 +66,8 @@ public class PersistenceApiOrientDbStableContentTest {
 		try{
 			papi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
 			//don't store mockObjects as class fields for caching reasons
-			Model mockModel = ModelFactory.createModelWithMultipleLinks();
-			Representation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+			IModel mockModel = ModelFactory.createModelWithMultipleLinks();
+			IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
 			mockModelId = papi.savePojo(mockModel);
 			mockRepresentationId = papi.savePojo(mockRepresentation);
 			
@@ -102,7 +104,7 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testCountType() {
 		try{
-			assertEquals(2, papi.countClass(Model.class));
+			assertEquals(2, papi.countClass(ModelOrientDb.class));
 		} catch(Exception e) {
 			fail(e.getMessage());
 		}
@@ -125,16 +127,16 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadPojoWithId() {
 		try{
-			Representation mockRep = RepresentationFactory.createLightweightRepresentation();
-			AbstractPojo loadedPojo = papi.loadPojo(mockRepresentationId);
-			Representation loadedRep = (Representation) loadedPojo;
+			IRepresentation mockRep = RepresentationFactory.createLightweightRepresentation();
+			IPojo loadedPojo = papi.loadPojo(mockRepresentationId);
+			IRepresentation loadedRep = (IRepresentation) loadedPojo;
 			assertEquals(loadedRep.getDbId(), mockRepresentationId);
 			assertEquals(loadedRep.getTitle(), mockRep.getTitle());
 
 			//not existent
-			AbstractPojo p1 = papi.loadPojo("#-1:-1");
+			IPojo p1 = papi.loadPojo("#-1:-1");
 			assertNull(p1);
-			AbstractPojo p2 = papi.loadPojo(NonExistentClusterId);
+			IPojo p2 = papi.loadPojo(NonExistentClusterId);
 			assertNull(p2);
 		} catch(Exception e) {
 			fail(e.getMessage());
@@ -152,8 +154,8 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadCompleteModelWithDbId() {
 		try{
-			Model mockModel = ModelFactory.createModelWithMultipleLinks();
-			Model loadedModel = papi.loadCompleteModelWithDbId(mockModelId);
+			IModel mockModel = ModelFactory.createModelWithMultipleLinks();
+			IModel loadedModel = papi.loadCompleteModelWithDbId(mockModelId);
 			assertNotNull(loadedModel);
 			assertEquals(loadedModel.getDbId(), mockModelId);
 			assertEquals(loadedModel.getTitle(), mockModel.getTitle());
@@ -165,9 +167,9 @@ public class PersistenceApiOrientDbStableContentTest {
 			loadedModel.toStringExtended();
 			
 			//not existent
-			Model m1 = papi.loadCompleteModelWithDbId(NonExistentClusterId);
+			IModel m1 = papi.loadCompleteModelWithDbId(NonExistentClusterId);
 			assertNull(m1);
-			Model m2 = papi.loadCompleteModelWithDbId(wrongModId);
+			IModel m2 = papi.loadCompleteModelWithDbId(wrongModId);
 			assertNull(m2);
 	
 		} catch(Exception e) {
@@ -186,8 +188,8 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadCompleteModelWithImportedId() {
 		try{
-			Model mockModel = ModelFactory.createModelWithMultipleLinks();
-			Model loadedModel = papi.loadCompleteModelWithImportedId(mockModel.getImportedId());
+			IModel mockModel = ModelFactory.createModelWithMultipleLinks();
+			IModel loadedModel = papi.loadCompleteModelWithImportedId(mockModel.getImportedId());
 			assertNotNull(loadedModel);
 			assertEquals(loadedModel.getImportedId(), mockModel.getImportedId());
 	
@@ -201,8 +203,8 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadRepresentation() {
 		try{
-			Representation mockRep = RepresentationFactory.createLightweightRepresentation();
-			Representation loadedRep = papi.loadRepresentation(mockRepresentationId);
+			IRepresentation mockRep = RepresentationFactory.createLightweightRepresentation();
+			IRepresentation loadedRep = papi.loadRepresentation(mockRepresentationId);
 			assertNotNull(loadedRep);
 			assertEquals(loadedRep.getDbId(), mockRepresentationId);
 			assertEquals(loadedRep.getDataContent().length, mockRep.getDataContent().length);
@@ -214,9 +216,9 @@ public class PersistenceApiOrientDbStableContentTest {
 			assertEquals(loadedRep.belongsToLatestRevision(), mockRep.belongsToLatestRevision());
 	
 			//not existent
-			Representation r1 = papi.loadRepresentation(NonExistentClusterId);
+			IRepresentation r1 = papi.loadRepresentation(NonExistentClusterId);
 			assertNull(r1);
-			Representation r2 = papi.loadRepresentation(wrongRepId);
+			IRepresentation r2 = papi.loadRepresentation(wrongRepId);
 			assertNull(r2);
 			
 		} catch(Exception e) {
@@ -241,7 +243,7 @@ public class PersistenceApiOrientDbStableContentTest {
 			String nosql = "select from " + DbConstants.CLS_MODEL; 
 			results = papi.load(nosql);
 			assertTrue(results.size() > 0);
-			Model pojo = (Model) results.get(0);
+			IModel pojo = (IModel) results.get(0);
 			pojo.toStringExtended(); //tries to access most fields
 		} catch(Exception e) {
 			fail(e.getMessage());
@@ -268,21 +270,21 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadPojosWithIds() {
 		ArrayList<String> repIds = null;
-		List<AbstractPojo> pojos = null;
+		List<IPojo> pojos = null;
 		try{
 			//prepare a list of ids
-			Model m = papi.loadCompleteModelWithDbId(mockModelId);
+			IModel m = papi.loadCompleteModelWithDbId(mockModelId);
 			m.toStringExtended();
 			repIds = new ArrayList<String>();
-			for(Revision r : m.getRevisions()) {
-				Representation oneRep = r.getRepresentations().iterator().next();
+			for(IRevision r : m.getRevisions()) {
+				IRepresentation oneRep = r.getRepresentations().iterator().next();
 				repIds.add(oneRep.getDbId());
 			}
 			//load list
 			pojos = papi.loadPojos(repIds);
 			assertEquals(pojos.size(), repIds.size());
-			for(AbstractPojo pojo : pojos) {
-				Representation rep = (Representation) pojo;
+			for(IPojo pojo : pojos) {
+				IRepresentation rep = (IRepresentation) pojo;
 				assertTrue(repIds.contains(rep.getDbId()));
 				assertEquals(rep.getModel().getDbId(), mockModelId);
 			}
@@ -316,13 +318,13 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadPojosWithClass() {
 		try{
-			List<AbstractPojo> pojos = papi.loadPojos(Model.class);
+			List<IPojo> pojos = papi.loadPojos(ModelOrientDb.class);
 			assertEquals(pojos.size(), 2);
-			for(AbstractPojo pojo : pojos) {
+			for(IPojo pojo : pojos) {
 				try{
 					//must be able to be cast to Model
 					@SuppressWarnings("unused")
-					Model m = (Model) pojo; 
+					ModelOrientDb m = (ModelOrientDb) pojo; 
 				} catch(ClassCastException e) {
 					fail();
 				}
@@ -337,19 +339,19 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadRepresentationsWithIds() {
 		ArrayList<String> repIds = null;
-		List<Representation> reps = null;
+		List<IRepresentation> reps = null;
 		try{
 			//prepare a list of ids
-			Model m = papi.loadCompleteModelWithDbId(mockModelId);
+			IModel m = papi.loadCompleteModelWithDbId(mockModelId);
 			repIds = new ArrayList<String>();
-			for(Revision r : m.getRevisions()) {
-				Representation oneRep = r.getRepresentations().iterator().next();
+			for(IRevision r : m.getRevisions()) {
+				IRepresentation oneRep = r.getRepresentations().iterator().next();
 				repIds.add(oneRep.getDbId());
 			}
 			//load list
 			reps = papi.loadRepresentations(repIds);
 			assertEquals(reps.size(), repIds.size());
-			for(Representation rep : reps) {
+			for(IRepresentation rep : reps) {
 				assertTrue(repIds.contains(rep.getDbId()));
 				assertEquals(rep.getModel().getDbId(), mockModelId);
 			}
@@ -391,7 +393,7 @@ public class PersistenceApiOrientDbStableContentTest {
 	public void testLoadRepresentationsWithConfig() {
 		try {
 			//create config according to saved representation
-			Representation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+			IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
 			
 			DbFilterConfig config = new DbFilterConfig();
 			config.addFormat(mockRepresentation.getFormat());
@@ -399,10 +401,10 @@ public class PersistenceApiOrientDbStableContentTest {
 			config.addNotation(mockRepresentation.getNotation());
 
 			//load
-			List<Representation> results = papi.loadRepresentations(config);
-			Representation rep = results.get(0);
-			Revision rev = rep.getRevision();
-			Model mod = rep.getModel();
+			List<IRepresentation> results = papi.loadRepresentations(config);
+			IRepresentation rep = results.get(0);
+			IRevision rev = rep.getRevision();
+			IModel mod = rep.getModel();
 			assertTrue(results.size() > 0);
 			assertEquals(rep.getFormat(), (mockRepresentation.getFormat()));
 			assertEquals(rep.getNotation(), mockRepresentation.getNotation());
@@ -485,7 +487,7 @@ public class PersistenceApiOrientDbStableContentTest {
 		DbListener dbl;
 		try{
 			dbl = new DbListener();
-			papi.loadPojosAsync(Revision.class, dbl);
+			papi.loadPojosAsync(RevisionOrientDb.class, dbl);
 			assertEquals(dbl.getResult(), 3);
 		} catch(Exception e) {
 			fail(e.getMessage());

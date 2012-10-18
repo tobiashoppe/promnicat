@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Observer;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import com.orientechnologies.orient.core.command.OCommandExecutor;
@@ -45,21 +46,24 @@ import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config.OrientDbConfigurationParser;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.OrientDbPojoFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexManager;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringIndexStorage;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.util.DbConstants;
 
 /**
- * This is the connection to the database to load, save, delete {@link Model}, {@link Revision}, 
+ * This is the connection to the database to load, save, delete {@link AbstractModel}, {@link Revision}, 
  * and {@link Representation} and some nearly arbitrary analysis results.
  * The undelying database is OrientDb, a hybrid of graph and document database. The processes 
  * themselves are stored as <code>byte[]</code> though.
@@ -67,7 +71,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringI
  * - ODatabaseRaw for access on byte level, very fast <br>
  * - ODatabaseDocumentTx for access on JSON level, quite fast, good for inspecting database content <br>
  * - ODatabaseObjectTx for automatic conversion of POJOs, which is a bit slower.<br>
- * All {@link AbstractPojo} are given a database id of form "#5:6" where 5 is the indicator 
+ * All {@link IPojo} are given a database id of form "#5:6" where 5 is the indicator 
  * of the class or cluster and 6 is the 6th object in this cluster. <br>
  * ODatabaseObjectTx can convert many pojos but not all, yet e.g. Map<String, String[]> 
  * for Metadata is not possible yet, see http://code.google.com/p/orient/wiki/Types 
@@ -77,11 +81,11 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringI
  * To be able to save a Pojo, all connected classes need to be registered first.
  * In order to increase performance for the very important use case of loading {@link Representation}s, 
  * {@link Representation}s can be loaded as lightweight {@link Representation}s, 
- * which means only the connected {@link Revision} and its {@link Model} are loaded
+ * which means only the connected {@link Revision} and its {@link AbstractModel} are loaded
  * but no sibling or cousin {@link Representation}s or {@link Revision}s.
- * The {@link Revision} and {@link Model} need to be loaded to have metadata and title of the process.
+ * The {@link Revision} and {@link AbstractModel} need to be loaded to have metadata and title of the process.
  * <br>
- * Loading {@link Representation} and {@link AbstractPojo}s can be synchronous or asynchronous.
+ * Loading {@link Representation} and {@link IPojo}s can be synchronous or asynchronous.
  * Synchronous loading collects all results and returns a list of results, which can be a bottleneck in
  * available memory space. Therefore in asynchronous loading, a {@link Observer} is handed one result at 
  * a time which can then be processed and stored or removed before the next result is handled.
@@ -163,13 +167,13 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 */
 	private void initSchema() {
 		//FIXME is their a nicer way to define schema?
-		Model model = new Model();
+		IModel model = new ModelOrientDb();
 		db.save(model);
 		db.delete(model);
-		Revision rev = new Revision();
+		IRevision rev = new RevisionOrientDb();
 		db.save(rev);
 		db.delete(rev);
-		Representation rep = new Representation();
+		IRepresentation rep = new RepresentationOrientDb();
 		db.save(rep);
 		db.delete(rep);
 		
@@ -240,9 +244,9 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * For initialization, OrientDb needs to know the schema of the main content classes.
 	 */
 	private void registerPojoClasses() {
-		registerPojoClass(Model.class); 
-		registerPojoClass(Revision.class); 
-		registerPojoClass(Representation.class);
+		registerPojoClass(ModelOrientDb.class); 
+		registerPojoClass(RevisionOrientDb.class); 
+		registerPojoClass(RepresentationOrientDb.class);
 		registerPojoClass(StringIndexStorage.class);
 		registerPojoClass(IndexManager.class);
 	}
@@ -251,7 +255,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 *  Register a Class before it can be saved at object access level.
 	 *  Classes are only stored by their name, without their package. Make sure to have unique names.
 	 *  All referenced classes need to be referenced as well, @see {@link #registerPojoPackage(String)}.
-	 *  As default, the classes {@link Model}, {@link Revision}, and {@link Representation} are already registered.
+	 *  As default, the classes {@link AbstractModel}, {@link Revision}, and {@link Representation} are already registered.
 	 * 
 	 * @param aClass
 	 */
@@ -264,7 +268,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * Register all class in this package before they can be saved at object access level.
 	 * packagePath is e.g. "de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos"	
 	 * or get it via LabelStorage.class.getPackage().getName().
-	 * As default, the classes {@link Model}, {@link Revision}, and {@link Representation} are already registered.
+	 * As default, the classes {@link AbstractModel}, {@link Revision}, and {@link Representation} are already registered.
 	 * 
 	 * @param packagePath
 	 */
@@ -276,7 +280,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi#countClass(java.lang.Class)
 	 */
 	@Override
-	public long countClass(Class<? extends AbstractPojo> aClass) {
+	public long countClass(Class<? extends IPojo> aClass) {
 		return db.countClass(aClass.getSimpleName());
 	}
 
@@ -341,14 +345,14 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * Tries to save a pojo into the database.
 	 * If this pojo has connections to instances of other classes, call registerPojoClass(Class<?>) 
 	 * on each possibly connected class first.
-	 * Not all field types are supported by OrientDb, see {@link AbstractPojo} or
+	 * Not all field types are supported by OrientDb, see {@link IPojo} or
 	 * http://code.google.com/p/orient/wiki/Types
 	 * <br>
 	 * Arbitrary Pojos with references to other Pojos need to be registered before saving.
 	 * 
 	 */
 	@Override
-	public String savePojo(AbstractPojo pojo) {
+	public String savePojo(IPojo pojo) {
 		try{
 			registerPojoClass(pojo.getClass());
 			db.save(pojo); 
@@ -428,7 +432,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi#loadPojo(java.lang.String)
 	 */
 	@Override
-	public AbstractPojo loadPojo(String dbId) {
+	public IPojo loadPojo(String dbId) {
 		tryToConvertDbId(dbId);
 
 		try{
@@ -438,7 +442,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 
 			//quickfix
 			String sql = "SELECT FROM " + dbId;
-			List<AbstractPojo> list = loadPojos(sql);
+			List<IPojo> list = loadPojos(sql);
 			if(list.isEmpty()) {
 				return null;
 			}
@@ -457,7 +461,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi#loadCompleteModelWithDbId(java.lang.String)
 	 */
 	@Override
-	public Model loadCompleteModelWithDbId(String dbId) {
+	public IModel loadCompleteModelWithDbId(String dbId) {
 		ORecordId rid = tryToConvertDbId(dbId);
 
 		if(!belongsToCluster(rid,  DbConstants.CLS_MODEL)) {
@@ -467,7 +471,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 
 		try{
 			clearCache();
-			return (Model) loadPojo(dbId);
+			return (IModel) loadPojo(dbId);
 		} catch(Exception e) {
 			logger.info("Could not retrieve model with dbId "+ dbId + " from database" + e);
 		}
@@ -478,16 +482,16 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi#loadCompleteModelWithImportedId(java.lang.String)
 	 */
 	@Override
-	public Model loadCompleteModelWithImportedId(String id) {
+	public IModel loadCompleteModelWithImportedId(String id) {
 		String sql = "SELECT FROM " + DbConstants.CLS_MODEL
 				+ " WHERE " +DbConstants.ATTR_IMPORTED_ID + " like '" + id + "'";
-		List<? extends AbstractPojo> models = loadPojos(sql);
+		List<IPojo> models = loadPojos(sql);
 		if (models.size() > 1){
 			throw new IllegalStateException("Model ids must be unique! But, got "
 					+ models.size() + "models with id " + id);
 		}
 		try {
-			return (Model)models.get(0);
+			return (AbstractModel)models.get(0);
 		} catch(Exception e) {
 //			logger.info("Could not retrieve model with importedId "+ id + " from database" + e);
 		}
@@ -498,7 +502,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi#loadRepresentation(java.lang.String)
 	 */
 	@Override
-	public Representation loadRepresentation(String dbId) {
+	public IRepresentation loadRepresentation(String dbId) {
 		ORecordId rid = tryToConvertDbId(dbId);
 		if(!belongsToCluster(rid,  DbConstants.CLS_REPRESENTATION)) {
 			logger.info("Trying to load representation, but dbId " + dbId + " is not of this type");
@@ -506,7 +510,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 		}
 		try {
 			Object result = db.load(rid, fetchplan);
-			Representation rep = makeLightweightRepresentation(result);
+			IRepresentation rep = makeLightweightRepresentation(result);
 			return rep;
 		} catch(Exception e) {
 			logger.info("Could not retrieve representation with dbId "+ dbId + " from database" + e);
@@ -527,8 +531,8 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 		return db.query(new OSQLSynchQuery<Object>(noSql));
 	}
 	
-	private List<AbstractPojo> loadPojos(String noSql) {
-		List<AbstractPojo> list = db.query(new OSQLSynchQuery<Object>(noSql));
+	private List<IPojo> loadPojos(String noSql) {
+		List<IPojo> list = db.query(new OSQLSynchQuery<Object>(noSql));
 		return list;
 	}
 
@@ -536,24 +540,24 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi#loadPojos(java.lang.Class)
 	 */
 	@Override
-	public List<AbstractPojo> loadPojos(Class<? extends AbstractPojo> aClass) {
+	public List<IPojo> loadPojos(Class<? extends IPojo> aClass) {
 		registerPojoClass(aClass);
 		// other idea: db.browseClass(aClass.getSimpleName());
-		List<AbstractPojo> list = loadPojos("SELECT FROM " + aClass.getSimpleName());
+		List<IPojo> list = loadPojos("SELECT FROM " + aClass.getSimpleName());
 		return list;
 	}
 
 	@Override
-	public List<AbstractPojo> loadPojos(Collection<String> dbIds) {
+	public List<IPojo> loadPojos(Collection<String> dbIds) {
 		if(dbIds.isEmpty()) {
-			return new ArrayList<AbstractPojo>();
+			return new ArrayList<IPojo>();
 		}
 		for(String dbId : dbIds) {
 			tryToConvertDbId(dbId);
 		}
 		String sql = noSqlBuilder.build(dbIds);
 		try {
-			List<AbstractPojo> list = loadPojos(sql);
+			List<IPojo> list = loadPojos(sql);
 			return list;
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
@@ -561,26 +565,26 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	}
 
 	@Override
-	public List<Representation> loadRepresentations(DbFilterConfig config) {
+	public List<IRepresentation> loadRepresentations(DbFilterConfig config) {
 		String nosql = noSqlBuilder.build(config);
 		
-		List<Representation> reps = db.query(new OSQLSynchQuery<Representation>(nosql).setFetchPlan(fetchplan));
-		for(Representation rep : reps) {
+		List<IRepresentation> reps = db.query(new OSQLSynchQuery<IRepresentation>(nosql).setFetchPlan(fetchplan));
+		for(IRepresentation rep : reps) {
 			makeLightweightRepresentation(rep);
 		}
 		return reps;
 	}
 
 	@Override
-	public List<Representation> loadRepresentations(Collection<String> dbIds) {
+	public List<IRepresentation> loadRepresentations(Collection<String> dbIds) {
 		if(dbIds.isEmpty()) {
-			return new ArrayList<Representation>();
+			return new ArrayList<IRepresentation>();
 		}
 		for(String dbId : dbIds) {
 			tryToConvertDbId(dbId);
 		}
 
-		List<AbstractPojo> pojos = null;
+		List<IPojo> pojos = null;
 		try {
 			pojos = loadPojos(dbIds);
 		} catch (ODatabaseException e) {
@@ -588,9 +592,9 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 		}
 
 		//loaded successfully, create lightweight representations
-		List<Representation> reps = new ArrayList<Representation>(pojos.size());
-		for(AbstractPojo pojo : pojos) {
-			Representation rep = (Representation) pojo;
+		List<IRepresentation> reps = new ArrayList<IRepresentation>(pojos.size());
+		for(IPojo pojo : pojos) {
+			IRepresentation rep = (IRepresentation) pojo;
 			makeLightweightRepresentation(rep);
 			reps.add(rep);
 		}
@@ -624,7 +628,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	}
 
 	@Override
-	public void loadPojosAsync(Class<? extends AbstractPojo> aClass, Observer resultHandler) {
+	public void loadPojosAsync(Class<? extends IPojo> aClass, Observer resultHandler) {
 		loadAsync("SELECT FROM " + aClass.getSimpleName(), resultHandler);
 	}
 
@@ -632,7 +636,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	public void loadRepresentationsAsync(DbFilterConfig config, final Observer resultHandler) {		
 		OCommandResultListener listener = new OCommandResultListener() {
 			public boolean result(Object doc) {
-				Representation rep = new Representation();
+				IRepresentation rep = new RepresentationOrientDb();
 				db.stream2pojo((ODocument)doc, rep, fetchplan);
 				resultHandler.update(null, makeLightweightRepresentation(rep));
 				return true;
@@ -650,7 +654,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 
 		OCommandResultListener listener = new OCommandResultListener() {
 			public boolean result(Object doc) {
-				Representation rep = new Representation();
+				IRepresentation rep = new RepresentationOrientDb();
 				db.stream2pojo((ODocument)doc, rep, fetchplan);
 				resultHandler.update(null, makeLightweightRepresentation(rep));
 				return true;
@@ -764,27 +768,27 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 * @param o the Object that can be cast to a Representation
 	 * @return a Representation
 	 */
-	private Representation makeLightweightRepresentation(Object o) {
-		Representation rep = null;
+	private IRepresentation makeLightweightRepresentation(Object o) {
+		IRepresentation rep = null;
 		try {
-			rep = (Representation) o;
+			rep = (IRepresentation) o;
 		} catch (ClassCastException e) {
 			return null;
 		}
 
-		Revision rev = rep.getRevision();
-		Model mod = rep.getModel();
+		IRevision rev = rep.getRevision();
+		IModel mod = rep.getModel();
 		if(rev == null || mod == null) {
 			return rep;
 		}
 
 		//TODO bottleneck? does orientDb really not load them?
-		HashSet<Representation> representations = new HashSet<Representation>();
+		Set<IRepresentation> representations = new HashSet<IRepresentation>();
 		representations.add(rep);
 		rev.setAndConnectRepresentations(representations);
 
 		mod.setCompletelyLoaded(false);
-		HashSet<Revision> revisions = new HashSet<Revision>();
+		Set<IRevision> revisions = new HashSet<IRevision>();
 		revisions.add(rev);
 		mod.setAndConnectRevisions(revisions);
 
@@ -793,6 +797,6 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 
 	@Override
 	public IPojoFactory getPojoFactory() {
-		return OrientDbPojoFactory.init();
+		return PojoFactoryOrientDb.init();
 	}
 }

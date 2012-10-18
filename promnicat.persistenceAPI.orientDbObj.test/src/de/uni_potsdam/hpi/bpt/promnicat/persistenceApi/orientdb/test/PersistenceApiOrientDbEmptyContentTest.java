@@ -35,12 +35,13 @@ import org.junit.Test;
 
 import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.DbConstants;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.ModelOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.util.DbConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -125,7 +126,7 @@ public class PersistenceApiOrientDbEmptyContentTest {
 
 	@Test
 	public void testCountType() {
-		long result = papi.countClass(Model.class);
+		long result = papi.countClass(ModelOrientDb.class);
 		assertEquals(0, result);
 	}
 
@@ -146,21 +147,21 @@ public class PersistenceApiOrientDbEmptyContentTest {
 	@Test
 	public void testLoadPojoWithId() {
 		//not existent
-		AbstractPojo p1 = papi.loadPojo(dbId1);
+		IPojo p1 = papi.loadPojo(dbId1);
 		assertNull(p1);
 	}
 	
 	@Test
 	public void testLoadRepresentationWithId() {
 		//not existent
-		Representation p1 = papi.loadRepresentation(dbId1);
+		IRepresentation p1 = papi.loadRepresentation(dbId1);
 		assertNull(p1);
 	}
 	
 	@Test
 	public void testLoadCompleteModelWithDbId() {
 		//not existent
-		Model m = papi.loadCompleteModelWithDbId(dbId1);
+		IModel m = papi.loadCompleteModelWithDbId(dbId1);
 		assertNull(m);
 	}
 	

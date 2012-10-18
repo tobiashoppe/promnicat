@@ -17,18 +17,33 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
-
 import com.orientechnologies.orient.core.annotation.OId;
+
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 
 /**
  * @author Tobias Hoppe
  *
  */
-public abstract class OrientDbAbstractPojo extends AbstractPojo implements IPojo {
+public class AbstractPojoOrientDb implements IPojo {
 
-
-	@OId //used on OrientDb 
+	// the id used in the database
+	@OId //used on OrientDb
 	protected String dbId = null;
+	
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
+	 */
+	@Override
+	public String getDbId() {
+		return dbId;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
+	 */
+	@Override
+	public boolean hasDbId() {
+		return dbId != null;
+	}
 }

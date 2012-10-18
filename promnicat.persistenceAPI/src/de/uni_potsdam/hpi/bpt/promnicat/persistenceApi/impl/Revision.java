@@ -17,226 +17,38 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 
-
 /**
- * A {@link Revision} represents one version of a {@link Model}, with one {@link Revision} being the latest/newest.
- * Each {@link Revision} can hold several {@link Representation}s. 
- * Each {@link Revision} has a unique number, author, language and metadata with any key/values pairs.
- * For performance reasons, sometimes not all revisions are loaded from the database. For this case 
- * the nrOfRevisionsInDb tell the total number of revisions found in the database.
- * 
- * @author Andrina Mascher, Tobias Hoppe
+ * @author Tobias Hoppe
  *
  */
-public class Revision extends AbstractPojo implements IRevision {
-
-	//the revision number
-	protected Integer revisionNumber = null;
-	//connected model
-	protected IModel model = null;
-	//connected representations
-	protected Set<IRepresentation> representations = new HashSet<IRepresentation>();
-	//metadata with key/values, values are separated by MD_SPLIT to store only key/value in database
-	protected HashMap<String, String> internalMetadata = new HashMap<String, String>();
-	//separator used to distinguish metadata values for 1 key
-	protected static final String MD_SPLIT = "\t####\t";
-	//is true if this is the latest revision of the model
-	protected boolean latestRevision = false;
-	//name of the authors
-	protected String author = "";
-
+public class Revision extends AbstractRevision implements IRevision {
+	
+	// the id used in the database
+	protected String dbId = null;
+	
 	protected Revision() {
+		super();
 	}
 
 	protected Revision(Integer number) {
-		this.revisionNumber = number;
+		super(number);
 	}
 
-	@Override
-	public String toString() {
-		return "Revision [dbId=" + dbId + ", revisionNumber=" + revisionNumber + ", latestRevison=" + isLatestRevision()
-				+ ", modelTitle=" + getTitle()
-				+ ", #representations=" + getNrOfRepresentations()
-				+ ", author=" + author
-				+ ", #metadata=" + internalMetadata.size() + "]"
-				;
-	}
-	
-	@Override
-	public boolean isCompletelyLoaded() {
-		if(model == null) {
-			return false;
-		}
-		return model.isCompletelyLoaded();
-	}
-
-	@Override
-	public void connectModel(IModel newModel) {
-		//defer responsibility
-		if(newModel != null) {
-			newModel.connectRevision(this); 
-		}
-	}
-
-	@Override
-	public void connectRepresentation(IRepresentation representation) {
-		if(representation != null) {
-			((Representation) representation).setRevision(this);
-			this.representations.add((Representation) representation);
-		}
-	}
-
-	@Override
-	public String getTitle() {
-		if (model == null) {
-			return null;
-		}
-		return model.getTitle();
-	}
-	
-	@Override
-	public int getNrOfRepresentations() {
-		return representations.size();
-	}
-
-	@Override
-	public String getAuthor() {
-		return author;
-	}
-
-	@Override
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	@Override
-	public boolean isLatestRevision() {
-		return latestRevision;
-	}
-
-	@Override
-	public void setLatestRevision(boolean latestRevision) {
-		this.latestRevision = latestRevision;
-	}
-
-	@Override
-	public Integer getRevisionNumber() {
-		return revisionNumber;
-	}
-
-	@Override
-	public void setRevisionNumber(Integer number) {
-		this.revisionNumber = number;
-	}
-
-	@Override
-	public IModel getModel() {
-		return model;
-	}
-
-	@Override
-	public Set<IRepresentation> getRepresentations() {
-		return representations;
-	}
-
-	@Override
-	public void setAndConnectRepresentations(Collection<IRepresentation> representations) {
-		this.representations.clear();
-		if(representations == null) {
-			return;
-		}
-		for (IRepresentation rep : representations) {
-			this.representations.add((Representation) rep);
-			connectRepresentation(rep);
-		}
-	}
-
-	@Override
-	public HashMap<String, String[]> getMetadata() {
-		HashMap<String,String[]> newMd = new HashMap<String,String[]>();
-		for(Entry<String,String> e : internalMetadata.entrySet()) {
-			newMd.put(e.getKey(), convertMetadataValueToArray(e.getValue()));
-		}
-		return newMd;
-	}
-
-	@Override
-	public String[] getMetadataAtKey(String key) {
-		return convertMetadataValueToArray(internalMetadata.get(key));
-	}
-	
-	/**
-	 * Convert a string into an array by splitting
-	 * @param value
-	 * @return the converted array
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
 	 */
-	private String[] convertMetadataValueToArray(String value) {
-		return value.split(MD_SPLIT);
-	}
-	
-	/**
-	 * Convert a string array into a string. 
-	 * This is a work around because key/value pairs can be stored in OrientDb, but key/values not.
-	 * @param array
-	 * @return the converted string
-	 */
-	private String convertMetadataValueFromArray(String[] array) {
-		String s = "";
-		for(int i=0; i<array.length; i++) {
-			s += array[i] + MD_SPLIT;	
-		}
-		//don't start with MD_SPLIT
-		s = s.substring(0, s.length() - MD_SPLIT.length());
-		return s;
-	}
-	
 	@Override
-	public void setMetadata(HashMap<String, String[]> metadata) {
-		if(metadata == null) {
-			this.internalMetadata.clear();
-			return;
-		}
-		for(Entry<String,String[]> e : metadata.entrySet()) {
-			setMetadataAtKey(e.getKey(), e.getValue());
-		}
-	}
-	
-	@Override
-	public void setMetadataAtKey(String key, String[] values) {
-		if(key == null || key.isEmpty()) {
-			return;
-		}
-		this.internalMetadata.put(key, convertMetadataValueFromArray(values));
-	}
-	
-	@Override
-	public void addMetadataAtKey(String key, String value) {
-		if(key == null || key.isEmpty()) {
-			return;
-		} else if (!internalMetadata.containsKey(key)) {
-			internalMetadata.put(key, value);
-		} else {
-			String s = internalMetadata.get(key);
-			if(s.length() == 0) {
-				s = value;
-			} else {
-				s += MD_SPLIT + value;
-			}
-			internalMetadata.put(key, s);
-		}
+	public String getDbId() {
+		return dbId;
 	}
 
-	public void setModel(IModel modelToSet) {
-		model = modelToSet;
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
+	 */
+	@Override
+	public boolean hasDbId() {
+		return dbId != null;
 	}
 }

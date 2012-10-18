@@ -27,11 +27,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexCollectionElement;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexIntersection;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
@@ -48,7 +50,7 @@ public class IntersectionIndexTest {
 	private static PersistenceApiOrientDbObj papi;
 	private static NumberIndex<Float, Representation> nIndex1, nIndex2 = null;
 	private static StringIndex<Representation> sRIndex = null;
-	private static StringIndex<Model> sMIndex = null;
+	private static StringIndex<AbstractModel> sMIndex = null;
 	private static IndexIntersection<Representation> intersection = null;
 	static String mockModelId, mockRepresentationId, mockRepresentationId2;
 	
@@ -67,17 +69,17 @@ public class IntersectionIndexTest {
 	public void setUp(){
 		papi.openDb();
 		
-		Model mockModel = ModelFactory.createModelWithMultipleLinks();
+		IModel mockModel = ModelFactory.createModelWithMultipleLinks();
 		mockModelId = papi.savePojo(mockModel);
-		Representation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+		IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
 		mockRepresentationId = papi.savePojo(mockRepresentation);
-		Representation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
+		IRepresentation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
 		mockRepresentationId2 = papi.savePojo(mockRepresentation2);
 		
 		nIndex1 = new NumberIndex<Float, Representation>("myTestNumber1Index",papi);
 		nIndex2 = new NumberIndex<Float, Representation>("myTestNumber2Index",papi);
 		sRIndex = new StringIndex<Representation>("myTestStringIndex", papi);
-		sMIndex = new StringIndex<Model>("myTestStringModelIndex", papi);
+		sMIndex = new StringIndex<AbstractModel>("myTestStringModelIndex", papi);
 		nIndex1.createIndex();
 		nIndex2.createIndex();
 		sRIndex.createIndex();

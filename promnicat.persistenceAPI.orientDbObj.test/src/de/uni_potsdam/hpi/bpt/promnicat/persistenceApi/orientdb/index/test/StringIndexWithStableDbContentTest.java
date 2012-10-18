@@ -27,11 +27,11 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexElement;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringIndex;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
@@ -46,29 +46,29 @@ public class StringIndexWithStableDbContentTest {
 
 	static PersistenceApiOrientDbObj papi;
 	static String mockModelId, mockRepresentationId, mockRepresentationId2;
-	static StringIndex<Representation> indexRep;
-	static StringIndex<Model> indexModel;
+	static StringIndex<IRepresentation> indexRep;
+	static StringIndex<IModel> indexModel;
 
 	@BeforeClass
 	public static void setUp(){
 		try{
 			papi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
 			//don't store mockObjects as class fields for caching reasons
-			Model mockModel = ModelFactory.createModelWithMultipleLinks();
+			IModel mockModel = ModelFactory.createModelWithMultipleLinks();
 			mockModelId = papi.savePojo(mockModel);
-			Representation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+			IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
 			mockRepresentationId = papi.savePojo(mockRepresentation);
-			Representation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
+			IRepresentation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
 			mockRepresentationId2 = papi.savePojo(mockRepresentation2);
 			
 			//StringIndex
-			indexRep = new StringIndex<Representation>("testRepIndex", papi);
+			indexRep = new StringIndex<IRepresentation>("testRepIndex", papi);
 			indexRep.createIndex();
 			indexRep.add("create a customer account", mockRepresentationId);
 			indexRep.add("Delete all Customer Accounts", mockRepresentationId);
 			indexRep.add("Verify account of Client", mockRepresentationId2);
 			
-			indexModel = new StringIndex<Model>("testModelIndex", papi);
+			indexModel = new StringIndex<IModel>("testModelIndex", papi);
 			indexModel.createIndex();
 			indexModel.add("receive call", mockModelId);
 			indexModel.add("Set-up new Client Account", mockModelId);
@@ -90,9 +90,9 @@ public class StringIndexWithStableDbContentTest {
 
 	@Test
 	public void testReloadIndex() {	
-		StringIndex<Representation> newSIndex = new StringIndex<Representation>("testRepIndex", papi);
-		List<IndexElement<String,Representation>> list1 = indexRep.load();
-		List<IndexElement<String,Representation>> list2 = newSIndex.load();
+		StringIndex<IRepresentation> newSIndex = new StringIndex<IRepresentation>("testRepIndex", papi);
+		List<IndexElement<String,IRepresentation>> list1 = indexRep.load();
+		List<IndexElement<String,IRepresentation>> list2 = newSIndex.load();
 		assertEquals(list1.size(), list2.size());
 	}
 	
@@ -100,7 +100,7 @@ public class StringIndexWithStableDbContentTest {
 	public void testSelectAll() {	
 		try{
 			indexRep.setSelectAll();
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			assertEquals(3,list.size());
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -112,7 +112,7 @@ public class StringIndexWithStableDbContentTest {
 	public void testSelectEquals() {	
 		try{
 			indexRep.setSelectEquals("Delete all Customer Accounts");
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			assertEquals(1,list.size());
 			
 			indexRep.setSelectEquals("delete all customer accounts");
@@ -133,16 +133,16 @@ public class StringIndexWithStableDbContentTest {
 	public void testReturnedResult() {	
 		try{
 			indexRep.setSelectEquals("Verify account of Client");
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			assertEquals(1,list.size());
-			IndexElement<String,Representation> element = list.get(0);
+			IndexElement<String,IRepresentation> element = list.get(0);
 			
 			//results are given in original upper and lower case
 			String foundKey = element.getKey();
 			assertEquals(foundKey, "Verify account of Client");
 			String foundDbId = element.getDbId();
 			assertEquals(foundDbId, mockRepresentationId2);
-			Representation foundRep = element.getPojo();
+			IRepresentation foundRep = element.getPojo();
 			assertNotNull(foundRep);
 			
 		} catch (IllegalArgumentException e) {
@@ -155,7 +155,7 @@ public class StringIndexWithStableDbContentTest {
 	public void testSelectContains() {	
 		try{
 			indexRep.setSelectContains("customer");
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			assertEquals(2,list.size());
 			
 			indexRep.setSelectContains("account");
@@ -177,7 +177,7 @@ public class StringIndexWithStableDbContentTest {
 		try{
 			String[] criteria1 = {"customer", "account"};
 			indexRep.setSelectContains(criteria1);
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			assertEquals(2,list.size());
 			
 			String[] criteria2 = {"all", "customer", "account"};
@@ -193,7 +193,7 @@ public class StringIndexWithStableDbContentTest {
 			//indexMod is independent of that
 			String[] criteria4 = {"clie", "AcCount"};
 			indexModel.setSelectContains(criteria4);
-			List<IndexElement<String,Model>> listModel = indexModel.load();
+			List<IndexElement<String,IModel>> listModel = indexModel.load();
 			assertEquals(1,listModel.size());
 			
 			String[] criteria5 = {"else"};
@@ -216,7 +216,7 @@ public class StringIndexWithStableDbContentTest {
 			String[] criteria1 = {};
 			indexRep.setSelectContains(criteria1);
 			@SuppressWarnings("unused")
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			fail();
 		} catch(IllegalArgumentException e) {
 			assert(true);
@@ -225,7 +225,7 @@ public class StringIndexWithStableDbContentTest {
 			String[] criteria1 = {"test",""};
 			indexRep.setSelectContains(criteria1);
 			@SuppressWarnings("unused")
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			fail();
 		} catch(IllegalArgumentException e) {
 			assert(true);
@@ -236,7 +236,7 @@ public class StringIndexWithStableDbContentTest {
 	public void testSelectRegEx() {	
 		try{
 			indexRep.setSelectRegEx(".*(customer|account).*");
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			assertEquals(3,list.size());
 			
 			indexRep.setSelectRegEx(".*(customer|account)");
@@ -244,7 +244,7 @@ public class StringIndexWithStableDbContentTest {
 			assertEquals(1,list.size());
 			
 			indexModel.setSelectRegEx("set.up new.*");
-			List<IndexElement<String,Model>> list2 = indexModel.load();
+			List<IndexElement<String,IModel>> list2 = indexModel.load();
 			assertEquals(1,list2.size());
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -254,7 +254,7 @@ public class StringIndexWithStableDbContentTest {
 		try{
 			indexRep.setSelectRegEx("(wrong regex]");
 			@SuppressWarnings("unused")
-			List<IndexElement<String,Representation>> list = indexRep.load();
+			List<IndexElement<String,IRepresentation>> list = indexRep.load();
 			fail();
 		} catch(Exception e) {
 			assert(true);

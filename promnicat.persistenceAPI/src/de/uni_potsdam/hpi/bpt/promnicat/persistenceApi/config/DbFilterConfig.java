@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
@@ -177,7 +177,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @param importedId 
-	 * 		filter {@link Model} by the added importedId,
+	 * 		filter {@link AbstractModel} by the added importedId,
 	 * 		multiple criteria are treated with or-semantic,
 	 * 		the importedId is different to the databaseId,
 	 *		search is case-sensitive,
@@ -189,7 +189,7 @@ public class DbFilterConfig {
 	
 	/**
 	 * @param importedId 
-	 * 		filter {@link Model} by the added importedIds,
+	 * 		filter {@link AbstractModel} by the added importedIds,
 	 * 		multiple criteria are treated with or-semantic,
 	 * 		the importedId is different to the databaseId,
 	 *		search is case-sensitive,
@@ -201,7 +201,7 @@ public class DbFilterConfig {
 	
 	/**
 	 * @param importedId 
-	 * 		filter {@link Model} by the given importedIds,
+	 * 		filter {@link AbstractModel} by the given importedIds,
 	 * 		multiple criteria are treated with or-semantic,
 	 * 		the importedId is different to the databaseId,
 	 *		search is case-sensitive,
@@ -214,7 +214,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @return
-	 * 		get the importedIds to filter {@link Model}
+	 * 		get the importedIds to filter {@link AbstractModel}
 	 * 		multiple criteria are treated with or-semantic,
 	 * 		the importedId is different to the databaseId,
 	 *		search is case-sensitive,
@@ -226,7 +226,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @param origin
-	 * 		filter {@link Model} by the added origin,
+	 * 		filter {@link AbstractModel} by the added origin,
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
@@ -237,7 +237,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @param origin
-	 * 		filter {@link Model} by the added origin,
+	 * 		filter {@link AbstractModel} by the added origin,
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
@@ -248,7 +248,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @param origins
-	 * 		filter {@link Model} by the added origins,
+	 * 		filter {@link AbstractModel} by the added origins,
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
@@ -259,7 +259,7 @@ public class DbFilterConfig {
 	
 	/**
 	 * @param origins
-	 * 		filter {@link Model} by the given origins,
+	 * 		filter {@link AbstractModel} by the given origins,
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
@@ -271,7 +271,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @return
-	 * 		get the origins to filter {@link Model},
+	 * 		get the origins to filter {@link AbstractModel},
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
@@ -282,7 +282,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @param title
-	 * 		filter {@link Model} by the added title,
+	 * 		filter {@link AbstractModel} by the added title,
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed
@@ -293,7 +293,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @param titles
-	 * 		filter {@link Model} by the added titles,
+	 * 		filter {@link AbstractModel} by the added titles,
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed
@@ -304,7 +304,7 @@ public class DbFilterConfig {
 	
 	/**
 	 * @param titles
-	 * 		filter {@link Model} by the given titles,
+	 * 		filter {@link AbstractModel} by the given titles,
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed
@@ -316,7 +316,7 @@ public class DbFilterConfig {
 
 	/**
 	 * @return
-	 * 		get the titles to filter {@link Model},
+	 * 		get the titles to filter {@link AbstractModel},
 	 * 		multiple criteria are treated with or-semantic,
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed

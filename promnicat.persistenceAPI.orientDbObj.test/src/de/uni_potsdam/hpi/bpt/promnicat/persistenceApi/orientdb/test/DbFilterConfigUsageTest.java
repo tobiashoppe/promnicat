@@ -30,13 +30,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.DbConstants;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.NoSqlBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.NoSqlBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.util.DbConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -53,7 +53,7 @@ public class DbFilterConfigUsageTest {
 	public static void setUp(){
 		try{
 			papi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
-			Model mockModel = ModelFactory.createModelWith1Link();
+			IModel mockModel = ModelFactory.createModelWith1Link();
 			papi.savePojo(mockModel);
 			builder = new NoSqlBuilder();
 		} catch (Exception e){
@@ -74,7 +74,7 @@ public class DbFilterConfigUsageTest {
 	@Test
 	public void testLoadRepresentationWithConfigMetadata() {
 //		try{
-			Representation mockRepresentation = RepresentationFactory.createRepresentationWithMultipleLinks();
+			IRepresentation mockRepresentation = RepresentationFactory.createRepresentationWithMultipleLinks();
 			papi.savePojo(mockRepresentation);
 			papi.openDb();
 
@@ -92,12 +92,12 @@ public class DbFilterConfigUsageTest {
 			config.addMetadataValue("vY");
 			config.addMetadataValue("v1");
 
-			List<Representation> results = papi.loadRepresentations(config);
+			List<IRepresentation> results = papi.loadRepresentations(config);
 			assertTrue(0 < results.size());
 
-			Representation rep = results.get(0);
-			Revision rev = rep.getRevision();
-			Model mod = rep.getModel();
+			IRepresentation rep = results.get(0);
+			IRevision rev = rep.getRevision();
+			IModel mod = rep.getModel();
 
 			assertEquals(rep.getFormat(), Constants.FORMATS.BPMAI_JSON.toString());
 			assertEquals(rep.getNotation(), Constants.NOTATIONS.BPMN2_0.toString());

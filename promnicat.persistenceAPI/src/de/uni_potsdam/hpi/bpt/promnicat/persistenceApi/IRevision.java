@@ -21,13 +21,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
 
 /**
- * A {@link Revision} represents one version of a {@link Model}, with one {@link Revision} being the latest/newest.
+ * A {@link Revision} represents one version of a {@link AbstractModel}, with one {@link Revision} being the latest/newest.
  * Each {@link Revision} can hold several {@link Representation}s. 
  * Each {@link Revision} has a unique number, author, language and metadata with any key/values pairs.
  * For performance reasons, sometimes not all revisions are loaded from the database. For this case 
@@ -41,7 +41,7 @@ public interface IRevision extends IPojo {
 	public boolean isCompletelyLoaded();
 
 	/**
-	 * connect a {@link Model} and vice versa
+	 * connect a {@link AbstractModel} and vice versa
 	 * 
 	 * @param newModel the model to connect to
 	 */
@@ -55,7 +55,7 @@ public interface IRevision extends IPojo {
 	public void connectRepresentation(IRepresentation representation);
 
 	/**
-	 * @return the title of the connected {@link Model}
+	 * @return the title of the connected {@link AbstractModel}
 	 */
 	public String getTitle();
 	
@@ -80,7 +80,7 @@ public interface IRevision extends IPojo {
 	public boolean isLatestRevision();
 
 	/**
-	 * @param latestRevision true if this is the latest revision of a {@link Model}
+	 * @param latestRevision true if this is the latest revision of a {@link AbstractModel}
 	 */
 	public void setLatestRevision(boolean latestRevision);
 

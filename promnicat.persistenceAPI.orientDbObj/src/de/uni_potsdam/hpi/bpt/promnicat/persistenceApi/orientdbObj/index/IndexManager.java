@@ -19,7 +19,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
 import java.util.HashSet;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
 
 /**
  * This class is used to store the available index names for later retrieval and internal checking.
@@ -28,7 +28,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
  * @author Andrina Mascher
  *
  */
-public class IndexManager extends AbstractPojo{ 
+public class IndexManager extends AbstractPojoOrientDb { 
 
 	HashSet<String> numberIndices = new HashSet<String>();
 	HashSet<String> stringIndices = new HashSet<String>();

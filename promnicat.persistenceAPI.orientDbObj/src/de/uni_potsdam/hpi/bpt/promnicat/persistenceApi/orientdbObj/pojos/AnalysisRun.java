@@ -15,13 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
-
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
 
 /**
  * This class is used to group many instances of {@link LabelStorage}.
@@ -29,9 +29,9 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
  * @author Andrina Mascher
  *
  */
-public class AnalysisRun extends AbstractPojo{
+public class AnalysisRun extends AbstractPojoOrientDb {
 	
-	private Collection<AbstractPojo> storages = new ArrayList<AbstractPojo>();
+	private Collection<IPojo> storages = new ArrayList<IPojo>();
 	private String comment = null;
 	
 	public AnalysisRun() {
@@ -51,7 +51,7 @@ public class AnalysisRun extends AbstractPojo{
 		String s = "AnalysisRun [dbId: " + getDbId() + ", comment: " + comment
 				+ " #storages: " + storages.size()
 				+ "]";
-		for(AbstractPojo storage : storages) {
+		for(IPojo storage : storages) {
 			s += "\n\t" + storage.toString();
 		}
 		return s;
@@ -60,14 +60,14 @@ public class AnalysisRun extends AbstractPojo{
 	/**
 	 * @return the storages
 	 */
-	public Collection<AbstractPojo> getStorages() {
+	public Collection<IPojo> getStorages() {
 		return storages;
 	}
 
 	/**
 	 * @param storages the storages to set
 	 */
-	public void setStorages(Collection<AbstractPojo> storages) {
+	public void setStorages(Collection<IPojo> storages) {
 		this.storages = storages;
 	}
 	

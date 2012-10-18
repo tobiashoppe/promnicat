@@ -27,11 +27,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexElement;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
@@ -47,20 +49,20 @@ public class NumberIndexWithStableDbContentTest {
 	static PersistenceApiOrientDbObj papi;
 	static String mockModelId, mockModelId2, mockRepresentationId, mockRepresentationId2;
 	static NumberIndex<Integer, Representation> indexI;
-	static NumberIndex<Double, Model> indexD;
+	static NumberIndex<Double, AbstractModel> indexD;
 
 	@BeforeClass
 	public static void setUp(){
 		try{
 			papi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
 			//don't store mockObjects as class fields for caching reasons
-			Model mockModel = ModelFactory.createModelWithMultipleLinks();
+			IModel mockModel = ModelFactory.createModelWithMultipleLinks();
 			mockModelId = papi.savePojo(mockModel);
-			Model mockModel2 = ModelFactory.createModelWithMultipleLinks();
+			IModel mockModel2 = ModelFactory.createModelWithMultipleLinks();
 			mockModelId2 = papi.savePojo(mockModel2);
-			Representation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+			IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
 			mockRepresentationId = papi.savePojo(mockRepresentation);
-			Representation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
+			IRepresentation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
 			mockRepresentationId2 = papi.savePojo(mockRepresentation2);
 			
 			//IntegerIndex
@@ -69,7 +71,7 @@ public class NumberIndexWithStableDbContentTest {
 			indexI.add(4, mockRepresentationId);
 			indexI.add(7, mockRepresentationId2);
 			
-			indexD = new NumberIndex<Double, Model>("testDoubleIndex", papi);
+			indexD = new NumberIndex<Double, AbstractModel>("testDoubleIndex", papi);
 			indexD.createIndex();
 			indexD.add(0.5674, mockModelId);
 			indexD.add(0.5674, mockModelId2);
@@ -116,7 +118,7 @@ public class NumberIndexWithStableDbContentTest {
 			assertEquals(1, list.size());
 			
 			indexD.setSelectEquals(0.5674);
-			List<IndexElement<Double, Model>> list2 = indexD.load();
+			List<IndexElement<Double, AbstractModel>> list2 = indexD.load();
 			assertEquals(2, list2.size());
 			
 			//wrong input
@@ -141,7 +143,7 @@ public class NumberIndexWithStableDbContentTest {
 			assertEquals(1, list.size());
 			
 			indexD.setSelectGreaterOrEquals(0.5674);
-			List<IndexElement<Double,Model>> list2 = indexD.load();
+			List<IndexElement<Double,AbstractModel>> list2 = indexD.load();
 			assertEquals(2, list2.size());
 			
 		} catch (IllegalArgumentException e) {
@@ -200,7 +202,7 @@ public class NumberIndexWithStableDbContentTest {
 			input2.add(4.2);
 			input2.add(0.5674);
 			indexD.setSelectElementsOf(input2);
-			List<IndexElement<Double, Model>> list2 = indexD.load();
+			List<IndexElement<Double, AbstractModel>> list2 = indexD.load();
 			assertEquals(2, list2.size());
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();

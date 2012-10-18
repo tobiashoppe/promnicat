@@ -24,8 +24,8 @@ import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 import com.orientechnologies.orient.core.exception.OStorageException;
 import com.orientechnologies.orient.core.id.ORecordId;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 /**
  * This class is used to store index elements with string keys and any values of type V.
@@ -37,7 +37,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceAp
  * 
  * @param <V> the Valuetype of the key/value index elements
  */
-public class StringIndex<V extends AbstractPojo> extends AbstractIndex<String,V>{
+public class StringIndex<V extends IPojo> extends AbstractIndex<String,V>{
 	
 	String cluster = "";
 	ODatabaseObjectTx papiAccess = papi.getInternalDbAccess();

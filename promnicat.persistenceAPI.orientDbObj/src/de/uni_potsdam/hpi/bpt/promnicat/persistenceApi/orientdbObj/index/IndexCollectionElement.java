@@ -19,9 +19,9 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
 import java.util.HashSet;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 /**
  * This represents one entry in an index intersection and is given to the user after loading from the intersecting
@@ -34,7 +34,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceAp
  * @param <V>
  *            the Valuetype of these key/value index elements, such as {@link Representation}.
  */
-public class IndexCollectionElement<V extends AbstractPojo> {
+public class IndexCollectionElement<V extends IPojo> {
 
 	protected String valueDbId = "";
 	protected V valuePojo = null;

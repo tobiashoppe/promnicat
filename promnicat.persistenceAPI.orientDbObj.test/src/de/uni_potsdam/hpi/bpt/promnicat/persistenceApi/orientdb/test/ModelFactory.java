@@ -17,9 +17,11 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.IPojoFactoryOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PojoFactoryOrientDb;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 /**
  * @author Andrina Mascher
@@ -27,39 +29,41 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
  */
 public class ModelFactory {
 	
-	public static Model createModelWith1Link() {
-		Model model = new Model("a title", Constants.ORIGIN_BPMAI, "mockImportedId1");
-		Revision revision = new Revision(0);
+	private static final IPojoFactoryOrientDb fac = PojoFactoryOrientDb.INSTANCE;
+	
+	public static IModel createModelWith1Link() {
+		IModel model = fac.createModel("a title", Constants.ORIGIN_BPMAI, "mockImportedId1");
+		IRevision revision = fac.createRevision(0);
 		revision.addMetadataAtKey("key1", "value1o");
 		revision.addMetadataAtKey("key1", "value1");
 		revision.addMetadataAtKey("key2", "value2");
 		model.connectRevision(revision);
 		model.connectLatestRevision(revision);
 		
-		Representation representation = new Representation(Constants.FORMAT_BPMAI_JSON, 
+		IRepresentation representation = fac.createRepresentation(Constants.FORMAT_BPMAI_JSON, 
 				Constants.NOTATION_EPC);
 		revision.connectRepresentation(representation);
 		
 		return model;
 	}
 	
-	public static Model createModelWithMultipleLinks() {
-		Model model = new Model("model with multiple links", Constants.ORIGIN_BPMAI, "mockImportedId2");
-		Revision revision = new Revision(0);
+	public static IModel createModelWithMultipleLinks() {
+		IModel model = fac.createModel("model with multiple links", Constants.ORIGIN_BPMAI, "mockImportedId2");
+		IRevision revision = fac.createRevision(0);
 		revision.addMetadataAtKey("k1", "v1o");
 		revision.addMetadataAtKey("k1", "v1");
 		revision.addMetadataAtKey("k2", "v2");
 		revision.addMetadataAtKey("kX", "vY");
 		model.connectRevision(revision);
 		
-		Revision revision2 = new Revision(1);
+		IRevision revision2 = fac.createRevision(1);
 		model.connectLatestRevision(revision2);
 		
-		Representation representation = new Representation(Constants.FORMAT_BPMAI_JSON, 
+		IRepresentation representation = fac.createRepresentation(Constants.FORMAT_BPMAI_JSON, 
 				Constants.NOTATION_BPMN2_0);
-		Representation representation2 = new Representation(Constants.FORMAT_SVG, 
+		IRepresentation representation2 = fac.createRepresentation(Constants.FORMAT_SVG, 
 				Constants.NOTATION_BPMN2_0);
-		Representation representation3 = new Representation(Constants.FORMAT_BPMAI_JSON, 
+		IRepresentation representation3 = fac.createRepresentation(Constants.FORMAT_BPMAI_JSON, 
 				Constants.NOTATION_BPMN2_0);
 		revision.connectRepresentation(representation);
 		revision.connectRepresentation(representation2);

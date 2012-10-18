@@ -32,7 +32,7 @@ public interface Constants {
 	/**
 	 * Default path for test database configuration file
 	 */
-	public static final String TEST_DB_CONFIG_PATH = "test/testConfig.properties";
+	public static final String TEST_DB_CONFIG_PATH = "../promnicat/testConfig.properties";
 	
 	/**
 	 * Configuration file property for maximum number of threads used in {@link UnitChain} execution.
@@ -222,23 +222,6 @@ public interface Constants {
 		private String description;
 	     
 		FORMATS(String description) {
-	        this.description = description;
-	    }
-
-	    public String toString() {
-	         return description;
-	    }
-	}
-	
-	/**
-	 * An enumeration of all available database types (e.g. Orient DB).
-	 */
-	public enum DATABASE_TYPES{
-		ORIENT_DB(Constants.ORIENT_DB);
-		
-		private String description;
-	     
-		DATABASE_TYPES(String description) {
 	        this.description = description;
 	    }
 

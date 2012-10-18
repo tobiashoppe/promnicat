@@ -17,8 +17,9 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 /**
  * This class is used to store one index element with a string as key.
@@ -28,7 +29,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceAp
  * @author Andrina Mascher
  *
  */
-public class StringIndexStorage extends AbstractPojo{ 
+public class StringIndexStorage extends AbstractPojoOrientDb { 
 
 	protected String dbIdReference = ""; 	//caution: this is not the internal dbId of this object 
 											//but the dbId of the referenced object
@@ -85,7 +86,7 @@ public class StringIndexStorage extends AbstractPojo{
 		this.dbIdReference = dbId;
 	}
 	
-	public AbstractPojo loadPojo(PersistenceApiOrientDbObj papi) {
+	public IPojo loadPojo(PersistenceApiOrientDbObj papi) {
 		if(dbIdReference == null || dbIdReference.isEmpty()) 
 			return null;
 		return papi.loadPojo(dbIdReference);

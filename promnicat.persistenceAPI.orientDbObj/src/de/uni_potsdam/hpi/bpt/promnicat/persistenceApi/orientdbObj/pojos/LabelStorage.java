@@ -15,11 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.AbstractPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
 
 /**
  * This class can be used to store a label of one node and the type of the node together with the {@link Representation}.
@@ -27,12 +26,12 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
  * @author Andrina Mascher
  *
  */
-public class LabelStorage extends AbstractPojo{
+public class LabelStorage extends AbstractPojoOrientDb {
 	
 	String label = null; // the label within the node
 	String className = null; // the type of the node, e.g. DataNode
 	String representationId = null; // the process model id that this node belongs to
-	transient Representation representation = null; //the representation object, but don't store representation connection in db, but store dbId instead for performance reasons
+	transient IRepresentation representation = null; //the representation object, but don't store representation connection in db, but store dbId instead for performance reasons
 	
 	public LabelStorage() {
 	}
@@ -90,14 +89,14 @@ public class LabelStorage extends AbstractPojo{
 	/**
 	 * @return the representation
 	 */
-	public Representation getRepresentation() {
+	public IRepresentation getRepresentation() {
 		return representation;
 	}
 
 	/**
 	 * @param representation the representation to set
 	 */
-	public void setRepresentation(Representation representation) {
+	public void setRepresentation(IRepresentation representation) {
 		this.representation = representation;
 	}
 	

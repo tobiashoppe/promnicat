@@ -28,32 +28,31 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
  */
 public class PojoFactory implements IPojoFactory {
 	
-	private static final PojoFactory instance = new PojoFactory();
+	private static final IPojoFactory instance = new PojoFactory();
 	
 	/**
-	 * Private constructor. Use {@link IPojoFactory#getInstance()}
+	 * Private constructor. Use {@link IPojoFactory#init()}
 	 * to get the shared instance of this class.
 	 */
 	private PojoFactory() {	
 	};
 
-	@Override
-	public IPojoFactory getInstance() {
+	public static IPojoFactory init() {
 		return instance;
 	}
 
 	@Override
-	public Model createModel() {
+	public AbstractModel createModel() {
 		return new Model();
 	}
 
 	@Override
-	public Model createModel(String title, String origin) {
+	public AbstractModel createModel(String title, String origin) {
 		return new Model(title, origin);
 	}
 
 	@Override
-	public Model createModel(String title, String origin, String id) {
+	public AbstractModel createModel(String title, String origin, String id) {
 		return new Model(title, origin, id);
 	}
 

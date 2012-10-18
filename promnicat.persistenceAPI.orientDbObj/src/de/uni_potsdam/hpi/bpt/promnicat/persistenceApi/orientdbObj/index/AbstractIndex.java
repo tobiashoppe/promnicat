@@ -21,9 +21,9 @@ import java.util.List;
 
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 /**
  * This class is used to store index elements with keys of type K and any values of type V that can be saved in the database.
@@ -34,7 +34,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceAp
  * @param <K> the Keytype of the key/value index elements, such as String or Numbers
  * @param <V> the Valuetype of the key/value index elements, such as {@link Representation}.
  */
-public abstract class AbstractIndex<K, V extends AbstractPojo> {
+public abstract class AbstractIndex<K, V extends IPojo> {
 
 	protected String name = "";
 	protected PersistenceApiOrientDbObj papi;

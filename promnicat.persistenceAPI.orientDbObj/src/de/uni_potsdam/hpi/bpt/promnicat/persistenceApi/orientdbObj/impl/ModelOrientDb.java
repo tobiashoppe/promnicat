@@ -17,25 +17,46 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
+import com.orientechnologies.orient.core.annotation.OId;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 
 /**
  * @author Tobias Hoppe
  *
  */
-public class OrientDbModel extends Model implements IModel {
+public class ModelOrientDb extends AbstractModel implements IModel {
 
-	protected OrientDbModel() {
+	// the id used in the database
+	@OId //used on OrientDb
+	protected String dbId = null;
+
+	protected ModelOrientDb() {
 		super();
 	}
 	
-	protected OrientDbModel(String title, String origin) {
+	protected ModelOrientDb(String title, String origin) {
 		super(title, origin);
 	}
 
-	protected OrientDbModel(String title, String origin, String id) {
+	protected ModelOrientDb(String title, String origin, String id) {
 		super(title, origin, id);
 	}
+	
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
+	 */
+	@Override
+	public String getDbId() {
+		return dbId;
+	}
 
+	/* (non-Javadoc)
+	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
+	 */
+	@Override
+	public boolean hasDbId() {
+		return dbId != null;
+	}
 }

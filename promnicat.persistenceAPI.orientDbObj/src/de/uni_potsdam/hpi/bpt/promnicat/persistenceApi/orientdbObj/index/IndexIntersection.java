@@ -25,9 +25,9 @@ import java.util.List;
 
 import org.apache.commons.collections.list.TreeList;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 
 /**
@@ -41,7 +41,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceAp
  * @param <V>
  *            the Valuetype of these key/value indices, such as {@link Representation}.
  */
-public class IndexIntersection<V extends AbstractPojo> {
+public class IndexIntersection<V extends IPojo> {
 
 	@SuppressWarnings("rawtypes")
 	ArrayList<AbstractIndex> indices = new ArrayList<AbstractIndex>();
@@ -130,7 +130,7 @@ public class IndexIntersection<V extends AbstractPojo> {
  * @param <V> the Valuetype of the {@link IndexElement}s
  */
 @SuppressWarnings("rawtypes")
-class ResultSet<V extends AbstractPojo> implements Comparable<ResultSet>{
+class ResultSet<V extends IPojo> implements Comparable<ResultSet>{
 	List<IndexElement> resultSet;
 	Integer size = null;
 	String indexName = "";

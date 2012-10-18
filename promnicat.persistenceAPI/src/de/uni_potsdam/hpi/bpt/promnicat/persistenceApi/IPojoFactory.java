@@ -19,6 +19,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 
 import java.io.File;
 
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.PojoFactory;
+
 /**
  * Factory to create new {@link IRepresentation}, {@link IRevision}, and {@link IModel}
  * instances.
@@ -26,11 +28,8 @@ import java.io.File;
  *
  */
 public interface IPojoFactory {
-
-	/**
-	 * @return the shared factory instance
-	 */
-	public IPojoFactory getInstance();
+	
+	IPojoFactory INSTANCE = PojoFactory.init();
 	
 	/**
 	 * @return a new {@link IModel} instance.

@@ -33,13 +33,16 @@ import org.junit.Test;
 
 import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.AnalysisRun;
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.LabelStorage;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.ModelOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.RepresentationOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.RevisionOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos.AnalysisRun;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos.LabelStorage;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -121,22 +124,22 @@ public class PersistenceApiOrientDbTest {
 	public void testSavePojo() {	
 		try{
 			//save 2 models
-			assertEquals(0, papi.countClass(Model.class));
+			assertEquals(0, papi.countClass(ModelOrientDb.class));
 			modelDbId = papi.savePojo(ModelFactory.createModelWith1Link());
 			modelDbId2 = papi.savePojo(ModelFactory.createModelWithMultipleLinks());
 
-			int nrOfModelsInDb = (int) papi.countClass(Model.class);
-			int nrOfRepsInDb = (int) papi.countClass(Representation.class);
+			int nrOfModelsInDb = (int) papi.countClass(ModelOrientDb.class);
+			int nrOfRepsInDb = (int) papi.countClass(RepresentationOrientDb.class);
 
 			//load model, change it, update it in db
-			Model loadedModel = papi.loadCompleteModelWithDbId(modelDbId);
+			IModel loadedModel = papi.loadCompleteModelWithDbId(modelDbId);
 			assertTrue(loadedModel.hasDbId());
-			Representation rep = RepresentationFactory.createUnconnectedRepresentation();
+			IRepresentation rep = RepresentationFactory.createUnconnectedRepresentation();
 			loadedModel.getLatestRevision().connectRepresentation(rep);
 
 			papi.savePojo(loadedModel);
-			assertEquals((int) papi.countClass(Model.class), nrOfModelsInDb); //model is updated not saved as new model
-			assertEquals((int) papi.countClass(Representation.class), nrOfRepsInDb + 1);
+			assertEquals((int) papi.countClass(ModelOrientDb.class), nrOfModelsInDb); //model is updated not saved as new model
+			assertEquals((int) papi.countClass(RepresentationOrientDb.class), nrOfRepsInDb + 1);
 
 		} catch(Exception e) {
 			fail(e.getMessage());
@@ -159,20 +162,20 @@ public class PersistenceApiOrientDbTest {
 	public void testDeleteAllFromClass() {	
 		try{
 			//save some
-			assertEquals(papi.countClass(Model.class), 0);
+			assertEquals(papi.countClass(ModelOrientDb.class), 0);
 			modelDbId = papi.savePojo(ModelFactory.createModelWith1Link());
 			modelDbId2 = papi.savePojo(ModelFactory.createModelWithMultipleLinks());
-			assertEquals(papi.countClass(Model.class), 2);
-			assertTrue(papi.countClass(Revision.class) > 0);
+			assertEquals(papi.countClass(ModelOrientDb.class), 2);
+			assertTrue(papi.countClass(RevisionOrientDb.class) > 0);
 
 			//delete class
-			boolean result = papi.deletePojos(Revision.class);
+			boolean result = papi.deletePojos(RevisionOrientDb.class);
 			assertTrue(result);
-			assertEquals(papi.countClass(Model.class), 2);
-			assertEquals(papi.countClass(Revision.class), 0);
+			assertEquals(papi.countClass(ModelOrientDb.class), 2);
+			assertEquals(papi.countClass(RevisionOrientDb.class), 0);
 
 			//load again
-			assertTrue(papi.loadPojos(Revision.class).isEmpty());
+			assertTrue(papi.loadPojos(RevisionOrientDb.class).isEmpty());
 		} catch(Exception e) {
 			fail(e.getMessage());
 		}
@@ -182,18 +185,18 @@ public class PersistenceApiOrientDbTest {
 	public void testDeleteDbId() {	
 //		try{
 			//save some
-			assertEquals(papi.countClass(Model.class), 0);
+			assertEquals(papi.countClass(ModelOrientDb.class), 0);
 			modelDbId = papi.savePojo(ModelFactory.createModelWith1Link());
 			modelDbId2 = papi.savePojo(ModelFactory.createModelWithMultipleLinks());
-			assertEquals(papi.countClass(Model.class), 2);
+			assertEquals(papi.countClass(ModelOrientDb.class), 2);
 
-			int nrOfRepsInDb = (int) papi.countClass(Representation.class);
+			int nrOfRepsInDb = (int) papi.countClass(RepresentationOrientDb.class);
 			assertEquals(nrOfRepsInDb, 4);
 
 			//delete one
 			assertTrue(papi.deletePojo(modelDbId));
-			assertEquals(papi.countClass(Model.class), 1);
-			assertEquals(papi.countClass(Representation.class), nrOfRepsInDb);
+			assertEquals(papi.countClass(ModelOrientDb.class), 1);
+			assertEquals(papi.countClass(RepresentationOrientDb.class), nrOfRepsInDb);
 
 			//load again
 			assertNull(papi.loadPojo(modelDbId));
@@ -220,16 +223,16 @@ public class PersistenceApiOrientDbTest {
 	public void testDeleteDbIdsCorrectIds() {	
 		ArrayList<String> ids = new ArrayList<String>();
 		try{
-			assertEquals(papi.countClass(Model.class), 0);
+			assertEquals(papi.countClass(ModelOrientDb.class), 0);
 			ids = createIdList(ids);
-			int nrOfRepsInDb = (int) papi.countClass(Representation.class);
-			assertEquals(papi.countClass(Model.class), 2);
-			assertEquals(papi.countClass(Representation.class), nrOfRepsInDb);
+			int nrOfRepsInDb = (int) papi.countClass(RepresentationOrientDb.class);
+			assertEquals(papi.countClass(ModelOrientDb.class), 2);
+			assertEquals(papi.countClass(RepresentationOrientDb.class), nrOfRepsInDb);
 
 			//delete one model and one rep.
 			papi.deletePojos(ids);
-			assertEquals(papi.countClass(Model.class), 1);
-			assertEquals(papi.countClass(Representation.class), nrOfRepsInDb -1);
+			assertEquals(papi.countClass(ModelOrientDb.class), 1);
+			assertEquals(papi.countClass(RepresentationOrientDb.class), nrOfRepsInDb -1);
 
 		} catch(Exception e) {
 			fail(e.getMessage());
@@ -248,9 +251,9 @@ public class PersistenceApiOrientDbTest {
 	public void testDeleteDbIdsNonExistentId() {	
 		ArrayList<String> ids = new ArrayList<String>();
 		try{
-			assertEquals(papi.countClass(Model.class), 0);
+			assertEquals(papi.countClass(ModelOrientDb.class), 0);
 			ids = createIdList(ids);
-			int nrOfRepsInDb = (int) papi.countClass(Representation.class);
+			int nrOfRepsInDb = (int) papi.countClass(RepresentationOrientDb.class);
 			assertTrue(nrOfRepsInDb > 0);
 
 			//delete list
@@ -270,9 +273,9 @@ public class PersistenceApiOrientDbTest {
 	public void testDeleteDbIdsWrongInput() {	
 		ArrayList<String> ids = new ArrayList<String>();
 		try{
-			assertEquals(papi.countClass(Model.class), 0);
+			assertEquals(papi.countClass(ModelOrientDb.class), 0);
 			ids = createIdList(ids);
-			int nrOfRepsInDb = (int) papi.countClass(Representation.class);
+			int nrOfRepsInDb = (int) papi.countClass(RepresentationOrientDb.class);
 			assertTrue(nrOfRepsInDb > 0);
 
 			//delete list
@@ -296,27 +299,27 @@ public class PersistenceApiOrientDbTest {
 	@Test
 	public void testLoadLightweightRepAndCompleteModel() {
 		try {
-			assertEquals(0, papi.countClass(Model.class));
-			assertEquals(0, papi.countClass(Revision.class));
-			assertEquals(0, papi.countClass(Representation.class));
+			assertEquals(0, papi.countClass(ModelOrientDb.class));
+			assertEquals(0, papi.countClass(RevisionOrientDb.class));
+			assertEquals(0, papi.countClass(RepresentationOrientDb.class));
 			
-			Model m = ModelFactory.createModelWithMultipleLinks();
+			IModel m = ModelFactory.createModelWithMultipleLinks();
 			m.loadCompleteModel(papi);
 			assertFalse(m.hasDbId());
 			modelDbId = papi.savePojo(m);
 			assertTrue(m.hasDbId());
 			assertTrue(m.getNrOfRevisions() > 1);
-			assertEquals(1, papi.countClass(Model.class));
-			assertEquals(2, papi.countClass(Revision.class));
-			assertEquals(3, papi.countClass(Representation.class));
+			assertEquals(1, papi.countClass(ModelOrientDb.class));
+			assertEquals(2, papi.countClass(RevisionOrientDb.class));
+			assertEquals(3, papi.countClass(RepresentationOrientDb.class));
 			
 			//test load lightweight representation
-			List<Representation> list = papi.loadRepresentations(new DbFilterConfig());
-			assertEquals(list.size(), papi.countClass(Representation.class));
-			Model model = list.get(0).getModel();
+			List<IRepresentation> list = papi.loadRepresentations(new DbFilterConfig());
+			assertEquals(list.size(), papi.countClass(RepresentationOrientDb.class));
+			IModel model = list.get(0).getModel();
 			assertEquals(model.getRevisions().size(), 1);
 			assertFalse(model.isCompletelyLoaded());
-			Revision rev = model.getRevisions().iterator().next();
+			IRevision rev = model.getRevisions().iterator().next();
 			assertEquals(rev.getRepresentations().size(), 1);
 			assertFalse(rev.isCompletelyLoaded());
 
@@ -338,8 +341,8 @@ public class PersistenceApiOrientDbTest {
 		modelDbId2 = papi.savePojo(ModelFactory.createModelWithMultipleLinks());
 
 		//create a list
-		Model m = papi.loadCompleteModelWithDbId(modelDbId);
-		Representation aLatestRep = m.getLatestRevision().getRepresentations().iterator().next();
+		IModel m = papi.loadCompleteModelWithDbId(modelDbId);
+		IRepresentation aLatestRep = m.getLatestRevision().getRepresentations().iterator().next();
 		ids.add(aLatestRep.getDbId());
 		ids.add(modelDbId2);
 		return ids;

@@ -15,15 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.util;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.ModelOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.RepresentationOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.RevisionOrientDb;
 
 /**
  * This class represents the class names and attribute names in 
- * {@link Model}, {@link Revision} and {@link Representation} as 
+ * {@link AbstractModel}, {@link Revision} and {@link Representation} as 
  * a helper to build NoSQL for {@link PersistenceApiOrientDbObj}.
  * 
  * @author Andrina Mascher
@@ -32,14 +36,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 public interface DbConstants {
 
 	//class model and its attributes
-	final String CLS_MODEL = "Model";
+	final String CLS_MODEL = ModelOrientDb.class.getSimpleName();
 	final String ATTR_ORIGIN = "origin";
 	final String ATTR_TITLE = "title";
 	final String ATTR_IMPORTED_ID = "importedId";
 	final String ATTR_REVISIONS = "revisions";
 	
 	//class revision and its attributes
-	final String CLS_REVISION = "Revision";
+	final String CLS_REVISION = RevisionOrientDb.class.getSimpleName();
 	final String ATTR_LATEST_REVISION = "latestRevision";
 	final String ATTR_LANGUAGE = "language";
 	final String ATTR_MODEL = "model";
@@ -49,7 +53,7 @@ public interface DbConstants {
 	final String ATTR_REPRESENTATIONS = "representations";
 	
 	//class representation and its attributes
-	final String CLS_REPRESENTATION = "Representation";
+	final String CLS_REPRESENTATION = RepresentationOrientDb.class.getSimpleName();
 	final String ATTR_DATA_CONTENT = "dataContent";
 	final String ATTR_REVISION = "revision";
 	final String ATTR_DATA_PATH = "dataPath";

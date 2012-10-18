@@ -40,7 +40,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
@@ -109,8 +109,8 @@ public class NPBImporter extends AbstractImporter {
 	}
 
 	/**
-	 * Parses the given XML-file and creates a new {@link Model} including {@link Revision}s and {@link Representation}s
-	 * if no {@link Model} exists for the process model. Otherwise, a new {@link Revision} is added, if the revision attribute
+	 * Parses the given XML-file and creates a new {@link AbstractModel} including {@link Revision}s and {@link Representation}s
+	 * if no {@link AbstractModel} exists for the process model. Otherwise, a new {@link Revision} is added, if the revision attribute
 	 * has been changed since last import. In case the revision number is still the same nothing is done.
 	 * 
 	 * @param modelFile file containing the XML to parse and to import into database

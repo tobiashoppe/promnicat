@@ -26,12 +26,14 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 import com.orientechnologies.orient.core.record.ORecordAbstract;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.AnalysisRun;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos.AnalysisRun;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 
@@ -145,10 +147,10 @@ public class DirectDbCaller {
 //		config.addMetadataValue("v1a");
 //		config.addMetadataValue("v2");
 
-		List<Representation> i = papi.loadRepresentations(config);
+		List<IRepresentation> i = papi.loadRepresentations(config);
 		int cnt = 0;
-		for(Representation rep : i) {
-			Model mod = rep.getModel();
+		for(IRepresentation rep : i) {
+			IModel mod = rep.getModel();
 			System.out.println(mod.toStringExtended() + "\n");
 			cnt++;
 		}
@@ -174,15 +176,15 @@ public class DirectDbCaller {
 	 * @param papi
 	 */
 	private void countClasses() {
-		System.out.println("Models: " + papi.countClass(Model.class));
+		System.out.println("Models: " + papi.countClass(AbstractModel.class));
 		System.out.println("Revisions: " + papi.countClass(Revision.class));
 		System.out.println("Representations: " + papi.countClass(Representation.class));
 	}
 	
 	private void inspectAllInClass(String name) {
 		for (Object o : db.browseClass(name)) {
-			if(o instanceof Model) {
-				System.out.println(((Model) o).toStringExtended());
+			if(o instanceof AbstractModel) {
+				System.out.println(((AbstractModel) o).toStringExtended());
 			} else if(o instanceof AnalysisRun) {
 				System.out.println(((AnalysisRun) o).toStringExtended());
 			} else {

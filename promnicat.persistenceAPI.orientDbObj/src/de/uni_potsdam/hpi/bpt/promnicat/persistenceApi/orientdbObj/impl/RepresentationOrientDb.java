@@ -15,29 +15,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import java.io.File;
+
+import com.orientechnologies.orient.core.annotation.OId;
+
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractRepresentation;
 
 /**
  * @author Tobias Hoppe
  *
  */
-public class Model extends AbstractModel implements IModel {
-	
+public class RepresentationOrientDb extends AbstractRepresentation implements IRepresentation {
+
 	// the id used in the database
+	@OId //used on OrientDb
 	protected String dbId = null;
 
-	protected Model() {
+	protected RepresentationOrientDb() {
 		super();
 	}
 	
-	protected Model(String title, String origin) {
-		super(title, origin);
+	protected RepresentationOrientDb(String format, String notation) {
+		super(format, notation);
 	}
-
-	protected Model(String title, String origin, String id) {
-		super(title, origin, id);
+	
+	protected RepresentationOrientDb(String format, String notation, File dataFile) {
+		super(format, notation, dataFile);
+	}
+	
+	protected RepresentationOrientDb(String format, String notation, byte[] dataContent) {
+		super(format, notation, dataContent);
 	}
 	
 	/* (non-Javadoc)

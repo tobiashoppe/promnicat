@@ -29,14 +29,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.LabelStorage;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexElement;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringIndex;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos.LabelStorage;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -47,7 +47,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 public class StringIndexWithNoDbContentTest {
 	
 	private static PersistenceApiOrientDbObj papi;
-	private static StringIndex<Representation> sIndex = null;
+	private static StringIndex<IRepresentation> sIndex = null;
 	static String mockModelId, mockRepresentationId, mockRepresentationId2;
 	
 	@BeforeClass
@@ -64,14 +64,14 @@ public class StringIndexWithNoDbContentTest {
 	public void setUp(){
 		papi.openDb();
 		
-		Model mockModel = ModelFactory.createModelWithMultipleLinks();
+		IModel mockModel = ModelFactory.createModelWithMultipleLinks();
 		mockModelId = papi.savePojo(mockModel);
-		Representation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+		IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
 		mockRepresentationId = papi.savePojo(mockRepresentation);
-		Representation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
+		IRepresentation mockRepresentation2 = RepresentationFactory.createLightweightRepresentation();
 		mockRepresentationId2 = papi.savePojo(mockRepresentation2);
 		
-		sIndex = new StringIndex<Representation>("myTestStringIndex",papi);
+		sIndex = new StringIndex<IRepresentation>("myTestStringIndex",papi);
 	}
 	
 	@After
@@ -90,9 +90,9 @@ public class StringIndexWithNoDbContentTest {
 			sIndex.createIndex();
 			assertEquals(0,sIndex.load().size());
 			sIndex.add("dummy", mockRepresentationId);
-			List<IndexElement<String, Representation>> result = sIndex.load();
+			List<IndexElement<String, IRepresentation>> result = sIndex.load();
 			assertEquals(1,result.size());
-			IndexElement<String, Representation> e = result.get(0);
+			IndexElement<String, IRepresentation> e = result.get(0);
 			assertEquals("dummy", e.getKey());
 			assertEquals(mockRepresentationId, e.getDbId());
 			assertEquals(RepresentationFactory.createLightweightRepresentation().getTitle(), e.getPojo().getTitle());

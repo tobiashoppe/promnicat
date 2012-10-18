@@ -3,5 +3,14 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/apache-commons.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/orient-commons-1.0rc6.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/orientdb-client-1.0rc6.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/orientdb-core-1.0rc6.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/orientdb-enterprise-1.0rc6.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/orientdb-graphdb-1.0rc6.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/orientdb-server-1.0rc6.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/orientdb-tools-1.0rc6.jar"/>
+	<classpathentry kind="lib" path="/promnicat.persistenceAPI.orientDbObj/lib/persistence-api-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

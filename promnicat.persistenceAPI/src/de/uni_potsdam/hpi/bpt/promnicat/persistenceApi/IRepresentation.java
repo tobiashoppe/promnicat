@@ -19,13 +19,13 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 
 import java.io.File;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
 
 /**
- * A {@link Representation} belongs to {@link Revision}, which again belongs to a {@link Model}
+ * A {@link Representation} belongs to {@link Revision}, which again belongs to a {@link AbstractModel}
  * Each {@link Representation} can have sibling {@link Representation}s in other formats (XML, JSON)
  * or notations (EPC, BPMN). Each {@link Representation} also has dataContent and teh path to the original file.
  * 
@@ -64,7 +64,7 @@ public interface IRepresentation extends IPojo {
 	public void connectRevision(Revision newRevision);
 	
 	/**
-	 * @return the title of the connected {@link Model}
+	 * @return the title of the connected {@link AbstractModel}
 	 */
 	public String getTitle();
 
