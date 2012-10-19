@@ -18,10 +18,10 @@
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.IConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.AbstractConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
@@ -31,26 +31,41 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
  * @author Tobias Hoppe
  *
  */
-public class OrientDbConfigurationParser extends ConfigurationParser implements IConfigurationParser {
+public class ConfigurationParserOrientDb extends AbstractConfigurationParser {
+	
+	private static Logger logger = Logger.getLogger(ConfigurationParserOrientDb.class.getName());
 
 	/**
 	 * @param configPath the path to the configuration file being used. If an empty {@link String} is given,
 	 *  the default path '{@link Constants#DEFAULT_CONFIG_PATH}' is used.
 	 * @throws IOException if the configuration file could not be found.
 	 */
-	public OrientDbConfigurationParser(String configPath) throws IOException {
+	public ConfigurationParserOrientDb(String configPath) throws IOException {
 		super(configPath);
+		ConfigurationParserOrientDb.configPath = configPath;
 	}
 	
 	/**
-	 * The configuration file is parsed and a new {@link IPersistenceApi}
-	 * with the specified access rights and database path is created.
+	 * A new {@link IPersistenceApi} with the specified access rights and
+	 * database path is created. The configuration file must have been
+	 * parsed before calling this method!
 	 * 
 	 * @param database specifies the type of {@link IPersistenceApi} to instantiate
 	 * 
 	 * @return a {@link IPersistenceApi} instance as specified in the given configuration.
 	 */
-	public IPersistenceApi getDbInstance() {
+	public static IPersistenceApi getDataBaseInstance(String configurationPath) {
+		if(configurationPath == null || configurationPath.isEmpty()) {
+			throw new IllegalArgumentException("The configuration file path must not be empty!");
+		}
+		if (properties == null || configPath == null || !configPath.equals(configurationPath)) {
+			try {
+				new ConfigurationParserOrientDb(configurationPath);
+			} catch (IOException e) {
+				logger.severe("Configuration file could not be parsed!");
+				e.printStackTrace();
+			}
+		}
 		String dbPath = properties.getProperty(Constants.DB_Path);
 		String dbUser = properties.getProperty(Constants.DB_USER);
 		String dbPassword = properties.getProperty(Constants.DB_PASSWD);
@@ -58,5 +73,10 @@ public class OrientDbConfigurationParser extends ConfigurationParser implements 
 			throw new IllegalArgumentException("The provided configuration file is invalid.");
 		}		
 		return new PersistenceApiOrientDbObj(dbPath, dbUser, dbPassword);
+	}
+
+	@Override
+	public IPersistenceApi getDbInstance() {
+		return getDataBaseInstance(ConfigurationParserOrientDb.configPath);		
 	}
 }

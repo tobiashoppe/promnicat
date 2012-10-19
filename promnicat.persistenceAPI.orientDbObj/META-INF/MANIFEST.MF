@@ -10,3 +10,13 @@ Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index
+Bundle-ClassPath: .,
+ lib/apache-commons.jar,
+ lib/orient-commons-1.0rc6.jar,
+ lib/orientdb-client-1.0rc6.jar,
+ lib/orientdb-core-1.0rc6.jar,
+ lib/orientdb-enterprise-1.0rc6.jar,
+ lib/orientdb-graphdb-1.0rc6.jar,
+ lib/orientdb-server-1.0rc6.jar,
+ lib/orientdb-tools-1.0rc6.jar,
+ lib/persistence-api-1.0.jar

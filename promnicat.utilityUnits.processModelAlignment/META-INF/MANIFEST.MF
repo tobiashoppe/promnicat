@@ -4,7 +4,7 @@ Bundle-Name: promnicat.utilityUnits.processModelAlignment
 Bundle-SymbolicName: promnicat.utilityUnits.processModelAlignment
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: promnicat
+Require-Bundle: promnicat.externals;bundle-version="0.0.0";visibility:=reexport
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment,
  de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.assignment,
  de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label,

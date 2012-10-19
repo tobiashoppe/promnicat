@@ -56,7 +56,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config.OrientDbConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config.ConfigurationParserOrientDb;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexManager;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringIndexStorage;
@@ -113,7 +113,7 @@ public class PersistenceApiOrientDbObj implements IPersistenceApi {
 	 */
 	public static PersistenceApiOrientDbObj getInstance(String configurationFilePath) {
 		try {
-			return (PersistenceApiOrientDbObj) new OrientDbConfigurationParser(configurationFilePath).getDbInstance();
+			return (PersistenceApiOrientDbObj) new ConfigurationParserOrientDb(configurationFilePath).getDbInstance();
 		} catch (IOException e) {
 			logger.severe(e.getMessage());
 		}

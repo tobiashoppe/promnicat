@@ -1,6 +1,6 @@
 /**
  * PromniCAT - Collection and Analysis of Business Process Models
- * Copyright (C) 2012 Cindy Fähnrich, Tobias Hoppe, Andrina Mascher
+ * Copyright (C) 2012 Cindy FÃ¤hnrich, Tobias Hoppe, Andrina Mascher
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,24 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config;
+package de.uni_potsdam.hpi.bpt.promnicat.configuration;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 
-import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.AbstractConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.IConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.config.ConfigurationParserOrientDb;
+
 
 /**
- * This class parses the PromniCAT configuration file.
- * 
+ * This class parses the PromniCAT configuration file used for
+ * Orient DB database instances.
  * @author Tobias Hoppe
  *
  */
-public abstract class ConfigurationParser implements IConfigurationParser {
-
-	protected Properties properties;
+public class ConfigurationParser extends AbstractConfigurationParser implements IConfigurationParser {
 	
 	/**
 	 * @param configPath the path to the configuration file being used. If an empty {@link String} is given,
@@ -40,22 +39,19 @@ public abstract class ConfigurationParser implements IConfigurationParser {
 	 * @throws IOException if the configuration file could not be found.
 	 */
 	public ConfigurationParser(String configPath) throws IOException {
-		this.properties = new Properties();
-		if (configPath.isEmpty()) {
-			configPath = Constants.DEFAULT_CONFIG_PATH;
-		}
-		BufferedInputStream stream = new BufferedInputStream(new FileInputStream(configPath));
-		this.properties.load(stream);
-		stream.close();
+		super(configPath);
 	}
-	
+
 	@Override
-	public Integer getThreadCount(){
-		String maxNumberOfThreadsString = this.properties.getProperty(Constants.MAX_NUMBER_OF_THREADS);
-		if (maxNumberOfThreadsString == null){
-			throw new IllegalArgumentException("The provided configuration file is invalid.");
+	public IPersistenceApi getDbInstance() {
+		String dataBaseType = properties.getProperty("db.id");
+		//delegate to the specified database type
+		if ("OrientDb".equals(dataBaseType)) {
+			return ConfigurationParserOrientDb.getDataBaseInstance(configPath);
 		}
-		return new Integer(maxNumberOfThreadsString);
+		//add further database types here if needed.
+		throw new IllegalArgumentException("The provided configuration file is invalid.");
+		
 	}
-	
+
 }

@@ -27,7 +27,7 @@ public interface Constants {
 	/**
 	 * Default path for configuration file
 	 */
-	public static final String DEFAULT_CONFIG_PATH = "configuration.properties";
+	public static final String DEFAULT_CONFIG_PATH = "../promnicat/configuration.properties";
 	
 	/**
 	 * Default path for test database configuration file

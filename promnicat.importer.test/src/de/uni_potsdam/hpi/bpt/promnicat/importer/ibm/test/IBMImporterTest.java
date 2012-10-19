@@ -47,19 +47,14 @@ import de.hpi.bpmn2_0.model.Definitions;
 import de.hpi.bpmn2_0.model.FlowElement;
 import de.hpi.bpmn2_0.model.RootElement;
 import de.hpi.bpmn2_0.model.connector.Edge;
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.ConnectedEPC;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.bpmai.BpmaiImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.ibm.IBMModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.test.ImporterTest;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataJbpt;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataJbpt;
 
 /**
  * test class for {@link BpmaiImporter}.
@@ -73,7 +68,7 @@ public class IBMImporterTest {
 	@BeforeClass
 	public static void init(){
 		try {
-			persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance(Constants.DATABASE_TYPES.ORIENT_DB);
+			persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
 		} catch (IOException e) {
 			fail("Unexpected exception occurred: " + e.getMessage());
 		}

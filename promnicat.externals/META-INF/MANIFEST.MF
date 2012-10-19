@@ -5,7 +5,9 @@ Bundle-SymbolicName: promnicat.externals
 Bundle-Version: 0.0.0
 Bundle-ClassPath: lib/bpmai.jar,
  lib/jbpt.jar,
- lib/org.json.jar
+ lib/org.json.jar,
+ lib/commons-logging-1.1.1.jar,
+ lib/spring-core-2.0.6.jar
 Export-Package: de.uni_potsdam.hpi.bpt.ai.collection,
  de.uni_potsdam.hpi.bpt.ai.collection.impl,
  de.uni_potsdam.hpi.bpt.ai.diagram,

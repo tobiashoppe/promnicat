@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 import org.jbpt.hypergraph.abs.Vertex;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.AbstractConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.FeatureConfig;
@@ -105,13 +105,13 @@ public class UnitChainBuilder implements IUnitChainBuilder {
 	 * @throws IOException if the given configuration file could not be found.
 	 */
 	public UnitChainBuilder(String pathToConfig, Constants.DATABASE_TYPES database, Class<?> unitDataType) throws IOException {
-		this(new ConfigurationParser(pathToConfig), database, unitDataType);
+		this(new AbstractConfigurationParser(pathToConfig), database, unitDataType);
 	}
 	
 	/**
 	 * Only a delegating constructor.
 	 */
-	private UnitChainBuilder(ConfigurationParser configParser, Constants.DATABASE_TYPES database, Class<?> unitDataType){
+	private UnitChainBuilder(AbstractConfigurationParser configParser, Constants.DATABASE_TYPES database, Class<?> unitDataType){
 		this(configParser.getDbInstance(database), configParser.getThreadCount(), unitDataType);
 	}
 	
