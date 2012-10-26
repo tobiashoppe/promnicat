@@ -17,10 +17,9 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 
-import java.util.Collection;
 import java.util.Set;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
@@ -30,7 +29,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
  * For performance reasons, sometimes not all revisions are loaded from the database. For this case 
  * the nrOfRevisionsInDb tell the total number of revisions found in the database.
  * 
- * @author Andrina Mascher
+ * @author Andrina Mascher, Tobias Hoppe
  *
  */
 public interface IModel extends IPojo {
@@ -67,7 +66,7 @@ public interface IModel extends IPojo {
 	 * Does not set a latestRevision, it will be null afterwards. Call connectLatestRevision.
 	 * @param revisions
 	 */
-	public void setAndConnectRevisions(Collection<IRevision> revisions);
+	public void setRevisions(Set<IRevision> revisions);
 	
 	/**
 	 * Connect a new {@link Revision}, no duplicates are added
@@ -90,12 +89,12 @@ public interface IModel extends IPojo {
 	public IRevision getLatestRevision();
 
 	/**
-	 * @return the id used for {@link AbstractModel} identification
+	 * @return the id used for {@link Model} identification
 	 */
 	public String getImportedId();
 
 	/**
-	 * Set the id used to identify a {@link AbstractModel}
+	 * Set the id used to identify a {@link Model}
 	 * @param id the id to set
 	 */
 	public void setImportedId(String id);
@@ -124,7 +123,7 @@ public interface IModel extends IPojo {
 	 * 
 	 * @return the completelyLoaded
 	 */
-	public boolean isCompletelyLoaded();
+	public boolean getCompletelyLoaded();
 	
 	/**
 	 * Set if all {@link Revision}s and their {@link Representation}s are loaded from the database or just one of them.

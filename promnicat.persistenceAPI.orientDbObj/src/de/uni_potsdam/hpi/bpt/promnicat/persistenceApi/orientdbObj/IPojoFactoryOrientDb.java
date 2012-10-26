@@ -21,11 +21,12 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PojoFactoryOrientDb;
 
 /**
+ * Redefines {@link IPojoFactory}'s instance.
+ * 
  * @author Tobias Hoppe
  *
  */
 public interface IPojoFactoryOrientDb extends IPojoFactory {
 	
-	IPojoFactoryOrientDb INSTANCE = PojoFactoryOrientDb.init();
-	
+	IPojoFactoryOrientDb INSTANCE = PojoFactoryOrientDb.init();	
 }

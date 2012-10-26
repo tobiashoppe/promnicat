@@ -17,8 +17,10 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
+import javax.persistence.Id;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
 
 /**
@@ -29,12 +31,19 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.Persiste
  * @author Andrina Mascher
  *
  */
-public class StringIndexStorage extends AbstractPojoOrientDb { 
+public class StringIndexStorage extends AbstractPojo { 
 
-	protected String dbIdReference = ""; 	//caution: this is not the internal dbId of this object 
+	/**
+	 * the id used by OrientDb, can not use the id defined in {@link AbstractPojo}
+	 * due to OrientDb's injections.
+	 */
+	@Id 
+	private String dbId;
+	
+	protected String dbIdReference; 	//caution: this is not the internal dbId of this object 
 											//but the dbId of the referenced object
-	protected String key = null; 			//lower case
-	protected String originalKey = null; 	//case-sensitive
+	protected String key; 			//lower case
+	protected String originalKey; 	//case-sensitive
 	
 	public StringIndexStorage() {
 	}
@@ -94,5 +103,15 @@ public class StringIndexStorage extends AbstractPojoOrientDb {
 	
 	public String toString() {
 		return "StringIndexElement[" + key + " -> " +  dbIdReference + "]";
+	}
+	
+	@Override
+	public String getDbId() {
+		return this.dbId;
+	}
+
+	@Override
+	public boolean hasDbId() {
+		return this.dbId != null;
 	}
 }

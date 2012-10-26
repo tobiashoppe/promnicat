@@ -29,7 +29,6 @@ import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
@@ -49,8 +48,8 @@ public class IntersectionIndexTest {
 	
 	private static PersistenceApiOrientDbObj papi;
 	private static NumberIndex<Float, Representation> nIndex1, nIndex2 = null;
-	private static StringIndex<Representation> sRIndex = null;
-	private static StringIndex<AbstractModel> sMIndex = null;
+	private static StringIndex<IRepresentation> sRIndex = null;
+	private static StringIndex<IModel> sMIndex = null;
 	private static IndexIntersection<Representation> intersection = null;
 	static String mockModelId, mockRepresentationId, mockRepresentationId2;
 	
@@ -78,8 +77,8 @@ public class IntersectionIndexTest {
 		
 		nIndex1 = new NumberIndex<Float, Representation>("myTestNumber1Index",papi);
 		nIndex2 = new NumberIndex<Float, Representation>("myTestNumber2Index",papi);
-		sRIndex = new StringIndex<Representation>("myTestStringIndex", papi);
-		sMIndex = new StringIndex<AbstractModel>("myTestStringModelIndex", papi);
+		sRIndex = new StringIndex<IRepresentation>("myTestStringIndex", papi);
+		sMIndex = new StringIndex<IModel>("myTestStringModelIndex", papi);
 		nIndex1.createIndex();
 		nIndex2.createIndex();
 		sRIndex.createIndex();

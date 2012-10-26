@@ -33,7 +33,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
@@ -93,7 +93,7 @@ public class PersistenceApiOrientDbEmptyContentTest {
 	@Test
 	public void testGetOrCreateDatabase(){
 		papi.openDb();
-		ODatabaseObjectTx db = papi.getInternalDbAccess();
+		OObjectDatabaseTx db = papi.getInternalDbAccess();
 		assertTrue(db.exists());
 		
 		try {
@@ -111,7 +111,7 @@ public class PersistenceApiOrientDbEmptyContentTest {
 	@Test
 	public void testDropDb(){
 		papi.openDb();
-		ODatabaseObjectTx db = papi.getInternalDbAccess();
+		OObjectDatabaseTx db = papi.getInternalDbAccess();
 		papi.dropDb();
 		assertFalse(db.exists());
 	}
@@ -119,7 +119,7 @@ public class PersistenceApiOrientDbEmptyContentTest {
 	@Test
 	public void testCloseDb(){
 		papi.openDb();
-		ODatabaseObjectTx db = papi.getInternalDbAccess();
+		OObjectDatabaseTx db = papi.getInternalDbAccess();
 		papi.closeDb();
 		assertTrue(db.isClosed());
 	}

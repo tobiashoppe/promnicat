@@ -17,42 +17,57 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
-import com.orientechnologies.orient.core.annotation.OId;
+import javax.persistence.Id;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractRevision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.IPojoFactoryOrientDb;
 
 /**
+ * Wrapper for OrientDb specific {@link Revision} class.
  * @author Tobias Hoppe
  *
  */
-public class RevisionOrientDb extends AbstractRevision implements IRevision {
+public class RevisionOrientDb extends Revision implements IRevision {
 	
-	// the id used in the database
-	@OId //used on OrientDb
-	protected String dbId = null;
-	
-	protected RevisionOrientDb() {
+	/**
+	 * the id used by OrientDb, can not use the id defined in {@link AbstractPojo}
+	 * due to OrientDb's injections.
+	 */
+	@Id
+	private String dbId;
+
+	/**
+	 * This constructor is used by Orient DB. For manually instantiation use
+	 * {@link IPojoFactoryOrientDb#createRevision()}.
+	 */
+	public RevisionOrientDb() {
 		super();
 	}
 
+	/**
+	 * Calls only super-constructor
+	 */
 	protected RevisionOrientDb(Integer number) {
 		super(number);
 	}
-
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
+	
+	/**
+	 * Wrapper method to met OrientDb's method name constraints.
+	 * @return {@link Revision#isLatestRevision()}
 	 */
+	public boolean getLatestRevision() {
+		return isLatestRevision();
+	}
+	
 	@Override
 	public String getDbId() {
-		return dbId;
+		return this.dbId;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
-	 */
 	@Override
 	public boolean hasDbId() {
-		return dbId != null;
+		return this.dbId != null;
 	}
 }

@@ -19,7 +19,9 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 
 import java.util.HashSet;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
+import javax.persistence.Id;
+
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
 
 /**
  * This class is used to store the available index names for later retrieval and internal checking.
@@ -28,7 +30,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.Abstract
  * @author Andrina Mascher
  *
  */
-public class IndexManager extends AbstractPojoOrientDb { 
+public class IndexManager extends AbstractPojo {
+	
+	/**
+	 * the id used by OrientDb, can not use the id defined in {@link AbstractPojo}
+	 * due to OrientDb's injections.
+	 */
+	@Id 
+	private String dbId;
 
 	HashSet<String> numberIndices = new HashSet<String>();
 	HashSet<String> stringIndices = new HashSet<String>();
@@ -97,5 +106,15 @@ public class IndexManager extends AbstractPojoOrientDb {
 	 */
 	public boolean contains(String index) {
 		return numberIndices.contains(index) || stringIndices.contains(index);
+	}
+	
+	@Override
+	public String getDbId() {
+		return this.dbId;
+	}
+
+	@Override
+	public boolean hasDbId() {
+		return this.dbId != null;
 	}
 }

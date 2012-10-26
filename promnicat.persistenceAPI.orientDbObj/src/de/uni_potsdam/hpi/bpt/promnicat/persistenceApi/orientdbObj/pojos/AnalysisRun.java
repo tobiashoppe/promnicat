@@ -20,8 +20,10 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.Id;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
 
 /**
  * This class is used to group many instances of {@link LabelStorage}.
@@ -29,7 +31,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.Abstract
  * @author Andrina Mascher
  *
  */
-public class AnalysisRun extends AbstractPojoOrientDb {
+public class AnalysisRun extends AbstractPojo {
+	
+	/**
+	 * the id used by OrientDb, can not use the id defined in {@link AbstractPojo}
+	 * due to OrientDb's injections.
+	 */
+	@Id 
+	private String dbId;
 	
 	private Collection<IPojo> storages = new ArrayList<IPojo>();
 	private String comment = null;
@@ -75,7 +84,7 @@ public class AnalysisRun extends AbstractPojoOrientDb {
 	 * @param storage the storage to add
 	 */
 	public void addStorage(LabelStorage storage) {
-		this.storages.add(storage);
+		this.storages.add((IPojo) storage);
 	}
 
 	/**
@@ -90,5 +99,15 @@ public class AnalysisRun extends AbstractPojoOrientDb {
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
-	}	
+	}
+	
+	@Override
+	public String getDbId() {
+		return this.dbId;
+	}
+
+	@Override
+	public boolean hasDbId() {
+		return this.dbId != null;
+	}
 }

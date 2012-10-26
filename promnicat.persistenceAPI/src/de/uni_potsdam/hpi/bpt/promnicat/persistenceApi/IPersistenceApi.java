@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Observer;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
@@ -33,35 +33,39 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
  *
  */
 public interface IPersistenceApi {
-	
-	
+		
+	/**
+	 * @return the factory to use for instantiation of objects being stored in
+	 * the database.
+	 */
+	public IPojoFactory getPojoFactory();
+
 	/**
 	 * Opens a connection to the database.
 	 * Also creates the database if it does not exist.
 	 */
 	public void openDb();
+	
 	/**
 	 * close connection to the database
 	 */
 	public void closeDb();
+	
 	/**
 	 * drop the entire database
 	 */
 	public void dropDb();
+	
 	/**
 	 * @param aClass a class
 	 * @return the number of instances of this class in the database
 	 */
 	public long countClass(Class<? extends IPojo> aClass);
+	
 	/**
 	 * @param sqlCommand to execute on the database to provide arbitrary access
 	 */
 	public void executeCommand(String sqlCommand);
-	/**
-	 * removes all references to previously loaded or saved objects,
-	 * relies on Garbage Collection to free them.
-	 */
-	public void clearCache();
 	
 	//--------------------------------------------------------------------------------------------
 	//---------------------------------- save and delete -----------------------------------------
@@ -73,16 +77,19 @@ public interface IPersistenceApi {
 	 * @return the database id of the saved pojo
 	 */
 	public String savePojo(IPojo pojo);
+	
 	/**
 	 * @param dbId the database id of the pojo to be deleted
 	 * @return true if object was deleted, false if id was not found
 	 */
 	public boolean deletePojo(String dbId);
+	
 	/**
 	 * @param aClass the class to delete all instances from
 	 * @return true if deletion was successful
 	 */
-	public boolean deletePojos(Class<?> aClass);
+	public boolean deleteAllPojosOfClass(Class<?> aClass);
+	
 	/**
 	 * If one id was not found in the database, no other id is deleted
 	 * and false is returned!
@@ -93,36 +100,39 @@ public interface IPersistenceApi {
 	public boolean deletePojos(Collection<String> dbIds);
 	
 	//--------------------------------------------------------------------------------------------
-	//---------------------------------- load: 1 object -----------------------------------------
+	//----------------------------------- load: 1 object -----------------------------------------
 	//--------------------------------------------------------------------------------------------
 	
 	/**
 	 * Loads lightweight {@link Representation} with connections to its {@link Revision}
-	 * and {@link AbstractModel} without loading sibling our cousin {@link Representation}s.
+	 * and {@link Model} without loading sibling our cousin {@link Representation}s.
 	 * Returns <code>null</code> if id was not found.
 	 * 
 	 * @param dbId of the {@link Representation} to load
 	 * @return a lightweight {@link Representation}.
 	 */
 	public IRepresentation loadRepresentation(String dbId);
+	
 	/**
-	 * Loads a {@link AbstractModel} with all outgoing connections to its {@link Revision}s
+	 * Loads a {@link Model} with all outgoing connections to its {@link Revision}s
 	 * and {@link Representation}s.
 	 * The database id was created by the database at first import.
 	 * 
-	 * @param dbId the database id of the {@link AbstractModel} to load
-	 * @return a {@link AbstractModel} or <code>null</code>
+	 * @param dbId the database id of the {@link Model} to load
+	 * @return a {@link Model} or <code>null</code>
 	 */
 	public IModel loadCompleteModelWithDbId(String dbId);
+	
 	/**
-	 * Loads a {@link AbstractModel} with all outgoing connections to its {@link Revision}s
+	 * Loads a {@link Model} with all outgoing connections to its {@link Revision}s
 	 * and {@link Representation}s.
 	 * The imported id was set by the user during import of the model.
 	 * 
-	 * @param id the imported id of the {@link AbstractModel} to load
-	 * @return a {@link AbstractModel} or <code>null</code>
+	 * @param id the imported id of the {@link Model} to load
+	 * @return a {@link Model} or <code>null</code>
 	 */
 	public IModel loadCompleteModelWithImportedId(String id);
+	
 	/**
 	 * Loads a {@link IPojo} and follows all outgoing connections recursively.
 	 * 
@@ -137,21 +147,23 @@ public interface IPersistenceApi {
 
 	/**
 	 * Loads lightweight {@link Representation}s with connections to their {@link Revision}s
-	 * and {@link AbstractModel}s without loading sibling our cousin {@link Representation}s.
+	 * and {@link Model}s without loading sibling our cousin {@link Representation}s.
 	 * 
-	 * @param config to define selection criteria in {@link Representation}, {@link Revision}, and {@link AbstractModel}
+	 * @param config to define selection criteria in {@link Representation}, {@link Revision}, and {@link Model}
 	 * @return a list of lightweight {@link Representation}s
 	 */
 	public List<IRepresentation> loadRepresentations(DbFilterConfig config);
+	
 	/**
 	 * Loads lightweight {@link Representation}s with connections to their {@link Revision}s
-	 * and {@link AbstractModel}s without loading sibling our cousin {@link Representation}s.
+	 * and {@link Model}s without loading sibling our cousin {@link Representation}s.
 	 * If one id was not found in the database, {@link IllegalArgumentException} is thrown.
 	 * 
 	 * @param dbIds a list of database ids
 	 * @return a list of lightweight {@link Representation}s
 	 */
 	public List<IRepresentation> loadRepresentations(Collection<String> dbIds);
+	
 	/**
 	 * Loads a list of {@link IPojo}s and follows all outgoing connections recursively.
 	 * 
@@ -159,6 +171,7 @@ public interface IPersistenceApi {
 	 * @return objects found
 	 */
 	public List<IPojo> loadPojos(Class<? extends IPojo> aClass);
+	
 	/**
 	 * Loads a list of {@link IPojo}s and follows all outgoing connections recursively.
 	 * If one id was not found in the database, {@link IllegalArgumentException} is thrown.
@@ -166,7 +179,8 @@ public interface IPersistenceApi {
 	 * @param dbIds a list of database ids
 	 * @return a list of {@link IPojo}s
 	 */
-	public List<IPojo> loadPojos(Collection<String> dbIds); 
+	public List<IPojo> loadPojos(Collection<String> dbIds);
+	
 	/**
 	 * 
 	 * @param noSql a NoSQL string to define all criteria to provide arbitrary access
@@ -180,21 +194,23 @@ public interface IPersistenceApi {
 
 	/**
 	 * Loads lightweight {@link Representation}s with connections to their {@link Revision}s
-	 * and {@link AbstractModel}s without loading sibling our cousin {@link Representation}s.
+	 * and {@link Model}s without loading sibling our cousin {@link Representation}s.
 	 * 
-	 * @param config to define selection criteria in {@link Representation}, {@link Revision}, and {@link AbstractModel}
+	 * @param config to define selection criteria in {@link Representation}, {@link Revision}, and {@link Model}
 	 * @param resultHandler which will be handed a lightweight {@link Representation} in each call of <code>update()</code>
 	 */
 	public void loadRepresentationsAsync(DbFilterConfig config, final Observer resultHandler);
+	
 	/**
 	 * Loads lightweight {@link Representation}s with connections to their {@link Revision}s
-	 * and {@link AbstractModel}s without loading sibling our cousin {@link Representation}s.
+	 * and {@link Model}s without loading sibling our cousin {@link Representation}s.
 	 * If one id was not found in the database, {@link IllegalArgumentException} is thrown.
 	 * 
 	 * @param dbIds a list of database ids
 	 * @param resultHandler which will be handed a lightweight {@link Representation} in each call of <code>update()</code>
 	 */
 	public void loadRepresentationsAsync(Collection<String> dbIds, final Observer resultHandler);
+	
 	/**
 	 * Loads a list of {@link IPojo}s and follows all outgoing connections recursively.
 	 * 
@@ -202,6 +218,7 @@ public interface IPersistenceApi {
 	 * @param resultHandler which will be handed a {@link IPojo} in each call of <code>update()</code>
 	 */
 	public void loadPojosAsync(Class<? extends IPojo> aClass, final Observer resultHandler);
+	
 	/**
 	 * Loads a list of {@link IPojo}s and follows all outgoing connections recursively.
 	 * If one id was not found in the database, {@link IllegalArgumentException} is thrown.
@@ -210,15 +227,11 @@ public interface IPersistenceApi {
 	 * @param resultHandler which will be handed a {@link IPojo} in each call of <code>update()</code>
 	 */
 	public void loadPojosAsync(Collection<String> dbIds, final Observer resultHandler);
+	
 	/**
 	 * 
 	 * @param noSql a NoSQL string to define all criteria to provide arbitrary access
 	 * @param resultHandler which will be handed a Object result in each call of <code>update()</code>
 	 */
 	public void loadAsync(String noSql, final Observer resultHandler);
-	
-	/**
-	 * @return the factory class to use for database object's instantiation.
-	 */
-	public IPojoFactory getPojoFactory();
 }

@@ -38,6 +38,9 @@ public class PojoFactoryOrientDb implements IPojoFactoryOrientDb {
 	private PojoFactoryOrientDb(){
 	}
 
+	/**
+	 * @return the shared instance
+	 */
 	public static IPojoFactoryOrientDb init() {
 		return instance;
 	}

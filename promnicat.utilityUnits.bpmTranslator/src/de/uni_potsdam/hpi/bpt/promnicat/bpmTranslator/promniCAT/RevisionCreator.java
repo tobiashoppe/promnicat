@@ -17,7 +17,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.refactoring.StringOperatio
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.translations.Translator;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.tsvProcessing.TsvProcessor;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
@@ -66,7 +66,7 @@ public class RevisionCreator {
 	public void createTranslatedRevision(String dbId) throws DataFormatException {
 		Representation oldSvgRepresentation = papi.loadRepresentation(dbId);
 		checkDataFormat(oldSvgRepresentation);
-		AbstractModel model = oldSvgRepresentation.getModel().loadCompleteModel(papi);
+		Model model = oldSvgRepresentation.getModel().loadCompleteModel(papi);
 		int nrOfRevisions = model.getNrOfRevisions();
     	String line = readSvgFile(oldSvgRepresentation.getOriginalFilePath());
 		ArrayList<String> frameRectangles = new ArrayList<String>();
@@ -81,7 +81,7 @@ public class RevisionCreator {
 		Representation newSvgRepresentation = new Representation(
 				Constants.FORMAT_SVG, oldSvgRepresentation.getNotation(), newSvgFile);
 		Revision newSvgRevision = new Revision(nrOfRevisions+1);
-		newSvgRepresentation.connectRevision(newSvgRevision);
+		newSvgRepresentation.setRevision(newSvgRevision);
 		model.connectLatestRevision(newSvgRevision);
 		papi.savePojo(model);
     }

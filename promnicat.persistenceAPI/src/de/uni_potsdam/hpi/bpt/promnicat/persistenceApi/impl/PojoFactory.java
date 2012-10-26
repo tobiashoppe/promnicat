@@ -42,17 +42,17 @@ public class PojoFactory implements IPojoFactory {
 	}
 
 	@Override
-	public AbstractModel createModel() {
+	public Model createModel() {
 		return new Model();
 	}
 
 	@Override
-	public AbstractModel createModel(String title, String origin) {
+	public Model createModel(String title, String origin) {
 		return new Model(title, origin);
 	}
 
 	@Override
-	public AbstractModel createModel(String title, String origin, String id) {
+	public Model createModel(String title, String origin, String id) {
 		return new Model(title, origin, id);
 	}
 

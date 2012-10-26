@@ -19,11 +19,12 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.AfterClass;
@@ -73,7 +74,7 @@ public class DbFilterConfigUsageTest {
 
 	@Test
 	public void testLoadRepresentationWithConfigMetadata() {
-//		try{
+		try{
 			IRepresentation mockRepresentation = RepresentationFactory.createRepresentationWithMultipleLinks();
 			papi.savePojo(mockRepresentation);
 			papi.openDb();
@@ -106,7 +107,7 @@ public class DbFilterConfigUsageTest {
 			assertEquals(mod.getImportedId(), mockRepresentation.getModel().getImportedId());
 
 			//build metadata and all possible metadata values
-			HashMap<String, String[]> metadata = rev.getMetadata();
+			Map<String, String[]> metadata = rev.getMetadata();
 			Set<String> metadataValues = new HashSet<String>();
 			for(String[] s : metadata.values()) {
 				metadataValues.addAll(Arrays.asList(s));
@@ -118,9 +119,9 @@ public class DbFilterConfigUsageTest {
 			assertTrue(Arrays.asList(metadata.get("k2")).contains("v2"));
 			assertTrue(metadataValues.contains("v1"));
 			assertTrue(metadataValues.contains("vY"));
-//		}catch(Exception e) {
-//			fail(e.getMessage());
-//		}
+		}catch(Exception e) {
+			fail(e.getMessage());
+		}
 	}	
 
 

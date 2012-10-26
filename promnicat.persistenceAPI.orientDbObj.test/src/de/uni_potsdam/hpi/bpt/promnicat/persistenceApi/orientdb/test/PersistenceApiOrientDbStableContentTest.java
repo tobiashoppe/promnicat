@@ -118,7 +118,7 @@ public class PersistenceApiOrientDbStableContentTest {
 	
 	@Test
 	public void testCustomFunction() {
-		OSQLFunction f = OSQLEngine.getInstance().getInlineFunction("containsValueSubstrings");
+		OSQLFunction f = OSQLEngine.getInstance().getFunction("containsValueSubstrings");
 		String syntax = f.getSyntax();
 		assertTrue(syntax.startsWith("containsValueSubstrings"));
 	}

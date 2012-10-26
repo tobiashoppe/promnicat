@@ -17,46 +17,58 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
-import com.orientechnologies.orient.core.annotation.OId;
+import javax.persistence.Id;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.IPojoFactoryOrientDb;
 
 /**
+ * Wrapper for OrientDb specific {@link Model} class.
+ * 
  * @author Tobias Hoppe
- *
+ * 
  */
-public class ModelOrientDb extends AbstractModel implements IModel {
+public class ModelOrientDb extends Model implements IModel {
+	
+	/**
+	 * the id used by OrientDb, can not use the id defined in {@link AbstractPojo}
+	 * due to OrientDb's injections.
+	 */
+	@Id 
+	private String dbId;
 
-	// the id used in the database
-	@OId //used on OrientDb
-	protected String dbId = null;
-
-	protected ModelOrientDb() {
+	/**
+	 * This constructor is used by Orient DB. For manually instantiation use
+	 * {@link IPojoFactoryOrientDb#createModel()}.
+	 */
+	public ModelOrientDb() {
 		super();
 	}
 	
+	/**
+	 * Calls only super-constructor
+	 */
 	protected ModelOrientDb(String title, String origin) {
 		super(title, origin);
 	}
 
+	/**
+	 * Calls only super-constructor
+	 */
 	protected ModelOrientDb(String title, String origin, String id) {
 		super(title, origin, id);
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
-	 */
+
 	@Override
 	public String getDbId() {
 		return dbId;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
-	 */
 	@Override
 	public boolean hasDbId() {
 		return dbId != null;
 	}
+		
 }

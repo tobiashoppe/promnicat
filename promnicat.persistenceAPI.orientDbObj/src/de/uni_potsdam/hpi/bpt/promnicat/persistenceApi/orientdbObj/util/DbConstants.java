@@ -17,7 +17,7 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.util;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.ModelOrientDb;
@@ -27,7 +27,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.Revision
 
 /**
  * This class represents the class names and attribute names in 
- * {@link AbstractModel}, {@link Revision} and {@link Representation} as 
+ * {@link Model}, {@link Revision} and {@link Representation} as 
  * a helper to build NoSQL for {@link PersistenceApiOrientDbObj}.
  * 
  * @author Andrina Mascher

@@ -31,7 +31,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
@@ -81,7 +81,7 @@ public class PersistenceApiOrientDbTest {
 	public void testCloseDB() {	
 		try{
 			papi.openDb();
-			ODatabaseObjectTx db = papi.getInternalDbAccess();
+			OObjectDatabaseTx db = papi.getInternalDbAccess();
 			assertFalse(db.isClosed());
 			papi.closeDb();
 			assertTrue(db.isClosed());
@@ -95,7 +95,7 @@ public class PersistenceApiOrientDbTest {
 		try{
 			papi.dropDb();
 			papi.openDb();
-			ODatabaseObjectTx db = papi.getInternalDbAccess();
+			OObjectDatabaseTx db = papi.getInternalDbAccess();
 			assertTrue(db.exists());
 			//second time
 			papi.dropDb();
@@ -106,7 +106,7 @@ public class PersistenceApiOrientDbTest {
 
 	@Test
 	public void testOpenDb(){
-		ODatabaseObjectTx db = null;
+		OObjectDatabaseTx db = null;
 		try{
 			papi.openDb();
 			db = papi.getInternalDbAccess();
@@ -138,8 +138,8 @@ public class PersistenceApiOrientDbTest {
 			loadedModel.getLatestRevision().connectRepresentation(rep);
 
 			papi.savePojo(loadedModel);
-			assertEquals((int) papi.countClass(ModelOrientDb.class), nrOfModelsInDb); //model is updated not saved as new model
-			assertEquals((int) papi.countClass(RepresentationOrientDb.class), nrOfRepsInDb + 1);
+			assertEquals(nrOfModelsInDb, (int) papi.countClass(ModelOrientDb.class)); //model is updated not saved as new model
+			assertEquals(nrOfRepsInDb + 1, (int) papi.countClass(RepresentationOrientDb.class));
 
 		} catch(Exception e) {
 			fail(e.getMessage());
@@ -151,7 +151,8 @@ public class PersistenceApiOrientDbTest {
 		AnalysisRun a = new AnalysisRun();
 		a.addStorage(new LabelStorage());
 		
-//		assertNull(papi.savePojo(a)); //not able to save TODO
+		//save must fail, because class is unknown for OrientDb
+		assertNull(papi.savePojo(a));
 
 		papi.registerPojoPackage(LabelStorage.class.getPackage().getName());
 		String dbId = papi.savePojo(a);
@@ -169,7 +170,7 @@ public class PersistenceApiOrientDbTest {
 			assertTrue(papi.countClass(RevisionOrientDb.class) > 0);
 
 			//delete class
-			boolean result = papi.deletePojos(RevisionOrientDb.class);
+			boolean result = papi.deleteAllPojosOfClass(RevisionOrientDb.class);
 			assertTrue(result);
 			assertEquals(papi.countClass(ModelOrientDb.class), 2);
 			assertEquals(papi.countClass(RevisionOrientDb.class), 0);
@@ -183,7 +184,7 @@ public class PersistenceApiOrientDbTest {
 
 	@Test
 	public void testDeleteDbId() {	
-//		try{
+		try{
 			//save some
 			assertEquals(papi.countClass(ModelOrientDb.class), 0);
 			modelDbId = papi.savePojo(ModelFactory.createModelWith1Link());
@@ -200,9 +201,9 @@ public class PersistenceApiOrientDbTest {
 
 			//load again
 			assertNull(papi.loadPojo(modelDbId));
-//		} catch(Exception e) {
-//			fail(e.getMessage());
-//		}
+		} catch(Exception e) {
+			fail(e.getMessage());
+		}
 
 		//non-existent id
 		boolean result2 = papi.deletePojo("#80:80");
@@ -318,7 +319,7 @@ public class PersistenceApiOrientDbTest {
 			assertEquals(list.size(), papi.countClass(RepresentationOrientDb.class));
 			IModel model = list.get(0).getModel();
 			assertEquals(model.getRevisions().size(), 1);
-			assertFalse(model.isCompletelyLoaded());
+			assertFalse(model.getCompletelyLoaded());
 			IRevision rev = model.getRevisions().iterator().next();
 			assertEquals(rev.getRepresentations().size(), 1);
 			assertFalse(rev.isCompletelyLoaded());
@@ -329,7 +330,7 @@ public class PersistenceApiOrientDbTest {
 			assertTrue(model.getNrOfRepresentations() > 1);
 			assertEquals(model.getNrOfRevisions(), m.getNrOfRevisions());
 			assertEquals(model.getNrOfRepresentations(), m.getNrOfRepresentations());
-			assertTrue(model.isCompletelyLoaded());
+			assertTrue(model.getCompletelyLoaded());
 		} catch(IllegalArgumentException e) {
 			fail(e.getMessage());
 		}

@@ -20,9 +20,9 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 import com.orientechnologies.orient.core.exception.OStorageException;
 import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
@@ -40,8 +40,8 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.Persiste
 public class StringIndex<V extends IPojo> extends AbstractIndex<String,V>{
 	
 	String cluster = "";
-	ODatabaseObjectTx papiAccess = papi.getInternalDbAccess();
-	ODatabaseObjectTx db;
+	OObjectDatabaseTx papiAccess = papi.getInternalDbAccess();
+	OObjectDatabaseTx db;
 	
 	public StringIndex(String name, PersistenceApiOrientDbObj papi) {
 		super(name, papi);

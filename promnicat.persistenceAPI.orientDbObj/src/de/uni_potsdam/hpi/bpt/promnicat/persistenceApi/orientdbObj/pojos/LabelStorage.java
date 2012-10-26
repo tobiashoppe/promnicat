@@ -17,8 +17,11 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.pojos;
 
+import javax.persistence.Id;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.AbstractPojoOrientDb;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 
 /**
  * This class can be used to store a label of one node and the type of the node together with the {@link Representation}.
@@ -26,7 +29,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.Abstract
  * @author Andrina Mascher
  *
  */
-public class LabelStorage extends AbstractPojoOrientDb {
+public class LabelStorage extends AbstractPojo {
+	
+	/**
+	 * the id used by OrientDb, can not use the id defined in {@link AbstractPojo}
+	 * due to OrientDb's injections.
+	 */
+	@Id 
+	private String dbId;
 	
 	String label = null; // the label within the node
 	String className = null; // the type of the node, e.g. DataNode
@@ -100,4 +110,13 @@ public class LabelStorage extends AbstractPojoOrientDb {
 		this.representation = representation;
 	}
 	
+	@Override
+	public String getDbId() {
+		return this.dbId;
+	}
+
+	@Override
+	public boolean hasDbId() {
+		return this.dbId != null;
+	}
 }

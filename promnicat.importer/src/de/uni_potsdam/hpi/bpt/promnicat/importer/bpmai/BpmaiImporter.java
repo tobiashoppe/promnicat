@@ -40,7 +40,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
@@ -168,7 +168,7 @@ public class BpmaiImporter extends AbstractImporter {
 
 	/**
 	 * Import all process models from the given directory tree into the database.
-	 * Already existing {@link AbstractModel}s and {@link Revision}s are skipped.
+	 * Already existing {@link Model}s and {@link Revision}s are skipped.
 	 * 
 	 * @param rootDir the root directory of the models to import
 	 * 
@@ -249,7 +249,6 @@ public class BpmaiImporter extends AbstractImporter {
 	
 			modelCounter++;
 			if(modelCounter % 100 == 0) {
-				this.persistenceApi.clearCache();
 				logger.info("imported or updated " + modelCounter + " models");
 			}
 		}
@@ -276,7 +275,7 @@ public class BpmaiImporter extends AbstractImporter {
 	}
 
 	/**
-	 * Creates a new {@link AbstractModel} with all it's {@link Revision}s and their corresponding {@link Representation}s.
+	 * Creates a new {@link Model} with all it's {@link Revision}s and their corresponding {@link Representation}s.
 	 * 
 	 * @param bpmAiModel the BPM AI process model to parse
 	 * 

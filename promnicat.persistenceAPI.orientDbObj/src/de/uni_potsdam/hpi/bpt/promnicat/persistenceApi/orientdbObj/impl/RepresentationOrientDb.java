@@ -19,50 +19,63 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
 
 import java.io.File;
 
-import com.orientechnologies.orient.core.annotation.OId;
+import javax.persistence.Id;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.IPojoFactoryOrientDb;
 
 /**
+ * Wrapper for OrientDb specific {@link Representation} class.
  * @author Tobias Hoppe
  *
  */
-public class RepresentationOrientDb extends AbstractRepresentation implements IRepresentation {
+public class RepresentationOrientDb extends Representation implements IRepresentation {
 
-	// the id used in the database
-	@OId //used on OrientDb
-	protected String dbId = null;
+	/**
+	 * the id used by OrientDb, can not use the id defined in {@link AbstractPojo}
+	 * due to OrientDb's injections.
+	 */
+	@Id 
+	private String dbId;
 
-	protected RepresentationOrientDb() {
+	/**
+	 * This constructor is used by Orient DB. For manually instantiation use
+	 * {@link IPojoFactoryOrientDb#createRepresentation()}.
+	 */
+	public RepresentationOrientDb() {
 		super();
 	}
 	
+	/**
+	 * Calls only super-constructor
+	 */
 	protected RepresentationOrientDb(String format, String notation) {
 		super(format, notation);
 	}
 	
+	/**
+	 * Calls only super-constructor
+	 */
 	protected RepresentationOrientDb(String format, String notation, File dataFile) {
 		super(format, notation, dataFile);
 	}
 	
+	/**
+	 * Calls only super-constructor
+	 */
 	protected RepresentationOrientDb(String format, String notation, byte[] dataContent) {
 		super(format, notation, dataContent);
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
-	 */
 	@Override
 	public String getDbId() {
-		return dbId;
+		return this.dbId;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
-	 */
 	@Override
 	public boolean hasDbId() {
-		return dbId != null;
+		return this.dbId != null;
 	}
 }

@@ -19,13 +19,13 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 
 import java.io.File;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
 
 /**
- * A {@link Representation} belongs to {@link Revision}, which again belongs to a {@link AbstractModel}
+ * A {@link Representation} belongs to {@link Revision}, which again belongs to a {@link Model}
  * Each {@link Representation} can have sibling {@link Representation}s in other formats (XML, JSON)
  * or notations (EPC, BPMN). Each {@link Representation} also has dataContent and teh path to the original file.
  * 
@@ -61,10 +61,10 @@ public interface IRepresentation extends IPojo {
 	 * 
 	 * @param newRevision the revision to connect
 	 */
-	public void connectRevision(Revision newRevision);
+	public void setRevision(Revision newRevision);
 	
 	/**
-	 * @return the title of the connected {@link AbstractModel}
+	 * @return the title of the connected {@link Model}
 	 */
 	public String getTitle();
 
@@ -137,4 +137,14 @@ public interface IRepresentation extends IPojo {
 	 * @param notation the modeling notation language to set, e.g. EPC or BPMN
 	 */
 	public void setNotation(String notation);
+
+	/**
+	 * @param revisionId the revisionId to set
+	 */
+	public void setRevisionId(String revisionId);
+
+	/**
+	 * @return the revisionId
+	 */
+	public String getRevisionId();
 }

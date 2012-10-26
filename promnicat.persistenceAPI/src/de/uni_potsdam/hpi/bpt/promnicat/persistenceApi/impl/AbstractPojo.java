@@ -15,33 +15,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl;
-
-import com.orientechnologies.orient.core.annotation.OId;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 
 /**
- * @author Tobias Hoppe
+ * Base implementation for all Pojos providing an identifier
+ * and some common operations on it.
+ * @author Andrina Mascher, Tobias Hoppe
  *
  */
-public class AbstractPojoOrientDb implements IPojo {
+public class AbstractPojo implements IPojo {
 
-	// the id used in the database
-	@OId //used on OrientDb
-	protected String dbId = null;
-	
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#getDbId()
+	/**
+	 * the id used in the database
 	 */
+	protected String dbId;
+	
 	@Override
 	public String getDbId() {
 		return dbId;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo#hasDbId()
-	 */
 	@Override
 	public boolean hasDbId() {
 		return dbId != null;

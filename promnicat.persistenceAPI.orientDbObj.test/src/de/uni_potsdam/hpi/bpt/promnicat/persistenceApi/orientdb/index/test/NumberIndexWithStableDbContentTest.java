@@ -29,8 +29,6 @@ import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.RepresentationFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
@@ -48,8 +46,8 @@ public class NumberIndexWithStableDbContentTest {
 
 	static PersistenceApiOrientDbObj papi;
 	static String mockModelId, mockModelId2, mockRepresentationId, mockRepresentationId2;
-	static NumberIndex<Integer, Representation> indexI;
-	static NumberIndex<Double, AbstractModel> indexD;
+	static NumberIndex<Integer, IRepresentation> indexI;
+	static NumberIndex<Double, IModel> indexD;
 
 	@BeforeClass
 	public static void setUp(){
@@ -66,12 +64,12 @@ public class NumberIndexWithStableDbContentTest {
 			mockRepresentationId2 = papi.savePojo(mockRepresentation2);
 			
 			//IntegerIndex
-			indexI = new NumberIndex<Integer, Representation>("testIntIndex", papi);
+			indexI = new NumberIndex<Integer, IRepresentation>("testIntIndex", papi);
 			indexI.createIndex();
 			indexI.add(4, mockRepresentationId);
 			indexI.add(7, mockRepresentationId2);
 			
-			indexD = new NumberIndex<Double, AbstractModel>("testDoubleIndex", papi);
+			indexD = new NumberIndex<Double, IModel>("testDoubleIndex", papi);
 			indexD.createIndex();
 			indexD.add(0.5674, mockModelId);
 			indexD.add(0.5674, mockModelId2);
@@ -92,9 +90,9 @@ public class NumberIndexWithStableDbContentTest {
 
 	@Test
 	public void testReloadIndex() {	
-		NumberIndex<Integer,Representation> newNIndex = new NumberIndex<Integer,Representation>("testIntIndex", papi);
-		List<IndexElement<Integer,Representation>> list1 = indexI.load();
-		List<IndexElement<Integer,Representation>> list2 = newNIndex.load();
+		NumberIndex<Integer,IRepresentation> newNIndex = new NumberIndex<Integer,IRepresentation>("testIntIndex", papi);
+		List<IndexElement<Integer,IRepresentation>> list1 = indexI.load();
+		List<IndexElement<Integer,IRepresentation>> list2 = newNIndex.load();
 		assertEquals(list1.size(), list2.size());
 	}
 	
@@ -102,7 +100,7 @@ public class NumberIndexWithStableDbContentTest {
 	public void testSelectAll() {	
 		try{
 			indexI.setSelectAll();
-			List<IndexElement<Integer,Representation>> list = indexI.load();
+			List<IndexElement<Integer,IRepresentation>> list = indexI.load();
 			assertEquals(2, list.size());
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -114,11 +112,11 @@ public class NumberIndexWithStableDbContentTest {
 	public void testSelectEquals() {	
 		try{
 			indexI.setSelectEquals(7);
-			List<IndexElement<Integer,Representation>> list = indexI.load();
+			List<IndexElement<Integer,IRepresentation>> list = indexI.load();
 			assertEquals(1, list.size());
 			
 			indexD.setSelectEquals(0.5674);
-			List<IndexElement<Double, AbstractModel>> list2 = indexD.load();
+			List<IndexElement<Double, IModel>> list2 = indexD.load();
 			assertEquals(2, list2.size());
 			
 			//wrong input
@@ -135,7 +133,7 @@ public class NumberIndexWithStableDbContentTest {
 	public void testSelectGreaterOrEqual() {	
 		try{
 			indexI.setSelectGreaterOrEquals(4);
-			List<IndexElement<Integer,Representation>> list = indexI.load();
+			List<IndexElement<Integer,IRepresentation>> list = indexI.load();
 			assertEquals(2, list.size());
 			
 			indexI.setSelectGreaterOrEquals(7);
@@ -143,7 +141,7 @@ public class NumberIndexWithStableDbContentTest {
 			assertEquals(1, list.size());
 			
 			indexD.setSelectGreaterOrEquals(0.5674);
-			List<IndexElement<Double,AbstractModel>> list2 = indexD.load();
+			List<IndexElement<Double,IModel>> list2 = indexD.load();
 			assertEquals(2, list2.size());
 			
 		} catch (IllegalArgumentException e) {
@@ -156,7 +154,7 @@ public class NumberIndexWithStableDbContentTest {
 	public void testSelectSmallerOrEqual() {	
 		try{
 			indexI.setSelectLessOrEquals(4);
-			List<IndexElement<Integer,Representation>> list = indexI.load();
+			List<IndexElement<Integer,IRepresentation>> list = indexI.load();
 			assertEquals(1, list.size());
 			
 			indexI.setSelectLessOrEquals(3);
@@ -172,7 +170,7 @@ public class NumberIndexWithStableDbContentTest {
 	public void testSelectBetween() {	
 		try{
 			indexI.setSelectBetween(3,7);
-			List<IndexElement<Integer,Representation>> list = indexI.load();
+			List<IndexElement<Integer,IRepresentation>> list = indexI.load();
 			assertEquals(2, list.size());
 			
 			indexI.setSelectBetween(7,7);
@@ -195,14 +193,14 @@ public class NumberIndexWithStableDbContentTest {
 			input.add(-3);
 			input.add(4);
 			indexI.setSelectElementsOf(input);
-			List<IndexElement<Integer,Representation>> list = indexI.load();
+			List<IndexElement<Integer,IRepresentation>> list = indexI.load();
 			assertEquals(1, list.size());
 			
 			List<Double> input2 = new ArrayList<Double>();
 			input2.add(4.2);
 			input2.add(0.5674);
 			indexD.setSelectElementsOf(input2);
-			List<IndexElement<Double, AbstractModel>> list2 = indexD.load();
+			List<IndexElement<Double, IModel>> list2 = indexD.load();
 			assertEquals(2, list2.size());
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();

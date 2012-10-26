@@ -30,7 +30,7 @@ import org.junit.Ignore;
 
 import de.uni_potsdam.hpi.bpt.promnicat.importer.IImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 
@@ -74,12 +74,12 @@ public class ImporterTest {
 	
 	/**
 	 * Uses given model importer to import all models into the given database and check,
-	 * if the number of {@link AbstractModel}s, {@link Revision}s and {@link Representation}s is the expected one.
+	 * if the number of {@link Model}s, {@link Revision}s and {@link Representation}s is the expected one.
 	 * 
 	 * @param persistenceApi database to use for import
 	 * @param importer importer to use
 	 * @param filePath path to the model file to use
-	 * @param numberOfModels expected number of {@link AbstractModel}s in database
+	 * @param numberOfModels expected number of {@link Model}s in database
 	 * @param numberOfRevisions expected number of {@link Revision}s in database
 	 * @param numberOfRepresentations expected number of {@link Representation}s in database
 	 */
@@ -101,12 +101,12 @@ public class ImporterTest {
 
 	/**
 	 * Uses given model importer to import all models into the given database and check,
-	 * if the number of {@link AbstractModel}s, {@link Revision}s and {@link Representation}s is the expected one.
+	 * if the number of {@link Model}s, {@link Revision}s and {@link Representation}s is the expected one.
 	 * 
 	 * @param persistenceApi database to use for import
 	 * @param modelImporter importer to use
 	 * @param filePath the path to the model files
-	 * @param numberOfModels expected number of {@link AbstractModel}s in database
+	 * @param numberOfModels expected number of {@link Model}s in database
 	 * @param numberOfRevisions expected number of {@link Revision}s in database
 	 * @param numberOfRepresentations expected number of {@link Representation}s in database
 	 * 
@@ -118,7 +118,7 @@ public class ImporterTest {
 			int numberOfModels, int numberOfRevisions, int numberOfRepresentations) throws IOException, JSONException, JDOMException {
 		modelImporter.importModelsFrom(filePath);
 		persistenceApi.openDb();
-		assertEquals(numberOfModels, persistenceApi.countClass(AbstractModel.class));
+		assertEquals(numberOfModels, persistenceApi.countClass(Model.class));
 		assertEquals(numberOfRevisions, persistenceApi.countClass(Revision.class));
 		assertEquals(numberOfRepresentations, persistenceApi.countClass(Representation.class));
 	}

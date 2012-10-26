@@ -25,9 +25,10 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
  * Arrays, Lists, Sets and Maps can be stored if their content is not too complex.
  * For details see: http://code.google.com/p/orient/wiki/Types
  * <br>
- * Make sure to add an empty constructor! Getter and Setter for all fields are not needed.
+ * Make sure to add an empty constructor as well as getter and setter for all fields
+ * in the format get<Field Name Capitalized> and set<Field Name Capitalized>.
  * 
- * @author Andrina Mascher
+ * @author Andrina Mascher, Tobias Hoppe
  *
  */
 public interface IPojo {
@@ -37,9 +38,10 @@ public interface IPojo {
 	 * if null save it in database first to create one
 	 */
 	public String getDbId();
-
+	
 	/**
 	 * @return true if the database id is set, if not store it in database first to create one
 	 */
 	public boolean hasDbId();
+
 }

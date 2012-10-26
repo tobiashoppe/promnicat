@@ -23,13 +23,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.db.object.ODatabaseObjectTx;
 import com.orientechnologies.orient.core.record.ORecordAbstract;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.impl.PersistenceApiOrientDbObj;
@@ -41,7 +41,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 public class DirectDbCaller {
 
 	PersistenceApiOrientDbObj papi;
-	static ODatabaseObjectTx db;
+	static OObjectDatabaseTx db;
 	
 	DirectDbCaller() {
 		try {
@@ -176,15 +176,15 @@ public class DirectDbCaller {
 	 * @param papi
 	 */
 	private void countClasses() {
-		System.out.println("Models: " + papi.countClass(AbstractModel.class));
+		System.out.println("Models: " + papi.countClass(Model.class));
 		System.out.println("Revisions: " + papi.countClass(Revision.class));
 		System.out.println("Representations: " + papi.countClass(Representation.class));
 	}
 	
 	private void inspectAllInClass(String name) {
 		for (Object o : db.browseClass(name)) {
-			if(o instanceof AbstractModel) {
-				System.out.println(((AbstractModel) o).toStringExtended());
+			if(o instanceof Model) {
+				System.out.println(((Model) o).toStringExtended());
 			} else if(o instanceof AnalysisRun) {
 				System.out.println(((AnalysisRun) o).toStringExtended());
 			} else {

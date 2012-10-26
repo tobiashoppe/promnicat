@@ -21,15 +21,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojoFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.PojoFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
@@ -42,12 +42,12 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
  */
 public class PojosTest {
 
-	static AbstractModel mockModel = null;
+	static Model mockModel = null;
 	private static final PojoFactory fac = (PojoFactory) IPojoFactory.INSTANCE;
 
 	@Test
 	public void testSetLatestRevision() {
-		AbstractModel model = fac.createModel();
+		Model model = fac.createModel();
 		Revision rev1 = fac.createRevision();
 		Revision rev2 = fac.createRevision();
 		model.connectRevision(rev1);
@@ -77,14 +77,14 @@ public class PojosTest {
 	
 	@Test
 	public void testConnectRevisions() {
-		AbstractModel model = fac.createModel();
+		Model model = fac.createModel();
 		Revision rev1 = fac.createRevision();
 		model.connectRevision(rev1);
 		assertTrue(model.getNrOfRevisions() == 1);
 		
 		//set empty revisions list
-		List<IRevision> list = new ArrayList<IRevision>();
-		model.setAndConnectRevisions(list);
+		Set<IRevision> list = new HashSet<IRevision>();
+		model.setRevisions(list);
 		assertTrue(model.getNrOfRevisions() == 0);
 		assertNull(model.getLatestRevision());
 		
@@ -97,14 +97,14 @@ public class PojosTest {
 		Revision rev3 = fac.createRevision();
 		list.add(rev2);
 		list.add(rev3);
-		model.setAndConnectRevisions(list);
+		model.setRevisions(list);
 		assertTrue(model.getNrOfRevisions() == 2); //not 3
 		assertNull(model.getLatestRevision()); //still no latestRevision set		
 	}
 	
 	@Test
 	public void testConnectNull() {
-		AbstractModel model = fac.createModel();
+		Model model = fac.createModel();
 		Revision rev = fac.createRevision();
 		Representation rep = fac.createRepresentation();
 		
@@ -114,11 +114,11 @@ public class PojosTest {
 		assertTrue(rev.getNrOfRepresentations() == 1);
 
 		//set empty revisions list
-		model.setAndConnectRevisions(null);
+		model.setRevisions(null);
 		assertTrue(model.getNrOfRevisions() == 0);
 		
 		//set empty reps list
-		rev.setAndConnectRepresentations(null);
+		rev.setRepresentations(null);
 		assertTrue(rev.getNrOfRepresentations() == 0);
 	}
 
@@ -141,7 +141,7 @@ public class PojosTest {
 		rev.connectRepresentation(rep);
 		assert(rev.getNrOfRepresentations() == 1);
 		//set empty connections
-		rev.setAndConnectRepresentations(new ArrayList<IRepresentation>());
+		rev.setRepresentations(new HashSet<IRepresentation>());
 		assert(rev.getNrOfRepresentations() == 0);
 	}
 	
@@ -149,8 +149,8 @@ public class PojosTest {
 	public void testConnectionDeferment() {
 		Representation rep = fac.createRepresentation();
 		Revision rev = fac.createRevision();
-		AbstractModel mod = fac.createModel();
-		rep.connectRevision(rev);
+		Model mod = fac.createModel();
+		rep.setRevision(rev);
 		rev.connectModel(mod);
 		assert(rep.getRevision() == rev);
 		assert(rev.getModel() == mod);
