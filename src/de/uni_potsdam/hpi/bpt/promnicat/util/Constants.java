@@ -179,7 +179,8 @@ public interface Constants {
 		BPMAI(Constants.ORIGIN_BPMAI),
 		NPB(Constants.ORIGIN_NPB),
 		SAP_RM(Constants.ORIGIN_SAP_RM),
-		AOK(Constants.ORIGIN_AOK);
+		AOK(Constants.ORIGIN_AOK),
+		IBM(Constants.ORIGIN_IBM);
 		
 		private String description;
 

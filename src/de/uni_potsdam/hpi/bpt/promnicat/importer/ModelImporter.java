@@ -27,6 +27,7 @@ import org.json.JSONException;
 
 import de.uni_potsdam.hpi.bpt.promnicat.importer.aok.AokModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.bpmai.BpmaiImporter;
+import de.uni_potsdam.hpi.bpt.promnicat.importer.ibm.IBMModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.npb.NPBImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.sap_rm.SapReferenceModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
@@ -89,6 +90,11 @@ public class ModelImporter {
 			// SAP_RM model?
 			if (args[1].toUpperCase().equals(Constants.ORIGIN_SAP_RM)) {
 				startImport(new SapReferenceModelImporter(persistenceApi), args);
+				return;
+			}
+			// IBM model?
+			if (args[1].toUpperCase().equals(Constants.ORIGIN_IBM)) {
+				startImport(new IBMModelImporter(persistenceApi), args);
 				return;
 			}
 			// AOK model?
@@ -157,7 +163,7 @@ public class ModelImporter {
 		String infoMsg = "Usage: <Path to config> <Collection> <URI> [URI2 [URI3] ...]]\n" +
 			"<Path to config> is a path in file system to the configuration file being used for import(relative to PromniCAT folder)." +
 			"If an empty string is provided, the default file 'PromniCAT/configuration.properties' is used.\n" +
-			"<Collection> can be 'BPMAI', 'NPB', 'SAP_RM' or 'AOK'\n" +
+			"<Collection> can be 'BPMAI', 'NPB', 'SAP_RM', 'IBM' or 'AOK'\n" +
 			"<URI> is a path in file system to a directory containing the models that should be imported.";
 		logger.info(infoMsg);
 	}

@@ -57,7 +57,7 @@ public class ConnectedEPC implements IAnalysisModule {
 		long startTime = System.currentTimeMillis();
 		
 		//build up chain
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataJbpt.class);
+		IUnitChainBuilder chainBuilder = new UnitChainBuilder("configuration.properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataJbpt.class);
 		buildUpUnitChain(chainBuilder);
 		
 		logger.info(chainBuilder.getChain().toString());
@@ -83,8 +83,8 @@ public class ConnectedEPC implements IAnalysisModule {
 	private void buildUpUnitChain(IUnitChainBuilder chainBuilder) throws IllegalTypeException {
 		//build db query
 		DbFilterConfig dbFilter = new DbFilterConfig();
-		dbFilter.addOrigin(Constants.ORIGINS.BPMAI);
-		dbFilter.addNotation(Constants.NOTATIONS.EPC);
+		dbFilter.addOrigin(Constants.ORIGINS.IBM);
+		dbFilter.addNotation(Constants.NOTATIONS.BPMN2_0);
 		dbFilter.addFormat(Constants.FORMATS.BPMAI_JSON);
 		chainBuilder.addDbFilterConfig(dbFilter);
 		//transform to jbpt and check for connectedness
