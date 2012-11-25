@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 
+import java.util.UUID;
+
 /**
  * This class ensures the mapping of the databaseId.
  * Field types that can automatically be mapped to the database are:
@@ -37,7 +39,7 @@ public interface IPojo {
 	 * @return the database identifier used by the database, 
 	 * if null save it in database first to create one
 	 */
-	public String getDbId();
+	public UUID getDbId();
 	
 	/**
 	 * @return true if the database id is set, if not store it in database first to create one

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.persistenceAPI.db4o
+Bundle-SymbolicName: promnicat.persistenceAPI.db4o
+Bundle-Version: 0.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: promnicat.util;bundle-version="0.0.0",
+ promnicat.persistenceAPI;bundle-version="0.0.0"
+Export-Package: promnicat.persistenceAPI.db4o.config

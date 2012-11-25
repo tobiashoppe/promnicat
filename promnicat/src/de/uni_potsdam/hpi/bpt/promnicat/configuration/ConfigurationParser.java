@@ -19,6 +19,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.configuration;
 
 import java.io.IOException;
 
+import promnicat.persistenceAPI.db4o.config.ConfigurationParserDb4o;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.AbstractConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.IConfigurationParser;
@@ -48,6 +50,9 @@ public class ConfigurationParser extends AbstractConfigurationParser implements 
 		//delegate to the specified database type
 		if ("OrientDb".equals(dataBaseType)) {
 			return ConfigurationParserOrientDb.getDataBaseInstance(configPath);
+		}
+		if ("Db4o".equals(dataBaseType)) {
+			return ConfigurationParserDb4o.getDataBaseInstance(configPath);
 		}
 		//add further database types here if needed.
 		throw new IllegalArgumentException("The provided configuration file is invalid.");

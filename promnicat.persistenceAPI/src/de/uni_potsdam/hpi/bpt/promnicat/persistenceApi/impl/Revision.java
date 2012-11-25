@@ -41,8 +41,6 @@ public class Revision extends AbstractPojo implements IRevision {
 	protected Integer revisionNumber = null;
 	//connected model
 	protected transient IModel model = null;
-	//set during save by db
-	protected String modelId;
 	//connected representations
 	protected Set<IRepresentation> representations = new HashSet<IRepresentation>();
 	//metadata with key/values, values are separated by MD_SPLIT to store only key/value in database
@@ -239,15 +237,5 @@ public class Revision extends AbstractPojo implements IRevision {
 
 	public void setModel(IModel modelToSet) {
 		model = modelToSet;
-	}
-
-	@Override
-	public String getModelId() {
-		return modelId;
-	}
-
-	@Override
-	public void setModelId(String id) {
-		modelId = id;
 	}
 }

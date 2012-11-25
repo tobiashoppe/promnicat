@@ -55,6 +55,11 @@ public interface Constants {
 	public static final String DB_PASSWD = "db.password";
 	
 	/**
+	 * Configuration file property for database port.
+	 */
+	public static final String DB_PORT = "db.port";
+
+	/**
 	 * Name used for Business Process Model Academic Initiative.
 	 */
 	public static final String ORIGIN_BPMAI = "BPMAI";

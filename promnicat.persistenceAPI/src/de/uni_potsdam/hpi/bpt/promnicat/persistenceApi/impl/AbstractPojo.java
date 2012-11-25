@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
 
+import java.util.UUID;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
 
 /**
@@ -25,15 +27,15 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
  * @author Andrina Mascher, Tobias Hoppe
  *
  */
-public class AbstractPojo implements IPojo {
+public abstract class AbstractPojo implements IPojo {
 
 	/**
 	 * the id used in the database
 	 */
-	protected String dbId;
+	protected UUID dbId = UUID.randomUUID();
 	
 	@Override
-	public String getDbId() {
+	public UUID getDbId() {
 		return dbId;
 	}
 

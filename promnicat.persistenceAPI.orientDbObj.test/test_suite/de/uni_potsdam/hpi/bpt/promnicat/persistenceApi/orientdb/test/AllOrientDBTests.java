@@ -12,10 +12,9 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.index.test.Strin
 
 @RunWith(Suite.class)
 @SuiteClasses({ DbFilterConfigUsageTest.class, PersistenceApiOrientDbEmptyContentTest.class,
-		PersistenceApiOrientDbStableContentTest.class, PersistenceApiOrientDbTest.class,
-		IntersectionIndexTest.class, NumberIndexWithNoDbContentTest.class,
-		NumberIndexWithStableDbContentTest.class, StringIndexWithNoDbContentTest.class,
-		StringIndexWithStableDbContentTest.class})
+		PersistenceApiOrientDbStableContentTest.class, PersistenceApiOrientDbTest.class, IntersectionIndexTest.class,
+		NumberIndexWithNoDbContentTest.class, NumberIndexWithStableDbContentTest.class,
+		StringIndexWithNoDbContentTest.class, StringIndexWithStableDbContentTest.class })
 public class AllOrientDBTests {
 
 }

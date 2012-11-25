@@ -20,6 +20,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 import java.util.Collection;
 import java.util.List;
 import java.util.Observer;
+import java.util.UUID;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
@@ -121,7 +122,7 @@ public interface IPersistenceApi {
 	 * @param dbId the database id of the {@link Model} to load
 	 * @return a {@link Model} or <code>null</code>
 	 */
-	public IModel loadCompleteModelWithDbId(String dbId);
+	public IModel loadCompleteModelWithDbId(UUID dbId);
 	
 	/**
 	 * Loads a {@link Model} with all outgoing connections to its {@link Revision}s

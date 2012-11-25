@@ -143,14 +143,4 @@ public interface IRevision extends IPojo {
 	 * @param value
 	 */
 	public void addMetadataAtKey(String key, String value);
-
-	/**
-	 * @return the modelId
-	 */
-	public String getModelId();
-
-	/**
-	 * @param modelId the modelId to set
-	 */
-	public void setModelId(String modelId);
 }

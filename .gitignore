@@ -5,3 +5,4 @@ bin
 /promnicat/resources/orientDB
 /promnicat/resources/orientDBsmall
 /promnicat/resources/NPB_complete
+*.prefs
