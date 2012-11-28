@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package promnicat.persistenceAPI.db4o;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,10 +25,10 @@ import java.util.Observer;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import promnicat.persistenceAPI.db4o.config.ConfigurationParserDb4o;
-
+import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectServer;
+import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.config.UuidSupport;
 import com.db4o.cs.Db4oClientServer;
 import com.db4o.cs.config.ClientConfiguration;
@@ -36,6 +36,7 @@ import com.db4o.cs.config.ServerConfiguration;
 import com.db4o.foundation.NotImplementedException;
 import com.db4o.query.Predicate;
 
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.config.ConfigurationParserDb4o;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
@@ -75,6 +76,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	private int port = 0;
 	private String user = "";
 	private String password = "";
+	private boolean isLocal = false;
 
 	/**
 	 * Database access object
@@ -97,11 +99,28 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 		return null;
 	}
 
+	/**
+	 * Create database with remote access
+	 * @param dbPath
+	 * @param port
+	 * @param user
+	 * @param password
+	 */
 	public PersistenceApiDb4o(String dbPath, int port, String user, String password) {
 		this.dbPath = dbPath;
 		this.user = user;
 		this.port = port;
 		this.password = password;
+		openDb();
+	}
+
+	/**
+	 * Create database with local file access
+	 * @param dbPath
+	 */
+	public PersistenceApiDb4o(String dbPath) {
+		this.isLocal = true;
+		this.dbPath = dbPath;
 		openDb();
 	}
 
@@ -127,30 +146,44 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 				throw new IllegalStateException();
 			}
 			logger.info("Created database at " + dbPath);
-		}		
+		}
 		
-		ClientConfiguration clientConfig = Db4oClientServer.newClientConfiguration();
-		clientConfig.common().objectClass(IModel.class).cascadeOnUpdate(true);
-		clientConfig.common().objectClass(IRevision.class).cascadeOnUpdate(true);
-		clientConfig.common().objectClass(IRepresentation.class).cascadeOnUpdate(true);
-		clientConfig.common().objectClass(IModel.class).generateUUIDs(true);
-		clientConfig.common().objectClass(IRevision.class).generateUUIDs(true);
-		clientConfig.common().objectClass(IRepresentation.class).generateUUIDs(true);
-		clientConfig.common().add(new UuidSupport());
+		if(isLocal) {
+			EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+			config.common().objectClass(IModel.class).cascadeOnUpdate(true);
+			config.common().objectClass(IRevision.class).cascadeOnUpdate(true);
+			config.common().objectClass(IRepresentation.class).cascadeOnUpdate(true);
+			config.common().objectClass(IModel.class).generateUUIDs(true);
+			config.common().objectClass(IRevision.class).generateUUIDs(true);
+			config.common().objectClass(IRepresentation.class).generateUUIDs(true);
+			config.common().add(new UuidSupport());
+			this.db = Db4oEmbedded.openFile(config, dbPath);
+			logger.info("Opened database at " + dbPath);
+		} else {
+			//remote access
+			ClientConfiguration clientConfig = Db4oClientServer.newClientConfiguration();
+			clientConfig.common().objectClass(IModel.class).cascadeOnUpdate(true);
+			clientConfig.common().objectClass(IRevision.class).cascadeOnUpdate(true);
+			clientConfig.common().objectClass(IRepresentation.class).cascadeOnUpdate(true);
+			clientConfig.common().objectClass(IModel.class).generateUUIDs(true);
+			clientConfig.common().objectClass(IRevision.class).generateUUIDs(true);
+			clientConfig.common().objectClass(IRepresentation.class).generateUUIDs(true);
+			clientConfig.common().add(new UuidSupport());
 
-		ServerConfiguration serverConfig = Db4oClientServer.newServerConfiguration();
-		serverConfig.common().objectClass(IModel.class).cascadeOnUpdate(true);
-		serverConfig.common().objectClass(IRevision.class).cascadeOnUpdate(true);
-		serverConfig.common().objectClass(IRepresentation.class).cascadeOnUpdate(true);
-		serverConfig.common().objectClass(IModel.class).generateUUIDs(true);
-		serverConfig.common().objectClass(IRevision.class).generateUUIDs(true);
-		serverConfig.common().objectClass(IRepresentation.class).generateUUIDs(true);
-		serverConfig.common().add(new UuidSupport());
-		this.server = Db4oClientServer.openServer(serverConfig, dbPath, port);
-		this.server.grantAccess(user, password);
-		
-		this.db = Db4oClientServer.openClient(clientConfig, "localhost", port, user, password);
-		logger.info("Opened database at " + dbPath);
+			ServerConfiguration serverConfig = Db4oClientServer.newServerConfiguration();
+			serverConfig.common().objectClass(IModel.class).cascadeOnUpdate(true);
+			serverConfig.common().objectClass(IRevision.class).cascadeOnUpdate(true);
+			serverConfig.common().objectClass(IRepresentation.class).cascadeOnUpdate(true);
+			serverConfig.common().objectClass(IModel.class).generateUUIDs(true);
+			serverConfig.common().objectClass(IRevision.class).generateUUIDs(true);
+			serverConfig.common().objectClass(IRepresentation.class).generateUUIDs(true);
+			serverConfig.common().add(new UuidSupport());
+			this.server = Db4oClientServer.openServer(serverConfig, dbPath, port);
+			this.server.grantAccess(user, password);
+			
+			this.db = Db4oClientServer.openClient(clientConfig, "localhost", port, user, password);
+			logger.info("Opened database at " + dbPath);
+		}		
 	}
 
 	/**
@@ -201,10 +234,10 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	 * Tries to save a pojo into the database
 	 */
 	@Override
-	public String savePojo(IPojo pojo) {
+	public UUID savePojo(IPojo pojo) {
 		db.store(pojo);
 		db.commit();
-		return pojo.getDbId().toString();
+		return pojo.getDbId();
 	}
 
 	@Override
@@ -217,12 +250,12 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	}
 
 	@Override
-	public boolean deletePojos(final Collection<String> dbIds) {
+	public boolean deletePojos(final Collection<UUID> dbIds) {
 		List<AbstractPojo> results = db.query(new Predicate<AbstractPojo>() {
 			private static final long serialVersionUID = -4285232048786172918L;
 
 			public boolean match(AbstractPojo pojo) {
-				return dbIds.contains(pojo.getDbId().toString());
+				return dbIds.contains(pojo.getDbId());
 			}
 		});
 		if(results.size() != dbIds.size()) {
@@ -237,12 +270,12 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	}
 
 	@Override
-	public boolean deletePojo(final String dbId) {
+	public boolean deletePojo(final UUID dbId) {
 		List<AbstractPojo> results = db.query(new Predicate<AbstractPojo>() {
 			private static final long serialVersionUID = -4869265179279035775L;
 
 			public boolean match(AbstractPojo pojo) {
-				return pojo.getDbId().equals(UUID.fromString(dbId));
+				return pojo.getDbId().equals(dbId);
 			}
 		});
 		if(results.size() != 1) {
@@ -259,12 +292,12 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	//--------------------------------------------------------------------------------------------
 
 	@Override
-	public IPojo loadPojo(final String dbId) {
+	public IPojo loadPojo(final UUID dbId) {
 		List<IPojo> results = db.query(new Predicate<IPojo>() {
 			private static final long serialVersionUID = -4987906785905273681L;
 
 			public boolean match(IPojo pojo) {
-				return pojo.getDbId().equals(UUID.fromString(dbId));
+				return pojo.getDbId().equals(dbId);
 			}
 		});
 		if(results.size() != 1) {
@@ -312,7 +345,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	}
 
 	@Override
-	public IRepresentation loadRepresentation(String dbId) {
+	public IRepresentation loadRepresentation(UUID dbId) {
 		IPojo result = loadPojo(dbId);
 		if(!(result instanceof IRepresentation)) {
 			logger.info("Trying to load representation, but dbId " + dbId + " is not of this type");
@@ -341,12 +374,12 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	}
 
 	@Override
-	public List<IPojo> loadPojos(final Collection<String> dbIds) {
+	public List<IPojo> loadPojos(final Collection<UUID> dbIds) {
 		List<IPojo> result = db.query(new Predicate<IPojo>() {
 			private static final long serialVersionUID = 5002820956133637616L;
 
 			public boolean match(IPojo model) {
-				return dbIds.contains(model.getDbId().toString());
+				return dbIds.contains(model.getDbId());
 			}
 		});
 		if(result.size() != dbIds.size()) {
@@ -362,12 +395,12 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	}
 
 	@Override
-	public List<IRepresentation> loadRepresentations(final Collection<String> dbIds) {
+	public List<IRepresentation> loadRepresentations(final Collection<UUID> dbIds) {
 		List<IRepresentation> result = db.query(new Predicate<IRepresentation>() {
 			private static final long serialVersionUID = 6835077782211068285L;
 
 			public boolean match(IRepresentation rep) {
-				return dbIds.contains(rep.getDbId().toString());
+				return dbIds.contains(rep.getDbId());
 			}
 		});
 		if(result.size() != dbIds.size()) {
@@ -388,7 +421,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	}
 
 	@Override
-	public void loadPojosAsync(final Collection<String> dbIds, final Observer resultHandler) {
+	public void loadPojosAsync(final Collection<UUID> dbIds, final Observer resultHandler) {
 		if(dbIds.isEmpty()) {
 			return;
 		}
@@ -396,7 +429,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 			private static final long serialVersionUID = -3798336388318991603L;
 
 			public boolean match(IPojo pojo) {
-				boolean match = dbIds.contains(pojo.getDbId().toString());
+				boolean match = dbIds.contains(pojo.getDbId());
 				if(match) {
 					resultHandler.update(null, pojo);
 				}
@@ -426,7 +459,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	}
 
 	@Override
-	public void loadRepresentationsAsync(final Collection<String> dbIds, final Observer resultHandler) {
+	public void loadRepresentationsAsync(final Collection<UUID> dbIds, final Observer resultHandler) {
 		if(dbIds.isEmpty()) {
 			return;
 		}
@@ -434,7 +467,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 			private static final long serialVersionUID = 2009262944294441037L;
 
 			public boolean match(IRepresentation rep) {
-				boolean match = dbIds.contains(rep.getDbId().toString());
+				boolean match = dbIds.contains(rep.getDbId());
 				if(match) {
 					resultHandler.update(null, rep);
 				}

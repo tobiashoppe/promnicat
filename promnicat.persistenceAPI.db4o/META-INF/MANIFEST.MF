@@ -6,4 +6,6 @@ Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: promnicat.util;bundle-version="0.0.0",
  promnicat.persistenceAPI;bundle-version="0.0.0"
-Export-Package: promnicat.persistenceAPI.db4o.config
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o,
+ de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.config,
+ de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.pojos

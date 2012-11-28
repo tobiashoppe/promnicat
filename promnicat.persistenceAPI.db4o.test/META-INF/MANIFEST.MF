@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.persistenceAPI.db4o.test
+Bundle-SymbolicName: promnicat.persistenceAPI.db4o.test;singleton:=true
+Bundle-Version: 0.0.0
+Fragment-Host: promnicat.persistenceAPI.db4o;bundle-version="0.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit4;bundle-version="4.8.1"

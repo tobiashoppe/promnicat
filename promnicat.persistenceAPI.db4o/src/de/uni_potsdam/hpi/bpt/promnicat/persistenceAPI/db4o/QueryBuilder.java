@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package promnicat.persistenceAPI.db4o;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o;
 
 import java.util.Collection;
 import java.util.Map;
@@ -80,6 +80,7 @@ public class QueryBuilder {
 				}
 				//add rep's revision constraints
 				IRevision rev = rep.getRevision();
+				//FIXME handle not existent revs and reps
 				if(!config.getTitles().isEmpty()) {
 					boolean titleMatch = false;
 					String revTitle = rev.getTitle();

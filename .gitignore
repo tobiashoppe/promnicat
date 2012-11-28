@@ -6,3 +6,5 @@ bin
 /promnicat/resources/orientDBsmall
 /promnicat/resources/NPB_complete
 *.prefs
+*.db4o
+*.db4o

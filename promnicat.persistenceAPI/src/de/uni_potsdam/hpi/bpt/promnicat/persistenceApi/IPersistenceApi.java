@@ -77,13 +77,13 @@ public interface IPersistenceApi {
 	 * @param pojo
 	 * @return the database id of the saved pojo
 	 */
-	public String savePojo(IPojo pojo);
+	public UUID savePojo(IPojo pojo);
 	
 	/**
 	 * @param dbId the database id of the pojo to be deleted
 	 * @return true if object was deleted, false if id was not found
 	 */
-	public boolean deletePojo(String dbId);
+	public boolean deletePojo(UUID dbId);
 	
 	/**
 	 * @param aClass the class to delete all instances from
@@ -98,7 +98,7 @@ public interface IPersistenceApi {
 	 * @param dbIds a collection of database ids to be deleted
 	 * @return true if all ids were deleted
 	 */
-	public boolean deletePojos(Collection<String> dbIds);
+	public boolean deletePojos(Collection<UUID> dbIds);
 	
 	//--------------------------------------------------------------------------------------------
 	//----------------------------------- load: 1 object -----------------------------------------
@@ -112,7 +112,7 @@ public interface IPersistenceApi {
 	 * @param dbId of the {@link Representation} to load
 	 * @return a lightweight {@link Representation}.
 	 */
-	public IRepresentation loadRepresentation(String dbId);
+	public IRepresentation loadRepresentation(UUID dbId);
 	
 	/**
 	 * Loads a {@link Model} with all outgoing connections to its {@link Revision}s
@@ -140,7 +140,7 @@ public interface IPersistenceApi {
 	 * @param dbId the database id of the {@link IPojo} to load
 	 * @return a {@link IPojo} or <code>null</code>
 	 */
-	public IPojo loadPojo(String dbId);
+	public IPojo loadPojo(UUID dbId);
 	
 	//--------------------------------------------------------------------------------------------
 	//---------------------------------- load: n objects -----------------------------------------
@@ -163,7 +163,7 @@ public interface IPersistenceApi {
 	 * @param dbIds a list of database ids
 	 * @return a list of lightweight {@link Representation}s
 	 */
-	public List<IRepresentation> loadRepresentations(Collection<String> dbIds);
+	public List<IRepresentation> loadRepresentations(Collection<UUID> dbIds);
 	
 	/**
 	 * Loads a list of {@link IPojo}s and follows all outgoing connections recursively.
@@ -180,7 +180,7 @@ public interface IPersistenceApi {
 	 * @param dbIds a list of database ids
 	 * @return a list of {@link IPojo}s
 	 */
-	public List<IPojo> loadPojos(Collection<String> dbIds);
+	public List<IPojo> loadPojos(Collection<UUID> dbIds);
 	
 	/**
 	 * 
@@ -210,7 +210,7 @@ public interface IPersistenceApi {
 	 * @param dbIds a list of database ids
 	 * @param resultHandler which will be handed a lightweight {@link Representation} in each call of <code>update()</code>
 	 */
-	public void loadRepresentationsAsync(Collection<String> dbIds, final Observer resultHandler);
+	public void loadRepresentationsAsync(Collection<UUID> dbIds, final Observer resultHandler);
 	
 	/**
 	 * Loads a list of {@link IPojo}s and follows all outgoing connections recursively.
@@ -227,7 +227,7 @@ public interface IPersistenceApi {
 	 * @param dbIds a list of database ids
 	 * @param resultHandler which will be handed a {@link IPojo} in each call of <code>update()</code>
 	 */
-	public void loadPojosAsync(Collection<String> dbIds, final Observer resultHandler);
+	public void loadPojosAsync(Collection<UUID> dbIds, final Observer resultHandler);
 	
 	/**
 	 * 

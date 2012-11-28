@@ -35,6 +35,11 @@ public interface Constants {
 	public static final String TEST_DB_CONFIG_PATH = "../promnicat/testConfig.properties";
 	
 	/**
+	 * Default path for test database
+	 */
+	public static final String TEST_DB_PATH = "../promnicat/resources/test_db.db4o";
+	
+	/**
 	 * Configuration file property for maximum number of threads used in {@link UnitChain} execution.
 	 */
 	public static final String MAX_NUMBER_OF_THREADS = "maxNumberOfThreads";

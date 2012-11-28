@@ -15,12 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package promnicat.persistenceAPI.db4o.config;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.config;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import promnicat.persistenceAPI.db4o.PersistenceApiDb4o;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.PersistenceApiDb4o;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.AbstractConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
@@ -70,6 +70,9 @@ public class ConfigurationParserDb4o extends AbstractConfigurationParser {
 		String dbUser = properties.getProperty(Constants.DB_USER);
 		String dbPassword = properties.getProperty(Constants.DB_PASSWD);
 		String dbPort = properties.getProperty(Constants.DB_PORT);
+		if (dbPath != null && dbUser == null && dbPassword == null && dbPort == null) {
+			return new PersistenceApiDb4o(dbPath);
+		}
 		if (dbPath == null || dbUser == null || dbPassword == null || dbPort == null) {
 			throw new IllegalArgumentException("The provided configuration file is invalid.");
 		}		

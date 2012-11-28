@@ -15,11 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package promnicat.persistenceAPI.db4o.util;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.util;
 
 import com.db4o.query.Query;
 
-import promnicat.persistenceAPI.db4o.PersistenceApiDb4o;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.PersistenceApiDb4o;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;

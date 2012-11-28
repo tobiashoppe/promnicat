@@ -19,8 +19,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.configuration;
 
 import java.io.IOException;
 
-import promnicat.persistenceAPI.db4o.config.ConfigurationParserDb4o;
-
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.config.ConfigurationParserDb4o;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.AbstractConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.IConfigurationParser;
