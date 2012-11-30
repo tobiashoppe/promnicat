@@ -45,7 +45,7 @@ public class Representation extends AbstractPojo implements IRepresentation {
 	// the actual data content used for analysis
 	protected byte[] dataContent = new byte[0];
 	// the connected revision
-	protected transient IRevision revision = null;
+	protected IRevision revision = null;
 	// is set during save of representation
 	protected String revisionId;
 	//name of the used language in the model, e.g. English or German

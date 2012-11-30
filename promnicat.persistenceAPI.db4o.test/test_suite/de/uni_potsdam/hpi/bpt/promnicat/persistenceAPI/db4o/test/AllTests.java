@@ -6,9 +6,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({DbFilterConfigUsageTest.class,
-	PersistenceApiOrientDbEmptyContentTest.class,
-	PersistenceApiOrientDbStableContentTest.class,
-	PersistenceApiOrientDbTest.class})
+	PersistenceApiDb4oEmptyContentTest.class,
+	PersistenceApidb4oStableContentTest.class,
+	PersistenceApiDb4oTest.class})
 public class AllTests {
 
 }

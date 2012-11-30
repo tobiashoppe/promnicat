@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +32,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.PersistenceApiDb4o;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.test.util.ModelFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.test.util.RepresentationFactory;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
@@ -48,14 +47,11 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 public class DbFilterConfigUsageTest {
 
 	private static PersistenceApiDb4o papi;
-	private static IModel mockModel;
 
 	@BeforeClass
 	public static void setUp(){
 		try{
 			papi = PersistenceApiDb4o.getInstance(Constants.TEST_DB_CONFIG_PATH);
-			mockModel = ModelFactory.createModelWith1Link();
-			papi.savePojo(mockModel);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -76,8 +72,6 @@ public class DbFilterConfigUsageTest {
 		try{
 			IRepresentation mockRepresentation = RepresentationFactory.createRepresentationWithMultipleLinks();
 			papi.savePojo(mockRepresentation);
-			papi.openDb();
-
 
 			DbFilterConfig config = new DbFilterConfig();
 			config.addFormat(mockRepresentation.getFormat());
@@ -93,7 +87,7 @@ public class DbFilterConfigUsageTest {
 			config.addMetadataValue("v1");
 
 			List<IRepresentation> results = papi.loadRepresentations(config);
-			assertTrue(results.size() >= 1);
+			assertEquals(1, results.size());
 
 			IRepresentation rep = results.get(0);
 			IRevision rev = rep.getRevision();
@@ -106,16 +100,16 @@ public class DbFilterConfigUsageTest {
 			assertEquals(mod.getImportedId(), mockRepresentation.getModel().getImportedId());
 
 			//build metadata and all possible metadata values
-			Map<String, String[]> metadata = rev.getMetadata();
+			Map<String, Collection<String>> metadata = rev.getMetadata();
 			Set<String> metadataValues = new HashSet<String>();
-			for(String[] s : metadata.values()) {
-				metadataValues.addAll(Arrays.asList(s));
+			for(Collection<String> s : metadata.values()) {
+				metadataValues.addAll(s);
 			}
 			assertTrue(metadata.containsKey("k2"));
 			assertTrue(metadata.containsKey("kX"));
-			assertTrue(Arrays.asList(metadata.get("k1")).contains("v1"));
-			assertTrue(Arrays.asList(metadata.get("k1")).contains("v1a"));
-			assertTrue(Arrays.asList(metadata.get("k2")).contains("v2"));
+			assertTrue(metadata.get("k1").contains("v1"));
+			assertTrue(metadata.get("k1").contains("v1a"));
+			assertTrue(metadata.get("k2").contains("v2"));
 			assertTrue(metadataValues.contains("v1"));
 			assertTrue(metadataValues.contains("vY"));
 		}catch(Exception e) {

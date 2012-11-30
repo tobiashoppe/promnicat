@@ -65,7 +65,7 @@ public class RepresentationFactory {
 		IRepresentation representation2 = fac.createRepresentation(Constants.FORMAT_SVG, 
 				Constants.NOTATION_BPMN2_0);
 		IRepresentation representation3 = fac.createRepresentation(Constants.FORMAT_BPMAI_JSON, 
-				Constants.NOTATION_BPMN2_0);
+				Constants.NOTATION_BPMN1_1);
 		revision.connectRepresentation(representation);
 		revision.connectRepresentation(representation2);
 		revision.connectRepresentation(representation3);

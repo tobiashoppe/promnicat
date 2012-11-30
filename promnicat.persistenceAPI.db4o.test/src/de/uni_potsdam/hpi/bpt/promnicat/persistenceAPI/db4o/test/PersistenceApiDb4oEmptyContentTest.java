@@ -19,7 +19,6 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -34,25 +33,24 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.PersistenceApiDb4o;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPojo;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
  * Test class for {@link PersistanceApiOrientDB}.
- * @author Andrina Mascher
- *
+ * 
+ * @author Andrina Mascher, Tobias Hoppe
+ * 
  */
-public class PersistenceApiOrientDbEmptyContentTest {
-	
-	private static final UUID dbId2 = UUID.fromString("#80:4");
-	private static final UUID dbId1 = UUID.fromString("#15:0");
+public class PersistenceApiDb4oEmptyContentTest {
+
+	private static final UUID dbId2 = UUID.randomUUID();
+	private static final UUID dbId1 = UUID.randomUUID();
 	private static PersistenceApiDb4o papi;
-	
-	@BeforeClass 
+
+	@BeforeClass
 	public static void setUpClass() {
 		try {
 			papi = PersistenceApiDb4o.getInstance(Constants.TEST_DB_CONFIG_PATH);
@@ -61,29 +59,28 @@ public class PersistenceApiOrientDbEmptyContentTest {
 			fail();
 		}
 	}
-	
-	
+
 	@Before
-	public void setUp(){
-		try{
+	public void setUp() {
+		try {
 			papi.openDb();
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
-		
+
 	}
-	
+
 	@After
-	public void tearDown(){
-		try{
+	public void tearDown() {
+		try {
 			papi.dropDb();
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
 	}
-	
+
 	@Test
 	public void testCountType() {
 		List<IPojo> result = papi.loadPojos(Model.class);
@@ -95,37 +92,44 @@ public class PersistenceApiOrientDbEmptyContentTest {
 		ArrayList<UUID> ids = new ArrayList<UUID>();
 		ids.add(dbId1);
 		ids.add(dbId2);
-		try{
-			//delete list
-			boolean b = papi.deletePojos(ids);
-			assertFalse(b);
-		} catch(Exception e) {
-			assert(true);
-		}
+		// try to delete list containing one id that is not present
+		boolean b = papi.deletePojos(ids);
+		assertFalse(b);
 	}
-	
+
 	@Test
 	public void testLoadPojoWithId() {
-		//not existent
-		IPojo p1 = papi.loadPojo(dbId1);
-		assertNull(p1);
+		try {
+			// not existent
+			papi.loadPojo(dbId1);
+			fail();
+		} catch (Exception e) {
+			assert (true);
+		}
 	}
-	
+
 	@Test
 	public void testLoadRepresentationWithId() {
-		//not existent
-		IRepresentation p1 = papi.loadRepresentation(dbId1);
-		assertNull(p1);
+		try {
+			// not existent
+			papi.loadRepresentation(dbId1);
+			fail();
+		} catch (Exception e) {
+			assert (true);
+		}
 	}
-	
+
 	@Test
 	public void testLoadCompleteModelWithDbId() {
-		//not existent
-		IModel m = papi.loadCompleteModelWithDbId(dbId1);
-		assertNull(m);
+		try {
+			// not existent
+			papi.loadCompleteModelWithDbId(dbId1);
+			fail();
+		} catch (Exception e) {
+			assert (true);
+		}
 	}
-	
-	
+
 	@Test
 	public void testLoadPojosWithSql() {
 		String nosql = "";
@@ -133,23 +137,23 @@ public class PersistenceApiOrientDbEmptyContentTest {
 			papi.load(nosql);
 			fail("Not implemented exception expected!");
 		} catch (Exception e) {
-			assert(true);
+			assert (true);
 		}
 	}
-	
+
 	@Test
 	public void testLoadRepresentationsAsyncWithConfig() {
 		DbFilterConfig conf = new DbFilterConfig();
-		conf.addNotation(Constants.NOTATION_BPMN2_0.toString()) ;
+		conf.addNotation(Constants.NOTATION_BPMN2_0);
 		DbListener dbl = new DbListener();
-		try{
+		try {
 			papi.loadRepresentationsAsync(conf, dbl);
 			assertEquals(0, dbl.getResult());
-		} catch(Exception e) {
+		} catch (Exception e) {
 			fail(e.getMessage());
 		}
 	}
-	
+
 	class DbListener implements Observer {
 		public int cnt;
 
@@ -158,7 +162,7 @@ public class PersistenceApiOrientDbEmptyContentTest {
 			System.out.println("updated with " + arg);
 			cnt++;
 		}
-			
+
 		public int getResult() {
 			return cnt;
 		}

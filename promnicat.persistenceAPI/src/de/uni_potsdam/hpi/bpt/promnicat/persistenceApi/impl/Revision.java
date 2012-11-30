@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -40,13 +42,11 @@ public class Revision extends AbstractPojo implements IRevision {
 	//the revision number
 	protected Integer revisionNumber = null;
 	//connected model
-	protected transient IModel model = null;
+	protected IModel model = null;
 	//connected representations
 	protected Set<IRepresentation> representations = new HashSet<IRepresentation>();
-	//metadata with key/values, values are separated by MD_SPLIT to store only key/value in database
-	protected Map<String, String> metadata = new HashMap<String, String>();
-	//separator used to distinguish metadata values for 1 key
-	protected final String MD_SPLIT = "\t####\t";
+	//metadata with key/values
+	protected Map<String, Collection<String>> metadata = new HashMap<String, Collection<String>>();
 	//is true if this is the latest revision of the model
 	protected boolean latestRevision = false;
 	//name of the authors
@@ -161,61 +161,32 @@ public class Revision extends AbstractPojo implements IRevision {
 	}
 
 	@Override
-	public HashMap<String, String[]> getMetadata() {
-		HashMap<String,String[]> newMd = new HashMap<String,String[]>();
-		for(Entry<String,String> e : metadata.entrySet()) {
-			newMd.put(e.getKey(), convertMetadataValueToArray(e.getValue()));
-		}
-		return newMd;
+	public Map<String, Collection<String>> getMetadata() {
+		return metadata;
 	}
 
 	@Override
-	public String[] getMetadataAtKey(String key) {
-		return convertMetadataValueToArray(metadata.get(key));
-	}
-	
-	/**
-	 * Convert a string into an array by splitting
-	 * @param value
-	 * @return the converted array
-	 */
-	private String[] convertMetadataValueToArray(String value) {
-		return value.split(MD_SPLIT);
-	}
-	
-	/**
-	 * Convert a string array into a string. 
-	 * This is a work around because key/value pairs can be stored in OrientDb, but key/values not.
-	 * @param array
-	 * @return the converted string
-	 */
-	private String convertMetadataValueFromArray(String[] array) {
-		String s = "";
-		for(int i=0; i<array.length; i++) {
-			s += array[i] + MD_SPLIT;	
-		}
-		//don't start with MD_SPLIT
-		s = s.substring(0, s.length() - MD_SPLIT.length());
-		return s;
+	public Collection<String> getMetadataAtKey(String key) {
+		return metadata.get(key);
 	}
 	
 	@Override
-	public void setMetadata(Map<String, String[]> metadata) {
+	public void setMetadata(Map<String, Collection<String>> metadata) {
 		if(metadata == null) {
 			this.metadata.clear();
 			return;
 		}
-		for(Entry<String,String[]> e : metadata.entrySet()) {
+		for(Entry<String, Collection<String>> e : metadata.entrySet()) {
 			setMetadataAtKey(e.getKey(), e.getValue());
 		}
 	}
 	
 	@Override
-	public void setMetadataAtKey(String key, String[] values) {
+	public void setMetadataAtKey(String key, Collection<String> values) {
 		if(key == null || key.isEmpty()) {
 			return;
 		}
-		this.metadata.put(key, convertMetadataValueFromArray(values));
+		this.metadata.put(key, values);
 	}
 	
 	@Override
@@ -223,15 +194,13 @@ public class Revision extends AbstractPojo implements IRevision {
 		if(key == null || key.isEmpty()) {
 			return;
 		} else if (!metadata.containsKey(key)) {
-			metadata.put(key, value);
+			Collection<String> values = new ArrayList<String>();
+			values.add(value);
+			metadata.put(key, values);
 		} else {
-			String s = metadata.get(key);
-			if(s.length() == 0) {
-				s = value;
-			} else {
-				s += MD_SPLIT + value;
-			}
-			metadata.put(key, s);
+			Collection<String> newValue = metadata.get(key);
+			newValue.add(value);
+			metadata.put(key, newValue);
 		}
 	}
 

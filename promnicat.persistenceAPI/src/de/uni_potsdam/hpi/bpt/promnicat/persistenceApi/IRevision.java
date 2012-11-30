@@ -17,6 +17,7 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
@@ -113,20 +114,20 @@ public interface IRevision extends IPojo {
 	/**
 	 * @return all key/values pairs in metadata
 	 */
-	public Map<String, String[]> getMetadata();
+	public Map<String, Collection<String>> getMetadata();
 
 	/**
 	 * @param key
 	 * @return the key/values pair at the key
 	 */
-	public String[] getMetadataAtKey(String key);
+	public Collection<String> getMetadataAtKey(String key);
 	
 	/**
 	 * Set all metadata key/values pairs. 
 	 * All previous entries are removed.
 	 * @param metadata
 	 */
-	public void setMetadata(Map<String, String[]> metadata);
+	public void setMetadata(Map<String, Collection<String>> metadata);
 	
 	/**
 	 * Set a key/values pair in the metadata.
@@ -134,7 +135,7 @@ public interface IRevision extends IPojo {
 	 * @param key
 	 * @param values
 	 */
-	public void setMetadataAtKey(String key, String[] values);
+	public void setMetadataAtKey(String key, Collection<String> values);
 	
 	/**
 	 * Adds the value to the associated key in the metadata 

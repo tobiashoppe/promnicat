@@ -150,9 +150,9 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 		
 		if(isLocal) {
 			EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
-			config.common().objectClass(IModel.class).cascadeOnUpdate(true);
-			config.common().objectClass(IRevision.class).cascadeOnUpdate(true);
-			config.common().objectClass(IRepresentation.class).cascadeOnUpdate(true);
+			config.common().objectClass(Model.class).cascadeOnUpdate(true);
+			config.common().objectClass(Revision.class).cascadeOnUpdate(true);
+			config.common().objectClass(Representation.class).cascadeOnUpdate(true);
 			config.common().objectClass(IModel.class).generateUUIDs(true);
 			config.common().objectClass(IRevision.class).generateUUIDs(true);
 			config.common().objectClass(IRepresentation.class).generateUUIDs(true);
@@ -199,15 +199,19 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	@Override
 	public void closeDb() {
 		db.close();
-		server.close();
+		if(!isLocal) {
+			server.close();
+			server = null;
+		}
 		db = null;
-		server = null;
+		logger.info("Database closed at " + dbPath);
 	}
 
 	@Override
 	public void dropDb() {
 		File dbFile = new File(dbPath);
 		if (dbFile.exists()) {
+			closeDb();
 			dbFile.delete();
 			logger.info("Database dropped at " + dbPath);
 		} else {
@@ -284,7 +288,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 		}
 		db.delete(results.iterator().next());
 		db.commit();
-		return false;
+		return true;
 	}
 
 	//--------------------------------------------------------------------------------------------
@@ -301,8 +305,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 			}
 		});
 		if(results.size() != 1) {
-			logger.info("Could not retrieve "+ dbId + " from database.");
-			return null;
+			throw new IllegalArgumentException("Could not retrieve "+ dbId + " from database.");
 		}
 		return results.iterator().next();
 	}
@@ -318,8 +321,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 			}
 		});
 		if(results.size() != 1) {
-			logger.info("Could not retrieve a model with "+ dbId + " from database.");
-			return null;
+			throw new IllegalArgumentException("Could not retrieve a model with "+ dbId + " from database.");
 		}
 		return results.iterator().next();
 	}
@@ -348,8 +350,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 	public IRepresentation loadRepresentation(UUID dbId) {
 		IPojo result = loadPojo(dbId);
 		if(!(result instanceof IRepresentation)) {
-			logger.info("Trying to load representation, but dbId " + dbId + " is not of this type");
-			return null;
+			throw new IllegalArgumentException("Trying to load representation, but dbId " + dbId + " is not of this type");
 		}
 		return (IRepresentation) result;
 	}
@@ -383,8 +384,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 			}
 		});
 		if(result.size() != dbIds.size()) {
-			logger.severe("could not retrieve all of " + dbIds + " because at least one was not found.");
-			return null;
+			throw new IllegalArgumentException("could not retrieve all of " + dbIds + " because at least one was not found.");
 		}
 		return result;		
 	}
@@ -404,8 +404,7 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 			}
 		});
 		if(result.size() != dbIds.size()) {
-			logger.info("Could not retrieve all of "+ dbIds + " from database.");
-			return null;
+			throw new IllegalArgumentException("Could not retrieve all of "+ dbIds + " from database.");
 		}
 		return result;
 	}

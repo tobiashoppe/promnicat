@@ -20,6 +20,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
@@ -43,21 +44,21 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 public class DbFilterConfig {
 
 	// filter for models
-	private ArrayList<String> origins = new ArrayList<String>();
-	private ArrayList<String> titles = new ArrayList<String>();
-	private ArrayList<String> importedIds = new ArrayList<String>();
+	private Collection<String> origins = new ArrayList<String>();
+	private Collection<String> titles = new ArrayList<String>();
+	private Collection<String> importedIds = new ArrayList<String>();
 	private boolean latestRevisionsOnly = false;
 
 	// filer for revisions
-	private ArrayList<String> languages = new ArrayList<String>();
-	private ArrayList<String> authors = new ArrayList<String>();
-	private ArrayList<String> metadataKeys = new ArrayList<String>();
-	private ArrayList<String> metadataValues = new ArrayList<String>();
-	private HashMap<String, String> metadataEntries = new HashMap<String, String>();
+	private Collection<String> languages = new ArrayList<String>();
+	private Collection<String> authors = new ArrayList<String>();
+	private Collection<String> metadataKeys = new ArrayList<String>();
+	private Collection<String> metadataValues = new ArrayList<String>();
+	private Map<String, String> metadataEntries = new HashMap<String, String>();
 	
 	// filter for representations
-	private ArrayList<String> notations = new ArrayList<String>();
-	private ArrayList<String> formats = new ArrayList<String>();
+	private Collection<String> notations = new ArrayList<String>();
+	private Collection<String> formats = new ArrayList<String>();
 
 	@SuppressWarnings("unused")
 	private final static Logger logger = Logger.getLogger(DbFilterConfig.class.getName());
@@ -115,7 +116,7 @@ public class DbFilterConfig {
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
 	 */
-	public ArrayList<String> getNotations() {
+	public Collection<String> getNotations() {
 		return notations;
 	}
 
@@ -171,7 +172,7 @@ public class DbFilterConfig {
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
 	 */
-	public ArrayList<String> getFormats() {
+	public Collection<String> getFormats() {
 		return formats;
 	}
 
@@ -220,7 +221,7 @@ public class DbFilterConfig {
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
 	 */
-	public ArrayList<String> getImportedIds() {
+	public Collection<String> getImportedIds() {
 		return importedIds;
 	}
 
@@ -276,7 +277,7 @@ public class DbFilterConfig {
 	 *		search is case-sensitive,
 	 * 		substrings search is not allowed
 	 */
-	public ArrayList<String> getOrigins() {
+	public Collection<String> getOrigins() {
 		return origins;
 	}
 
@@ -321,7 +322,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed
 	 */
-	public ArrayList<String> getTitles() {
+	public Collection<String> getTitles() {
 		return titles;
 	}
 
@@ -386,7 +387,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed
 	 */
-	public ArrayList<String> getLanguages() {
+	public Collection<String> getLanguages() {
 		return languages;
 	}
 
@@ -431,7 +432,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed
 	 */
-	public ArrayList<String> getAuthors() {
+	public Collection<String> getAuthors() {
 		return authors;
 	}
 
@@ -476,7 +477,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search is not allowed
 	 */
-	public ArrayList<String> getMetadataKeys() {
+	public Collection<String> getMetadataKeys() {
 		return metadataKeys;
 	}
 
@@ -521,7 +522,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search is allowed
 	 */
-	public ArrayList<String> getMetadataValues() {
+	public Collection<String> getMetadataValues() {
 		return metadataValues;
 	}
 
@@ -532,7 +533,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search on values is allowed, but keys need to be exact
 	 */
-	public void addMetadataEntries(HashMap<String, String> metadataEntries) {
+	public void addMetadataEntries(Map<String, String> metadataEntries) {
 		this.metadataEntries = metadataEntries;
 	}
 
@@ -556,7 +557,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search on values is allowed, but keys need to be exact
 	 */
-	public void setMetadataEntries(HashMap<String, String> metadataEntries) {
+	public void setMetadataEntries(Map<String, String> metadataEntries) {
 		this.metadataEntries = metadataEntries;
 	}
 
@@ -567,7 +568,7 @@ public class DbFilterConfig {
 	 *		search is case-insensitive,
 	 * 		substrings search on values is allowed, but keys need to be exact
 	 */
-	public HashMap<String, String> getMetadataEntries() {
+	public Map<String, String> getMetadataEntries() {
 		return metadataEntries;
 	}
 	

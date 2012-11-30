@@ -21,6 +21,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -164,12 +166,12 @@ public class PojosTest {
 		assert(r.getMetadata().size() == 0);
 		r.addMetadataAtKey("k1", "v1");
 		r.addMetadataAtKey("k1", "v2");
-		String[] readValues = r.getMetadataAtKey("k1");
+		Collection<String> readValues = r.getMetadataAtKey("k1");
 		assert(r.getMetadata().size() == 1);
-		assert(readValues.length == 2);
+		assert(readValues.size() == 2);
 		
 		//no new key
-		String[] values = {"",""};
+		Collection<String> values = Arrays.asList("","");
 		r.setMetadataAtKey("", values);
 		assert(r.getMetadata().size() == 1);
 		assert(r.getMetadata().containsKey("") == false);

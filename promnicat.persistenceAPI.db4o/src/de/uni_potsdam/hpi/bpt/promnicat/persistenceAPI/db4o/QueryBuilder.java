@@ -17,6 +17,7 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -78,71 +79,69 @@ public class QueryBuilder {
 				if(!config.getLanguages().isEmpty()) {
 					match = match && config.getLanguages().contains(rep.getLanguage());
 				}
-				//add rep's revision constraints
 				IRevision rev = rep.getRevision();
-				//FIXME handle not existent revs and reps
-				if(!config.getTitles().isEmpty()) {
-					boolean titleMatch = false;
-					String revTitle = rev.getTitle();
-					for(String title : config.getTitles()) {
-						if(title.contains(revTitle)) {
-							titleMatch = true;
-							break;
-						}
-					}					
-					match = match && titleMatch;
-				}
-				if(!config.getMetadataEntries().isEmpty()) {
-					boolean metaDataMatch = false;
-					Map<String, String[]> metaData = rev.getMetadata();
-					metaDataLoop : for(Entry<String, String> entry : config.getMetadataEntries().entrySet()) {
-						if(metaData.containsKey(entry.getKey())) {
-							String[] element = metaData.get(entry.getKey());
-							for(String value : element) {
-								if(value.contains(entry.getValue())) {
+				//add rep's revision constraints
+				if(rev != null) {
+					if(!config.getTitles().isEmpty()) {
+						boolean titleMatch = false;
+						String revTitle = rev.getTitle();
+						for(String title : config.getTitles()) {
+							if(title.contains(revTitle)) {
+								titleMatch = true;
+								break;
+							}
+						}					
+						match = match && titleMatch;
+					}
+					if(!config.getMetadataEntries().isEmpty()) {
+						boolean metaDataMatch = false;
+						Map<String, Collection<String>> metaData = rev.getMetadata();
+						for(Entry<String, String> entry : config.getMetadataEntries().entrySet()) {
+							if(metaData.containsKey(entry.getKey())) {
+								Collection<String> element = metaData.get(entry.getKey());
+								if(metaData.get(entry.getKey()).containsAll(element)) {
 									metaDataMatch = true;
-									break metaDataLoop;
+									break;
 								}
 							}
-						}
-					}					
-					match = match && metaDataMatch;
-				}
-				if(!config.getMetadataKeys().isEmpty()) {
-					boolean metaDataMatch = false;
-					Set<String> metaDataKeys = rev.getMetadata().keySet();
-					for(String key : config.getMetadataKeys()) {
-						if(metaDataKeys.contains(key)) {
+						}	
+						match = match && metaDataMatch;
+					}
+					if(!config.getMetadataKeys().isEmpty()) {
+						boolean metaDataMatch = false;
+						Set<String> metaDataKeys = rev.getMetadata().keySet();
+						if(metaDataKeys.containsAll(config.getMetadataKeys())) {
 							metaDataMatch = true;
-							break;
 						}
-					}					
-					match = match && metaDataMatch;
-				}
-				if(!config.getMetadataValues().isEmpty()) {
-					boolean metaDataMatch = false;
-					Collection<String[]> metaDataValues = rev.getMetadata().values();
-					for(String value : config.getMetadataValues()) {
-						if(metaDataValues.contains(value)) {
+						match = match && metaDataMatch;
+					}
+					if(!config.getMetadataValues().isEmpty()) {
+						boolean metaDataMatch = false;
+						Collection<String> allValues = new ArrayList<String>();
+						for(Collection<String> entry : rev.getMetadata().values()) {
+							allValues.addAll(entry);
+						}					
+						if(allValues.containsAll(config.getMetadataValues())) {
 							metaDataMatch = true;
-							break;
 						}
-					}					
-					match = match && metaDataMatch;
+						match = match && metaDataMatch;
+					}
+					if(!config.getAuthors().isEmpty()) {
+						match = match && config.getAuthors().contains(rev.getAuthor());
+					}
 				}
-				if(!config.getAuthors().isEmpty()) {
-					match = match && config.getAuthors().contains(rev.getAuthor());
-				}
-				//add rep's model constraints
 				IModel model = rep.getModel();
-				if(!config.getImportedIds().isEmpty()) {
-					match = match && config.getImportedIds().contains(model.getImportedId());
-				}				
-				if(!config.getOrigins().isEmpty()) {
-					match = match && config.getOrigins().contains(model.getOrigin());
-				}
-				if(!config.getTitles().isEmpty()) {
-					match = match && config.getTitles().contains(model.getTitle());
+				//add rep's model constraints
+				if(model != null) {
+					if(!config.getImportedIds().isEmpty()) {
+						match = match && config.getImportedIds().contains(model.getImportedId());
+					}				
+					if(!config.getOrigins().isEmpty()) {
+						match = match && config.getOrigins().contains(model.getOrigin());
+					}
+					if(!config.getTitles().isEmpty()) {
+						match = match && config.getTitles().contains(model.getTitle());
+					}					
 				}
 				if(match) {
 					if(resultHandler != null) {

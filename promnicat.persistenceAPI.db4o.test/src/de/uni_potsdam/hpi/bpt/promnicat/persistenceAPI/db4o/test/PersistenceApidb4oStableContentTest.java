@@ -29,7 +29,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
 
-import org.junit.AfterClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -52,36 +53,45 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
  * @author Andrina Mascher
  *
  */
-public class PersistenceApiOrientDbStableContentTest {
+public class PersistenceApidb4oStableContentTest {
 
-	private static final UUID AbcId = UUID.fromString("abc");
-	private static final UUID NonExistentClusterId = UUID.fromString("#80:80");
+	private static final UUID nonExistentId = UUID.randomUUID();
 	private static PersistenceApiDb4o papi;
-	private static UUID mockModelId, mockRepresentationId, wrongRepId, wrongModId;
+	private static UUID mockModelId, mockRepresentationId, wrongRepId;
+	private static IModel mockModel;
 	private static final String EXPECTED_ERROR_MSG = "Not implemented exception expected!";
-
+	
 	@BeforeClass
-	public static void setUp(){
+	public static void setUpClass(){
 		try{
 			papi = PersistenceApiDb4o.getInstance(Constants.TEST_DB_CONFIG_PATH);
-			//don't store mockObjects as class fields for caching reasons
-			IModel mockModel = ModelFactory.createModelWithMultipleLinks();
-			IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
-			mockModelId = papi.savePojo(mockModel);
-			mockRepresentationId = papi.savePojo(mockRepresentation);
-			
-			//assure same cluster, but non existent id
-			wrongModId = UUID.randomUUID();
-			wrongRepId = UUID.randomUUID();
 		} catch (Exception e){			
 			e.printStackTrace();
 			fail("Unexpected error occurred: " + e.getMessage());
 		}
 
 	}
+	
+	@Before
+	public void setUp(){
+		try{
+			papi.openDb();
+			//don't store mockObjects as class fields for caching reasons
+			mockModel = ModelFactory.createModelWithMultipleLinks();
+			IRepresentation mockRepresentation = RepresentationFactory.createLightweightRepresentation();
+			mockModelId = papi.savePojo(mockModel);
+			mockRepresentationId = papi.savePojo(mockRepresentation);
+			
+			//assure same cluster, but non existent id
+			wrongRepId = UUID.randomUUID();
+		} catch (Exception e){			
+			e.printStackTrace();
+			fail("Unexpected error occurred: " + e.getMessage());
+		}
+	}
 
-	@AfterClass
-	public static void tearDown(){
+	@After
+	public void tearDown(){
 		try{
 			papi.dropDb();
 		} catch (Exception e){
@@ -119,30 +129,30 @@ public class PersistenceApiOrientDbStableContentTest {
 		IModel model = ModelFactory.createModelWith1Link();
 		papi.savePojo(model);
 		List<IPojo> result = papi.loadPojos(Model.class);
-		assertEquals(1, result.size());
-		assertEquals(model, result.get(0));
+		assertEquals(3, result.size());
+		assertEquals(model, result.get(2));
 	}
 
 	//----------------------------- load 1 object ----------------------------
 	@Test
 	public void testLoadPojoWithId() {
-		try{
-			IRepresentation mockRep = RepresentationFactory.createLightweightRepresentation();
-			IPojo loadedPojo = papi.loadPojo(mockRepresentationId);
-			IRepresentation loadedRep = (IRepresentation) loadedPojo;
-			assertEquals(loadedRep.getDbId(), mockRepresentationId);
-			assertEquals(loadedRep.getTitle(), mockRep.getTitle());
+		IRepresentation mockRep = RepresentationFactory.createLightweightRepresentation();
+		IPojo loadedPojo = papi.loadPojo(mockRepresentationId);
+		IRepresentation loadedRep = (IRepresentation) loadedPojo;
+		assertEquals(loadedRep.getDbId(), mockRepresentationId);
+		assertEquals(loadedRep.getTitle(), mockRep.getTitle());
 
+		try{
 			//not existent
-			IPojo pojo = papi.loadPojo(UUID.fromString("#-1:-1"));
-			assertNull(pojo);
-		} catch(Exception e) {
-			fail(e.getMessage());
+			papi.loadPojo(UUID.randomUUID());
+			fail();
+		} catch(IllegalArgumentException e) {
+			assert(true);
 		}	
 
 		//wrong input
 		try{
-			papi.loadPojo(AbcId);
+			papi.loadPojo(nonExistentId);
 			fail();
 		} catch (IllegalArgumentException e) {
 			assert(true);
@@ -152,7 +162,6 @@ public class PersistenceApiOrientDbStableContentTest {
 	@Test
 	public void testLoadCompleteModelWithDbId() {
 		try{
-			IModel mockModel = ModelFactory.createModelWithMultipleLinks();
 			IModel loadedModel = papi.loadCompleteModelWithDbId(mockModelId);
 			assertNotNull(loadedModel);
 			assertEquals(loadedModel.getDbId(), mockModelId);
@@ -162,21 +171,14 @@ public class PersistenceApiOrientDbStableContentTest {
 			assertEquals(loadedModel.getLatestRevision().getRevisionNumber(), mockModel.getLatestRevision().getRevisionNumber());
 			assertEquals(loadedModel.getNrOfRevisions(), mockModel.getNrOfRevisions());
 			assertEquals(loadedModel.getNrOfRepresentations(), mockModel.getNrOfRepresentations());
-			loadedModel.toStringExtended();
-			
-			//not existent
-			IModel m1 = papi.loadCompleteModelWithDbId(NonExistentClusterId);
-			assertNull(m1);
-			IModel m2 = papi.loadCompleteModelWithDbId(wrongModId);
-			assertNull(m2);
-	
+			assertEquals(mockModel, loadedModel);
 		} catch(Exception e) {
 			fail(e.getMessage());
 		}	
 		
 		//wrong input
 		try{
-			papi.loadCompleteModelWithDbId(AbcId);
+			papi.loadCompleteModelWithDbId(nonExistentId);
 			fail();
 		} catch (IllegalArgumentException e) {
 			assert(true);
@@ -212,20 +214,13 @@ public class PersistenceApiOrientDbStableContentTest {
 			assertEquals(loadedRep.getRevisionNumber(), mockRep.getRevisionNumber());
 			assertEquals(loadedRep.getTitle(), mockRep.getTitle());
 			assertEquals(loadedRep.belongsToLatestRevision(), mockRep.belongsToLatestRevision());
-	
-			//not existent
-			IRepresentation r1 = papi.loadRepresentation(NonExistentClusterId);
-			assertNull(r1);
-			IRepresentation r2 = papi.loadRepresentation(wrongRepId);
-			assertNull(r2);
-			
 		} catch(Exception e) {
 			fail("error: testLoad " + e.getMessage());
 		}	
 		
 		//wrong input
 		try{
-			papi.loadRepresentation(AbcId);
+			papi.loadRepresentation(nonExistentId);
 			fail();
 		} catch (IllegalArgumentException e) {
 			assert(true);
@@ -276,15 +271,7 @@ public class PersistenceApiOrientDbStableContentTest {
 	
 		try{
 			//non-existent id
-			repIds.add(NonExistentClusterId);
-			pojos = papi.loadPojos(repIds);
-			fail();
-		} catch(IllegalArgumentException e) {
-			assert(true);
-		}
-		try{
-			repIds.remove(NonExistentClusterId);
-			repIds.add(AbcId);
+			repIds.add(nonExistentId);
 			pojos = papi.loadPojos(repIds);
 			fail();
 		} catch(IllegalArgumentException e) {
@@ -296,7 +283,7 @@ public class PersistenceApiOrientDbStableContentTest {
 	public void testLoadPojosWithClass() {
 		try{
 			List<IPojo> pojos = papi.loadPojos(Model.class);
-			assertEquals(pojos.size(), 2);
+			assertEquals(2, pojos.size());
 			for(IPojo pojo : pojos) {
 				try{
 					//must be able to be cast to Model
@@ -317,7 +304,6 @@ public class PersistenceApiOrientDbStableContentTest {
 	public void testLoadRepresentationsWithIds() {
 		ArrayList<UUID> repIds = new ArrayList<UUID>();
 		List<IRepresentation> reps = null;
-		try{
 			//prepare a list of ids
 			IModel m = papi.loadCompleteModelWithDbId(mockModelId);
 			for(IRevision r : m.getRevisions()) {
@@ -334,9 +320,7 @@ public class PersistenceApiOrientDbStableContentTest {
 			//empty list
 			reps = papi.loadRepresentations(new ArrayList<UUID>());
 			assertTrue(reps.isEmpty());
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}	
+		
 	
 		try{
 			//non-existent representation id
@@ -349,15 +333,7 @@ public class PersistenceApiOrientDbStableContentTest {
 		
 		try{
 			//non-existent id
-			repIds.add(NonExistentClusterId);
-			reps = papi.loadRepresentations(repIds);
-			fail();
-		} catch(IllegalArgumentException e) {
-			assert(true);
-		}
-		try{
-			//wrong input
-			repIds.add(AbcId);
+			repIds.add(nonExistentId);
 			reps = papi.loadRepresentations(repIds);
 			fail();
 		} catch(IllegalArgumentException e) {
@@ -392,39 +368,6 @@ public class PersistenceApiOrientDbStableContentTest {
 	}	
 
 	//------------------------------------- load asynch pojos ----------------------------
-	
-	@Test
-	public void testLoadPojosAsyncWithIds() {	
-		List<UUID> dbIds = new ArrayList<UUID>();
-		DbListener dbl;
-		try{
-			dbl = new DbListener();
-			dbIds.add(mockRepresentationId); 
-			papi.loadPojosAsync(dbIds, dbl);
-			assertEquals(dbl.getResult(), 1);
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}
-		//wrong input
-		try{
-			//non-existent id
-			dbl = new DbListener();
-			dbIds.add(NonExistentClusterId);
-			papi.loadPojosAsync(dbIds, dbl);
-			fail();
-		} catch(IllegalArgumentException e) {
-			assert(true);
-		}
-		try{
-			dbl = new DbListener();
-			dbIds.remove(NonExistentClusterId);
-			dbIds.add(AbcId); //"abc"
-			papi.loadPojosAsync(dbIds, dbl);
-			fail();
-		} catch(IllegalArgumentException e) {
-			assert(true);
-		}
-	}
 
 	@Test
 	public void testLoadAsyncWithSql() {
@@ -432,22 +375,16 @@ public class PersistenceApiOrientDbStableContentTest {
 			String nosql = "wrong"; 
 			papi.loadAsync(nosql, null);
 			fail(EXPECTED_ERROR_MSG);
-		} catch(IllegalArgumentException e) {
+		} catch(Exception e) {
 			assert(true);
 		}
 	}
 
 	@Test
 	public void testLoadPojosAsyncWithClass() {	
-		DbListener dbl;
-		try{
-			dbl = new DbListener();
-			papi.loadPojosAsync(Revision.class, dbl);
-			assertEquals(dbl.getResult(), 3);
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}	
-		//no wrong input
+		DbListener dbl = new DbListener();
+		papi.loadPojosAsync(Revision.class, dbl);
+		assertEquals(3, dbl.getResult());
 	}
 
 	//------------------------------------- load asynch representations ----------------------------
@@ -457,46 +394,24 @@ public class PersistenceApiOrientDbStableContentTest {
 		DbFilterConfig conf = new DbFilterConfig();
 		conf.addNotation(Constants.NOTATION_BPMN2_0.toString()) ;
 		DbListener dbl = new DbListener();
-		try{
-			papi.loadRepresentationsAsync(conf, dbl);
-			assertEquals(dbl.getResult(), 3);
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}
-		//no wrong input
+		papi.loadRepresentationsAsync(conf, dbl);
+		assertEquals(dbl.getResult(), 3);
 	}
 
 	@Test
 	public void testLoadRepresentationsAsyncWithIds() {	
 		List<UUID> dbIds = new ArrayList<UUID>();
-		DbListener dbl;
-		try{
-			dbl = new DbListener();
-			dbIds.add(mockRepresentationId); 
-			papi.loadRepresentationsAsync(dbIds, dbl);
-			assertEquals(dbl.getResult(), 1);
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}	
-		try{
-			//non-existent id
-			dbl = new DbListener();
-			dbIds.clear();
-			dbIds.add(NonExistentClusterId);
-			papi.loadRepresentationsAsync(dbIds, dbl);
-			fail();
-		} catch(IllegalArgumentException e) {
-			assert(true);
-		}
-		try{
-			//wrong input
-			dbl = new DbListener();
-			dbIds.add(AbcId);
-			papi.loadRepresentationsAsync(dbIds, dbl);
-			fail();
-		} catch(IllegalArgumentException e) {
-			assert(true);
-		}
+		DbListener dbl = new DbListener();
+		dbIds.add(mockRepresentationId); 
+		papi.loadRepresentationsAsync(dbIds, dbl);
+		assertEquals(1, dbl.getResult());
+	
+		//non-existent id
+		dbl = new DbListener();
+		dbIds.clear();
+		dbIds.add(nonExistentId);
+		papi.loadRepresentationsAsync(dbIds, dbl);
+		assertEquals(0, dbl.getResult());		
 	}
 	
 	private class DbListener implements Observer {
@@ -504,7 +419,6 @@ public class PersistenceApiOrientDbStableContentTest {
 
 		@Override
 		public void update(Observable o, Object arg) {
-			System.out.println("updated with " + arg);
 			cnt++;
 		}
 			
