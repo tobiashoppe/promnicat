@@ -69,7 +69,7 @@ public class NPBImporterTest {
 	@Test
 	public void importModels(){
 		NPBImporter modelImporter = new NPBImporter(persistenceApi);
-		String filePath = "resources/NPB";
+		String filePath = "../promnicat/resources/NPB";
 		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 2, 2, 1);
 	}
 	

@@ -68,7 +68,7 @@ public class EpcParserTest {
 	@BeforeClass
 	public static void setUp(){
 		try{
-			importModels(new File("resources/BPMAI/model_epc0"));
+			importModels(new File("../promnicat/resources/BPMAI/model_epc0"));
 		} catch (Exception e){
 			fail("Unexpected exception during model import: " + e.getStackTrace().toString());
 		}

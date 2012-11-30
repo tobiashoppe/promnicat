@@ -22,6 +22,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -265,10 +267,11 @@ public class BpmaiImporter extends AbstractImporter {
 	 * @param properties current meta data
 	 * @return original given meta data, but the value is represented as an array 
 	 */
-	private HashMap<String, String[]> parseMetadata(HashMap<String, String> properties) {
-		HashMap<String,String[]> newMap = new HashMap<String, String[]>();
+	private HashMap<String, Collection<String>> parseMetadata(HashMap<String, String> properties) {
+		HashMap<String, Collection<String>> newMap = new HashMap<String, Collection<String>>();
 		for(Entry<String, String> e : properties.entrySet()) {
-			String[] newValue = {e.getValue()};
+			Collection<String> newValue = new ArrayList<String>();
+			newValue.add(e.getValue());
 			newMap.put(e.getKey(), newValue);
 		}
 		return newMap;

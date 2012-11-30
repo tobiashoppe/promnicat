@@ -74,25 +74,23 @@ public class IBMModelImporter extends AbstractImporter {
 	 */
 	@Override
 	public void importModelsFrom(String modelDirectory) throws IOException, JSONException {
-	    	persistenceApi.openDb();
-	    	File rootDir = super.checkModelPath(modelDirectory, true);
-	    	Collection<File> files = super.getFilesRecursivelyFromDir(rootDir);
-	    	for(File file:files){
-	    	    String id = file.getAbsolutePath().replace(rootDir.getAbsolutePath(), "");
-	    	    //PromniCat does not support slashes in ids
-	    	    id = id .replace(File.separator, "_");
+    	persistenceApi.openDb();
+    	File rootDir = super.checkModelPath(modelDirectory, true);
+    	Collection<File> files = super.getFilesRecursivelyFromDir(rootDir);
+    	for(File file:files){
+    	    String id = file.getAbsolutePath().replace(rootDir.getAbsolutePath(), "");
+    	    //PromniCat does not support slashes in ids
+    	    id = id .replace(File.separator, "_");
 		    IModel model = this.persistenceApi.loadCompleteModelWithImportedId(id);
 	    	if (model == null){
-			//create and save new Model
-			model = parseModel(file, id);
-			persistenceApi.savePojo(model);
-
-		} else {
-		    logger.warning("Model already there");
-		}
-	    	}
-
-	    	persistenceApi.closeDb();
+				//create and save new Model
+				model = parseModel(file, id);
+				persistenceApi.savePojo(model);
+			} else {
+			    logger.warning("Model already there");
+			}
+    	}
+    	persistenceApi.closeDb();
 	}
 
 	private IModel parseModel(File file, String id) {

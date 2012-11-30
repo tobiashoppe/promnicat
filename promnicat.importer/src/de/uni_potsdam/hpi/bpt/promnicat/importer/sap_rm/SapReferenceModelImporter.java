@@ -125,7 +125,7 @@ public class SapReferenceModelImporter extends AbstractImporter {
 	    directory.appendChild(epcNode);
 
 	    DOMSource epmlSource = new DOMSource(newEpcDoc);
-	    final File epml2eRDFxsltFile = new File("resources/xslt/EPML2eRDF.xslt");
+	    final File epml2eRDFxsltFile = new File("../promnicat/resources/xslt/EPML2eRDF.xslt");
 	    final Source epml2eRDFxsltSource = new StreamSource(epml2eRDFxsltFile);	
 
 	    // Transformer Factory
@@ -203,7 +203,7 @@ protected String erdfToRdf(String erdf) throws TransformerException, FileNotFoun
 	    "<link rel=\"schema.raziel\" href=\"http://raziel.org/\" />" +
 	    "</head><body>"+ 
 	    epcCanvasNode + erdf + "</body></html>" ;
-    InputStream xsltStream = new FileInputStream("resources/xslt/extract-rdf.xsl");
+    InputStream xsltStream = new FileInputStream("../promnicat/resources/xslt/extract-rdf.xsl");
     Source xsltSource = new StreamSource(xsltStream);
     Source erdfSource = new StreamSource(new StringReader(serializedDOM));
 

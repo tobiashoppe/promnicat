@@ -20,10 +20,9 @@ package de.uni_potsdam.hpi.bpt.promnicat.importer.sap_rm.test;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.util.Collection;
 
-import org.json.JSONException;
-import org.junit.AfterClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -31,9 +30,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.sap_rm.SapReferenceModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.test.ImporterTest;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
-import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 
 /**
  * test class for {@link SapReferenceModelImporter}
@@ -53,9 +50,14 @@ public class SapReferenceModelImporterTest {
 		}
 	}
 
-	@AfterClass
-	public static void tearDown(){
+	@After
+	public void tearDown(){
 		persistenceApi.dropDb();
+	}
+	
+	@Before
+	public void setUp() {
+		persistenceApi.openDb();
 	}
 
 	@Test
@@ -72,41 +74,11 @@ public class SapReferenceModelImporterTest {
 	@Test
 	public void importModels(){
 		SapReferenceModelImporter modelImporter = new SapReferenceModelImporter(persistenceApi);
-		String filePath = "resources/SAP_RM";
+		String filePath = "../promnicat/resources/SAP_RM";
 		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 1, 1, 1);
-		filePath = "resources/SAP_RM";
+		filePath = "../promnicat/resources/SAP_RM";
 		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 1, 1, 1);	
 
-		persistenceApi.dropDb();
-	}
-
-	@Test
-	public void parseModels() throws IllegalTypeException, IOException, JSONException{
-		SapReferenceModelImporter modelImporter = new SapReferenceModelImporter(persistenceApi);
-		String filePath = "resources/SAP_RM";
-		modelImporter.importModelsFrom(filePath);
-		//build up chain
-		persistenceApi.openDb();
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder(persistenceApi, 3, UnitDataJbpt.class);
-		//build db query
-		DbFilterConfig dbFilter = new DbFilterConfig();
-		chainBuilder.addDbFilterConfig(dbFilter);
-		//transform to jbpt and check for connectedness
-		chainBuilder.createBpmaiJsonToJbptUnit();
-		chainBuilder.createConnectednessFilterUnit();
-
-		//collect results
-		chainBuilder.createSimpleCollectorUnit();
-
-
-		//run chain
-		@SuppressWarnings("unchecked")
-		Collection<IUnitDataJbpt<Object> > result = (Collection<IUnitDataJbpt<Object>>) chainBuilder.getChain().execute();
-
-		//print result
-		ConnectedEPC.printResult(result);
-
-		persistenceApi.closeDb();
 		persistenceApi.dropDb();
 	}
 }

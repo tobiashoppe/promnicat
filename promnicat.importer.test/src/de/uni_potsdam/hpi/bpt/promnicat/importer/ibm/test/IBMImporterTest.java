@@ -22,7 +22,6 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.json.JSONException;
-import org.junit.AfterClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.oryxeditor.server.diagram.Bounds;
@@ -52,9 +52,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.importer.bpmai.BpmaiImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.ibm.IBMModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.importer.test.ImporterTest;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
-import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 
 /**
  * test class for {@link BpmaiImporter}.
@@ -74,9 +72,14 @@ public class IBMImporterTest {
 		}
 	}
 	
-	@AfterClass
-	public static void tearDown(){
+	@After
+	public void tearDown(){
 		persistenceApi.dropDb();
+	}
+	
+	@Before
+	public void setUp(){
+		persistenceApi.openDb();
 	}
 	
 	@Test
@@ -94,16 +97,14 @@ public class IBMImporterTest {
 	@Test
 	public void importModels(){
 	    IBMModelImporter modelImporter = new IBMModelImporter(persistenceApi);
-		String filePath = "resources/IBM";
-		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 2, 2, 2);
-		filePath = "resources/IBM";
-		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 2, 2, 2);	
-		
-		persistenceApi.dropDb();
+		String filePath = "../promnicat/resources/IBM";
+		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 2, 2, 4);
+		filePath = "../promnicat/resources/IBM";
+		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 2, 2, 4);
 	}
 	@Test
 	public void parse() throws JAXBException, JSONException{
-		File xml = new File("resources\\IBM\\A\\s00000016\\s00000018\\s00000020\\s00000024\\s00000777.bpmn.xml");
+		File xml = new File("../promnicat/resources\\IBM\\A\\s00000016\\s00000018\\s00000020\\s00000024\\s00000777.bpmn.xml");
 		JAXBContext context = JAXBContext.newInstance(Definitions.class);
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 		Definitions definitions = (Definitions) unmarshaller.unmarshal(xml);
@@ -151,36 +152,4 @@ public class IBMImporterTest {
 		System.out.println(JSONBuilder.parseModeltoString(diagrams.get(0)));
 
 	}
-	
-	    @Test
-	    public void parseModels() throws IllegalTypeException, IOException, JSONException{
-		IBMModelImporter modelImporter = new IBMModelImporter(persistenceApi);
-		String filePath = "resources/IBM";
-		modelImporter.importModelsFrom(filePath);
-		//build up chain
-		persistenceApi.openDb();
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder(persistenceApi, 3, UnitDataJbpt.class);
-		//build db query
-		DbFilterConfig dbFilter = new DbFilterConfig();
-		dbFilter.addFormat(Constants.FORMAT_BPMAI_JSON);
-		chainBuilder.addDbFilterConfig(dbFilter);
-		//transform to jbpt and check for connectedness
-		chainBuilder.createBpmaiJsonToJbptUnit();
-		chainBuilder.createConnectednessFilterUnit();
-		
-		//collect results
-		chainBuilder.createSimpleCollectorUnit();
-		
-			
-		//run chain
-		@SuppressWarnings("unchecked")
-		Collection<IUnitDataJbpt<Object> > result = (Collection<IUnitDataJbpt<Object>>) chainBuilder.getChain().execute();
-		
-		//print result
-		ConnectedEPC.printResult(result);
-
-		persistenceApi.closeDb();
-		persistenceApi.dropDb();
-	    }
-
 }

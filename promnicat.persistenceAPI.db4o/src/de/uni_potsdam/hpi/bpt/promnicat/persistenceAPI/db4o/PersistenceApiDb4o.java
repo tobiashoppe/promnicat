@@ -336,8 +336,9 @@ public class PersistenceApiDb4o implements IPersistenceApi {
 			}
 		});
 		if(results.size() > 1) {
-			throw new IllegalStateException("Model ids must be unique! But, got "
+			logger.severe("Model ids must be unique! But, got "
 					+ results.size() + "models with id " + id);
+			return null;
 		}
 		if(results.size() < 1) {
 			logger.info("Could not retrieve model with importedId "+ id);

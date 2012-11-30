@@ -64,7 +64,7 @@ public class BpmnParserTest {
 	public static void setUp(){
 		//start BPM AI importer here
 		try{
-			importModels(new File("resources/BPMAI/model_bpmn0"));
+			importModels(new File("../promnicat/resources/BPMAI/model_bpmn0"));
 		} catch (Exception e){
 			e.printStackTrace();
 		}

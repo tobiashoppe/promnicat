@@ -69,9 +69,9 @@ public class BpmaiImporterTest {
 	@Test
 	public void importModels(){
 		BpmaiImporter modelImporter = new BpmaiImporter(persistenceApi);
-		String filePath = "resources/BPMAI/model_bpmn0";
+		String filePath = "../promnicat/resources/BPMAI/model_bpmn0";
 		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 1, 2, 4);
-		filePath = "resources/BPMAI/model_bpmn1";
+		filePath = "../promnicat/resources/BPMAI/model_bpmn1";
 		ImporterTest.importModelsTwice(persistenceApi, modelImporter, filePath, 1, 4, 8);	
 		
 		persistenceApi.dropDb();
