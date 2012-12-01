@@ -10,13 +10,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.correctors.DiagramCorre
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.wrapper.DiagramWrapper;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**
  * Unit to correct Bpmai models in a unit chain
  * @author Christian Kieschnick
  */
-public class ErrorCorrectorUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class ErrorCorrectorUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	/**
 	 * logger used by this class
@@ -59,6 +60,4 @@ public class ErrorCorrectorUnit implements IUnit<IUnitData<Object>, IUnitData<Ob
 	public Class<?> getOutputType() {
 		return Diagram.class;
 	}
-	
-
 }

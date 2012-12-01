@@ -2,8 +2,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.assignment;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.jbpt.alignment.IEntity;
 
 import de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.matrix.ISimilarityMatrix;
@@ -66,9 +66,9 @@ public abstract class AbstractAssignment implements Assignment {
 		HashSet<DummyEntity> dummies = addDummies(similarities, firstHasMore);
 		ISimilarityMatrix<IEntity> result = assignWithEquallySizedSets(similarities);
 		removeDummies(dummies, result, firstHasMore);
-		Logger.getLogger(getClass()).info("AssignmentClass: "+getClass());
+		Logger.getLogger(getClass().getName()).info("AssignmentClass: "+getClass());
 		for (SimilarityPair<IEntity> pair : result.getSimilarities()) {
-			Logger.getLogger(getClass()).info("Assignment: "+pair.toString());
+			Logger.getLogger(getClass().getName()).info("Assignment: "+pair.toString());
 		}
 		return result;
 	}

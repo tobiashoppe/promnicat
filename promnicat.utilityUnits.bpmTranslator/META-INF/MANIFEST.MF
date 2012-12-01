@@ -4,7 +4,9 @@ Bundle-Name: promnicat.utilityUnits.bpmTranslator
 Bundle-SymbolicName: promnicat.utilityUnits.bpmTranslator
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: promnicat.util,
- promnicat.persistenceAPI,
+Require-Bundle: promnicat;bundle-version="0.0.0",
  promnicat.utilityUnits
 Eclipse-ExtensibleAPI: true
+Bundle-ClassPath: .,
+ lib/jaws-bin.jar,
+ lib/stanford-corenlp-1.2.0.jar

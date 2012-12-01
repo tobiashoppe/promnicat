@@ -30,9 +30,15 @@ import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.metrics.ProcessMetrics;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.BpmnParser;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.EpcParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataClassification;
 
@@ -109,7 +115,7 @@ public class ProcessClassification implements IAnalysisModule{
 		//set to true if the whole DB data should be used for analysis otherwise only a small sub set is used.
 		String configPath = "configuration(full).properties";
 		ConfigurationParser configParser = new ConfigurationParser(configPath);
-		IPersistenceApi persistenceApi = configParser.getDbInstance(Constants.DATABASE_TYPES.ORIENT_DB);
+		IPersistenceApi persistenceApi = configParser.getDbInstance();
 		persistenceApi.openDb();
 		chainBuilder = new UnitChainBuilder(persistenceApi, configParser.getThreadCount(), UnitDataClassification.class);
 		//build db query

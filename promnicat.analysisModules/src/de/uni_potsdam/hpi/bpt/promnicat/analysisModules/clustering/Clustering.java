@@ -22,9 +22,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
 
+import weka.core.Attribute;
+import weka.core.FastVector;
+
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.ClusterLabeler;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.ExternalResourceEnhancer;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.HierarchicalClusterLabeler;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.TfIdfClusterLabeler;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.labeling.WordnetEnhancer;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.FeatureConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.ProcessFeatureConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataFeatureVector;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataProcessMetrics;
 
@@ -50,7 +63,7 @@ public static FastVector stringAttributes;
 		long startTime = System.currentTimeMillis();
 		
 		//build up chain
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataProcessMetrics.class);
+		IUnitChainBuilder chainBuilder = new UnitChainBuilder("", UnitDataProcessMetrics.class);
 		buildUpUnitChain(chainBuilder);
 		
 		logger.info(chainBuilder.getChain().toString());

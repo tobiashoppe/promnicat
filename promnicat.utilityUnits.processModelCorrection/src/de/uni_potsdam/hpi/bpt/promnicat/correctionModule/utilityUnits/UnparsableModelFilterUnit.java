@@ -10,6 +10,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.rules.EpcDiagramRules;
 import de.uni_potsdam.hpi.bpt.promnicat.parser.ModelParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**
@@ -17,7 +18,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * It returns the identifier of the models for further processing
  * @author Christian Kieschnick
  */
-public class UnparsableModelFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class UnparsableModelFilterUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	public static int importedBpmn = 0;
 	public static int importedEpc = 0;

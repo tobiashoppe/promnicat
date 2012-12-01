@@ -5,3 +5,4 @@ Bundle-SymbolicName: promnicat.utilityUnits.bpmTranslator.test;singleton:=true
 Bundle-Version: 0.0.0
 Fragment-Host: promnicat.utilityUnits.bpmTranslator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit4

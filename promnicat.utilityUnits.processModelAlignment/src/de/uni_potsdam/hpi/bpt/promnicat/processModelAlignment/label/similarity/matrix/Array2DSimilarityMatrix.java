@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.jbpt.alignment.IEntity;
 
 public class Array2DSimilarityMatrix<Entity extends IEntity> implements ISimilarityMatrix<Entity> {
@@ -204,7 +204,7 @@ public class Array2DSimilarityMatrix<Entity extends IEntity> implements ISimilar
 				if (similarities[i] != null) {
 					similarities[i] = Arrays.copyOf(similarities[i], setSize1);
 				} else {
-					Logger.getLogger(getClass()).warn("similarities[" + i + "] was null");
+					Logger.getLogger(getClass().getName()).warning("similarities[" + i + "] was null");
 				}
 			}
 		}

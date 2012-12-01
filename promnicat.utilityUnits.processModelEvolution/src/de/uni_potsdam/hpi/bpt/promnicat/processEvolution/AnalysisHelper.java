@@ -31,7 +31,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.analyses.metricAnalyses
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.analyses.metricAnalyses.RelativeDifferenceAnalysis;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.api.IAnalysis;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModel;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 
 /**
  * A helper class that builds a bridge to the specific analyses.
@@ -82,13 +82,13 @@ public class AnalysisHelper {
 	 * and displayed in analysis results
 	 * @return the metrics all model revisions are analyzed by
 	 */
-	public static Collection<METRICS> getProcessModelMetrics() {
-		Collection<METRICS> processModelMetrics = new ArrayList<METRICS>();
+	public static Collection<ProcessMetricConstants.METRICS> getProcessModelMetrics() {
+		Collection<ProcessMetricConstants.METRICS> processModelMetrics = new ArrayList<ProcessMetricConstants.METRICS>();
 		Collections.addAll(processModelMetrics, 
-				METRICS.NUM_EVENTS,	METRICS.NUM_ACTIVITIES, 
-				METRICS.NUM_GATEWAYS,METRICS.NUM_NODES, 
-				METRICS.NUM_EDGES, METRICS.NUM_ROLES,
-				METRICS.NUM_DATA_NODES);
+				ProcessMetricConstants.METRICS.NUM_EVENTS,	ProcessMetricConstants.METRICS.NUM_ACTIVITIES, 
+				ProcessMetricConstants.METRICS.NUM_GATEWAYS,ProcessMetricConstants.METRICS.NUM_NODES, 
+				ProcessMetricConstants.METRICS.NUM_EDGES, ProcessMetricConstants.METRICS.NUM_ROLES,
+				ProcessMetricConstants.METRICS.NUM_DATA_NODES);
 		return processModelMetrics;
 	}
 	

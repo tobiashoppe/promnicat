@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.jbpt.alignment.LabelEntity;
 import org.jbpt.pm.Activity;
 import org.jbpt.pm.ProcessModel;
@@ -30,7 +31,7 @@ public class LabelAlignment implements Alignment<LabelEntity> {
 	private List<PreProcessingStep> preProcessingSteps = new ArrayList<PreProcessingStep>();
 	private LabelSimilarity similarity;
 	private Assignment assignment;
-	private final Logger log = Logger.getLogger(LabelAlignment.class);
+	private final Logger log = Logger.getLogger(LabelAlignment.class.getName());
 
 	/**
 	 * Aligns two sets of labels, computing their overall similarity.
@@ -46,14 +47,14 @@ public class LabelAlignment implements Alignment<LabelEntity> {
 			}
 		}
 		
-		if (log.isDebugEnabled()) {
-			log.debug("Task labels of Model 1:");
+		if (log.isLoggable(Level.INFO)) {
+			log.info("Task labels of Model 1:");
 			for (LabelEntity label : labels1) {
-				log.debug(label);
+				log.info(label.toString());
 			}
-			log.debug("Task labels of Model 2:");
+			log.info("Task labels of Model 2:");
 			for (LabelEntity label : labels2) {
-				log.debug(label);
+				log.info(label.toString());
 			}
 		}
 		

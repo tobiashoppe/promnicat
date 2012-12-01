@@ -27,6 +27,11 @@ import org.json.JSONException;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.ai.diagram.DiagramBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.BpmnParser;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.EpcParser;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.ModelParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 

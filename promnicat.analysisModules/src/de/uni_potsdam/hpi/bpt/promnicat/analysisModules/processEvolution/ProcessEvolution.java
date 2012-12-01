@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.processEvolution;
+package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.processEvolution;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,7 +31,8 @@ import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.parser.BpmnParser;
 import de.uni_potsdam.hpi.bpt.promnicat.parser.EpcParser;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.AnalysisHelper;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.ProcessEvolutionConstants.PROCESS_EVOLUTION_METRIC;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.api.IAnalysis;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.clustering.ProcessEvolutionClusterer;
@@ -40,11 +41,11 @@ import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionM
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModelRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataProcessMetrics;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataProcessMetrics;
 
 /**
  * Analysis module that tries to identify different profiles of modeling processes
@@ -74,7 +75,7 @@ public class ProcessEvolution {
 	/**
 	 * the collection of metrics all model revisions will be analyzed by
 	 */
-	private static Collection<METRICS> processModelMetrics;
+	private static Collection<ProcessMetricConstants.METRICS> processModelMetrics;
 
 	/*  ---------------------------------------------------------------------------------------------
 	 * |start of parameters that can be changed for customization 									 |
@@ -146,9 +147,9 @@ public class ProcessEvolution {
 		IUnitChainBuilder chainBuilder = null;
 
 		if (useFullDB){
-			chainBuilder = new UnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataProcessMetrics.class);
+			chainBuilder = new UnitChainBuilder("configuration(full).properties", UnitDataProcessMetrics.class);
 		} else {
-			chainBuilder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataProcessMetrics.class);
+			chainBuilder = new UnitChainBuilder("", UnitDataProcessMetrics.class);
 		}
 		//build db query
 		DbFilterConfig dbFilter = new DbFilterConfig();
@@ -222,7 +223,7 @@ public class ProcessEvolution {
 			
 			// add the revision to its model
 			ProcessEvolutionModelRevision revision = new ProcessEvolutionModelRevision(revisionNumber);
-			for (METRICS metric : getProcessModelMetrics())
+			for (ProcessMetricConstants.METRICS metric : getProcessModelMetrics())
 				revision.add(metric, metric.getAttribute(resultItem));
 			revision.setProcessModel((ProcessModel)resultItem.getValue());
 			models.get(modelPath).add(revision);
@@ -256,7 +257,7 @@ public class ProcessEvolution {
 	/**
 	 * @return the metrics used for analyses
 	 */
-	private static Collection<METRICS> getProcessModelMetrics() {
+	private static Collection<ProcessMetricConstants.METRICS> getProcessModelMetrics() {
 		if (processModelMetrics == null)
 			processModelMetrics = AnalysisHelper.getProcessModelMetrics();
 		return processModelMetrics;

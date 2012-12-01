@@ -22,7 +22,7 @@ import java.util.Map;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.AnalysisConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModel;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModelRevision;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 
 /**
  * All model elements correspond to a certain language class (Control Flow, Data or Organisation).
@@ -49,11 +49,11 @@ public class ModelLanguageAnalysis extends AbstractMetricsAnalysis {
 			ProcessEvolutionModel newModel = new ProcessEvolutionModel(model.getName());
 			for (ProcessEvolutionModelRevision revision : model.getRevisions().values()) {
 				ProcessEvolutionModelRevision newRevision = new ProcessEvolutionModelRevision(revision.getRevisionNumber());
-				if (revision.get(METRICS.NUM_NODES) > 0 || revision.get(METRICS.NUM_EDGES) > 0)
+				if (revision.get(ProcessMetricConstants.METRICS.NUM_NODES) > 0 || revision.get(ProcessMetricConstants.METRICS.NUM_EDGES) > 0)
 					newRevision.add(AnalysisConstants.CONTROL_FLOW.getDescription(), 1);
-				if (revision.get(METRICS.NUM_DATA_NODES) > 0)
+				if (revision.get(ProcessMetricConstants.METRICS.NUM_DATA_NODES) > 0)
 					newRevision.add(AnalysisConstants.DATA_FLOW.getDescription(), 1);
-				if (revision.get(METRICS.NUM_ROLES) > 0)
+				if (revision.get(ProcessMetricConstants.METRICS.NUM_ROLES) > 0)
 					newRevision.add(AnalysisConstants.ORGANISATION.getDescription(), 1);
 				newModel.add(newRevision);
 			}

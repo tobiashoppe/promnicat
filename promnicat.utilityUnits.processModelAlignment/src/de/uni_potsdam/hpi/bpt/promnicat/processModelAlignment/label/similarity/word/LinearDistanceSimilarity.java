@@ -1,15 +1,13 @@
 package de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.word;
 
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.list.PointerTargetTree;
 import net.didion.jwnl.data.list.PointerTargetTreeNode;
 import net.didion.jwnl.data.list.PointerTargetTreeNodeList.Operation;
-
-import org.apache.log4j.Logger;
-
 import de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.util.WordNetUtil;
 
 /** Custom algorithm, basic idea of a taxonomy-based similarity. Similarity is computed by:<br>
@@ -17,7 +15,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.util.WordNetUtil;
  *  I.e. the more edges between, and the higher the tree-level of x and y,
  *  the lower the similarity. */
 public class LinearDistanceSimilarity extends SemanticWordSimilarity {
-	private static final Logger LOGGER = Logger.getLogger(LinearDistanceSimilarity.class);
+	private static final Logger LOGGER = Logger.getLogger(LinearDistanceSimilarity.class.getName());
 	
 	/**
 	 * A special {@link Operation} which counts the distance
@@ -44,7 +42,7 @@ public class LinearDistanceSimilarity extends SemanticWordSimilarity {
 		@Override
 		public Object execute(PointerTargetTreeNode node) {
 			currentDepth++;
-			LOGGER.trace("Traversing "+node.getSynset().getWords()[0].getLemma());
+			LOGGER.info("Traversing "+node.getSynset().getWords()[0].getLemma());
 			if (distance < 0 && node.getSynset().equals(target)) 
 				distance = currentDepth;
 			if (distance < 0 && targetPathFinder != null && targetPathFinder.pathContains(node)) {
@@ -83,9 +81,9 @@ public class LinearDistanceSimilarity extends SemanticWordSimilarity {
 		float maxSim = -1;
 		for (Synset synset1 : synsets1) {
 			for (Synset synset2 : synsets2) {
-				LOGGER.trace("Computing path from " + synset1.getWords()[0].getLemma() + " to "+synset2.getWords()[0].getLemma());
+				LOGGER.info("Computing path from " + synset1.getWords()[0].getLemma() + " to "+synset2.getWords()[0].getLemma());
 				float sim = getSimilarity(synset1, synset2);
-				LOGGER.trace(sim);
+				LOGGER.info(new Float(sim).toString());
 				if (sim > maxSim) maxSim = sim;
 			}
 		}		

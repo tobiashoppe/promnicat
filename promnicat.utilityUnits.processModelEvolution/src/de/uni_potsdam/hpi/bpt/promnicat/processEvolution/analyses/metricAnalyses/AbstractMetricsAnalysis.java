@@ -19,7 +19,6 @@ package de.uni_potsdam.hpi.bpt.promnicat.processEvolution.analyses.metricAnalyse
 
 import java.util.Map;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.metrics.ProcessMetrics;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.analyses.AbstractAnalysis;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModel;
 

@@ -35,7 +35,7 @@ import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ElementExtractorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitData;
 
 /**
  * @author Cindy Fähnrich, Tobias Hoppe

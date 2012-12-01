@@ -18,7 +18,6 @@
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 
 /**
@@ -29,9 +28,6 @@ import java.util.logging.Logger;
  *
  */
 public class FeatureConfig {
-
-	@SuppressWarnings("unused")
-	private final static Logger logger = Logger.getLogger(FeatureConfig.class.getName());
 	
 	/** contains the selected metrics as attributes for clustering */
 	private ArrayList<ProcessFeatureConstants.METRICS> metrics = new ArrayList<ProcessFeatureConstants.METRICS>();

@@ -20,12 +20,16 @@ package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName;
 import java.io.IOException;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.AbstractPojo;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 
 public class RetrieveNodeNames implements IAnalysisModule {
 
 	private static final String analysisRunId = "#11:1"; // see output of CalcAndSaveNodeName.java for correct id
-	private PersistenceApiOrientDbObj papi;
+	private IPersistenceApi papi;
 	private static final String CONFIGURATION_FILE = "configuration.properties";
 	
 	/**
@@ -41,7 +45,7 @@ public class RetrieveNodeNames implements IAnalysisModule {
 	@Override
 	public Object execute(String[] parameter) throws IOException,
 			IllegalTypeException {
-		papi = PersistenceApiOrientDbObj.getInstance(CONFIGURATION_FILE);
+		papi = new ConfigurationParser(CONFIGURATION_FILE).getDbInstance();
 		papi.registerPojoPackage(LabelStorage.class.getPackage().getName());
 
 		//load analysis run

@@ -17,6 +17,7 @@ import java.util.zip.DataFormatException;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.refactoring.StringOperations;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.translations.Translator;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.tsvProcessing.TsvProcessor;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
@@ -45,12 +46,13 @@ public class RevisionCreator {
 	 * @param translator	the translation system used to translate the labels 
 	 * @param tsvProcessor	the object that contains information about the labels to be translated
 	 * @param configFile	the promnicat database config file
+	 * @throws IOException if configuration file could not be read
 	 */
-	public RevisionCreator(Translator translator, TsvProcessor tsvProcessor, String configFile) {
+	public RevisionCreator(Translator translator, TsvProcessor tsvProcessor, String configFile) throws IOException {
 		this.translator = translator;
 		this.tsvProcessor = tsvProcessor;
 		stringOperator = new StringOperations();
-		papi = PersistenceApiOrientDbObj.getInstance(configFile);
+		papi = new ConfigurationParser(configFile).getDbInstance();
 	}
 	
 	/**
@@ -78,9 +80,9 @@ public class RevisionCreator {
 		line = replaceLabels(line, labels, sublabels);
 		File newSvgFile = createNewRevisionFile(oldSvgRepresentation, nrOfRevisions);
 		writeToNewRevision(newSvgFile, line);
-		IRepresentation newSvgRepresentation = new Representation(
+		IRepresentation newSvgRepresentation = papi.getPojoFactory().createRepresentation(
 				Constants.FORMAT_SVG, oldSvgRepresentation.getNotation(), newSvgFile);
-		IRevision newSvgRevision = new Revision(nrOfRevisions+1);
+		IRevision newSvgRevision = papi.getPojoFactory().createRevision(nrOfRevisions+1);
 		newSvgRepresentation.setRevision(newSvgRevision);
 		model.connectLatestRevision(newSvgRevision);
 		papi.savePojo(model);
@@ -93,7 +95,7 @@ public class RevisionCreator {
 	 * @param oldSvgRepresentation	the model's representation whose format is checked
 	 * @throws DataFormatException	thrown when a representation other than a SVG is supplied
 	 */
-	private void checkDataFormat(Representation oldSvgRepresentation) throws DataFormatException {
+	private void checkDataFormat(IRepresentation oldSvgRepresentation) throws DataFormatException {
 		if (!oldSvgRepresentation.getFormat().equalsIgnoreCase(Constants.FORMAT_SVG))
 			throw new DataFormatException("format used for the model's data content must be SVG");
 	}
@@ -264,7 +266,7 @@ public class RevisionCreator {
 	 * @param revision				the latest revision of the model to be translated
 	 * @return						the new .svg file
 	 */
-	private File createNewRevisionFile(Representation svgRepresentation, int revision) {
+	private File createNewRevisionFile(IRepresentation svgRepresentation, int revision) {
     	revision++;
     	String pathToNewSVGFile = svgRepresentation.getOriginalFilePath().
     			replace("rev"+svgRepresentation.getRevisionNumber()+".svg", "rev"+revision+".svg");

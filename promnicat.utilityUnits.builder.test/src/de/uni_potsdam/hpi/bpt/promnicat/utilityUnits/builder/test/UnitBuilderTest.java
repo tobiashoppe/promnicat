@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.test;
+package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -30,15 +30,22 @@ import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.bpmn.Task;
 import org.junit.Test;
 
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.ICollectorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector.SimpleCollectorUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.ConnectednessFilterUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.DatabaseFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.BpmaiJsonToDiagramUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.DiagramToJbptUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**
@@ -51,12 +58,12 @@ public class UnitBuilderTest {
 	@Test
 	public void initializationTest(){
 		try {
-			IUnitChainBuilder builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			IUnitChainBuilder builder = new UnitChainBuilder("", null);
 			IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = builder.getChain();
 			assertTrue(chain.getFirstUnit() instanceof DatabaseFilterUnit);
 			assertTrue(chain.getLastUnit() instanceof ICollectorUnit<?,?>);
 			assertTrue(chain.getUnits().size() == 2);
-			IPersistenceApi papi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
+			IPersistenceApi papi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
 			IUnitChainBuilder builderWithPersistenceApi = new UnitChainBuilder(papi, 0, null);
 			IUnitChain<IUnitData<Object>,IUnitData<Object>> chainWithPersistenceApi = builderWithPersistenceApi.getChain();
 			assertTrue(chainWithPersistenceApi.getFirstUnit() instanceof DatabaseFilterUnit);
@@ -71,7 +78,7 @@ public class UnitBuilderTest {
 	@Test
 	public void addDbFilterConfigTest(){
 		try {
-			IUnitChainBuilder builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			IUnitChainBuilder builder = new UnitChainBuilder("", null);
 			IUnit<IUnitData<Object>, IUnitData<Object>> dbUnit = builder.getChain().getFirstUnit();
 			assertTrue(dbUnit instanceof DatabaseFilterUnit);
 			((DatabaseFilterUnit) dbUnit).setDatabaseConfig(null);
@@ -87,7 +94,7 @@ public class UnitBuilderTest {
 	@Test
 	public void addUnitChainTest(){
 		try {
-			IUnitChainBuilder builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			IUnitChainBuilder builder = new UnitChainBuilder("", null);
 			
 			//build chain without builder
 			IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = new UnitChain(null);
@@ -115,7 +122,7 @@ public class UnitBuilderTest {
 	@Test
 	public void buildChainTest(){
 		try {
-			IUnitChainBuilder builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			IUnitChainBuilder builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createProcessModelFilterUnit(FlowNode.class);
@@ -138,7 +145,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createLabelFilterUnit("");
@@ -157,7 +164,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest2(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createLabelFilterUnit("");
 			
@@ -175,7 +182,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest3(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createProcessModelFilterUnit(new Task());
 			
@@ -193,7 +200,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest4(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createConnectednessFilterUnit();
 			
@@ -211,7 +218,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest5(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createBpmaiJsonToJbptUnit();
@@ -230,7 +237,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest6(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createProcessModelLabelExtractorUnit();
@@ -250,7 +257,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest7(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createProcessModelLabelExtractorUnit();
 			
@@ -268,7 +275,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest8(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, null);
+			builder = new UnitChainBuilder("", null);
 			//build chain
 			builder.createElementExtractorUnit(FlowNode.class);
 			

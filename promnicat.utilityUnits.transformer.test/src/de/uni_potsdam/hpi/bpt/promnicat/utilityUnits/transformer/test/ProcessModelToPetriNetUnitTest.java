@@ -27,14 +27,18 @@ import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
 import org.junit.Test;
 
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.test.util.RepresentationFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.util.serializer.PetriNetSerializer;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.ModelToPetriNetUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataClassification;
 
 /**
  * Test class for {@link ModelToPetriNetUnit}
@@ -45,7 +49,7 @@ public class ProcessModelToPetriNetUnitTest {
 	
 	private ModelToPetriNetUnit unit = new ModelToPetriNetUnit();
 	private ProcessModel model = TestModelBuilder.getModelWithoutOrGateway(Bpmn.class);
-	private IPersistenceApi persistenceApi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
+	private IPersistenceApi persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
 
 	public ProcessModelToPetriNetUnitTest() throws Exception {		
 	}
@@ -85,7 +89,7 @@ public class ProcessModelToPetriNetUnitTest {
 	
 	@Test
 	public void testExecuteWithDbAccess() throws IllegalTypeException {
-		Representation repr = RepresentationFactory.createLightweightRepresentation();
+		IRepresentation repr = RepresentationFactory.createLightweightRepresentation();
 		persistenceApi.savePojo(repr.getModel());
 		IUnitDataClassification<Object> unitData = new UnitDataClassification<Object>(this.model);
 		unitData.setDbId(repr.getDbId());
@@ -98,9 +102,9 @@ public class ProcessModelToPetriNetUnitTest {
 		assertSame(unitData.getValue(), pn);
 		
 		//check successful saving in and loading from database
-		Model model = persistenceApi.loadCompleteModelWithDbId(repr.getModel().getDbId());
+		IModel model = persistenceApi.loadCompleteModelWithDbId(repr.getModel().getDbId());
 		boolean found = false;
-		for(Representation representation : model.getLatestRevision().getRepresentations()) {
+		for(IRepresentation representation : model.getLatestRevision().getRepresentations()) {
 			if(representation.getFormat().equals(Constants.FORMATS.PNML.toString()) && representation.getNotation().equals(Constants.NOTATIONS.PETRINET.toString())) {
 				found = true;
 				assertNotNull(representation.getDataContent());

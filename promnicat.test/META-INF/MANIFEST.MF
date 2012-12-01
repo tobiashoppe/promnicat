@@ -21,4 +21,6 @@ Require-Bundle: org.junit4,
  promnicat.utilityUnits.processModelConverter;bundle-version="0.0.0",
  promnicat.utilityUnits.processModelCorrection;bundle-version="0.0.0",
  promnicat.utilityUnits.processModelEvolution;bundle-version="0.0.0",
- promnicat.utilityUnits.transformer;bundle-version="0.0.0"
+ promnicat.utilityUnits.transformer;bundle-version="0.0.0",
+ promnicat.utilityUnits.builder;bundle-version="0.0.0",
+ promnicat.utilityUnits.processMetrics;bundle-version="0.0.0"

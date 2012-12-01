@@ -39,7 +39,7 @@ import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.ProcessModelFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitData;
 
 /**
  * Test class for {@link ProcessModelFilterUnit}.

@@ -3,6 +3,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.main;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.zip.DataFormatException;
 
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.evaluation.Statistics;
@@ -37,7 +38,12 @@ public class Main {
 		if (Boolean.parseBoolean(props.getProperty("translateAllAnnotatedLabels")))
 			translateAnnotatedLabels();
 		if (Boolean.parseBoolean(props.getProperty("createNewRevision")))
-			createTranslatedRevision();
+			try {
+				createTranslatedRevision();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	private static void initializeTsvProcessor() {
@@ -79,8 +85,8 @@ public class Main {
 		translator.translate(tsvProcessor.getAnnotatedLabels());
 	}
 	
-	private static void createTranslatedRevision() throws DataFormatException {
+	private static void createTranslatedRevision() throws DataFormatException, IOException {
 		new RevisionCreator(translator, tsvProcessor, props.getProperty("configFile")).
-			createTranslatedRevision(props.getProperty("dbId"));
+			createTranslatedRevision(UUID.fromString(props.getProperty("dbId")));
 	}
 }

@@ -26,7 +26,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.AnalysisHelper;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.api.IAnalysis;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModel;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModelRevision;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 
 /**
  * This analysis looks for changes in metrics in revisions and looks out
@@ -38,7 +38,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
  */
 public class HighLowSameAnalysis extends AbstractAnalysis {
 
-	private Collection<METRICS> metrics;
+	private Collection<ProcessMetricConstants.METRICS> metrics;
 	private Map<String, Integer> results = new HashMap<String, Integer>();
 	private final String higher = AnalysisConstants.HIGHER.getDescription();
 	private final String same = AnalysisConstants.SAME.getDescription();
@@ -49,7 +49,7 @@ public class HighLowSameAnalysis extends AbstractAnalysis {
 	 * @see AbstractAnalysis#AbstractAnalysis(Map,Map)
 	 * @param metrics the metrics to analyze the changes for
 	 */
-	public HighLowSameAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Map<String, ProcessEvolutionModel> analyzedModels, Collection<METRICS> metrics) {
+	public HighLowSameAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Map<String, ProcessEvolutionModel> analyzedModels, Collection<ProcessMetricConstants.METRICS> metrics) {
 		super(modelsToAnalyze, analyzedModels);
 		this.metrics = metrics;
 	}
@@ -58,7 +58,7 @@ public class HighLowSameAnalysis extends AbstractAnalysis {
 	 * @see AbstractAnalysis#AbstractAnalysis(Map)
 	 * @param metrics the metrics to analyze the changes for
 	 */
-	public HighLowSameAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Collection<METRICS> metrics) {
+	public HighLowSameAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Collection<ProcessMetricConstants.METRICS> metrics) {
 		this(modelsToAnalyze, null, metrics);
 	}
 
@@ -66,7 +66,7 @@ public class HighLowSameAnalysis extends AbstractAnalysis {
 	protected void performAnalysis() {
 		IAnalysis differenceAnalysis = AnalysisHelper.analyzeDifferencesInMetrics(modelsToAnalyze, false);
 		analyzedModels = differenceAnalysis.getAnalyzedModels();
-		for (METRICS metric : metrics) {
+		for (ProcessMetricConstants.METRICS metric : metrics) {
 			int higherValues = 0;
 			int lowerValues =  0;
 			int sameValues = 0;
@@ -86,13 +86,13 @@ public class HighLowSameAnalysis extends AbstractAnalysis {
 	@Override
 	protected String getResultCSVString() {
 		StringBuilder builder = new StringBuilder();
-		for (METRICS metric : metrics)
+		for (ProcessMetricConstants.METRICS metric : metrics)
 			builder.append(CSV_ITEMSEPARATOR + metric);
 		for (String measure : measures) {
 			builder
 				.append("\n")
 				.append(measure);
-			for (METRICS metric : metrics)
+			for (ProcessMetricConstants.METRICS metric : metrics)
 				builder.append(CSV_ITEMSEPARATOR + results.get(metric.name() + measure));
 		}
 		return builder.toString();

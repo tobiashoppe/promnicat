@@ -61,7 +61,7 @@ public interface IRepresentation extends IPojo {
 	 * 
 	 * @param newRevision the revision to connect
 	 */
-	public void setRevision(Revision newRevision);
+	public void setRevision(IRevision newRevision);
 	
 	/**
 	 * @return the title of the connected {@link Model}

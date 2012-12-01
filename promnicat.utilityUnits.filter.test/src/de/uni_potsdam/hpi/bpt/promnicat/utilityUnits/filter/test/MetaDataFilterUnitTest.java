@@ -36,7 +36,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.MetaDataFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataMetaData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataMetaData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataMetaData;
 
 /**
  * Test class for {@link MetaDataFilterUnit}

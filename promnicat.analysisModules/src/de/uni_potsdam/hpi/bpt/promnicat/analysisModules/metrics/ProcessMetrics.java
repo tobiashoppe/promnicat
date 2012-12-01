@@ -29,9 +29,13 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.BpmnParser;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.EpcParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataProcessMetrics;
 
@@ -178,9 +182,9 @@ public class ProcessMetrics implements IAnalysisModule {
 	private IUnitChainBuilder buildUpUnitChain(boolean useFullDB) throws IOException, IllegalTypeException {
 		IUnitChainBuilder chainBuilder = null;
 		if (useFullDB){
-			chainBuilder = new UnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataProcessMetrics.class);
+			chainBuilder = new UnitChainBuilder("configuration(full).properties", UnitDataProcessMetrics.class);
 		} else {
-			chainBuilder = new UnitChainBuilder("", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataProcessMetrics.class);
+			chainBuilder = new UnitChainBuilder("", UnitDataProcessMetrics.class);
 		}
 		//build db query
 		DbFilterConfig dbFilter = new DbFilterConfig();

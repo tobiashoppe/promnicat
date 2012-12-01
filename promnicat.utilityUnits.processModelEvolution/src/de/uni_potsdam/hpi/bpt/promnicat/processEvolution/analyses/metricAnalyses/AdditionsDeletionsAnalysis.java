@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.ListUtils;
 import org.jbpt.hypergraph.abs.Vertex;
 import org.jbpt.pm.Activity;
 import org.jbpt.pm.ControlFlow;
@@ -106,13 +105,10 @@ public class AdditionsDeletionsAnalysis extends AbstractMetricsAnalysis {
 	 * @param includeSubprocesses flag to decide whether to include subprocesses in the analysis
 	 * @return the number of additions and deletions for the given element class
 	 */
-	@SuppressWarnings("unchecked")
 	private static Map<AnalysisConstants, Integer> analyzeAddsAndDeletesFor(
 			AnalysisConstants classToAnalyze, Map<String, List<String>> oldElements, 
 			ProcessEvolutionModelRevision revision, boolean includeSubprocesses) {
 		List<String> newIDs = new ArrayList<String>();
-		List<String> deletions;
-		List<String> additions;
 		ProcessModel actualModel = revision.getProcessModel();
 		switch (classToAnalyze) {
 		case EVENTS:
@@ -144,12 +140,14 @@ public class AdditionsDeletionsAnalysis extends AbstractMetricsAnalysis {
 		}
 		List<String> oldIDs = oldElements.get(classToAnalyze.getDescription());
 		oldIDs = oldIDs == null ? new ArrayList<String>() : oldIDs;
-		deletions = ListUtils.subtract(oldIDs, newIDs);
-		additions = ListUtils.subtract(newIDs, oldIDs);
+		int oldSize = oldIDs.size();
+		oldIDs.removeAll(newIDs);
+		int oldNewSize = newIDs.size();
+		newIDs.removeAll(oldIDs);
 		Map<AnalysisConstants, Integer> results = new HashMap<AnalysisConstants, Integer>();
 		oldElements.put(classToAnalyze.getDescription(), newIDs);
-		results.put(AnalysisConstants.ADDITIONS, additions.size());
-		results.put(AnalysisConstants.DELETIONS, deletions.size());
+		results.put(AnalysisConstants.ADDITIONS, oldNewSize - newIDs.size());
+		results.put(AnalysisConstants.DELETIONS, oldSize - oldIDs.size());
 		return results;
 	}
 

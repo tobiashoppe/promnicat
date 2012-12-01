@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModel;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 
 /**
  * @see DifferenceAnalysis
@@ -37,16 +37,16 @@ public class RelativeDifferenceAnalysis extends DifferenceAnalysis {
 	public RelativeDifferenceAnalysis(
 			Map<String, ProcessEvolutionModel> modelsToAnalyze,
 			Map<String, ProcessEvolutionModel> analyzedModels,
-			Collection<METRICS> metrics) {
+			Collection<ProcessMetricConstants.METRICS> metrics) {
 		super(modelsToAnalyze, analyzedModels, metrics);
 	}
 
-	public RelativeDifferenceAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Collection<METRICS> metrics) {
+	public RelativeDifferenceAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Collection<ProcessMetricConstants.METRICS> metrics) {
 		super(modelsToAnalyze, metrics);
 	}
 	
 	@Override
-	protected double calculateDifference(METRICS metric, double actualValue, double oldValue) {
+	protected double calculateDifference(ProcessMetricConstants.METRICS metric, double actualValue, double oldValue) {
 		double divisor = oldValue == 0 ? actualValue : oldValue;
 		if (divisor == 0) divisor = 1;
 		int factor = 100;

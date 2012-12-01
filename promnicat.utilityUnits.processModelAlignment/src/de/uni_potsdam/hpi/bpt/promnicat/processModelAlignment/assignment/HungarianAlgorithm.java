@@ -1,6 +1,7 @@
 package de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.assignment;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+
 import org.jbpt.alignment.IEntity;
 
 import de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.matrix.ISimilarityMatrix;
@@ -490,7 +491,7 @@ public class HungarianAlgorithm extends AbstractAssignment {
 		}
 	}
 	
-	private static final Logger LOGGER = Logger.getLogger(HungarianAlgorithm.class);
+	private static final Logger LOGGER = Logger.getLogger(HungarianAlgorithm.class.getName());
 
 	@Override
 	public ISimilarityMatrix<IEntity> assignWithEquallySizedSets(ISimilarityMatrix<IEntity> similarities) {
@@ -515,7 +516,7 @@ public class HungarianAlgorithm extends AbstractAssignment {
 			IEntity firstEntity = firstSet[assignment[first]];
 			IEntity secondEntity = secondSet[assignment[second]];
 			SimilarityPair<IEntity> pair = similarities.getSimilarities(firstEntity, secondEntity).iterator().next();
-			LOGGER.debug(pair);
+			LOGGER.info(pair.toString());
 			result.addSimilarity(pair);
 		}
 		return result;

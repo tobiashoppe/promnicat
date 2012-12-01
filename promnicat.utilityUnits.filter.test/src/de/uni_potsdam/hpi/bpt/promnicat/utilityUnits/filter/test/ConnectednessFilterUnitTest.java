@@ -30,7 +30,7 @@ import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.ConnectednessFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitData;
 
 /**
  * Test class for ConnectednessFilterUnit.

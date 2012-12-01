@@ -25,9 +25,14 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitData;
 
@@ -97,7 +102,7 @@ public class PromniCATSurvey implements IAnalysisModule {
 			configPath = "configuration(full).properties";
 		}
 		ConfigurationParser configParser = new ConfigurationParser(configPath);
-		IPersistenceApi persistenceApi = configParser.getDbInstance(Constants.DATABASE_TYPES.ORIENT_DB);
+		IPersistenceApi persistenceApi = configParser.getDbInstance();
 		chainBuilder = new UnitChainBuilder(persistenceApi, configParser.getThreadCount(), UnitData.class);
 		//build db query
 		DbFilterConfig dbFilter = new DbFilterConfig();

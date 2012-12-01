@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.test;
+package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -30,7 +30,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.BpmnConformanceLevelCheckerUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataClassification;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataClassification;
 
 /**
  * Test class for {@link BpmnConformanceLevelCheckerUnit}

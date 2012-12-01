@@ -5,13 +5,8 @@ Bundle-SymbolicName: promnicat.utilityUnits.processModelAlignment
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: promnicat.externals;bundle-version="0.0.0";visibility:=reexport
-Export-Package: de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment,
- de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.assignment,
- de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label,
- de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.preprocessing,
- de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity,
- de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.matrix,
- de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.word,
- de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.util
-Bundle-ClassPath: .
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment
+Bundle-ClassPath: .,
+ lib/simmetrics.jar,
+ lib/jws/edu.sussex.nlp.jws.beta.11.jar
 Eclipse-ExtensibleAPI: true

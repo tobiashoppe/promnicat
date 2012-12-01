@@ -20,6 +20,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.indices;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.uni_potsdam.hpi.bpt.promnicat.parser.ModelParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 
 /**

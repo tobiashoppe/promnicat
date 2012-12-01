@@ -2,6 +2,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.util;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
@@ -11,7 +12,6 @@ import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.list.PointerTargetTree;
 import net.didion.jwnl.dictionary.Dictionary;
 
-import org.apache.log4j.Logger;
 import org.jbpt.alignment.LabelEntity;
 
 /**
@@ -21,7 +21,7 @@ import org.jbpt.alignment.LabelEntity;
  */
 public class WordNetUtil {
 
-	private static final Logger LOGGER = Logger.getLogger(WordNetUtil.class);
+	private static final Logger LOGGER = Logger.getLogger(WordNetUtil.class.getName());
 
 	private static final String WORDNET_CONFIG_FILE = "lib/wordnet/config/my_properties.xml";
 
@@ -44,7 +44,7 @@ public class WordNetUtil {
 				dict = Dictionary.getInstance();
 				LOGGER.info("Loading WordNet finished.");
 			} catch (Exception e) {
-				LOGGER.error("Loading WordNet failed", e);
+				LOGGER.severe("Loading WordNet failed with: " + e.getMessage());
 			}
 		}
 		return dict;
@@ -70,7 +70,7 @@ public class WordNetUtil {
 			labelToIndexWords.put(label, indexWordArray);
 			return indexWordArray;
 		} catch(JWNLException e) {
-			LOGGER.error("Error while accessing WordNet library", e);
+			LOGGER.severe("Error while accessing WordNet library: " + e.getMessage());
 			return null;
 		}
 	}
@@ -91,7 +91,7 @@ public class WordNetUtil {
 			indexWordToSynsets.put(indexWord, senses);
 			return senses;
 		} catch (JWNLException e) {
-			LOGGER.error("Error while accessing WordNet library", e);
+			LOGGER.severe("Error while accessing WordNet library: " + e.getMessage());
 			return null;
 		}
 	}
@@ -110,7 +110,7 @@ public class WordNetUtil {
 			PointerTargetTree hypernymTree = PointerUtils.getInstance().getHypernymTree(sense);
 			return hypernymTree;
 		} catch (JWNLException e) {
-			LOGGER.error("Error while accessing WordNet library", e);
+			LOGGER.severe("Error while accessing WordNet library: " + e.getMessage());
 			return null;
 		}
 	}

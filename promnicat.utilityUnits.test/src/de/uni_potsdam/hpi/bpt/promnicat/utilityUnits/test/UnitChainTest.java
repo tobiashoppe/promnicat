@@ -40,26 +40,26 @@ public class UnitChainTest {
 	@Test
 	public void testGetUnits(){
 		IUnitChain<IUnitData<Object>, IUnitData<Object>> chain = new UnitChain(null);
-		chain.register(new SimpleCollectorUnit());
+		chain.register(new MockUnit());
 		assertTrue(chain.getUnits().size() == 1);
 		
-		chain.register(new SimpleCollectorUnit());
+		chain.register(new MockUnit());
 		assertTrue(chain.getUnits().size() == 2);
 	}
 	
 	@Test
 	public void testGetFirstUnit(){
 		IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = new UnitChain(null);	
-		chain.register(new ProcessModelFilterUnit(FlowNode.class));
-		chain.register(new SimpleCollectorUnit());	
+		chain.register(new MockUnit(FlowNode.class));
+		chain.register(new MockUnit());	
 		assertTrue(chain.getFirstUnit().getName().equals("ProcessModelFilterUnit"));
 	}
 	
 	@Test
 	public void testGetLastUnit(){
 		IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = new UnitChain(null);
-		chain.register(new SimpleCollectorUnit());	
-		chain.register(new ProcessModelFilterUnit(FlowNode.class));
+		chain.register(new MockUnit());	
+		chain.register(new MockUnit(FlowNode.class));
 		assertTrue(chain.getLastUnit().getName().equals("ProcessModelFilterUnit"));
 	}
 	
@@ -67,14 +67,14 @@ public class UnitChainTest {
 	public void testRegister(){
 		IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = new UnitChain(null);
 		UnitChain smallChain = new UnitChain(null);
-		chain.register(new SimpleCollectorUnit());
+		chain.register(new MockUnit());
 		assertTrue(chain.getUnits().size() == 1);
 		
-		chain.register(new SimpleCollectorUnit());
+		chain.register(new MockUnit());
 		assertTrue(chain.getUnits().size() == 2);
 		
-		smallChain.register(new SimpleCollectorUnit());
-		smallChain.register(new SimpleCollectorUnit());
+		smallChain.register(new MockUnit());
+		smallChain.register(new MockUnit());
 		assertTrue(smallChain.getUnits().size() == 2);
 		
 		chain.register(smallChain);
@@ -82,8 +82,8 @@ public class UnitChainTest {
 		
 		
 		Collection<IUnit<IUnitData<Object>,IUnitData<Object>>> units = new ArrayList<IUnit<IUnitData<Object>, IUnitData<Object>>>();
-		units.add(new SimpleCollectorUnit());
-		units.add(new SimpleCollectorUnit());
+		units.add(new MockUnit());
+		units.add(new MockUnit());
 		chain.register(units);
 		assertTrue(chain.getUnits().size() == 6);
 	}

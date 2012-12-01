@@ -2,8 +2,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.jbpt.alignment.LabelEntity;
 
 import de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.matrix.ISimilarityMatrix;
@@ -18,7 +18,7 @@ public abstract class AbstractSimilarity implements LabelSimilarity {
 	@Override
 	public ISimilarityMatrix<LabelEntity> getSimilarityMatrix(Collection<LabelEntity> first, Collection<LabelEntity> second) {
 		HashMap<LabelEntity, HashMap<LabelEntity, Float>> result = new HashMap<LabelEntity, HashMap<LabelEntity, Float>>();
-		Logger.getLogger(getClass()).info("SimilarityClass: "+getClass().getSimpleName());
+		Logger.getLogger(getClass().getName()).info("SimilarityClass: "+getClass().getSimpleName());
 		for (LabelEntity eachOfFirst : first) {
 			for (LabelEntity eachOfSecond : second) {
 				HashMap<LabelEntity, Float> hashMap = result.get(eachOfFirst);
@@ -27,7 +27,7 @@ public abstract class AbstractSimilarity implements LabelSimilarity {
 				}
 				float sim = compute(eachOfFirst, eachOfSecond);
 				hashMap.put(eachOfSecond, sim);
-				Logger.getLogger(getClass()).trace(
+				Logger.getLogger(getClass().getName()).info(
 					"Similarity: ("+eachOfFirst.getLabel()+", "+eachOfSecond.getLabel()+", "+sim+")"
 				);
 			}

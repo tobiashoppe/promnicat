@@ -23,7 +23,7 @@ import java.util.Map;
 
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModel;
 import de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model.ProcessEvolutionModelRevision;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 
 /**
  * This analysis looks for differences in metrics between revisions. Differences are
@@ -34,14 +34,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
  */
 public class DifferenceAnalysis extends AbstractMetricsAnalysis {
 
-	protected Collection<METRICS> metrics;
+	protected Collection<ProcessMetricConstants.METRICS> metrics;
 
-	public DifferenceAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Map<String, ProcessEvolutionModel> analyzedModels, Collection<METRICS> metrics) {
+	public DifferenceAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Map<String, ProcessEvolutionModel> analyzedModels, Collection<ProcessMetricConstants.METRICS> metrics) {
 		super(modelsToAnalyze,analyzedModels);
 		this.metrics = metrics;
 	}
 	
-	public DifferenceAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Collection<METRICS> metrics) {
+	public DifferenceAnalysis(Map<String, ProcessEvolutionModel> modelsToAnalyze, Collection<ProcessMetricConstants.METRICS> metrics) {
 		this(modelsToAnalyze, null, metrics);
 	}
 
@@ -51,12 +51,12 @@ public class DifferenceAnalysis extends AbstractMetricsAnalysis {
 		for (ProcessEvolutionModel model : modelsToAnalyze.values()) {
 			ProcessEvolutionModel newModel = new ProcessEvolutionModel(
 					model.getName());
-			Map<METRICS, Double> oldValues = getInitialMetricsValues();
+			Map<ProcessMetricConstants.METRICS, Double> oldValues = getInitialMetricsValues();
 			// perform the analysis of differences for every revision and metric
 			for (ProcessEvolutionModelRevision revision : model.getRevisions().values()) {
 				ProcessEvolutionModelRevision newRevision = new ProcessEvolutionModelRevision(
 						revision.getRevisionNumber());
-				for (METRICS metric : metrics) {
+				for (ProcessMetricConstants.METRICS metric : metrics) {
 					double actualValue = revision.get(metric);
 					double oldValue = oldValues.get(metric);
 					double difference = calculateDifference(metric,
@@ -78,9 +78,9 @@ public class DifferenceAnalysis extends AbstractMetricsAnalysis {
 	 * point for the first revision of a model to be compared to
 	 * @return
 	 */
-	private Map<METRICS, Double> getInitialMetricsValues() {
-		Map<METRICS, Double> oldValues = new HashMap<METRICS, Double>();
-		for (METRICS metric : metrics)
+	private Map<ProcessMetricConstants.METRICS, Double> getInitialMetricsValues() {
+		Map<ProcessMetricConstants.METRICS, Double> oldValues = new HashMap<ProcessMetricConstants.METRICS, Double>();
+		for (ProcessMetricConstants.METRICS metric : metrics)
 			oldValues.put(metric, new Double(0));
 		return oldValues;
 	}
@@ -93,7 +93,7 @@ public class DifferenceAnalysis extends AbstractMetricsAnalysis {
 	 * @param relative
 	 * @return
 	 */
-	protected double calculateDifference(METRICS metric, double actualValue, double oldValue) {
+	protected double calculateDifference(ProcessMetricConstants.METRICS metric, double actualValue, double oldValue) {
 		return actualValue - oldValue;
 	}
 
@@ -102,7 +102,7 @@ public class DifferenceAnalysis extends AbstractMetricsAnalysis {
 		StringBuilder builder = new StringBuilder()
 			.append("Process Model" + CSV_ITEMSEPARATOR)
 			.append("Revision" + CSV_ITEMSEPARATOR);
-		for (METRICS metric : metrics)
+		for (ProcessMetricConstants.METRICS metric : metrics)
 			builder.append(metric.name() + CSV_ITEMSEPARATOR);
 	builder.append("grows continuously?");
 	return builder.toString();
@@ -118,7 +118,7 @@ public class DifferenceAnalysis extends AbstractMetricsAnalysis {
 				.append("\n")
 				.append(model.getName())
 				.append(CSV_ITEMSEPARATOR + revision.getRevisionNumber());
-			for (METRICS metric : metrics) 
+			for (ProcessMetricConstants.METRICS metric : metrics) 
 				builder.append(CSV_ITEMSEPARATOR + revision.get(metric).intValue());
 		}
 		builder.append(CSV_ITEMSEPARATOR + model.isGrowing());

@@ -26,9 +26,14 @@ import java.util.logging.Logger;
 import org.jbpt.pm.FlowNode;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilter;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataLabelFilter;
 
@@ -47,7 +52,7 @@ public class CalcAndSaveNodeName implements IAnalysisModule {
 	
 	private static final String CONFIGURATION_FILE = "configuration.properties";
 	private static final String SEARCHCRITERION = "Customer";
-	private PersistenceApiOrientDbObj papi;
+	private IPersistenceApi papi;
 
 	private static final Logger logger = Logger
 			.getLogger(CalcAndSaveNodeName.class.getName());
@@ -64,7 +69,7 @@ public class CalcAndSaveNodeName implements IAnalysisModule {
 		long startTime = System.currentTimeMillis();
 		
 		//build chain
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder(CONFIGURATION_FILE, Constants.DATABASE_TYPES.ORIENT_DB, UnitDataLabelFilter.class);
+		IUnitChainBuilder chainBuilder = new UnitChainBuilder(CONFIGURATION_FILE, UnitDataLabelFilter.class);
 		buildUpUnitChain(chainBuilder);
 		
 		logger.info(chainBuilder.getChain().toString());
@@ -142,7 +147,7 @@ public class CalcAndSaveNodeName implements IAnalysisModule {
 		}
 		
 		//save analysis run and print out its database id
-		papi = PersistenceApiOrientDbObj.getInstance(CONFIGURATION_FILE);
+		papi = new ConfigurationParser(CONFIGURATION_FILE).getDbInstance();
 		papi.registerPojoPackage(run.getClass().getPackage().getName());
 		papi.savePojo(run);
 		logger.info("saved analysis run " + run.getDbId());

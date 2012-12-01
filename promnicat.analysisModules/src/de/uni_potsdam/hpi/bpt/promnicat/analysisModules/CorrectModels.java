@@ -24,11 +24,12 @@ import java.util.logging.Logger;
 import org.jbpt.pm.bpmn.Bpmn;
 import org.jbpt.pm.epc.Epc;
 
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.CorrectionUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.CorrectionUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataJbpt;
 

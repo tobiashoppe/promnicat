@@ -19,3 +19,4 @@ Require-Bundle: promnicat;bundle-version="0.0.0",
  promnicat.utilityUnits.transformer;bundle-version="0.0.0"
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder,
  de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl
+Eclipse-ExtensibleAPI: true

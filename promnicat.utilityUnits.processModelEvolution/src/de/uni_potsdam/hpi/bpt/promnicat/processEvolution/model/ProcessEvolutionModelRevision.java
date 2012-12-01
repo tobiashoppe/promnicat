@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.jbpt.pm.ProcessModel;
 
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants.METRICS;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 
 
 /**
@@ -102,7 +102,7 @@ public class ProcessEvolutionModelRevision {
 	 * @param metric the {@link METRICS} to add
 	 * @param metricValue the value of the metric
 	 */
-	public void add(METRICS metric, double metricValue) {
+	public void add(ProcessMetricConstants.METRICS metric, double metricValue) {
 		metrics.put(metric.name(), metricValue);
 	}
 	
@@ -141,7 +141,7 @@ public class ProcessEvolutionModelRevision {
 	 * @param metric the {@link METRICS} to get the value of
 	 * @return the value of the given metric in this revision
 	 */
-	public Double get(METRICS metric) {
+	public Double get(ProcessMetricConstants.METRICS metric) {
 		return metrics.get(metric.name());
 	}
 	

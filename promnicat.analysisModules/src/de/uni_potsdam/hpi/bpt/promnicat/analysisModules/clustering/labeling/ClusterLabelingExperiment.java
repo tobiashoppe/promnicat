@@ -14,7 +14,19 @@ import java.util.Map.Entry;
 import org.jbpt.pm.Activity;
 import org.jbpt.pm.ProcessModel;
 
+import weka.core.Attribute;
+import weka.core.FastVector;
+
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.ClusterTree;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.FeatureVector;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.HierarchicalProcessClusterer;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.ProcessInstance;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.ProcessInstances;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.WeightedEditDistance;
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.WeightedEuclideanDistance;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.FeatureConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.ProcessFeatureConstants;
 
 /**
  * This is an experiment for cluster labeling. This class reads in csv files of testsets and generates process

@@ -18,6 +18,7 @@
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -25,12 +26,14 @@ import org.jbpt.pm.epc.Epc;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.BpmaiJsonToDiagramUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.DiagramToJbptUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataJbpt;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataJbpt;
 
 /**
  * Test class for {@DiagramToJbptUnit}
@@ -45,12 +48,14 @@ public class DiagramToJbptUnitTest {
 	@BeforeClass
 	public static void setUp() throws IllegalTypeException{
 		BpmaiJsonToDiagramUnit parserUnit = new BpmaiJsonToDiagramUnit();
-		Representation representation = new Representation();
+		IRepresentation representation = null;
 		try{
-			File file = new File("resources/BPMAI/model_epc1/model_2_.json");
+			representation = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).
+					getDbInstance().getPojoFactory().createRepresentation();
+			File file = new File("../promnicat/resources/BPMAI/model_epc1/model_2_.json");
 			representation.importFile(file);
 		}catch (Exception e){
-			System.err.println("Error: " + e.getMessage());
+			fail(e.getMessage());
 		}	
 
 		UnitDataJbpt<Object> input = new UnitDataJbpt<Object>(representation);

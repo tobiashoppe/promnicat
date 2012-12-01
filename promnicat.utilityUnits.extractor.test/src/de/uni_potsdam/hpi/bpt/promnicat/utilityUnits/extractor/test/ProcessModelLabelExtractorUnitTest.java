@@ -33,7 +33,7 @@ import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessModelLabelExtractorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilter;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataLabelFilter;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataLabelFilter;
 
 /**
  * Test class for {@link ProcessModelLabelExtractorUnit}.

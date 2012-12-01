@@ -4,8 +4,11 @@ Bundle-Name: promnicat.utilityUnits.processModelCorrection
 Bundle-SymbolicName: promnicat.utilityUnits.processModelCorrection
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: promnicat.utilityUnits
+Require-Bundle: promnicat.utilityUnits,
+ promnicat.importer;bundle-version="0.0.0"
 Bundle-ClassPath: .,
  lib/javaGeom-0.10.2.jar
 Eclipse-ExtensibleAPI: true
-Export-Package: de.uni_potsdam.hpi.bpt.promnicat.correctionModule
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.correctionModule,
+ de.uni_potsdam.hpi.bpt.promnicat.correctionModule.correctors,
+ de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits

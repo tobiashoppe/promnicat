@@ -5,4 +5,5 @@ Bundle-SymbolicName: promnicat.utilityUnits.transformer.test;singleton:=true
 Bundle-Version: 0.0.0
 Fragment-Host: promnicat.utilityUnits.transformer
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit4
+Require-Bundle: org.junit4,
+ promnicat;bundle-version="0.0.0"

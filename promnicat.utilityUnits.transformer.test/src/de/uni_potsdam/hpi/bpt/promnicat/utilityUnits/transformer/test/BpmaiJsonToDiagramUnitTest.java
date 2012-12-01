@@ -25,10 +25,12 @@ import java.io.File;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.BpmaiJsonToDiagramUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataJbpt;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataJbpt;
 
 /**
  * Test class for {@link BpmaiJsonToDiagramUnit}
@@ -46,9 +48,10 @@ public class BpmaiJsonToDiagramUnitTest {
 
 	@Test
 	public void testExecute() {
-		Representation representation = new Representation();
 		try{
-			File file = new File("resources/BPMAI/model_epc1/model_2_.json");
+			IRepresentation representation = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).
+					getDbInstance().getPojoFactory().createRepresentation();
+			File file = new File("../promnicat/resources/BPMAI/model_epc1/model_2_.json");
 			representation.importFile(file);
 
 			IUnitData<Object> input = new UnitDataJbpt<Object>(representation);

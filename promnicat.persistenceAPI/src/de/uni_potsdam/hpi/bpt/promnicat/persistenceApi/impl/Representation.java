@@ -108,7 +108,7 @@ public class Representation extends AbstractPojo implements IRepresentation {
 	}
 	
 	@Override
-	public void setRevision(Revision revision) {
+	public void setRevision(IRevision revision) {
 		if(revision != null) {
 			this.revision = revision;
 			revision.connectRepresentation(this);

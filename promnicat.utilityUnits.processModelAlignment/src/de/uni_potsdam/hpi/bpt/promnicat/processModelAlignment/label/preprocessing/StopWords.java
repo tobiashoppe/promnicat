@@ -5,8 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedHashSet;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 /**
  * Removes all words matching an entry in the stopword list.<br>
@@ -56,9 +55,9 @@ public class StopWords extends TokenBasedPreProcessingStep {
 				stopwords.add(strLine);
 			}
 		} catch (FileNotFoundException e) {
-			Logger.getLogger(getClass()).error("StopWord file not found", e);
+			Logger.getLogger(getClass().getName()).severe("StopWord file not found: " + e.getMessage());
 		} catch (IOException e) {
-			Logger.getLogger(getClass()).error("StopWord file could not be read", e);
+			Logger.getLogger(getClass().getName()).severe("StopWord file could not be read: " + e.getMessage());
 		}
 	}
 

@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.test;
+package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -27,11 +27,11 @@ import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.util.ProcessMetricConstants;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.util.ProcessModelMetricsCalculatorUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.ProcessModelMetricsCalculatorUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataProcessMetrics;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataProcessMetrics;
 
 /**
  * Test class for {@link ProcessModelMetricsCalculatorUnit}.

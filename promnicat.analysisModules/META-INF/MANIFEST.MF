@@ -5,6 +5,12 @@ Bundle-SymbolicName: promnicat.analysisModules
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-ExtensibleAPI: true
-Require-Bundle: promnicat.util;bundle-version="0.0.0",
- promnicat.utilityUnits.builder;bundle-version="0.0.0",
- promnicat.utilityUnits.processModelCorrection;bundle-version="0.0.0"
+Require-Bundle: promnicat.utilityUnits.builder;bundle-version="0.0.0",
+ promnicat.utilityUnits.processModelCorrection;bundle-version="0.0.0",
+ promnicat.utilityUnits.Clustering;bundle-version="0.0.0",
+ promnicat.utilityUnits.transformer;bundle-version="0.0.0",
+ promnicat.importer;bundle-version="0.0.0",
+ promnicat;bundle-version="0.0.0",
+ promnicat.utilityUnits.processMetrics;bundle-version="0.0.0",
+ promnicat.utilityUnits.processModelAlignment;bundle-version="0.0.0",
+ promnicat.utilityUnits.processModelEvolution;bundle-version="0.0.0"

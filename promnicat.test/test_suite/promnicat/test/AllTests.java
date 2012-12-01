@@ -14,7 +14,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.test.all.AllTests.class,
-	de.uni_potsdam.hpi.bpt.promnicat.modelConverter.test.all.AllTests.class
+	de.uni_potsdam.hpi.bpt.promnicat.modelConverter.test.all.AllTests.class,
+	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.test.all.AllTests.class
 })
 public class AllTests {
 

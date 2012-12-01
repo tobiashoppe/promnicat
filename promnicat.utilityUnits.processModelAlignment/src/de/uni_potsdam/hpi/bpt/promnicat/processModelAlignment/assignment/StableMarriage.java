@@ -1,8 +1,8 @@
 package de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.assignment;
 
 import java.util.HashSet;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.jbpt.alignment.IEntity;
 
 import de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.matrix.ISimilarityMatrix;
@@ -19,7 +19,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.m
  * @author stefan.schaefer
  */
 public class StableMarriage extends AbstractAssignment {
-	private static final Logger LOGGER = Logger.getLogger(StableMarriage.class);
+	private static final Logger LOGGER = Logger.getLogger(StableMarriage.class.getName());
 
 	/** @see StableMarriage 
 	 *  @param similarities The {@link SimilarityMatrix} to use for the assignment 
@@ -36,7 +36,7 @@ public class StableMarriage extends AbstractAssignment {
 				SimilarityPair<IEntity> favorite = getFavorite(man, availableMen, availableWomen, similarities, result);
 				availableMen.remove(favorite.first);
 				availableWomen.remove(favorite.second);
-				LOGGER.debug(favorite);
+				LOGGER.info(favorite.toString());
 				result.addSimilarity(favorite);
 			}
 		}
