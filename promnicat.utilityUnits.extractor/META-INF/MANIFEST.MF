@@ -6,3 +6,4 @@ Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Require-Bundle: promnicat.utilityUnits.filter;bundle-version="0.0.0";visibility:=reexport
+Eclipse-ExtensibleAPI: true

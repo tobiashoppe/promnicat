@@ -20,6 +20,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.ICollectorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**
@@ -32,7 +34,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * @author Tobias Hoppe
  *
  */
-public class SimpleCollectorUnit implements ICollectorUnit<IUnitData<Object>, IUnitData<Object> > {
+public class SimpleCollectorUnit extends AbstractUnit implements ICollectorUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	private Collection<IUnitData<Object> > collectedResult = new ArrayList<IUnitData<Object> >();
 	

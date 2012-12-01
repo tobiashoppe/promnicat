@@ -14,3 +14,4 @@ Export-Package: de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment,
  de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.label.similarity.word,
  de.uni_potsdam.hpi.bpt.promnicat.processModelAlignment.util
 Bundle-ClassPath: .
+Eclipse-ExtensibleAPI: true

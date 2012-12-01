@@ -4,3 +4,4 @@ Bundle-Name: promnicat.analysisModules
 Bundle-SymbolicName: promnicat.analysisModules
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Eclipse-ExtensibleAPI: true

@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.test;
+package de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -59,12 +59,12 @@ public class PojosTest {
 		assertNull(model.getLatestRevision());
 		assertFalse(rev1.isLatestRevision());
 		assertFalse(rev2.isLatestRevision());
-		assertFalse(model.hasDbId());
+		assertTrue(model.hasDbId());
 		
 		//no choose 1 latest revision
 		model.connectLatestRevision(rev2);
 		
-		assertTrue(model.getNrOfRevisions() == 2); // not 3 revisions
+		assertTrue(model.getNrOfRevisions() == 2); // not 3 revisions!
 		assertTrue(model.getLatestRevision() == rev2);
 		assertTrue(rev2.isLatestRevision());
 		assertFalse(rev1.isLatestRevision());

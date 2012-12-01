@@ -21,6 +21,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
@@ -33,7 +34,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * @author Tobias Hoppe, Cindy Fähnrich
  *
  */
-public class DatabaseFilterUnit implements IDatabaseFilterUnit {
+public class DatabaseFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Object>> {
 	
 	private IPersistenceApi papi = null;
 	private DbFilterConfig config = null;
@@ -61,12 +62,16 @@ public class DatabaseFilterUnit implements IDatabaseFilterUnit {
 		return input;
 	}
 
-	@Override
+	/**
+	 * @return the config
+	 */
 	public DbFilterConfig getDatabaseConfig() {
 		return config;
 	}
 
-	@Override
+	/**
+	 * @param config the config to set
+	 */
 	public void setDatabaseConfig(DbFilterConfig config) {
 		this.config = config;
 	}
@@ -84,5 +89,10 @@ public class DatabaseFilterUnit implements IDatabaseFilterUnit {
 	@Override
 	public Class<?> getOutputType() {
 		return Representation.class;
+	}
+
+	@Override
+	public boolean isValidRootUnit() {
+		return true;
 	}
 }

@@ -7,3 +7,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector
 Require-Bundle: promnicat.utilityUnits;bundle-version="0.0.0"
+Eclipse-ExtensibleAPI: true

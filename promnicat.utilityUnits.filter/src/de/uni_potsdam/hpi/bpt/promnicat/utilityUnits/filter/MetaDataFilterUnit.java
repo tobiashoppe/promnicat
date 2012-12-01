@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataMetaData;
@@ -38,7 +39,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataMetaData;
  * @author Tobias Hoppe
  *
  */
-public class MetaDataFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class MetaDataFilterUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 	
 	private String keySearchCriterion = null;
 	private String valueSearchCriterion = null;
@@ -95,6 +96,7 @@ public class MetaDataFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Ob
 					for(String value : values){
 						if(this.valueSearchPattern.matcher(value).matches()){
 							found = true;
+							break;
 						}
 					}
 					if (found){
@@ -123,6 +125,7 @@ public class MetaDataFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Ob
 					for(String value : values){
 						if(value.equalsIgnoreCase(this.valueSearchCriterion)){
 							found = true;
+							break;
 						}
 					}
 					if (found){

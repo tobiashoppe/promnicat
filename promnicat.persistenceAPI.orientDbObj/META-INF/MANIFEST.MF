@@ -21,3 +21,4 @@ Bundle-ClassPath: .,
  lib/orientdb-server-1.3.0-SNAPSHOT.jar,
  lib/orientdb-tools-1.3.0-SNAPSHOT.jar,
  lib/persistence-api-1.0.jar
+Eclipse-ExtensibleAPI: true

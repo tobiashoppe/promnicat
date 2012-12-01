@@ -5,4 +5,8 @@ Bundle-SymbolicName: promnicat.utilityUnits.filter.test;singleton:=true
 Bundle-Version: 0.0.0
 Fragment-Host: promnicat.utilityUnits.filter
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit4
+Require-Bundle: org.junit4,
+ promnicat;bundle-version="0.0.0",
+ promnicat.utilityUnits.collector;bundle-version="0.0.0",
+ promnicat.importer;bundle-version="0.0.0"
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.test.all;x-friends:="promnicat.test"

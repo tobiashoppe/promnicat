@@ -25,9 +25,9 @@ import static org.junit.Assert.fail;
 import org.jbpt.pm.ProcessModel;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.TestModelBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessMetricConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessModelMetricsCalculatorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;

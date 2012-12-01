@@ -9,3 +9,4 @@ Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceApi,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl
 Require-Bundle: promnicat.util
+Eclipse-ExtensibleAPI: true

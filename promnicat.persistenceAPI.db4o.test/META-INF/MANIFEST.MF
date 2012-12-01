@@ -6,3 +6,4 @@ Bundle-Version: 0.0.0
 Fragment-Host: promnicat.persistenceAPI.db4o;bundle-version="0.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4;bundle-version="4.8.1"
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.test.all;x-friends:="promnicat.test"

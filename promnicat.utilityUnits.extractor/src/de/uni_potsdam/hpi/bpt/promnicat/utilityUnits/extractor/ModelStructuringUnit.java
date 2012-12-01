@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
@@ -36,7 +37,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassific
  * @author Tobias Hoppe
  *
  */
-public class ModelStructuringUnit implements IUnit<IUnitData<Object>, IUnitData<Object>> {
+public class ModelStructuringUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object>> {
 
 	/**
 	 * logger used by this class

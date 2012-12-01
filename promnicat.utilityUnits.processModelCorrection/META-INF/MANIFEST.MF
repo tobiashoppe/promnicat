@@ -7,3 +7,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: promnicat.utilityUnits
 Bundle-ClassPath: .,
  lib/javaGeom-0.10.2.jar
+Eclipse-ExtensibleAPI: true

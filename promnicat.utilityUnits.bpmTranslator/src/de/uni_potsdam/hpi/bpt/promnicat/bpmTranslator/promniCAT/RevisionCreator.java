@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
@@ -16,11 +17,10 @@ import java.util.zip.DataFormatException;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.refactoring.StringOperations;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.translations.Translator;
 import de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.tsvProcessing.TsvProcessor;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Model;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRevision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 
 /**
@@ -63,10 +63,10 @@ public class RevisionCreator {
 	 * @param dbId					the database ID of the representation to be translated
 	 * @throws DataFormatException 	thrown when a representation other than a SVG is supplied
 	 */
-	public void createTranslatedRevision(String dbId) throws DataFormatException {
-		Representation oldSvgRepresentation = papi.loadRepresentation(dbId);
+	public void createTranslatedRevision(UUID dbId) throws DataFormatException {
+		IRepresentation oldSvgRepresentation = papi.loadRepresentation(dbId);
 		checkDataFormat(oldSvgRepresentation);
-		Model model = oldSvgRepresentation.getModel().loadCompleteModel(papi);
+		IModel model = oldSvgRepresentation.getModel().loadCompleteModel(papi);
 		int nrOfRevisions = model.getNrOfRevisions();
     	String line = readSvgFile(oldSvgRepresentation.getOriginalFilePath());
 		ArrayList<String> frameRectangles = new ArrayList<String>();
@@ -78,9 +78,9 @@ public class RevisionCreator {
 		line = replaceLabels(line, labels, sublabels);
 		File newSvgFile = createNewRevisionFile(oldSvgRepresentation, nrOfRevisions);
 		writeToNewRevision(newSvgFile, line);
-		Representation newSvgRepresentation = new Representation(
+		IRepresentation newSvgRepresentation = new Representation(
 				Constants.FORMAT_SVG, oldSvgRepresentation.getNotation(), newSvgFile);
-		Revision newSvgRevision = new Revision(nrOfRevisions+1);
+		IRevision newSvgRevision = new Revision(nrOfRevisions+1);
 		newSvgRepresentation.setRevision(newSvgRevision);
 		model.connectLatestRevision(newSvgRevision);
 		papi.savePojo(model);

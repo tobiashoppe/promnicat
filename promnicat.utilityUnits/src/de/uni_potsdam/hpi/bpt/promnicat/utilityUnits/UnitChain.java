@@ -29,8 +29,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector.ICollectorUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.DatabaseFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
 
@@ -168,8 +166,8 @@ public class UnitChain implements IUnitChain<IUnitData<Object>, IUnitData<Object
 			logger.warning("Tried to execute unit chain without units!");
 			return null;
 		}
-		// first unit in chain must be a DataBaseFilterUnit
-		if (!(DatabaseFilterUnit.class.isInstance(this.rootUnit))) {
+		// first unit in chain must be a DataBaseFilterUnit		
+		if (!(this.rootUnit.isValidRootUnit())) {
 			logger.severe("First unit of a chain must always be of type DataBaseFilterUnit!");
 			return null;
 		}

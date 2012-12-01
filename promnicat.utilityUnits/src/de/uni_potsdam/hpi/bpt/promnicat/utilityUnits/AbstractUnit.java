@@ -15,25 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter;
+package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**
+ * Base class for all classes implementing the {@link IUnit} interface.
+ * 
  * @author Tobias Hoppe
- *
  */
-public interface IDatabaseFilterUnit extends IUnit<IUnitData<Object>, IUnitData<Object>>{
+public abstract class AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object>> {
 
-	/**
-	 * @return the config
-	 */
-	public DbFilterConfig getDatabaseConfig();
-
-	/**
-	 * @param config the config to set
-	 */
-	public void setDatabaseConfig(DbFilterConfig config);
+	@Override
+	public boolean isValidRootUnit() {
+		return false;
+	}
 }

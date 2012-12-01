@@ -17,6 +17,7 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.unitData;
 
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.jbpt.pm.ProcessModel;
@@ -67,7 +68,7 @@ public class UnitDataFeatureVector<V extends Object> extends UnitData<V> impleme
 	 * @param value the result of the {@link IUnit}
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 */
-	public UnitDataFeatureVector(V value, String dbId) {
+	public UnitDataFeatureVector(V value, UUID dbId) {
 		super(value, dbId);
 	}
 	

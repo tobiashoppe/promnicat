@@ -17,6 +17,9 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.test;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -25,6 +28,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.importer.npb.NPBImporter;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.MetaDataFilterUnit;
@@ -39,13 +45,13 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataMetaData;
  */
 public class MetaDataFilterUnitTest {
 	
-	private static PersistenceApiOrientDbObj persistenceApi;
+	private static IPersistenceApi persistenceApi;
 	
 	@BeforeClass
 	public static void setUp(){
 		try{
-			persistenceApi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
-			new NPBImporter(persistenceApi).importModelsFrom("resources/NPB/Begruenden.xml");
+			persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
+			new NPBImporter(persistenceApi).importModelsFrom("../promnicat/resources/NPB/Begruenden.xml");
 			persistenceApi.openDb();
 		} catch (Exception e){
 			fail("An unexpected exception occurred:" + e.getMessage());
@@ -67,7 +73,7 @@ public class MetaDataFilterUnitTest {
 	
 	@Test
 	public void testFindValue(){
-		MetaDataFilterUnit unit = new MetaDataFilterUnit(null, Pattern.compile("[a-z]*"));
+		MetaDataFilterUnit unit = new MetaDataFilterUnit(null, Pattern.compile("[a-z]+"));
 		try{
 			Representation representation = (Representation) persistenceApi.loadPojos(Representation.class).get(0);
 

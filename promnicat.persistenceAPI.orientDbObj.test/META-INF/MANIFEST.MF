@@ -6,3 +6,4 @@ Bundle-Version: 0.0.0
 Fragment-Host: promnicat.persistenceAPI.orientDbObj
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.all;x-friends:="promnicat.test"

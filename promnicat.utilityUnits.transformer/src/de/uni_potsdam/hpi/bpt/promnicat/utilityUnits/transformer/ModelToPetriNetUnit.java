@@ -33,6 +33,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.util.serializer.PetriNetSerializer;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataJbpt;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
@@ -45,7 +46,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * @author Tobias Hoppe
  *
  */
-public class ModelToPetriNetUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class ModelToPetriNetUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	private Logger logger = Logger.getLogger(ModelToPetriNetUnit.class.getName());
 	private IPersistenceApi persistenceApi = null;

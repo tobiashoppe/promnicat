@@ -6,3 +6,5 @@ Bundle-Version: 0.0.0
 Fragment-Host: promnicat.persistenceAPI
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.test.all;x-friends:="promnicat.test",
+ de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.test.util

@@ -7,3 +7,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: promnicat.util,
  promnicat.persistenceAPI,
  promnicat.utilityUnits
+Eclipse-ExtensibleAPI: true

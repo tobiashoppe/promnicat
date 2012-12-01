@@ -20,6 +20,7 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
@@ -33,7 +34,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * @author Tobias Hoppe, Cindy Fähnrich
  *
  */
-public class ConnectednessFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class ConnectednessFilterUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 	
 	/* (non-Javadoc)
 	 * @see de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit#execute(java.lang.Object)

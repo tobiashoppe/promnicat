@@ -8,3 +8,4 @@ Require-Bundle: promnicat.util;visibility:=reexport,
  promnicat.persistenceAPI;visibility:=reexport
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits,
  de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData
+Eclipse-ExtensibleAPI: true

@@ -17,17 +17,26 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.Collection;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.test.util.ModelFactory;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IModel;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector.SimpleCollectorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.DatabaseFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
@@ -39,14 +48,14 @@ public class DatabaseFilterUnitTest {
 	
 	private static DatabaseFilterUnit databaseFilterUnit;
 
-	private static PersistenceApiOrientDbObj persistenceApi;
+	private static IPersistenceApi persistenceApi;
 	
 	@BeforeClass
 	public static void setUp(){
 		try{
-			persistenceApi = PersistenceApiOrientDbObj.getInstance(Constants.TEST_DB_CONFIG_PATH);
+			persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
 			
-			Model mockModel = ModelFactory.createModelWith1Link();
+			IModel mockModel = ModelFactory.createModelWith1Link();
 			persistenceApi.savePojo(mockModel);
 			databaseFilterUnit = new DatabaseFilterUnit(persistenceApi);
 		} catch (Exception e){

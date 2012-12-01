@@ -24,7 +24,7 @@ import org.jbpt.pm.Event;
 import org.jbpt.pm.ProcessModel;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.TestModelBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessMetricsCalculator;
 
 

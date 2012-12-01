@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilter;
@@ -41,7 +42,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilt
  * @author Tobias Hoppe, Cindy Fähnrich
  *
  */
-public class LabelFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class LabelFilterUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	private String searchCriterium = null;
 	private Pattern searchPattern = null;

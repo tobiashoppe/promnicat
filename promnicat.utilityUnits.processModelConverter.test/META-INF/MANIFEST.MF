@@ -7,3 +7,4 @@ Fragment-Host: promnicat.utilityUnits.processModelConverter
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4,
  promnicat.util
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.modelConverter.test.all;x-friends:="promnicat.test"

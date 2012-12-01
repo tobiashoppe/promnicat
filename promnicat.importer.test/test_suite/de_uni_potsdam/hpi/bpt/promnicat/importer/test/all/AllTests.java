@@ -1,4 +1,4 @@
-package de_uni_potsdam.hpi.bpt.promnicat.importer.test;
+package de_uni_potsdam.hpi.bpt.promnicat.importer.test.all;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

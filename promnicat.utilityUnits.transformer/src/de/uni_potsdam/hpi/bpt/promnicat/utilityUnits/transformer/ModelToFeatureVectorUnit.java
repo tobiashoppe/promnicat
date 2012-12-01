@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
@@ -36,7 +37,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * @author Cindy Fähnrich
  * 
  */
-public class ModelToFeatureVectorUnit implements
+public class ModelToFeatureVectorUnit extends AbstractUnit implements
 		IUnit<IUnitData<Object>, IUnitData<Object>> {
 
 	private Logger logger = Logger.getLogger(ModelToFeatureVectorUnit.class

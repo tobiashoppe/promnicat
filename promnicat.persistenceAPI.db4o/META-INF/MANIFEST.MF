@@ -9,3 +9,4 @@ Require-Bundle: promnicat.util;bundle-version="0.0.0",
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.config,
  de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.db4o.pojos
+Eclipse-ExtensibleAPI: true

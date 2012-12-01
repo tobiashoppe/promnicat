@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
@@ -37,7 +38,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMe
  * @author Tobias Hoppe
  *
  */
-public class ProcessModelMetricsCalculatorUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class ProcessModelMetricsCalculatorUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	/**
 	 * flag indicates whether to include available sub process in metric calculation or not.

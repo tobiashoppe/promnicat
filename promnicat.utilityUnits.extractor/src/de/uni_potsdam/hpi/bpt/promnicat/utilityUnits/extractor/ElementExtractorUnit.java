@@ -24,6 +24,7 @@ import org.jbpt.hypergraph.abs.IVertex;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilter;
@@ -37,7 +38,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilt
  * @author Tobias Hoppe
  *
  */
-public class ElementExtractorUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class ElementExtractorUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	private Collection<Class<?>> searchCriteria = new ArrayList<Class<?>>();
 	

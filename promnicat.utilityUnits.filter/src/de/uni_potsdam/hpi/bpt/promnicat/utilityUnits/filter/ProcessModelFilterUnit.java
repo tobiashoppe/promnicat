@@ -24,6 +24,7 @@ import org.jbpt.hypergraph.abs.Vertex;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
@@ -38,7 +39,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * @author Tobias Hoppe, Cindy Fähnrich
  *
  */
-public class ProcessModelFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class ProcessModelFilterUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 
 	private Vertex modelElement = null;
 	private Collection<Class<?>> includedClasses = new HashSet<Class<?>>();

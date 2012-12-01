@@ -10,3 +10,4 @@ Require-Bundle: promnicat.utilityUnits;bundle-version="0.0.0";visibility:=reexpo
  promnicat.importer;bundle-version="0.0.0"
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer,
  de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData
+Eclipse-ExtensibleAPI: true

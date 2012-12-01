@@ -7,3 +7,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Fragment-Host: promnicat.importer
 Require-Bundle: org.junit4
+Export-Package: de_uni_potsdam.hpi.bpt.promnicat.importer.test.all;x-friends:="promnicat.test"

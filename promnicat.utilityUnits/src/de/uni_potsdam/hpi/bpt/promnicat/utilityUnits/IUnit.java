@@ -48,4 +48,10 @@ public interface IUnit<InputType extends IUnitData<Object>, OutputType extends I
 	 * @return the output type class of this {@link IUnit}.
 	 */
 	public Class<?> getOutputType();
+	
+	/**
+	 * @return <code>true</code> iff this {@link IUnit} can act as root unit.
+	 * <code>false</code> otherwise.
+	 */
+	public boolean isValidRootUnit();
 }

@@ -29,6 +29,7 @@ import org.jbpt.pm.NonFlowNode;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilter;
@@ -43,7 +44,7 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilt
  * @author Tobias Hoppe
  *
  */
-public class ProcessModelLabelExtractorUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
+public class ProcessModelLabelExtractorUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object> > {
 	
 	private static final Logger logger = Logger.getLogger(ProcessModelLabelExtractorUnit.class.getName());
 
