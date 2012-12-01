@@ -26,6 +26,7 @@ import org.jbpt.pm.bpmn.Bpmn;
 import org.jbpt.pm.epc.Epc;
 import org.jbpt.throwable.TransformationException;
 
+import de.uni_potsdam.hpi.bpt.promnicat.modelConverter.ModelToPetriNetConverter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
@@ -33,10 +34,11 @@ import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.util.serializer.PetriNetSerializer;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataJbpt;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataJbpt;
 
 /**
  * Utility Unit to convert a {@link ProcessModel} or any subclass of it,

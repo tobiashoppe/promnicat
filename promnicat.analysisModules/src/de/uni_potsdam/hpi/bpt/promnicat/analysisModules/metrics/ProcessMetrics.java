@@ -29,15 +29,11 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
-import de.uni_potsdam.hpi.bpt.promnicat.parser.BpmnParser;
-import de.uni_potsdam.hpi.bpt.promnicat.parser.EpcParser;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataProcessMetrics;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataProcessMetrics;
 
 /**
  * Analysis module to calculate metrics from all {@link ProcessModel}s of a given database.

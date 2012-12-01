@@ -25,16 +25,11 @@ import java.util.logging.Logger;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitData;
 
 /**
  * Used to get process models for surveys and store the results

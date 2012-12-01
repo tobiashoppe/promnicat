@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.BpmnConformanceLevelChecker;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.util.BpmnConformanceLevelChecker;
 
 /**
  * Test class for {@link BpmnConformanceLevelChecker}

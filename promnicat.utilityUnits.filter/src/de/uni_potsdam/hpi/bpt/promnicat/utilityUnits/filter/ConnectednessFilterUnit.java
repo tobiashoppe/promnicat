@@ -20,8 +20,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**

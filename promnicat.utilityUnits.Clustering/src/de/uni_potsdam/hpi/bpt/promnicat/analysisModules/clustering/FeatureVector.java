@@ -19,8 +19,6 @@ package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering;
 
 import java.util.ArrayList;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.unitData.UnitDataFeatureVector;
-
 /**
  * Feature vector class containing the string and numeric features to be taken 
  * into account. Used by {@link UnitDataFeatureVector}.

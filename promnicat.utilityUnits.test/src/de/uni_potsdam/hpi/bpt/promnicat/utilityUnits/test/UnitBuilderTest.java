@@ -37,8 +37,8 @@ import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**

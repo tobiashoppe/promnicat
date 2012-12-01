@@ -19,14 +19,6 @@ package de.uni_potsdam.hpi.bpt.promnicat.analysisModules.indices;
 
 import java.util.Collection;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexCollectionElement;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexElement;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.IndexIntersection;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.NumberIndex;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.index.StringIndex;
-
 /**
  * This is an example of how multiple different indices can be combined to return the intersection of their result sets.
  * All individual indices would load all objects, but the {@link IndexIntersection} calculates the intersection of the

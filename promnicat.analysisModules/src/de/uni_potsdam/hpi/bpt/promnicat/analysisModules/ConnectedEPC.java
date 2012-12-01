@@ -23,14 +23,13 @@ import java.util.logging.Logger;
 
 import org.jbpt.pm.ProcessModel;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataJbpt;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataJbpt;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataJbpt;
 
 /**
  * Represents following scenario:
@@ -57,7 +56,7 @@ public class ConnectedEPC implements IAnalysisModule {
 		long startTime = System.currentTimeMillis();
 		
 		//build up chain
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder("configuration(full).properties", Constants.DATABASE_TYPES.ORIENT_DB, UnitDataJbpt.class);
+		IUnitChainBuilder chainBuilder = new UnitChainBuilder("configuration(full).properties", UnitDataJbpt.class);
 		buildUpUnitChain(chainBuilder);
 		
 		logger.info(chainBuilder.getChain().toString());

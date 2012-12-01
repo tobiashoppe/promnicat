@@ -27,7 +27,7 @@ import org.jbpt.pm.ProcessModel;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.BpmnConformanceLevelCheckerUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.BpmnConformanceLevelCheckerUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataClassification;

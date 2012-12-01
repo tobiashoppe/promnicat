@@ -22,10 +22,10 @@ import org.jbpt.pm.ProcessModel;
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.promnicat.parser.ModelParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataJbpt;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataJbpt;
 
 /**
  * Utility Unit to Transform a {@link Diagram} object into a jBPT {@link ProcessModel}.

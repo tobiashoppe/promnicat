@@ -8,3 +8,4 @@ Require-Bundle: promnicat.utilityUnits
 Bundle-ClassPath: .,
  lib/javaGeom-0.10.2.jar
 Eclipse-ExtensibleAPI: true
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.correctionModule

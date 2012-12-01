@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.utilityUnits.unitData
+Bundle-SymbolicName: promnicat.utilityUnits.unitData
+Bundle-Version: 0.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData,
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl
+Require-Bundle: promnicat.externals;bundle-version="0.0.0";visibility:=reexport,
+ promnicat.utilityUnits.Clustering;bundle-version="0.0.0"

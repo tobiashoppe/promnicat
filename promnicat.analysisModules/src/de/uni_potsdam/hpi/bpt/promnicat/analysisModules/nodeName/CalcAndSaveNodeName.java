@@ -26,17 +26,11 @@ import java.util.logging.Logger;
 import org.jbpt.pm.FlowNode;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.AnalysisRun;
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.nodeName.pojos.LabelStorage;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdbObj.PersistenceApiOrientDbObj;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataLabelFilter;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataLabelFilter;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataLabelFilter;
 
 /**
  * Represents following scenario:

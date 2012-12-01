@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Observer;
 
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**

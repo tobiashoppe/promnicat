@@ -5,7 +5,6 @@ Bundle-SymbolicName: promnicat.utilityUnits.filter;singleton:=true
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Require-Bundle: promnicat.utilityUnits.transformer;bundle-version="0.0.0";visibility:=reexport
-Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter,
- de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData
+Require-Bundle: promnicat.utilityUnits;bundle-version="0.0.0"
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter
 Eclipse-ExtensibleAPI: true

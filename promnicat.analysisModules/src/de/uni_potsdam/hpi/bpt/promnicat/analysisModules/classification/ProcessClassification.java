@@ -30,17 +30,11 @@ import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.IAnalysisModule;
 import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.metrics.ProcessMetrics;
-import de.uni_potsdam.hpi.bpt.promnicat.parser.BpmnParser;
-import de.uni_potsdam.hpi.bpt.promnicat.parser.EpcParser;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.DbFilterConfig;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
-import de.uni_potsdam.hpi.bpt.promnicat.util.ConfigurationParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.UnitDataClassification;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataClassification;
 
 /**
  * Analysis module to classify business process models according to:

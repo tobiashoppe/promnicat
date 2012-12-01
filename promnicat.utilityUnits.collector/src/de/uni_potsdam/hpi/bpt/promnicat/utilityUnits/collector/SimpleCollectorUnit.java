@@ -20,8 +20,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.ICollectorUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**

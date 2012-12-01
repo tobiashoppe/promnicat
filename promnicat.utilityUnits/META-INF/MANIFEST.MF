@@ -4,8 +4,9 @@ Bundle-Name: promnicat.utilityUnits
 Bundle-SymbolicName: promnicat.utilityUnits;singleton:=true
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: promnicat.util;visibility:=reexport,
- promnicat.persistenceAPI;visibility:=reexport
+Require-Bundle: promnicat.utilityUnits.unitData;bundle-version="0.0.0";visibility:=reexport,
+ promnicat.util;bundle-version="0.0.0";visibility:=reexport,
+ promnicat.persistenceAPI;bundle-version="0.0.0";visibility:=reexport
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits,
- de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl
 Eclipse-ExtensibleAPI: true

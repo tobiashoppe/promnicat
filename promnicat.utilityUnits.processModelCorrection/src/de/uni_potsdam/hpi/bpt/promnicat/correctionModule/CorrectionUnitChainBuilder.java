@@ -5,12 +5,9 @@ import java.io.IOException;
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.ErrorCorrectorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.ErrorDetectorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.UnparsableModelFilterUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.util.Constants.DATABASE_TYPES;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.UnitChainBuilder;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.BpmaiJsonToDiagramUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.DiagramToJbptUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.UnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**
@@ -18,14 +15,13 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  * @author Christian Kieschnick
  *
  */
-public class CorrectionUnitChainBuilder extends UnitChainBuilder{
+public class CorrectionUnitChainBuilder extends UnitChainBuilder {
 	
 	/**
 	 * {@inheritDoc}
 	 */
-	public CorrectionUnitChainBuilder(String pathToConfig,
-			DATABASE_TYPES database, Class<?> unitDataType) throws IOException {
-		super(pathToConfig, database, unitDataType);
+	public CorrectionUnitChainBuilder(String pathToConfig, Class<?> unitDataType) throws IOException {
+		super(pathToConfig, unitDataType);
 	}
 
 	/**

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: promnicat.utilityUnits.processMetrics
+Bundle-SymbolicName: promnicat.utilityUnits.processMetrics
+Bundle-Version: 0.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics,
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util
+Require-Bundle: promnicat.utilityUnits;bundle-version="0.0.0"

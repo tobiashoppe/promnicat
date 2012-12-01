@@ -24,6 +24,9 @@ import org.jbpt.pm.Activity;
 import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.ProcessModel;
 
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
+
 /**
  *  Class containing all necessary constants regarding the configuration of the 
  * {@link ModelToFeatureVectorUnit}. Inherits from {@link ProcessMetricConstants} 

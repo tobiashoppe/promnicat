@@ -18,6 +18,7 @@
 package de.uni_potsdam.hpi.bpt.promnicat.analysisModules;
 
 import java.io.IOException;
+
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 
 /**

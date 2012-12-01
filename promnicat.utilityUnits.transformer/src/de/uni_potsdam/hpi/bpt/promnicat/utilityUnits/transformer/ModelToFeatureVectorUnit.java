@@ -22,10 +22,15 @@ import java.util.logging.Logger;
 
 import org.jbpt.pm.ProcessModel;
 
+import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.clustering.FeatureVector;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.AbstractUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.AbstractUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.util.ProcessMetricConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataFeatureVector;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataFeatureVector;
 
 /**
  * This class transforms the given metrics of a {@link ProcessModel} in a
