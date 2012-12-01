@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData;
 
+import java.util.UUID;
+
 import org.jbpt.petri.PetriNet;
 import org.jbpt.pm.ProcessModel;
 
@@ -65,7 +67,7 @@ public class UnitDataJbpt<V extends Object> extends UnitData<V> implements IUnit
 	 * @param value the result of the {@link IUnit}
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 */
-	public UnitDataJbpt(V value, String dbId) {
+	public UnitDataJbpt(V value, UUID dbId) {
 		super(value, dbId);
 	}
 	
@@ -75,7 +77,7 @@ public class UnitDataJbpt<V extends Object> extends UnitData<V> implements IUnit
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 * @param model the jBPT {@link ProcessModel} parsed from {@link Representation}'s JSON String
 	 */
-	public UnitDataJbpt(V value, String dbId, ProcessModel model) {
+	public UnitDataJbpt(V value, UUID dbId, ProcessModel model) {
 		super(value, dbId);
 		this.processModel = model;
 	}

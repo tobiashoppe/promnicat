@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 
+import java.util.UUID;
+
 import org.jbpt.petri.PetriNet;
 import org.jbpt.petri.behavior.LolaSoundnessCheckerResult;
 import org.jbpt.pm.ProcessModel;
@@ -75,7 +77,7 @@ public class UnitDataClassification<V extends Object> extends UnitDataJbpt<V> im
 	 * @param value the result of the {@link IUnit}
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 */
-	public UnitDataClassification(V value, String dbId) {
+	public UnitDataClassification(V value, UUID dbId) {
 		super(value, dbId);
 	}
 	

@@ -17,6 +17,7 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer;
 
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.jbpt.petri.PetriNet;
@@ -25,15 +26,14 @@ import org.jbpt.pm.bpmn.Bpmn;
 import org.jbpt.pm.epc.Epc;
 import org.jbpt.throwable.TransformationException;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.classification.PetriNetSerializer;
-import de.uni_potsdam.hpi.bpt.promnicat.modelConverter.ModelToPetriNetConverter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
+import de.uni_potsdam.hpi.bpt.promnicat.util.serializer.PetriNetSerializer;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataClassification;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataJbpt;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
@@ -79,10 +79,10 @@ public class ModelToPetriNetUnit implements IUnit<IUnitData<Object>, IUnitData<O
 		}
 		//look up already parsed PetriNet if possible
 		if (this.persistenceApi != null && input.getDbId() != null) {
-			Representation pmRepresentation = this.persistenceApi.loadRepresentation(input.getDbId());
+			IRepresentation pmRepresentation = this.persistenceApi.loadRepresentation(input.getDbId());
 			if(pmRepresentation != null) {
 				if (pmRepresentation.getRevision() != null) {
-					for (Representation representation : pmRepresentation.getRevision().getRepresentations()) {
+					for (IRepresentation representation : pmRepresentation.getRevision().getRepresentations()) {
 						if(representation.getNotation().equals(Constants.NOTATIONS.PETRINET)) {
 							pn = PetriNetSerializer.parsePetriNet(representation.getDataContent());
 							if(pn != null) {
@@ -149,8 +149,8 @@ public class ModelToPetriNetUnit implements IUnit<IUnitData<Object>, IUnitData<O
 	 * @param dbId database id of the transformed {@link ProcessModel}'s representation
 	 * @param petriNet {@link PetriNet} to save in database
 	 */
-	private void savePetriNetInDb(String dbId, PetriNet petriNet) {
-		Representation pmRepresentation = this.persistenceApi.loadRepresentation(dbId);
+	private void savePetriNetInDb(UUID dbId, PetriNet petriNet) {
+		IRepresentation pmRepresentation = this.persistenceApi.loadRepresentation(dbId);
 		if(pmRepresentation == null ) {
 			logger.warning("Petri Net could not be saved, due to missing representation of current process model!");
 			return;
@@ -168,7 +168,7 @@ public class ModelToPetriNetUnit implements IUnit<IUnitData<Object>, IUnitData<O
 			logger.warning("Petri Net could not be saved, due to failing serialization!");
 			return;
 		}
-		Representation representation = new Representation(Constants.FORMATS.PNML.toString(), Constants.NOTATIONS.PETRINET.toString(), petriNetBytes);
+		IRepresentation representation = persistenceApi.getPojoFactory().createRepresentation(Constants.FORMATS.PNML.toString(), Constants.NOTATIONS.PETRINET.toString(), petriNetBytes);
 		pmRepresentation.getRevision().connectRepresentation(representation);
 		this.persistenceApi.savePojo(pmRepresentation.getModel());
 	}

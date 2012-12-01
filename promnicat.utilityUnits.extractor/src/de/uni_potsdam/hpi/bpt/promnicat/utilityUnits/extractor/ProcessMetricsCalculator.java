@@ -49,7 +49,6 @@ import org.jbpt.pm.bpmn.EndEvent;
 import org.jbpt.pm.bpmn.StartEvent;
 import org.jbpt.pm.bpmn.Subprocess;
 
-import de.uni_potsdam.hpi.bpt.promnicat.util.ProcessMetricConstants;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
 
 

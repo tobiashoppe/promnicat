@@ -15,31 +15,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
+package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter;
 
-import java.util.Collection;
-import java.util.Map;
-
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**
- * Interface for classes that can be used as {@link IUnit} input and output.
- * The id of the used {@link Representation} as well as the result value of the last {@link IUnit} of
- * the {@link IUnitChain} is stored. Furthermore, the extracted meta data information is stored.
  * @author Tobias Hoppe
  *
  */
-public interface IUnitDataMetaData< V extends Object> extends IUnitData<V> {
+public interface IDatabaseFilterUnit extends IUnit<IUnitData<Object>, IUnitData<Object>>{
 
 	/**
-	 * @return the collected meta data
+	 * @return the config
 	 */
-	Map<String, Collection<String>>getMetaData();
-	
+	public DbFilterConfig getDatabaseConfig();
+
 	/**
-	 * @param metaData the meta data to be set as result
+	 * @param config the config to set
 	 */
-	void setMetaData(Map<String, Collection<String>> metaData);
+	public void setDatabaseConfig(DbFilterConfig config);
 }

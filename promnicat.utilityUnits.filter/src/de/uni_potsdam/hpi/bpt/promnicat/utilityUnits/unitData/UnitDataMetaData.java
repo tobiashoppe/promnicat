@@ -20,8 +20,9 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 
@@ -59,7 +60,7 @@ public class UnitDataMetaData<V extends Object> extends UnitData<V> implements I
 	 * @param value the result of the {@link IUnit}
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 */
-	public UnitDataMetaData(V value, String dbId) {
+	public UnitDataMetaData(V value, UUID dbId) {
 		super(value, dbId);
 	}
 	
@@ -80,7 +81,7 @@ public class UnitDataMetaData<V extends Object> extends UnitData<V> implements I
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 * @param metaData the extracted metadata
 	 */
-	public UnitDataMetaData(V value, String dbId, Map<String, Collection<String>> metaData) {
+	public UnitDataMetaData(V value, UUID dbId, Map<String, Collection<String>> metaData) {
 		super(value, dbId);
 		this.metaData = metaData;
 	}

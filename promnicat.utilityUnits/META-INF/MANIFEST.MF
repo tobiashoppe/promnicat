@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: promnicat.utilityUnits
-Bundle-SymbolicName: promnicat.utilityUnits
+Bundle-SymbolicName: promnicat.utilityUnits;singleton:=true
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: promnicat.util;visibility:=reexport,

@@ -21,7 +21,6 @@ import org.jbpt.pm.Activity;
 import org.jbpt.pm.Event;
 import org.jbpt.pm.ProcessModel;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.metrics.ProcessMetricsCalculator;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataProcessMetrics;
 
 /**

@@ -19,13 +19,15 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.UUID;
 
 import org.jbpt.hypergraph.abs.IVertex;
 import org.jbpt.pm.ProcessModel;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.UnitDataJbpt;
 
 /**
  * {@link IUnitChain} result type implementation containing the {@link Representation} id of the used 
@@ -72,7 +74,7 @@ public class UnitDataLabelFilter<V extends Object> extends UnitDataJbpt<V> imple
 	 * @param value the result of the {@link IUnit}
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 */
-	public UnitDataLabelFilter(V value, String dbId) {
+	public UnitDataLabelFilter(V value, UUID dbId) {
 		super(value, dbId);
 	}
 	

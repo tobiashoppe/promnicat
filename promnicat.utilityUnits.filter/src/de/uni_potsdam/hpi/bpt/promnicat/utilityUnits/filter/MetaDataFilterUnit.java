@@ -17,14 +17,13 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Revision;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Revision;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
@@ -78,20 +77,20 @@ public class MetaDataFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Ob
 		}
 		
 		Map<String, Collection<String>> result = new HashMap<String, Collection<String>>();
-		Map<String, String[]> metaData = ((Representation)input.getValue()).getRevision().getMetadata();
+		Map<String, Collection<String>> metaData = ((Representation)input.getValue()).getRevision().getMetadata();
 		if (this.keySearchCriterion == null && this.valueSearchCriterion == null){
 			//handle searched pattern
 			if(this.keySearchPattern != null){
 				//search for given key
 				for (String key : metaData.keySet()){
 					if (this.keySearchPattern.matcher(key).matches()){
-						result.put(key, Arrays.asList(metaData.get(key)));
+						result.put(key, metaData.get(key));
 					}
 				}				
 			} else if(this.valueSearchPattern != null){
 				//search for given value
 				for (String key : metaData.keySet()){
-					Collection<String> values = Arrays.asList(metaData.get(key));
+					Collection<String> values = metaData.get(key);
 					boolean found = false;
 					for(String value : values){
 						if(this.valueSearchPattern.matcher(value).matches()){
@@ -104,7 +103,7 @@ public class MetaDataFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Ob
 				}
 			} else {
 				for (String key : metaData.keySet()){
-					result.put(key, Arrays.asList(metaData.get(key)));
+					result.put(key, metaData.get(key));
 				}
 			}
 		} else {
@@ -113,13 +112,13 @@ public class MetaDataFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Ob
 				//search for given key
 				for (String key : metaData.keySet()){
 					if (key.equalsIgnoreCase(this.keySearchCriterion)){
-						result.put(key, Arrays.asList(metaData.get(key)));
+						result.put(key, metaData.get(key));
 					}
 				}				
 			} else if(this.valueSearchCriterion != null){
 				//search for given value
 				for (String key : metaData.keySet()){
-					Collection<String> values = Arrays.asList(metaData.get(key));
+					Collection<String> values = metaData.get(key);
 					boolean found = false;
 					for(String value : values){
 						if(value.equalsIgnoreCase(this.valueSearchCriterion)){
@@ -132,7 +131,7 @@ public class MetaDataFilterUnit implements IUnit<IUnitData<Object>, IUnitData<Ob
 				}
 			} else {
 				for (String key : metaData.keySet()){
-					result.put(key, Arrays.asList(metaData.get(key)));
+					result.put(key, metaData.get(key));
 				}
 			}
 		}

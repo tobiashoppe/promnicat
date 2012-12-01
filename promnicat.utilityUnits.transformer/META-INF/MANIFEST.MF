@@ -5,7 +5,8 @@ Bundle-SymbolicName: promnicat.utilityUnits.transformer
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Require-Bundle: promnicat.utilityUnits,
- promnicat.persistenceAPI
+Require-Bundle: promnicat.utilityUnits;bundle-version="0.0.0";visibility:=reexport,
+ promnicat.persistenceAPI;bundle-version="0.0.0";visibility:=reexport,
+ promnicat.importer;bundle-version="0.0.0"
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer,
  de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData

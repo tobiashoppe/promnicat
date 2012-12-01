@@ -20,8 +20,8 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer;
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
+import de.uni_potsdam.hpi.bpt.promnicat.parser.ModelParser;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
-import de.uni_potsdam.hpi.bpt.promnicat.util.modelConstants.ModelParser;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataJbpt;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;

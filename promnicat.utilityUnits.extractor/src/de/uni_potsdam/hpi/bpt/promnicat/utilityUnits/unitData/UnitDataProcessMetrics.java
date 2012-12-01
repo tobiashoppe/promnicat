@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 
+import java.util.UUID;
+
 import org.jbpt.pm.ProcessModel;
 
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
@@ -87,7 +89,7 @@ public class UnitDataProcessMetrics<V extends Object> extends UnitData<V> implem
 	 * @param value the result of the {@link IUnit}
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 */
-	public UnitDataProcessMetrics(V value, String dbId) {
+	public UnitDataProcessMetrics(V value, UUID dbId) {
 		super(value, dbId);
 	}
 

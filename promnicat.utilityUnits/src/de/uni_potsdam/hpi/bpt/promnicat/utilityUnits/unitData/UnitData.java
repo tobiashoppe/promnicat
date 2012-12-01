@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 
+import java.util.UUID;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
@@ -36,7 +38,7 @@ public class UnitData<V extends Object> implements IUnitData<V> {
 	/**
 	 * id of the used {@link Representation}
 	 */
-	private String dbId = null;
+	private UUID dbId = null;
 	
 	/**
 	 * An empty result with <code>null</code> elements
@@ -59,7 +61,7 @@ public class UnitData<V extends Object> implements IUnitData<V> {
 	 * @param value the result of the {@link IUnit}
 	 * @param dbId the database id of the {@link Representation} used for result value calculation
 	 */
-	public UnitData(V value, String dbId) {
+	public UnitData(V value, UUID dbId) {
 		this.value = value;
 		this.dbId = dbId;
 	}
@@ -81,12 +83,12 @@ public class UnitData<V extends Object> implements IUnitData<V> {
 	}
 
 	@Override
-	public String getDbId() {
+	public UUID getDbId() {
 		return this.dbId;
 	}
 
 	@Override
-	public void setDbId(String dbId) {
+	public void setDbId(UUID dbId) {
 		this.dbId = dbId;
 	}
 }

@@ -23,12 +23,11 @@ import java.util.Map;
 import org.jbpt.hypergraph.abs.IVertex;
 import org.jbpt.pm.ProcessModel;
 
-import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.Representation;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ElementExtractorUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.extractor.ProcessModelLabelExtractorUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.LabelFilterUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.unitData.IUnitDataJbpt;
 
 /**
  * Interface for classes that can be used as {@link IUnit} input and output.

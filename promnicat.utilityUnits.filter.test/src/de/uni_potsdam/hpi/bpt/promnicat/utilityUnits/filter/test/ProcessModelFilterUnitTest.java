@@ -17,9 +17,6 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.filter.test;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.util.Collection;
 import java.util.HashSet;
 

@@ -17,6 +17,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData;
 
+import java.util.UUID;
+
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
@@ -47,12 +49,12 @@ public interface IUnitData<V extends Object> {
 	 * Get the dbId of the process model behind this {@link IUnit}.
 	 * @return {@link Representation}'s id of the used process model
 	 */
-	public String getDbId();
+	public UUID getDbId();
 
 	/**
 	 * Set the dbId of the process model behind this {@link IUnit}.
 	 * @param dbId of used {@link Representation}
 	 */
-	public void setDbId(String dbId);
+	public void setDbId(UUID dbId);
 
 }

@@ -24,7 +24,6 @@ import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
 import org.jbpt.pm.bpmn.BpmnControlFlow;
 
-import de.uni_potsdam.hpi.bpt.promnicat.analysisModules.classification.BpmnConformanceLevelChecker;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;

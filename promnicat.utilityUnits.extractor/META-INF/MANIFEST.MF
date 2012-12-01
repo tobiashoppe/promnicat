@@ -5,5 +5,4 @@ Bundle-SymbolicName: promnicat.utilityUnits.extractor
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Require-Bundle: promnicat.utilityUnits,
- promnicat.utilityUnits.transformer
+Require-Bundle: promnicat.utilityUnits.filter;bundle-version="0.0.0";visibility:=reexport
