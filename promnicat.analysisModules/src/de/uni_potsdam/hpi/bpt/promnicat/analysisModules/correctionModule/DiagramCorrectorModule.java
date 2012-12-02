@@ -23,17 +23,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.correctors.AbstractCorrector;
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.correctors.BundledEdgeCorrector;
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.correctors.DirectedEdgeAttacher;
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.correctors.EdgeTypeCorrector;
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.ErrorDetectorUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.UnparsableModelFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.config.DbFilterConfig;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.IUnitChainBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl.CorrectionUnitChainBuilder;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.correctors.AbstractCorrector;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.correctors.BundledEdgeCorrector;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.correctors.DirectedEdgeAttacher;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.correctors.EdgeTypeCorrector;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.utilityUnits.ErrorDetectorUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.utilityUnits.UnparsableModelFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitData;
 
 

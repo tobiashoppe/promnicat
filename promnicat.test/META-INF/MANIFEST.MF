@@ -12,7 +12,7 @@ Require-Bundle: org.junit4,
  promnicat.persistenceAPI.db4o;bundle-version="0.0.0",
  promnicat.persistenceAPI.orientDbObj;bundle-version="0.0.0",
  promnicat.utilityUnits;bundle-version="0.0.0",
- promnicat.utilityUnits.Clustering;bundle-version="0.0.0",
+ promnicat.utilityUnits.clustering;bundle-version="0.0.0",
  promnicat.utilityUnits.bpmTranslator;bundle-version="0.0.0",
  promnicat.utilityUnits.collector;bundle-version="0.0.0",
  promnicat.utilityUnits.extractor;bundle-version="0.0.0",
@@ -24,3 +24,4 @@ Require-Bundle: org.junit4,
  promnicat.utilityUnits.transformer;bundle-version="0.0.0",
  promnicat.utilityUnits.builder;bundle-version="0.0.0",
  promnicat.utilityUnits.processMetrics;bundle-version="0.0.0"
+Export-Package: promnicat.test

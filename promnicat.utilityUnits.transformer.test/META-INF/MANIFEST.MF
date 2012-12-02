@@ -7,3 +7,4 @@ Fragment-Host: promnicat.utilityUnits.transformer
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4,
  promnicat;bundle-version="0.0.0"
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.test.all;x-friends:="promnicat.test"

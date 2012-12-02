@@ -5,5 +5,9 @@ Bundle-SymbolicName: promnicat.utilityUnits.processModelAlignment.test;singleton
 Bundle-Version: 0.0.0
 Fragment-Host: promnicat.utilityUnits.processModelAlignment
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit4
-Import-Package: org.apache.log4j
+Require-Bundle: org.junit4,
+ promnicat.importer;bundle-version="0.0.0",
+ promnicat.persistenceAPI;bundle-version="0.0.0",
+ promnicat;bundle-version="0.0.0",
+ promnicat.util;bundle-version="0.0.0"
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.test.all;x-friends:="promnicat.test"

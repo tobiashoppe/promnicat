@@ -30,8 +30,6 @@ import weka.core.Attribute;
 import weka.core.CapabilitiesHandler;
 import weka.core.DistanceFunction;
 import weka.core.Drawable;
-import weka.core.EditDistance;
-import weka.core.EuclideanDistance;
 import weka.core.FastVector;
 import weka.core.Instance;
 import weka.core.OptionHandler;

@@ -9,6 +9,6 @@ Require-Bundle: promnicat.utilityUnits,
 Bundle-ClassPath: .,
  lib/javaGeom-0.10.2.jar
 Eclipse-ExtensibleAPI: true
-Export-Package: de.uni_potsdam.hpi.bpt.promnicat.correctionModule,
- de.uni_potsdam.hpi.bpt.promnicat.correctionModule.correctors,
- de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection,
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.correctors,
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.utilityUnits

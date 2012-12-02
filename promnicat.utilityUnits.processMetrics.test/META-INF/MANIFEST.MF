@@ -7,4 +7,4 @@ Fragment-Host: promnicat.utilityUnits.processMetrics;bundle-version="0.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4,
  promnicat.utilityUnits.processModelConverter;bundle-version="0.0.0"
-Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.test.all
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.test.all;x-friends:="promnicat.test"

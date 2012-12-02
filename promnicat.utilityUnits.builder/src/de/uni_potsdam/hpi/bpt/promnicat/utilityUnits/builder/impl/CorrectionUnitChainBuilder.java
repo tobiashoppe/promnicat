@@ -2,11 +2,11 @@ package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.impl;
 
 import java.io.IOException;
 
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.ErrorCorrectorUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.ErrorDetectorUnit;
-import de.uni_potsdam.hpi.bpt.promnicat.correctionModule.utilityUnits.UnparsableModelFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.utilityUnits.ErrorCorrectorUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.utilityUnits.ErrorDetectorUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.utilityUnits.UnparsableModelFilterUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.BpmaiJsonToDiagramUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.DiagramToJbptUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;

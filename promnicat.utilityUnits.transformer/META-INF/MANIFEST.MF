@@ -8,7 +8,7 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: promnicat.utilityUnits;bundle-version="0.0.0",
  promnicat.importer;bundle-version="0.0.0",
  promnicat.utilityUnits.processModelConverter;bundle-version="0.0.0",
- promnicat.utilityUnits.Clustering;bundle-version="0.0.0",
+ promnicat.utilityUnits.clustering;bundle-version="0.0.0",
  promnicat.utilityUnits.processMetrics;bundle-version="0.0.0"
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer
 Eclipse-ExtensibleAPI: true

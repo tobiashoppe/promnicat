@@ -28,6 +28,7 @@ import org.junit.Test;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnitChain;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.impl.UnitChain;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.test.util.MockUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 
 /**

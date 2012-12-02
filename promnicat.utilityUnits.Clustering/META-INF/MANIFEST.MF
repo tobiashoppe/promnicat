@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: promnicat.utilityUnits.Clustering
-Bundle-SymbolicName: promnicat.utilityUnits.Clustering;singleton:=true
+Bundle-SymbolicName: promnicat.utilityUnits.clustering;singleton:=true
 Bundle-Version: 0.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: promnicat.util;bundle-version="0.0.0"

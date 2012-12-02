@@ -7,7 +7,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-ExtensibleAPI: true
 Require-Bundle: promnicat.utilityUnits.builder;bundle-version="0.0.0",
  promnicat.utilityUnits.processModelCorrection;bundle-version="0.0.0",
- promnicat.utilityUnits.Clustering;bundle-version="0.0.0",
+ promnicat.utilityUnits.clustering;bundle-version="0.0.0",
  promnicat.utilityUnits.transformer;bundle-version="0.0.0",
  promnicat.importer;bundle-version="0.0.0",
  promnicat;bundle-version="0.0.0",

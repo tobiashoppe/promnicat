@@ -7,8 +7,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-ExtensibleAPI: true
 Require-Bundle: promnicat.utilityUnits;bundle-version="0.0.0",
  promnicat.utilityUnits.processMetrics;bundle-version="0.0.0",
- promnicat.utilityUnits.Clustering;bundle-version="0.0.0"
-Export-Package: de.uni_potsdam.hpi.bpt.promnicat.processEvolution,
- de.uni_potsdam.hpi.bpt.promnicat.processEvolution.api,
- de.uni_potsdam.hpi.bpt.promnicat.processEvolution.clustering,
- de.uni_potsdam.hpi.bpt.promnicat.processEvolution.model
+ promnicat.utilityUnits.clustering;bundle-version="0.0.0"
+Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processEvolution,
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processEvolution.api,
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processEvolution.clustering,
+ de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processEvolution.model

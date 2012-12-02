@@ -9,7 +9,6 @@ Bundle-ClassPath: .,
  lib/jdom-1.1.2.jar,
  lib/oryx-bpmn2.0.jar
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.importer,
- de.uni_potsdam.hpi.bpt.promnicat.importer.npb;x-friends:="promnicat.utilityUnits.filter.test",
  de.uni_potsdam.hpi.bpt.promnicat.parser
 Require-Bundle: promnicat.util;bundle-version="0.0.0",
  promnicat.persistenceAPI;bundle-version="0.0.0",

@@ -29,7 +29,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
-import de.uni_potsdam.hpi.bpt.promnicat.importer.npb.NPBImporter;
+import de.uni_potsdam.hpi.bpt.promnicat.importer.ModelImporter;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.impl.Representation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
@@ -50,9 +50,12 @@ public class MetaDataFilterUnitTest {
 	@BeforeClass
 	public static void setUp(){
 		try{
+			String[] args = new String[3];
+			args[0] = Constants.TEST_DB_CONFIG_PATH;
+			args[1] = "NPB";
+			args[2] = "../promnicat/resources/NPB";
+			ModelImporter.main(args);
 			persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
-			new NPBImporter(persistenceApi).importModelsFrom("../promnicat/resources/NPB/Begruenden.xml");
-			persistenceApi.openDb();
 		} catch (Exception e){
 			fail("An unexpected exception occurred:" + e.getMessage());
 		}

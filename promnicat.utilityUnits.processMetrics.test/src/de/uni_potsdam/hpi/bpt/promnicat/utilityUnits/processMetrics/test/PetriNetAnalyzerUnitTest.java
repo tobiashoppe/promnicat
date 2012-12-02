@@ -26,9 +26,9 @@ import org.jbpt.petri.PetriNet;
 import org.jbpt.pm.epc.Epc;
 import org.junit.Test;
 
-import de.uni_potsdam.hpi.bpt.promnicat.modelConverter.ModelToPetriNetConverter;
 import de.uni_potsdam.hpi.bpt.promnicat.util.modelBuilder.TestModelBuilder;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.PetriNetAnalyzerUnit;
+import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelConverter.ModelToPetriNetConverter;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitDataClassification;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataClassification;
 
