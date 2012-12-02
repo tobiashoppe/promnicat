@@ -1,0 +1,1470 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:oryx="http://oryx-editor.org" id="sid-94597928-3326-4454-BB57-98A517A2F88B" width="1086.9500732421875" height="1895" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="sizeGuide-start" refX="0" refY="5" markerUnits="userSpaceOnUse" markerWidth="6" markerHeight="20" orient="auto">
+      <path d="M 6 2 L 1 5 L 6 8 M 0 0 L 0 20" fill="none" stroke="silver" />
+    </marker>
+    <marker id="sizeGuide-end" refX="6" refY="5" markerUnits="userSpaceOnUse" markerWidth="6" markerHeight="20" orient="auto">
+      <path d="M 0 2 L 5 5 L 0 8 M 6 0 L 6 20" fill="none" stroke="silver" />
+    </marker>
+    <marker id="sid-C2BF50F0-E090-415D-AEA0-D9315572E890end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-C2BF50F0-E090-415D-AEA0-D9315572E890_sid-C2BF50F0-E090-415D-AEA0-D9315572E890_2" />
+    </marker>
+    <marker id="sid-FBC837D0-6BC1-4AA4-AF2F-525563502FCEend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-FBC837D0-6BC1-4AA4-AF2F-525563502FCE_sid-FBC837D0-6BC1-4AA4-AF2F-525563502FCE_2" />
+    </marker>
+    <marker id="sid-3025106B-C28D-4177-87B3-6EDBFE2CAF76end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-3025106B-C28D-4177-87B3-6EDBFE2CAF76_sid-3025106B-C28D-4177-87B3-6EDBFE2CAF76_2" />
+    </marker>
+    <marker id="sid-65B9D944-ADFB-4B1F-AB62-F333D841265Bend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-65B9D944-ADFB-4B1F-AB62-F333D841265B_sid-65B9D944-ADFB-4B1F-AB62-F333D841265B_2" />
+    </marker>
+    <marker id="sid-C8E929A3-F8B2-41EB-9F64-71F4ADB53370end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-C8E929A3-F8B2-41EB-9F64-71F4ADB53370_sid-C8E929A3-F8B2-41EB-9F64-71F4ADB53370_2" />
+    </marker>
+    <marker id="sid-84405045-86DE-43AE-8ECB-AFD84D22CF8Cend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-84405045-86DE-43AE-8ECB-AFD84D22CF8C_sid-84405045-86DE-43AE-8ECB-AFD84D22CF8C_2" />
+    </marker>
+    <marker id="sid-1C1706AC-CAEA-4C2D-B1CA-4E8C2F64052Fend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-1C1706AC-CAEA-4C2D-B1CA-4E8C2F64052F_sid-1C1706AC-CAEA-4C2D-B1CA-4E8C2F64052F_2" />
+    </marker>
+    <marker id="sid-D52D1EC3-86C8-4BF1-8CC5-7C0E55C58DE7end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-D52D1EC3-86C8-4BF1-8CC5-7C0E55C58DE7_sid-D52D1EC3-86C8-4BF1-8CC5-7C0E55C58DE7_2" />
+    </marker>
+    <marker id="sid-BCBFE17A-92D5-4BCE-A78C-72D9D068793Cend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-BCBFE17A-92D5-4BCE-A78C-72D9D068793C_sid-BCBFE17A-92D5-4BCE-A78C-72D9D068793C_2" />
+    </marker>
+    <marker id="sid-F5B33E56-1D9A-4078-9597-0F87758863F2end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-F5B33E56-1D9A-4078-9597-0F87758863F2_sid-F5B33E56-1D9A-4078-9597-0F87758863F2_2" />
+    </marker>
+    <marker id="sid-4F77CC22-307E-4B97-A406-A48E36AB56D2end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-4F77CC22-307E-4B97-A406-A48E36AB56D2_sid-4F77CC22-307E-4B97-A406-A48E36AB56D2_2" />
+    </marker>
+    <marker id="sid-2224952C-C1A4-42F0-8850-598E4F9D1785end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-2224952C-C1A4-42F0-8850-598E4F9D1785_sid-2224952C-C1A4-42F0-8850-598E4F9D1785_2" />
+    </marker>
+    <marker id="sid-BCC934F2-9DCD-4581-AE8C-962985E04963end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-BCC934F2-9DCD-4581-AE8C-962985E04963_sid-BCC934F2-9DCD-4581-AE8C-962985E04963_2" />
+    </marker>
+    <marker id="sid-44B9FFA5-B11E-4F5A-99AF-DEDDF9AA5EF0end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-44B9FFA5-B11E-4F5A-99AF-DEDDF9AA5EF0_sid-44B9FFA5-B11E-4F5A-99AF-DEDDF9AA5EF0_2" />
+    </marker>
+    <marker id="sid-E365A1F9-DB9E-46A1-A31A-8C6A7DF12344end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-E365A1F9-DB9E-46A1-A31A-8C6A7DF12344_sid-E365A1F9-DB9E-46A1-A31A-8C6A7DF12344_2" />
+    </marker>
+    <marker id="sid-00BD1914-86E1-4B0A-9504-BEF835816BF0end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-00BD1914-86E1-4B0A-9504-BEF835816BF0_sid-00BD1914-86E1-4B0A-9504-BEF835816BF0_2" />
+    </marker>
+    <marker id="sid-CD57F9E4-D1B0-448A-B5A3-3C439ED99E52end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-CD57F9E4-D1B0-448A-B5A3-3C439ED99E52_sid-CD57F9E4-D1B0-448A-B5A3-3C439ED99E52_2" />
+    </marker>
+    <marker id="sid-52C65C0A-D4B9-487A-A83A-85231DC86232end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-52C65C0A-D4B9-487A-A83A-85231DC86232_sid-52C65C0A-D4B9-487A-A83A-85231DC86232_2" />
+    </marker>
+    <marker id="sid-E007AF1A-97DB-41D2-BBCD-2690ADDA2979end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-E007AF1A-97DB-41D2-BBCD-2690ADDA2979_sid-E007AF1A-97DB-41D2-BBCD-2690ADDA2979_2" />
+    </marker>
+    <marker id="sid-6CAE79B4-0CF8-4778-AEB9-B4B7E2967C7Fend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-6CAE79B4-0CF8-4778-AEB9-B4B7E2967C7F_sid-6CAE79B4-0CF8-4778-AEB9-B4B7E2967C7F_2" />
+    </marker>
+    <marker id="sid-490BC875-276B-4415-877A-233C2EF8761Cend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-490BC875-276B-4415-877A-233C2EF8761C_sid-490BC875-276B-4415-877A-233C2EF8761C_2" />
+    </marker>
+    <marker id="sid-A21289AF-8B64-4F30-929A-8DB2684CA65Aend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-A21289AF-8B64-4F30-929A-8DB2684CA65A_sid-A21289AF-8B64-4F30-929A-8DB2684CA65A_2" />
+    </marker>
+    <marker id="sid-C7705DF8-036C-4DD1-B916-AE457435BAEAend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-C7705DF8-036C-4DD1-B916-AE457435BAEA_sid-C7705DF8-036C-4DD1-B916-AE457435BAEA_2" />
+    </marker>
+    <marker id="sid-59280ACA-943B-4758-BACE-E81B59E0A149end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-59280ACA-943B-4758-BACE-E81B59E0A149_sid-59280ACA-943B-4758-BACE-E81B59E0A149_2" />
+    </marker>
+    <marker id="sid-44EA9F8B-C2E8-49D8-B66E-15DBDD212B77end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-44EA9F8B-C2E8-49D8-B66E-15DBDD212B77_sid-44EA9F8B-C2E8-49D8-B66E-15DBDD212B77_2" />
+    </marker>
+    <marker id="sid-7EE41A96-3475-4B0C-8B52-076FA758EDF2end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-7EE41A96-3475-4B0C-8B52-076FA758EDF2_sid-7EE41A96-3475-4B0C-8B52-076FA758EDF2_2" />
+    </marker>
+    <marker id="sid-6F4CB0AB-7C08-4326-B311-03BCA033D6C6end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-6F4CB0AB-7C08-4326-B311-03BCA033D6C6none" display="inherit" />
+    </marker>
+    <marker id="sid-6F4CB0AB-7C08-4326-B311-03BCA033D6C6start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-0A10878A-54BC-47E1-B05A-7F8A933DEA84end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-0A10878A-54BC-47E1-B05A-7F8A933DEA84none" display="inherit" />
+    </marker>
+    <marker id="sid-0A10878A-54BC-47E1-B05A-7F8A933DEA84start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-D212C8BC-8521-4666-8C74-5D0B4F73B53Bend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-D212C8BC-8521-4666-8C74-5D0B4F73B53Bnone" display="inherit" />
+    </marker>
+    <marker id="sid-D212C8BC-8521-4666-8C74-5D0B4F73B53Bstart" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-19CF6A2D-5506-4E7A-A0AF-7C3473260C6Aend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-19CF6A2D-5506-4E7A-A0AF-7C3473260C6A_sid-19CF6A2D-5506-4E7A-A0AF-7C3473260C6A_2" />
+    </marker>
+    <marker id="sid-3AC78A08-F2A7-44A5-B16E-EBF1E1677C3Eend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path d="M 0 0 L 8 7 L 0 14" fill="none" stroke="black" stroke-width="1.5" id="sid-3AC78A08-F2A7-44A5-B16E-EBF1E1677C3E_sid-3AC78A08-F2A7-44A5-B16E-EBF1E1677C3E_2" />
+    </marker>
+    <marker id="sid-0A6CC9DD-EAE4-420D-9A7E-AF0639FED38Bend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-0A6CC9DD-EAE4-420D-9A7E-AF0639FED38Bnone" display="inherit" />
+    </marker>
+    <marker id="sid-0A6CC9DD-EAE4-420D-9A7E-AF0639FED38Bstart" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-15FC814A-BB5D-49FC-A920-485BF942A2B3end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-15FC814A-BB5D-49FC-A920-485BF942A2B3none" display="inherit" />
+    </marker>
+    <marker id="sid-15FC814A-BB5D-49FC-A920-485BF942A2B3start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-1A19FA78-C5D2-4978-AA92-5A1E680AF510end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-1A19FA78-C5D2-4978-AA92-5A1E680AF510none" display="inherit" />
+    </marker>
+    <marker id="sid-1A19FA78-C5D2-4978-AA92-5A1E680AF510start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-A8B082DE-2842-4F73-9C3C-8C2C869D5FB1end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-A8B082DE-2842-4F73-9C3C-8C2C869D5FB1none" display="inherit" />
+    </marker>
+    <marker id="sid-A8B082DE-2842-4F73-9C3C-8C2C869D5FB1start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-92436795-2A9E-432E-AAB2-575B49612284end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-92436795-2A9E-432E-AAB2-575B49612284none" display="inherit" />
+    </marker>
+    <marker id="sid-92436795-2A9E-432E-AAB2-575B49612284start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-F3E8FC1A-3B83-4033-A59D-7492DE667ACBend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-F3E8FC1A-3B83-4033-A59D-7492DE667ACBnone" display="inherit" />
+    </marker>
+    <marker id="sid-F3E8FC1A-3B83-4033-A59D-7492DE667ACBstart" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-2DF1DF24-C4F1-4424-8FD6-CF8858B16875end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-2DF1DF24-C4F1-4424-8FD6-CF8858B16875none" display="inherit" />
+    </marker>
+    <marker id="sid-2DF1DF24-C4F1-4424-8FD6-CF8858B16875start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-9E92C54A-5A82-4AAC-9A84-281C02037725end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-9E92C54A-5A82-4AAC-9A84-281C02037725none" display="inherit" />
+    </marker>
+    <marker id="sid-9E92C54A-5A82-4AAC-9A84-281C02037725start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-D8ED5D65-F43E-4A48-9322-5C49338ABF05end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-D8ED5D65-F43E-4A48-9322-5C49338ABF05none" display="inherit" />
+    </marker>
+    <marker id="sid-D8ED5D65-F43E-4A48-9322-5C49338ABF05start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-862B00E4-3B0A-4E4A-B9BA-F8F301BBB6ABend" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-862B00E4-3B0A-4E4A-B9BA-F8F301BBB6ABnone" display="inherit" />
+    </marker>
+    <marker id="sid-862B00E4-3B0A-4E4A-B9BA-F8F301BBB6ABstart" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-E621E6D8-84B7-4F84-8BE0-5BEB0DC55992end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-E621E6D8-84B7-4F84-8BE0-5BEB0DC55992none" display="inherit" />
+    </marker>
+    <marker id="sid-E621E6D8-84B7-4F84-8BE0-5BEB0DC55992start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-96176803-4561-472A-9AD0-CDA4125FB729end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-96176803-4561-472A-9AD0-CDA4125FB729none" display="inherit" />
+    </marker>
+    <marker id="sid-96176803-4561-472A-9AD0-CDA4125FB729start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+    <marker id="sid-A5FC2E79-C080-453E-B556-62A5A57B86F5end" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="14" orient="auto">
+      <path id="sid-A5FC2E79-C080-453E-B556-62A5A57B86F5none" display="inherit" />
+    </marker>
+    <marker id="sid-A5FC2E79-C080-453E-B556-62A5A57B86F5start" refX="8" refY="7" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" orient="auto" />
+  </defs>
+  <g stroke="black" font-family="Verdana, sans-serif" font-size-adjust="none" font-style="normal" font-variant="normal" font-weight="normal" line-heigth="normal" font-size="12">
+    <g class="stencils" transform="translate(-20, 10)">
+      <g class="me" />
+      <g class="children">
+        <g id="svg-sid-041EC923-CD03-4C98-B78C-931001371C26">
+          <g class="stencils" transform="translate(405, 15)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-D56E93AB-B12D-4DAB-AA0F-4BDD9EE96F54">
+                <path id="sid-D56E93AB-B12D-4DAB-AA0F-4BDD9EE96F54celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-D56E93AB-B12D-4DAB-AA0F-4BDD9EE96F54text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Raumänder</tspan>
+                  <tspan x="50" y="30" dy="10">ung erhalten</tspan>
+                </text>
+                <text font-size="11" id="sid-D56E93AB-B12D-4DAB-AA0F-4BDD9EE96F54commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(405, 15)" />
+          </g>
+        </g>
+        <g id="svg-sid-50073611-568B-43A6-8BE7-175D47A615ED">
+          <g class="stencils" transform="translate(195, 1245)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-7F9CE1DF-CD0F-4603-810F-EE193EC8536C">
+                <rect id="sid-7F9CE1DF-CD0F-4603-810F-EE193EC8536Ccelem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-7F9CE1DF-CD0F-4603-810F-EE193EC8536Ctext" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-12">Verlegungen in</tspan>
+                  <tspan x="50" y="30" dy="-1">Outlook-</tspan>
+                  <tspan x="50" y="30" dy="10">Raumplan eintrag</tspan>
+                  <tspan x="50" y="30" dy="21">en</tspan>
+                </text>
+                <text font-size="11" id="sid-7F9CE1DF-CD0F-4603-810F-EE193EC8536Ctimetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1245)" />
+          </g>
+        </g>
+        <g id="svg-sid-D3353A67-7F7B-45C7-950F-1A52762AE85A">
+          <g class="stencils" transform="translate(440, 300)">
+            <g class="me">
+              <g title="XOR Connector" id="sid-4EADE99C-2AC0-4151-B342-9CCA2D8E7E04">
+                <ellipse id="sid-4EADE99C-2AC0-4151-B342-9CCA2D8E7E04celem" oryx:resize="vertical horizontal" cx="15" cy="15" rx="15" ry="15" stroke="black" fill="#ffffff" stroke-width="1" />
+                <path oryx:resize="vertical horizontal" d=" M9 9  l12 12  m-12 0  l12 -12 " stroke="black" fill="none" stroke-width="1" id="sid-4EADE99C-2AC0-4151-B342-9CCA2D8E7E04_sid-4EADE99C-2AC0-4151-B342-9CCA2D8E7E04_2" />
+                <text font-size="11" id="sid-4EADE99C-2AC0-4151-B342-9CCA2D8E7E04text" x="15" y="15" oryx:defaultPosition="middleRight" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 15 15)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(440, 300)" />
+          </g>
+        </g>
+        <g id="svg-sid-2A709F68-6C0D-4F2E-81A0-4210FB0F4F21">
+          <g class="stencils" transform="translate(195, 1335)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-395444D4-0657-4C89-B330-4FDD28D5CFBC">
+                <path id="sid-395444D4-0657-4C89-B330-4FDD28D5CFBCcelem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-395444D4-0657-4C89-B330-4FDD28D5CFBCtext" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-7">Verlegunge</tspan>
+                  <tspan x="50" y="30" dy="4">n in Outlook</tspan>
+                  <tspan x="50" y="30" dy="15">eingetragen</tspan>
+                </text>
+                <text font-size="11" id="sid-395444D4-0657-4C89-B330-4FDD28D5CFBCcommonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1335)" />
+          </g>
+        </g>
+        <g id="svg-sid-B345CC87-45D6-405D-998A-EF1F80D27B04">
+          <g class="stencils" transform="translate(195, 1425)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-3F838614-BA86-4C3D-BC48-939F4268FC70">
+                <rect id="sid-3F838614-BA86-4C3D-BC48-939F4268FC70celem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-3F838614-BA86-4C3D-BC48-939F4268FC70text" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-7">Verlegung am</tspan>
+                  <tspan x="50" y="30" dy="4">Tür-Raumplan</tspan>
+                  <tspan x="50" y="30" dy="15">eintragen</tspan>
+                </text>
+                <text font-size="11" id="sid-3F838614-BA86-4C3D-BC48-939F4268FC70timetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1425)" />
+          </g>
+        </g>
+        <g id="svg-sid-BE41A858-DCD1-4A4A-9ABB-EFEB40B16DA8">
+          <g class="stencils" transform="translate(195, 1500)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-92C3C148-7485-4894-BA5F-5EE7B8DD9881">
+                <path id="sid-92C3C148-7485-4894-BA5F-5EE7B8DD9881celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-92C3C148-7485-4894-BA5F-5EE7B8DD9881text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-12">Verlegunge</tspan>
+                  <tspan x="50" y="30" dy="-1">n in Tür-</tspan>
+                  <tspan x="50" y="30" dy="10">Raumplan</tspan>
+                  <tspan x="50" y="30" dy="21">eingetragen</tspan>
+                </text>
+                <text font-size="11" id="sid-92C3C148-7485-4894-BA5F-5EE7B8DD9881commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1500)" />
+          </g>
+        </g>
+        <g id="svg-sid-36532C8C-6A17-4631-B1E7-A4B3C7C4AD89">
+          <g class="stencils" transform="translate(195, 1575)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-64982F1A-C748-449D-AA0B-06823DEE5977">
+                <rect id="sid-64982F1A-C748-449D-AA0B-06823DEE5977celem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-64982F1A-C748-449D-AA0B-06823DEE5977text" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-7">Verlegungen in</tspan>
+                  <tspan x="50" y="30" dy="4">Gesamtplan</tspan>
+                  <tspan x="50" y="30" dy="15">eintragen</tspan>
+                </text>
+                <text font-size="11" id="sid-64982F1A-C748-449D-AA0B-06823DEE5977timetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1575)" />
+          </g>
+        </g>
+        <g id="svg-sid-23B0DF08-8CE6-4B94-BCFD-806977993517">
+          <g class="stencils" transform="translate(405, 105)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-62C4D12F-B27F-40D0-848C-67BDA30D91DA">
+                <rect id="sid-62C4D12F-B27F-40D0-848C-67BDA30D91DAcelem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-62C4D12F-B27F-40D0-848C-67BDA30D91DAtext" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-7">Prüfe</tspan>
+                  <tspan x="50" y="30" dy="4">Raumverfügbarke</tspan>
+                  <tspan x="50" y="30" dy="15">it</tspan>
+                </text>
+                <text font-size="11" id="sid-62C4D12F-B27F-40D0-848C-67BDA30D91DAtimetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(405, 105)" />
+          </g>
+        </g>
+        <g id="svg-sid-9BD8E037-7D5E-47B4-BDEE-A4FDA6DAFB5E">
+          <g class="stencils" transform="translate(405, 195)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-41208F56-B0E6-44AF-9130-95D08C238017">
+                <path id="sid-41208F56-B0E6-44AF-9130-95D08C238017celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-41208F56-B0E6-44AF-9130-95D08C238017text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-7">Raumverfüg</tspan>
+                  <tspan x="50" y="30" dy="4">barkeit</tspan>
+                  <tspan x="50" y="30" dy="15">bekannt</tspan>
+                </text>
+                <text font-size="11" id="sid-41208F56-B0E6-44AF-9130-95D08C238017commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(405, 195)" />
+          </g>
+        </g>
+        <g id="svg-sid-090BA0AF-14B6-4112-91EF-B8ACE499ECDD">
+          <g class="stencils" transform="translate(195, 1650)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-6E718DDD-1D30-4922-8A99-FC5B53EFE47E">
+                <path id="sid-6E718DDD-1D30-4922-8A99-FC5B53EFE47Ecelem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-6E718DDD-1D30-4922-8A99-FC5B53EFE47Etext" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-12">Verlegunge</tspan>
+                  <tspan x="50" y="30" dy="-1">n in</tspan>
+                  <tspan x="50" y="30" dy="10">Gesamtplan</tspan>
+                  <tspan x="50" y="30" dy="21">eingetragen</tspan>
+                </text>
+                <text font-size="11" id="sid-6E718DDD-1D30-4922-8A99-FC5B53EFE47Ecommonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1650)" />
+          </g>
+        </g>
+        <g id="svg-sid-714DB098-8665-4D48-B881-41278632B26E">
+          <g class="stencils" transform="translate(195, 1725)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-06B7F798-6DC3-4895-8827-16CAA9C99A4B">
+                <rect id="sid-06B7F798-6DC3-4895-8827-16CAA9C99A4Bcelem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-06B7F798-6DC3-4895-8827-16CAA9C99A4Btext" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-12">Aushang an</tspan>
+                  <tspan x="50" y="30" dy="-1">Rezeption und</tspan>
+                  <tspan x="50" y="30" dy="10">Studienreferat</tspan>
+                  <tspan x="50" y="30" dy="21">auslegen</tspan>
+                </text>
+                <text font-size="11" id="sid-06B7F798-6DC3-4895-8827-16CAA9C99A4Btimetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1725)" />
+          </g>
+        </g>
+        <g id="svg-sid-4B0A6370-B792-4ABA-91A2-ED74FFC8C08F">
+          <g class="stencils" transform="translate(195, 1800)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-3AF5505D-EF43-46B4-BB22-92BEC0B1DBEF">
+                <path id="sid-3AF5505D-EF43-46B4-BB22-92BEC0B1DBEFcelem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-3AF5505D-EF43-46B4-BB22-92BEC0B1DBEFtext" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Aushang</tspan>
+                  <tspan x="50" y="30" dy="10">ausgelegt</tspan>
+                </text>
+                <text font-size="11" id="sid-3AF5505D-EF43-46B4-BB22-92BEC0B1DBEFcommonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1800)" />
+          </g>
+        </g>
+        <g id="svg-sid-BBAC696C-E13D-4027-A58C-ECAAF9CE209D">
+          <g class="stencils" transform="translate(195, 1095)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-A1E5432E-D222-4F65-92B9-F079B4459140">
+                <rect id="sid-A1E5432E-D222-4F65-92B9-F079B4459140celem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-A1E5432E-D222-4F65-92B9-F079B4459140text" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Verlegungsplan</tspan>
+                  <tspan x="50" y="30" dy="10">erstellen</tspan>
+                </text>
+                <text font-size="11" id="sid-A1E5432E-D222-4F65-92B9-F079B4459140timetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1095)" />
+          </g>
+        </g>
+        <g id="svg-sid-8077106E-E353-4853-ADAD-249278E760DF">
+          <g class="stencils" transform="translate(570, 360)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-48EE03E9-F84E-4AE4-9074-FA090E543590">
+                <rect id="sid-48EE03E9-F84E-4AE4-9074-FA090E543590celem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-48EE03E9-F84E-4AE4-9074-FA090E543590text" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-7">informiere</tspan>
+                  <tspan x="50" y="30" dy="4">Sekreteriate der</tspan>
+                  <tspan x="50" y="30" dy="15">Dozenten</tspan>
+                </text>
+                <text font-size="11" id="sid-48EE03E9-F84E-4AE4-9074-FA090E543590timetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(570, 360)" />
+          </g>
+        </g>
+        <g id="svg-sid-5C2AE2C7-545E-4A00-8832-7D206141B297">
+          <g class="stencils" transform="translate(570, 450)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-8D83F059-8A29-4141-B6D7-D04E9F952362">
+                <path id="sid-8D83F059-8A29-4141-B6D7-D04E9F952362celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-8D83F059-8A29-4141-B6D7-D04E9F952362text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1" id="ext-gen431">Sekreteriate</tspan>
+                  <tspan x="50" y="30" dy="10">informiert</tspan>
+                </text>
+                <text font-size="11" id="sid-8D83F059-8A29-4141-B6D7-D04E9F952362commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(570, 450)" />
+          </g>
+        </g>
+        <g id="svg-sid-8217CBCC-C8F2-4BD6-B7B7-0D0FFDAEEAAA">
+          <g class="stencils" transform="translate(465, 630)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-4E2FE364-36B7-4BAA-9736-0CBB4612D2BE">
+                <rect id="sid-4E2FE364-36B7-4BAA-9736-0CBB4612D2BEcelem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-4E2FE364-36B7-4BAA-9736-0CBB4612D2BEtext" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Studenten über</tspan>
+                  <tspan x="50" y="30" dy="10">Ausfall informieren</tspan>
+                </text>
+                <text font-size="11" id="sid-4E2FE364-36B7-4BAA-9736-0CBB4612D2BEtimetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(465, 630)" />
+          </g>
+        </g>
+        <g id="svg-sid-D431237C-E2C2-425C-A166-6CB8F8B110A4">
+          <g class="stencils" transform="translate(605, 555)">
+            <g class="me">
+              <g title="XOR Connector" id="sid-C488DFC3-2FB2-4D83-B3BA-ECFDDB6AE897">
+                <ellipse id="sid-C488DFC3-2FB2-4D83-B3BA-ECFDDB6AE897celem" oryx:resize="vertical horizontal" cx="15" cy="15" rx="15" ry="15" stroke="black" fill="#ffffff" stroke-width="1" />
+                <path oryx:resize="vertical horizontal" d=" M9 9  l12 12  m-12 0  l12 -12 " stroke="black" fill="none" stroke-width="1" id="sid-C488DFC3-2FB2-4D83-B3BA-ECFDDB6AE897_sid-C488DFC3-2FB2-4D83-B3BA-ECFDDB6AE897_2" />
+                <text font-size="11" id="sid-C488DFC3-2FB2-4D83-B3BA-ECFDDB6AE897text" x="15" y="15" oryx:defaultPosition="middleRight" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 15 15)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(605, 555)" />
+          </g>
+        </g>
+        <g id="svg-sid-9E7F3E7A-FC34-4A47-BC8E-2456301527B6">
+          <g class="stencils" transform="translate(675, 630)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-293C800C-E54F-4C42-B62C-D595BE70A75B">
+                <rect id="sid-293C800C-E54F-4C42-B62C-D595BE70A75Bcelem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-293C800C-E54F-4C42-B62C-D595BE70A75Btext" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Ersatztermin</tspan>
+                  <tspan x="50" y="30" dy="10">ermitteln</tspan>
+                </text>
+                <text font-size="11" id="sid-293C800C-E54F-4C42-B62C-D595BE70A75Btimetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(675, 630)" />
+          </g>
+        </g>
+        <g id="svg-sid-473B93E7-07A6-41B5-912C-C93C1466C71C">
+          <g class="stencils" transform="translate(675, 720)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-82877818-516B-4D3B-9246-6B1E269B57F9">
+                <path id="sid-82877818-516B-4D3B-9246-6B1E269B57F9celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-82877818-516B-4D3B-9246-6B1E269B57F9text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Ersatztermi</tspan>
+                  <tspan x="50" y="30" dy="10">ne ermittelt</tspan>
+                </text>
+                <text font-size="11" id="sid-82877818-516B-4D3B-9246-6B1E269B57F9commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(675, 720)" />
+          </g>
+        </g>
+        <g id="svg-sid-B750D0EF-F31B-4F0D-A0E7-6E202243D604">
+          <g class="stencils" transform="translate(675, 795)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-FC5C8AF9-CB98-4668-AA2F-7572E9CA2CEB">
+                <rect id="sid-FC5C8AF9-CB98-4668-AA2F-7572E9CA2CEBcelem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-FC5C8AF9-CB98-4668-AA2F-7572E9CA2CEBtext" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-7">Überprüfe ob</tspan>
+                  <tspan x="50" y="30" dy="4">kopatibler Raum</tspan>
+                  <tspan x="50" y="30" dy="15">vorhanden</tspan>
+                </text>
+                <text font-size="11" id="sid-FC5C8AF9-CB98-4668-AA2F-7572E9CA2CEBtimetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(675, 795)" />
+          </g>
+        </g>
+        <g id="svg-sid-D10B7D97-AD2B-4D2C-9D57-4339983BE593">
+          <g class="stencils" transform="translate(675, 870)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-66743983-05F0-40E4-BED7-993CCF47D4E9">
+                <path id="sid-66743983-05F0-40E4-BED7-993CCF47D4E9celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-66743983-05F0-40E4-BED7-993CCF47D4E9text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Situation</tspan>
+                  <tspan x="50" y="30" dy="10">geklärt</tspan>
+                </text>
+                <text font-size="11" id="sid-66743983-05F0-40E4-BED7-993CCF47D4E9commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(675, 870)" />
+          </g>
+        </g>
+        <g id="svg-sid-A0730933-1B78-4C2C-9A40-5E99E8DB38D0">
+          <g class="stencils" transform="translate(465, 720)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-34160032-C3E3-487C-BF47-14DFD45DAA4A">
+                <path id="sid-34160032-C3E3-487C-BF47-14DFD45DAA4Acelem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-34160032-C3E3-487C-BF47-14DFD45DAA4Atext" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Situation</tspan>
+                  <tspan x="50" y="30" dy="10">geklärt</tspan>
+                </text>
+                <text font-size="11" id="sid-34160032-C3E3-487C-BF47-14DFD45DAA4Acommonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(465, 720)" />
+          </g>
+        </g>
+        <g id="svg-sid-2E409B27-0ECE-4141-9BBC-F674F6B00F80">
+          <g class="stencils" transform="translate(605, 915)">
+            <g class="me">
+              <g title="XOR Connector" id="sid-49D6113C-2CA5-4AFF-A1C5-5BB53F57FA4B">
+                <ellipse id="sid-49D6113C-2CA5-4AFF-A1C5-5BB53F57FA4Bcelem" oryx:resize="vertical horizontal" cx="15" cy="15" rx="15" ry="15" stroke="black" fill="#ffffff" stroke-width="1" />
+                <path oryx:resize="vertical horizontal" d=" M9 9  l12 12  m-12 0  l12 -12 " stroke="black" fill="none" stroke-width="1" id="sid-49D6113C-2CA5-4AFF-A1C5-5BB53F57FA4B_sid-49D6113C-2CA5-4AFF-A1C5-5BB53F57FA4B_2" />
+                <text font-size="11" id="sid-49D6113C-2CA5-4AFF-A1C5-5BB53F57FA4Btext" x="15" y="15" oryx:defaultPosition="middleRight" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 15 15)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(605, 915)" />
+          </g>
+        </g>
+        <g id="svg-sid-CDE610F0-ED42-4780-A5C3-5602E9620820">
+          <g class="stencils" transform="translate(570, 1005)">
+            <g class="me">
+              <g pointer-events="fill" title="Function" id="sid-F16F73DC-DBC2-40D9-BAB8-8B49B531CA4B">
+                <rect id="sid-F16F73DC-DBC2-40D9-BAB8-8B49B531CA4Bcelem" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="60" rx="10" ry="10" stroke="black" stroke-width="1" fill="#96ff96" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-F16F73DC-DBC2-40D9-BAB8-8B49B531CA4Btext" x="50" y="30" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="4">Informiere Frau M.</tspan>
+                </text>
+                <text font-size="11" id="sid-F16F73DC-DBC2-40D9-BAB8-8B49B531CA4Btimetext" x="103" y="-10" oryx:align="left top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 103 -10)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(570, 1005)" />
+          </g>
+        </g>
+        <g id="svg-sid-903007E3-3806-4299-B235-A79D678A7661">
+          <g class="stencils" transform="translate(230, 1020)">
+            <g class="me">
+              <g title="XOR Connector" id="sid-E63DD989-CCDA-4C36-8B86-2C900886F51B">
+                <ellipse id="sid-E63DD989-CCDA-4C36-8B86-2C900886F51Bcelem" oryx:resize="vertical horizontal" cx="15" cy="15" rx="15" ry="15" stroke="black" fill="#ffffff" stroke-width="1" />
+                <path oryx:resize="vertical horizontal" d=" M9 9  l12 12  m-12 0  l12 -12 " stroke="black" fill="none" stroke-width="1" id="sid-E63DD989-CCDA-4C36-8B86-2C900886F51B_sid-E63DD989-CCDA-4C36-8B86-2C900886F51B_2" />
+                <text font-size="11" id="sid-E63DD989-CCDA-4C36-8B86-2C900886F51Btext" x="15" y="15" oryx:defaultPosition="middleRight" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 15 15)" oryx:fontSize="11" text-anchor="start" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(230, 1020)" />
+          </g>
+        </g>
+        <g id="svg-sid-808C0BB7-FC4E-4A67-9783-A248C0FCE8B5">
+          <g class="stencils" transform="translate(405, 1005)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-FA6091D1-01F9-48D3-9DF8-D0B37E884889">
+                <path id="sid-FA6091D1-01F9-48D3-9DF8-D0B37E884889celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-FA6091D1-01F9-48D3-9DF8-D0B37E884889text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Frau M. ist</tspan>
+                  <tspan x="50" y="30" dy="10">informiert</tspan>
+                </text>
+                <text font-size="11" id="sid-FA6091D1-01F9-48D3-9DF8-D0B37E884889commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(405, 1005)" />
+          </g>
+        </g>
+        <g id="svg-sid-A9839497-CE93-41A7-9BD4-D9AE4D4D3AA0">
+          <g class="stencils" transform="translate(195, 1170)">
+            <g class="me">
+              <g pointer-events="fill" title="Event" id="sid-FCA45184-0D2D-4B58-B848-A8991ECBDA55">
+                <path id="sid-FCA45184-0D2D-4B58-B848-A8991ECBDA55celem" d="M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z" oryx:resize="vertical horizontal" stroke="black" stroke-width="1" fill="#ffafff" />
+                <text font-size="11" id="sid-FCA45184-0D2D-4B58-B848-A8991ECBDA55text" x="50" y="30" oryx:fittoelem="textrect" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 30)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="30" dy="-1">Verlegungs</tspan>
+                  <tspan x="50" y="30" dy="10">plan liegt vor</tspan>
+                </text>
+                <text font-size="11" id="sid-FCA45184-0D2D-4B58-B848-A8991ECBDA55commonnesstext" x="-2" y="-5" oryx:align="right top" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 -2 -5)" oryx:fontSize="11" text-anchor="end" />
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(195, 1170)" />
+          </g>
+        </g>
+        <g id="svg-sid-98CF2884-9DD3-4281-A828-8E4FB6C7636A">
+          <g class="stencils" transform="translate(45, 110)">
+            <g class="me">
+              <g pointer-events="fill" title="Organization" id="sid-0545E7B0-344E-48BA-92FF-33C4A71DD29F">
+                <ellipse id="sid-0545E7B0-344E-48BA-92FF-33C4A71DD29Fcelem" oryx:resize="vertical horizontal" cx="60" cy="25" rx="60" ry="25" stroke="black" stroke-width="1" fill="#ffff80" />
+                <path d="M 10 11 l 0 28" oryx:resize="vertical horizontal" stroke="black" fill="white" stroke-width="1" id="sid-0545E7B0-344E-48BA-92FF-33C4A71DD29F_sid-0545E7B0-344E-48BA-92FF-33C4A71DD29F_9" />
+                <text oryx:fittoelem="textrect" font-size="11" id="sid-0545E7B0-344E-48BA-92FF-33C4A71DD29Ftext" x="60" y="25" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 60 25)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="60" y="25" dy="-1">Frau M. or Frau</tspan>
+                  <tspan x="60" y="25" dy="10">P.</tspan>
+                </text>
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(45, 110)" />
+          </g>
+        </g>
+        <g id="svg-sid-ABB711EC-9387-4546-A28E-C4DF79D919B6">
+          <g class="stencils" transform="translate(961.9500533231228, 744.1500412499629)">
+            <g class="me">
+              <g pointer-events="fill" title="Organization" id="sid-394418B7-0587-48C8-A75D-4E3CDB0E004C">
+                <ellipse id="sid-394418B7-0587-48C8-A75D-4E3CDB0E004Ccelem" oryx:resize="vertical horizontal" cx="60" cy="25" rx="60" ry="25" stroke="black" stroke-width="1" fill="#ffff80" />
+                <path d="M 10 11 l 0 28" oryx:resize="vertical horizontal" stroke="black" fill="white" stroke-width="1" id="sid-394418B7-0587-48C8-A75D-4E3CDB0E004C_sid-394418B7-0587-48C8-A75D-4E3CDB0E004C_9" />
+                <text oryx:fittoelem="textrect" font-size="11" id="sid-394418B7-0587-48C8-A75D-4E3CDB0E004Ctext" x="60" y="25" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 60 25)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="60" y="25" dy="4">Sekreteriate</tspan>
+                </text>
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(961.9500533231228, 744.1500412499629)" />
+          </g>
+        </g>
+        <g id="svg-sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911">
+          <g class="stencils" transform="translate(404.99999999999994, 1095)">
+            <g class="me">
+              <g pointer-events="fill" title="Data Object" id="sid-EE837F60-39B4-4D8C-932E-AB9F620D5030">
+                <path id="sid-EE837F60-39B4-4D8C-932E-AB9F620D5030celem" d=" M0 0  l100.00000000000011 0  l0 52  l-20.00000000000002 -8  l-60.000000000000064 16  l-20.00000000000002 -8  z" oryx:resize="vertical horizontal" stroke="black" fill="#dcdcdc" stroke-width="1" />
+                <text oryx:fittoelem="celem" font-size="11" id="sid-EE837F60-39B4-4D8C-932E-AB9F620D5030text" x="50" y="26" oryx:align="middle center" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 26)" oryx:fontSize="11" text-anchor="middle">
+                  <tspan x="50" y="26" dy="4">Verlegungsplan</tspan>
+                </text>
+              </g>
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" transform="translate(404.99999999999994, 1095)" />
+          </g>
+        </g>
+      </g>
+      <g class="edge">
+        <g id="svg-sid-774234A8-E4C2-4F1E-9A27-CA632CCBFF53">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M455.6666666666667 75L455 105 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-C2BF50F0-E090-415D-AEA0-D9315572E890end)" id="sid-C2BF50F0-E090-415D-AEA0-D9315572E890_1" />
+              </g>
+              <text id="sid-C2BF50F0-E090-415D-AEA0-D9315572E890probabilitytext" x="447" y="67" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-88.72696997994308 455 75)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-FB994CB9-00E4-42FC-B77F-DE8F3E8F9539">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1305L245 1335 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-FBC837D0-6BC1-4AA4-AF2F-525563502FCEend)" id="sid-FBC837D0-6BC1-4AA4-AF2F-525563502FCE_1" />
+              </g>
+              <text id="sid-FBC837D0-6BC1-4AA4-AF2F-525563502FCEprobabilitytext" x="237" y="1297" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1305)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-F4212871-C09C-41B7-A96A-3C771EE33688">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1395L245 1425 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-3025106B-C28D-4177-87B3-6EDBFE2CAF76end)" id="sid-3025106B-C28D-4177-87B3-6EDBFE2CAF76_1" />
+              </g>
+              <text id="sid-3025106B-C28D-4177-87B3-6EDBFE2CAF76probabilitytext" x="237" y="1387" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1395)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-5475FFDF-315E-4E4D-ACDF-71CA781838B4">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1485L245 1500 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-65B9D944-ADFB-4B1F-AB62-F333D841265Bend)" id="sid-65B9D944-ADFB-4B1F-AB62-F333D841265B_1" />
+              </g>
+              <text id="sid-65B9D944-ADFB-4B1F-AB62-F333D841265Bprobabilitytext" x="237" y="1477" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1485)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-4681433B-A870-42F2-AFA2-AE1A510D7691">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1560L245 1575 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-C8E929A3-F8B2-41EB-9F64-71F4ADB53370end)" id="sid-C8E929A3-F8B2-41EB-9F64-71F4ADB53370_1" />
+              </g>
+              <text id="sid-C8E929A3-F8B2-41EB-9F64-71F4ADB53370probabilitytext" x="237" y="1552" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1560)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-5073A038-EF5E-4931-B0EC-C0F544806AEE">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M455 165L455 194.4609375 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-84405045-86DE-43AE-8ECB-AFD84D22CF8Cend)" id="sid-84405045-86DE-43AE-8ECB-AFD84D22CF8C_1" />
+              </g>
+              <text id="sid-84405045-86DE-43AE-8ECB-AFD84D22CF8Cprobabilitytext" x="447" y="157" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 455 165)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-B5F2BB65-11FC-4100-A3E5-3BA80CAB5D64">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M455 255L455 299.9375 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-1C1706AC-CAEA-4C2D-B1CA-4E8C2F64052Fend)" id="sid-1C1706AC-CAEA-4C2D-B1CA-4E8C2F64052F_1" />
+              </g>
+              <text id="sid-1C1706AC-CAEA-4C2D-B1CA-4E8C2F64052Fprobabilitytext" x="447" y="247" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 455 255)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-69F71A34-7C44-4157-AEDF-450CBB20C697">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1635L245 1649.28125 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-D52D1EC3-86C8-4BF1-8CC5-7C0E55C58DE7end)" id="sid-D52D1EC3-86C8-4BF1-8CC5-7C0E55C58DE7_1" />
+              </g>
+              <text id="sid-D52D1EC3-86C8-4BF1-8CC5-7C0E55C58DE7probabilitytext" x="237" y="1627" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1635)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-B697246F-189B-4BD3-BAB2-416BEAFBA24F">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1710L245 1725 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-BCBFE17A-92D5-4BCE-A78C-72D9D068793Cend)" id="sid-BCBFE17A-92D5-4BCE-A78C-72D9D068793C_1" />
+              </g>
+              <text id="sid-BCBFE17A-92D5-4BCE-A78C-72D9D068793Cprobabilitytext" x="237" y="1702" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1710)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-9D069EF5-1D08-48FA-9E19-0B3031EC9494">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1785L245 1800 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-F5B33E56-1D9A-4078-9597-0F87758863F2end)" id="sid-F5B33E56-1D9A-4078-9597-0F87758863F2_1" />
+              </g>
+              <text id="sid-F5B33E56-1D9A-4078-9597-0F87758863F2probabilitytext" x="237" y="1777" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1785)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-06CE96B7-98D3-4676-99ED-ECDE99AA1951">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M620 420L620 450 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-4F77CC22-307E-4B97-A406-A48E36AB56D2end)" id="sid-4F77CC22-307E-4B97-A406-A48E36AB56D2_1" />
+              </g>
+              <text id="sid-4F77CC22-307E-4B97-A406-A48E36AB56D2probabilitytext" x="612" y="412" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 620 420)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-68DD1C04-3B41-4F6B-9487-5E0482693767">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M620 510L620 554.75 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-2224952C-C1A4-42F0-8850-598E4F9D1785end)" id="sid-2224952C-C1A4-42F0-8850-598E4F9D1785_1" />
+              </g>
+              <text id="sid-2224952C-C1A4-42F0-8850-598E4F9D1785probabilitytext" x="612" y="502" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 620 510)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-93667197-BC40-4620-9563-3AE6B81AE2A0">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M725 690L725 720 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-BCC934F2-9DCD-4581-AE8C-962985E04963end)" id="sid-BCC934F2-9DCD-4581-AE8C-962985E04963_1" />
+              </g>
+              <text id="sid-BCC934F2-9DCD-4581-AE8C-962985E04963probabilitytext" x="717" y="682" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 725 690)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-E1188732-142E-4FB4-B5F8-FFE2E282781F">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M725 780L725 795 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-44B9FFA5-B11E-4F5A-99AF-DEDDF9AA5EF0end)" id="sid-44B9FFA5-B11E-4F5A-99AF-DEDDF9AA5EF0_1" />
+              </g>
+              <text id="sid-44B9FFA5-B11E-4F5A-99AF-DEDDF9AA5EF0probabilitytext" x="717" y="772" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 725 780)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-FF7F87A2-9126-4A93-BDD7-079DCDF6E6E0">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M725 855L725 870 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-E365A1F9-DB9E-46A1-A31A-8C6A7DF12344end)" id="sid-E365A1F9-DB9E-46A1-A31A-8C6A7DF12344_1" />
+              </g>
+              <text id="sid-E365A1F9-DB9E-46A1-A31A-8C6A7DF12344probabilitytext" x="717" y="847" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 725 855)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-FBC3F5E0-9B15-4512-8657-30FB280281A4">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M515 690L515 720 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-00BD1914-86E1-4B0A-9504-BEF835816BF0end)" id="sid-00BD1914-86E1-4B0A-9504-BEF835816BF0_1" />
+              </g>
+              <text id="sid-00BD1914-86E1-4B0A-9504-BEF835816BF0probabilitytext" x="507" y="682" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 515 690)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-C1A11EAC-AB84-4B64-86D9-8515ED143931">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M689.546875 930L635.765625 930 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-CD57F9E4-D1B0-448A-B5A3-3C439ED99E52end)" id="sid-CD57F9E4-D1B0-448A-B5A3-3C439ED99E52_1" />
+              </g>
+              <text id="sid-CD57F9E4-D1B0-448A-B5A3-3C439ED99E52probabilitytext" x="681" y="922" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 689 930)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-E326CBD1-7F08-4CA5-BD61-9A25451081E5">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M515 780L515 930 L604.234375 930 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-52C65C0A-D4B9-487A-A83A-85231DC86232end)" id="sid-52C65C0A-D4B9-487A-A83A-85231DC86232_1" />
+              </g>
+              <text id="sid-52C65C0A-D4B9-487A-A83A-85231DC86232probabilitytext" x="507" y="772" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 515 780)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-AFDAC6C2-0388-45BB-B7D4-A42918CE71D1">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M620 945.0625L620 1005 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-E007AF1A-97DB-41D2-BBCD-2690ADDA2979end)" id="sid-E007AF1A-97DB-41D2-BBCD-2690ADDA2979_1" />
+              </g>
+              <text id="sid-E007AF1A-97DB-41D2-BBCD-2690ADDA2979probabilitytext" x="612" y="937" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 620 945)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-411B8020-C440-4559-ADF5-9F7C64D46816">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M439.2890625 314L244 314 L244.97908178878203 1019.9179697118311 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-6CAE79B4-0CF8-4778-AEB9-B4B7E2967C7Fend)" id="sid-6CAE79B4-0CF8-4778-AEB9-B4B7E2967C7F_1" />
+              </g>
+              <text id="sid-6CAE79B4-0CF8-4778-AEB9-B4B7E2967C7Fprobabilitytext" x="431" y="306" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 439 314)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-8782CFCC-B194-4BB6-A285-164F3CEB0EC4">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M470.390625 315L620 315 L620 360 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-490BC875-276B-4415-877A-233C2EF8761Cend)" id="sid-490BC875-276B-4415-877A-233C2EF8761C_1" />
+              </g>
+              <text id="sid-490BC875-276B-4415-877A-233C2EF8761Cprobabilitytext" x="478" y="307" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 470 315)" oryx:fontSize="12" text-anchor="start" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-89FDD53E-F8CE-4BD6-B678-F11081CD6A6C">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M570 1035L505 1035 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-A21289AF-8B64-4F30-929A-8DB2684CA65Aend)" id="sid-A21289AF-8B64-4F30-929A-8DB2684CA65A_1" />
+              </g>
+              <text id="sid-A21289AF-8B64-4F30-929A-8DB2684CA65Aprobabilitytext" x="562" y="1027" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 570 1035)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-1667C71C-55CE-4E6C-86DD-305D8EABAF34">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M405 1035L260.6875 1035 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-C7705DF8-036C-4DD1-B916-AE457435BAEAend)" id="sid-C7705DF8-036C-4DD1-B916-AE457435BAEA_1" />
+              </g>
+              <text id="sid-C7705DF8-036C-4DD1-B916-AE457435BAEAprobabilitytext" x="397" y="1027" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 405 1035)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-2E40C4E4-AA50-434D-9A1C-3D75A8C9AE24">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1050.0625L245 1095 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-59280ACA-943B-4758-BACE-E81B59E0A149end)" id="sid-59280ACA-943B-4758-BACE-E81B59E0A149_1" />
+              </g>
+              <text id="sid-59280ACA-943B-4758-BACE-E81B59E0A149probabilitytext" x="237" y="1042" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1050)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-C89FB5C8-37C6-493F-A0AA-CC9EFC0DAED3">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1155L245 1170 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-44EA9F8B-C2E8-49D8-B66E-15DBDD212B77end)" id="sid-44EA9F8B-C2E8-49D8-B66E-15DBDD212B77_1" />
+              </g>
+              <text id="sid-44EA9F8B-C2E8-49D8-B66E-15DBDD212B77probabilitytext" x="237" y="1147" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1155)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-A67EFA80-C782-4547-8AD3-0FAED46E951F">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M245 1230L245 1245 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-7EE41A96-3475-4B0C-8B52-076FA758EDF2end)" id="sid-7EE41A96-3475-4B0C-8B52-076FA758EDF2_1" />
+              </g>
+              <text id="sid-7EE41A96-3475-4B0C-8B52-076FA758EDF2probabilitytext" x="237" y="1222" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 245 1230)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-9368FDC0-ED52-4B58-BB25-57CC1EA5CB65">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M166 134L405 135 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-6F4CB0AB-7C08-4326-B311-03BCA033D6C6start)" marker-end="url(#sid-6F4CB0AB-7C08-4326-B311-03BCA033D6C6end)" id="sid-6F4CB0AB-7C08-4326-B311-03BCA033D6C6_1" />
+              </g>
+              <text id="sid-6F4CB0AB-7C08-4326-B311-03BCA033D6C6approve" x="399" y="129" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0.23972989608085982 405 135)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-8B503F62-BCBB-419D-A4BD-464778E8FE80">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M105 160L105 1125 L195 1125 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-0A10878A-54BC-47E1-B05A-7F8A933DEA84start)" marker-end="url(#sid-0A10878A-54BC-47E1-B05A-7F8A933DEA84end)" id="sid-0A10878A-54BC-47E1-B05A-7F8A933DEA84_1" />
+              </g>
+              <text id="sid-0A10878A-54BC-47E1-B05A-7F8A933DEA84approve" x="189" y="1119" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 195 1125)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-04A75244-B042-4C30-8DCA-4487F91104EC">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M565 660L961.9500533231228 769.1500412499629 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-D212C8BC-8521-4666-8C74-5D0B4F73B53Bstart)" marker-end="url(#sid-D212C8BC-8521-4666-8C74-5D0B4F73B53Bend)" id="sid-D212C8BC-8521-4666-8C74-5D0B4F73B53B_1" />
+              </g>
+              <text id="sid-D212C8BC-8521-4666-8C74-5D0B4F73B53Bapprove" x="955" y="763" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(15.374745148167392 961 769)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-6C3195CE-C72D-44DD-911F-2A0D42014C1B">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M634.359375 576L725 576 L725 630 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-19CF6A2D-5506-4E7A-A0AF-7C3473260C6Aend)" id="sid-19CF6A2D-5506-4E7A-A0AF-7C3473260C6A_1" />
+              </g>
+              <text id="sid-19CF6A2D-5506-4E7A-A0AF-7C3473260C6Aprobabilitytext" x="642" y="568" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 634 576)" oryx:fontSize="12" text-anchor="start" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-4052BC1A-AD39-4CF6-891F-91E2398F52FC">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M606 576L515 576 L515 630 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#sid-3AC78A08-F2A7-44A5-B16E-EBF1E1677C3Eend)" id="sid-3AC78A08-F2A7-44A5-B16E-EBF1E1677C3E_1" />
+              </g>
+              <text id="sid-3AC78A08-F2A7-44A5-B16E-EBF1E1677C3Eprobabilitytext" x="598" y="568" oryx:edgePosition="startTop" class="stripable-element" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 606 576)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-9FE80A5E-8D10-4133-BFBD-38BBE64EBF36">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M775 660L961.9500533231228 769.1500412499629 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-0A6CC9DD-EAE4-420D-9A7E-AF0639FED38Bstart)" marker-end="url(#sid-0A6CC9DD-EAE4-420D-9A7E-AF0639FED38Bend)" id="sid-0A6CC9DD-EAE4-420D-9A7E-AF0639FED38B_1" />
+              </g>
+              <text id="sid-0A6CC9DD-EAE4-420D-9A7E-AF0639FED38Bapprove" x="955" y="763" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(30.27834844981379 961 769)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-AC2619AE-C735-4EA3-9AFB-4EA23F948084">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M295 1125L404.99999999999994 1125 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-15FC814A-BB5D-49FC-A920-485BF942A2B3start)" marker-end="url(#sid-15FC814A-BB5D-49FC-A920-485BF942A2B3end)" id="sid-15FC814A-BB5D-49FC-A920-485BF942A2B3_1" />
+              </g>
+              <text id="sid-15FC814A-BB5D-49FC-A920-485BF942A2B3approve" x="398" y="1119" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 404 1125)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-8418CA40-88ED-4F0F-A1C0-86A0E94A42F5">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M295 1275L455 1147 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-1A19FA78-C5D2-4978-AA92-5A1E680AF510start)" marker-end="url(#sid-1A19FA78-C5D2-4978-AA92-5A1E680AF510end)" id="sid-1A19FA78-C5D2-4978-AA92-5A1E680AF510_1" />
+              </g>
+              <text id="sid-1A19FA78-C5D2-4978-AA92-5A1E680AF510approve" x="449" y="1141" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(321.3401917459099 455 1147)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-AD690702-43DC-4BD3-8FAC-2125D148FEFA">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M295 1455L455 1147 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-A8B082DE-2842-4F73-9C3C-8C2C869D5FB1start)" marker-end="url(#sid-A8B082DE-2842-4F73-9C3C-8C2C869D5FB1end)" id="sid-A8B082DE-2842-4F73-9C3C-8C2C869D5FB1_1" />
+              </g>
+              <text id="sid-A8B082DE-2842-4F73-9C3C-8C2C869D5FB1approve" x="449" y="1141" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(297.45099777093225 455 1147)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-22DA08AA-8BA1-43E2-8435-0A33E3CEBC03">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M455 1147L295 1605 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-92436795-2A9E-432E-AAB2-575B49612284start)" marker-end="url(#sid-92436795-2A9E-432E-AAB2-575B49612284end)" id="sid-92436795-2A9E-432E-AAB2-575B49612284_1" />
+              </g>
+              <text id="sid-92436795-2A9E-432E-AAB2-575B49612284approve" x="301" y="1599" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-70.7433948934613 295 1605)" oryx:fontSize="12" text-anchor="start" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-224E8FC1-6664-4E09-9E2C-B7CAFE290005">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M455 1147L295 1755 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-F3E8FC1A-3B83-4033-A59D-7492DE667ACBstart)" marker-end="url(#sid-F3E8FC1A-3B83-4033-A59D-7492DE667ACBend)" id="sid-F3E8FC1A-3B83-4033-A59D-7492DE667ACB_1" />
+              </g>
+              <text id="sid-F3E8FC1A-3B83-4033-A59D-7492DE667ACBapprove" x="301" y="1749" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-75.25643716352928 295 1755)" oryx:fontSize="12" text-anchor="start" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-5902993F-B7E8-4003-B253-044CA0B48F83">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M570 390L151.58391841535186 151.58180419007078 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-2DF1DF24-C4F1-4424-8FD6-CF8858B16875start)" marker-end="url(#sid-2DF1DF24-C4F1-4424-8FD6-CF8858B16875end)" id="sid-2DF1DF24-C4F1-4424-8FD6-CF8858B16875_1" />
+              </g>
+              <text id="sid-2DF1DF24-C4F1-4424-8FD6-CF8858B16875approve" x="157" y="145" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(29.674977506517962 151 151)" oryx:fontSize="12" text-anchor="start" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-CCB9783F-FE58-4A03-A44C-2335659FC5C7">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M775 825L966.2900502377597 769.9500399085007 " stroke="yellow" fill="none" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-9E92C54A-5A82-4AAC-9A84-281C02037725start)" marker-end="url(#sid-9E92C54A-5A82-4AAC-9A84-281C02037725end)" id="sid-9E92C54A-5A82-4AAC-9A84-281C02037725_1" />
+              </g>
+              <text id="sid-9E92C54A-5A82-4AAC-9A84-281C02037725approve" x="960" y="763" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(343.9450988626102 966 769)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-4A5D606B-9D6C-42D4-B24B-DB69AAEF7B7D">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M105 160L105 1755.7100861620352 L194.8100098126174 1755.7100861620352 " stroke="yellow" fill="none" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-D8ED5D65-F43E-4A48-9322-5C49338ABF05start)" marker-end="url(#sid-D8ED5D65-F43E-4A48-9322-5C49338ABF05end)" id="sid-D8ED5D65-F43E-4A48-9322-5C49338ABF05_1" />
+              </g>
+              <text id="sid-D8ED5D65-F43E-4A48-9322-5C49338ABF05approve" x="188" y="1749" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 194 1755)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-96456856-62FA-48B7-80C3-4A98410C4B83">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M195 1605L106.48001138862935 1605 " stroke="red" fill="none" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-862B00E4-3B0A-4E4A-B9BA-F8F301BBB6ABstart)" marker-end="url(#sid-862B00E4-3B0A-4E4A-B9BA-F8F301BBB6ABend)" id="sid-862B00E4-3B0A-4E4A-B9BA-F8F301BBB6AB_1" />
+              </g>
+              <text id="sid-862B00E4-3B0A-4E4A-B9BA-F8F301BBB6ABapprove" x="112" y="1599" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 106 1605)" oryx:fontSize="12" text-anchor="start" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-82DD3B6D-C546-41D8-94F7-F157A88D6763">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M106.48000567102461 1454.420071404714L195 1455 " stroke="green" fill="none" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-E621E6D8-84B7-4F84-8BE0-5BEB0DC55992start)" marker-end="url(#sid-E621E6D8-84B7-4F84-8BE0-5BEB0DC55992end)" id="sid-E621E6D8-84B7-4F84-8BE0-5BEB0DC55992_1" />
+              </g>
+              <text id="sid-E621E6D8-84B7-4F84-8BE0-5BEB0DC55992approve" x="189" y="1449" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0.37536136114255214 195 1455)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-44E7FD7D-1A73-428A-8575-2605892FD922">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M105.27000563287766 1276.5501120634442L193.60000957109924 1276.5501120634442 " stroke="blue" fill="none" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-96176803-4561-472A-9AD0-CDA4125FB729start)" marker-end="url(#sid-96176803-4561-472A-9AD0-CDA4125FB729end)" id="sid-96176803-4561-472A-9AD0-CDA4125FB729_1" />
+              </g>
+              <text id="sid-96176803-4561-472A-9AD0-CDA4125FB729approve" x="187" y="1270" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 193 1276)" oryx:fontSize="12" text-anchor="end" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+        <g id="svg-sid-380AA38B-8412-4B53-9066-2121E047D678">
+          <g class="stencils">
+            <g class="me">
+              <g pointer-events="painted">
+                <path d="M961.9500533231228 769.1500412499629L833.6900606462422 912.3400788763288 L670 1035 " stroke="black" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-A5FC2E79-C080-453E-B556-62A5A57B86F5start)" marker-end="url(#sid-A5FC2E79-C080-453E-B556-62A5A57B86F5end)" id="sid-A5FC2E79-C080-453E-B556-62A5A57B86F5_1" />
+              </g>
+              <text id="sid-A5FC2E79-C080-453E-B556-62A5A57B86F5approve" x="676" y="1029" oryx:edgePosition="endTop" oryx:offsetTop="6" style="font-size:9px;" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-36.8457803872696 670 1035)" oryx:fontSize="12" text-anchor="start" />
+            </g>
+            <g class="children" style="overflow:hidden" />
+            <g class="edge" />
+          </g>
+          <g class="controls">
+            <g class="dockers" />
+            <g class="magnets" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

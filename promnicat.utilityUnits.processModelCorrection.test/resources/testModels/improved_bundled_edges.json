@@ -1,0 +1,2424 @@
+{
+    "resourceId": "canvas",
+    "properties": {
+        "title": "",
+        "description": "",
+        "entry": "",
+        "version": "",
+        "author": ""
+    },
+    "stencil": {
+        "id": "Diagram"
+    },
+    "childShapes": [{
+        "resourceId": "sid-041EC923-CD03-4C98-B78C-931001371C26",
+        "properties": {
+            "title": "Raumänderung erhalten",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-774234A8-E4C2-4F1E-9A27-CA632CCBFF53"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 505,
+                "y": 75
+            },
+            "upperLeft": {
+                "x": 405,
+                "y": 15
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-50073611-568B-43A6-8BE7-175D47A615ED",
+        "properties": {
+            "title": "Verlegungen in Outlook-Raumplan eintragen",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-FB994CB9-00E4-42FC-B77F-DE8F3E8F9539"
+        }, {
+            "resourceId": "sid-8418CA40-88ED-4F0F-A1C0-86A0E94A42F5"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1305
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1245
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-D3353A67-7F7B-45C7-950F-1A52762AE85A",
+        "properties": {
+            "bgcolor": "#ffffff"
+        },
+        "stencil": {
+            "id": "XorConnector"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-411B8020-C440-4559-ADF5-9F7C64D46816"
+        }, {
+            "resourceId": "sid-8782CFCC-B194-4BB6-A285-164F3CEB0EC4"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 470,
+                "y": 330
+            },
+            "upperLeft": {
+                "x": 440,
+                "y": 300
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-774234A8-E4C2-4F1E-9A27-CA632CCBFF53",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-23B0DF08-8CE6-4B94-BCFD-806977993517"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 455.6666666666667,
+                "y": 105
+            },
+            "upperLeft": {
+                "x": 455,
+                "y": 75
+            }
+        },
+        "dockers": [{
+            "x": 51,
+            "y": 45
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-23B0DF08-8CE6-4B94-BCFD-806977993517"
+        }
+    }, {
+        "resourceId": "sid-2A709F68-6C0D-4F2E-81A0-4210FB0F4F21",
+        "properties": {
+            "title": "Verlegungen in Outlook eingetragen",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-F4212871-C09C-41B7-A96A-3C771EE33688"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1395
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1335
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-B345CC87-45D6-405D-998A-EF1F80D27B04",
+        "properties": {
+            "title": "Verlegung am Tür-Raumplan eintragen",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-5475FFDF-315E-4E4D-ACDF-71CA781838B4"
+        }, {
+            "resourceId": "sid-AD690702-43DC-4BD3-8FAC-2125D148FEFA"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1485
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1425
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-BE41A858-DCD1-4A4A-9ABB-EFEB40B16DA8",
+        "properties": {
+            "title": "Verlegungen in Tür-Raumplan eingetragen",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-4681433B-A870-42F2-AFA2-AE1A510D7691"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1560
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1500
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-36532C8C-6A17-4631-B1E7-A4B3C7C4AD89",
+        "properties": {
+            "title": "Verlegungen in Gesamtplan eintragen",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-69F71A34-7C44-4157-AEDF-450CBB20C697"
+        }, {
+            "resourceId": "sid-96456856-62FA-48B7-80C3-4A98410C4B83"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1635
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1575
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-FB994CB9-00E4-42FC-B77F-DE8F3E8F9539",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-2A709F68-6C0D-4F2E-81A0-4210FB0F4F21"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1335
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1305
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-2A709F68-6C0D-4F2E-81A0-4210FB0F4F21"
+        }
+    }, {
+        "resourceId": "sid-F4212871-C09C-41B7-A96A-3C771EE33688",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-B345CC87-45D6-405D-998A-EF1F80D27B04"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1425
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1395
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-B345CC87-45D6-405D-998A-EF1F80D27B04"
+        }
+    }, {
+        "resourceId": "sid-5475FFDF-315E-4E4D-ACDF-71CA781838B4",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-BE41A858-DCD1-4A4A-9ABB-EFEB40B16DA8"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1500
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1485
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-BE41A858-DCD1-4A4A-9ABB-EFEB40B16DA8"
+        }
+    }, {
+        "resourceId": "sid-4681433B-A870-42F2-AFA2-AE1A510D7691",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-36532C8C-6A17-4631-B1E7-A4B3C7C4AD89"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1575
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1560
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-36532C8C-6A17-4631-B1E7-A4B3C7C4AD89"
+        }
+    }, {
+        "resourceId": "sid-23B0DF08-8CE6-4B94-BCFD-806977993517",
+        "properties": {
+            "title": "Prüfe Raumverfügbarkeit",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-5073A038-EF5E-4931-B0EC-C0F544806AEE"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 505,
+                "y": 165
+            },
+            "upperLeft": {
+                "x": 405,
+                "y": 105
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-9BD8E037-7D5E-47B4-BDEE-A4FDA6DAFB5E",
+        "properties": {
+            "title": "Raumverfügbarkeit bekannt",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-B5F2BB65-11FC-4100-A3E5-3BA80CAB5D64"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 505,
+                "y": 255
+            },
+            "upperLeft": {
+                "x": 405,
+                "y": 195
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-5073A038-EF5E-4931-B0EC-C0F544806AEE",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-9BD8E037-7D5E-47B4-BDEE-A4FDA6DAFB5E"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 455,
+                "y": 194.4609375
+            },
+            "upperLeft": {
+                "x": 455,
+                "y": 165
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 11
+        }],
+        "target": {
+            "resourceId": "sid-9BD8E037-7D5E-47B4-BDEE-A4FDA6DAFB5E"
+        }
+    }, {
+        "resourceId": "sid-B5F2BB65-11FC-4100-A3E5-3BA80CAB5D64",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-D3353A67-7F7B-45C7-950F-1A52762AE85A"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 455,
+                "y": 299.9375
+            },
+            "upperLeft": {
+                "x": 455,
+                "y": 255
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 15,
+            "y": 15
+        }],
+        "target": {
+            "resourceId": "sid-D3353A67-7F7B-45C7-950F-1A52762AE85A"
+        }
+    }, {
+        "resourceId": "sid-090BA0AF-14B6-4112-91EF-B8ACE499ECDD",
+        "properties": {
+            "title": "Verlegungen in Gesamtplan eingetragen",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-B697246F-189B-4BD3-BAB2-416BEAFBA24F"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1710
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1650
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-69F71A34-7C44-4157-AEDF-450CBB20C697",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-090BA0AF-14B6-4112-91EF-B8ACE499ECDD"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1649.28125
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1635
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 18
+        }],
+        "target": {
+            "resourceId": "sid-090BA0AF-14B6-4112-91EF-B8ACE499ECDD"
+        }
+    }, {
+        "resourceId": "sid-714DB098-8665-4D48-B881-41278632B26E",
+        "properties": {
+            "title": "Aushang an Rezeption und Studienreferat auslegen",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-9D069EF5-1D08-48FA-9E19-0B3031EC9494"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1785
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1725
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-B697246F-189B-4BD3-BAB2-416BEAFBA24F",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-714DB098-8665-4D48-B881-41278632B26E"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1725
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1710
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-714DB098-8665-4D48-B881-41278632B26E"
+        }
+    }, {
+        "resourceId": "sid-4B0A6370-B792-4ABA-91A2-ED74FFC8C08F",
+        "properties": {
+            "title": "Aushang ausgelegt",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1860
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1800
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-9D069EF5-1D08-48FA-9E19-0B3031EC9494",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-4B0A6370-B792-4ABA-91A2-ED74FFC8C08F"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1800
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1785
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-4B0A6370-B792-4ABA-91A2-ED74FFC8C08F"
+        }
+    }, {
+        "resourceId": "sid-BBAC696C-E13D-4027-A58C-ECAAF9CE209D",
+        "properties": {
+            "title": "Verlegungsplan erstellen",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-C89FB5C8-37C6-493F-A0AA-CC9EFC0DAED3"
+        }, {
+            "resourceId": "sid-AC2619AE-C735-4EA3-9AFB-4EA23F948084"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1155
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1095
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-8077106E-E353-4853-ADAD-249278E760DF",
+        "properties": {
+            "title": "informiere Sekreteriate der Dozenten",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-06CE96B7-98D3-4676-99ED-ECDE99AA1951"
+        }, {
+            "resourceId": "sid-5902993F-B7E8-4003-B253-044CA0B48F83"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 670,
+                "y": 420
+            },
+            "upperLeft": {
+                "x": 570,
+                "y": 360
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-5C2AE2C7-545E-4A00-8832-7D206141B297",
+        "properties": {
+            "title": "Sekreteriate informiert",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-68DD1C04-3B41-4F6B-9487-5E0482693767"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 670,
+                "y": 510
+            },
+            "upperLeft": {
+                "x": 570,
+                "y": 450
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-06CE96B7-98D3-4676-99ED-ECDE99AA1951",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-5C2AE2C7-545E-4A00-8832-7D206141B297"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 620,
+                "y": 450
+            },
+            "upperLeft": {
+                "x": 620,
+                "y": 420
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-5C2AE2C7-545E-4A00-8832-7D206141B297"
+        }
+    }, {
+        "resourceId": "sid-8217CBCC-C8F2-4BD6-B7B7-0D0FFDAEEAAA",
+        "properties": {
+            "title": "Studenten über Ausfall informieren",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-FBC3F5E0-9B15-4512-8657-30FB280281A4"
+        }, {
+            "resourceId": "sid-04A75244-B042-4C30-8DCA-4487F91104EC"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 565,
+                "y": 690
+            },
+            "upperLeft": {
+                "x": 465,
+                "y": 630
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-D431237C-E2C2-425C-A166-6CB8F8B110A4",
+        "properties": {
+            "bgcolor": "#ffffff"
+        },
+        "stencil": {
+            "id": "XorConnector"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-4052BC1A-AD39-4CF6-891F-91E2398F52FC"
+        }, {
+            "resourceId": "sid-6C3195CE-C72D-44DD-911F-2A0D42014C1B"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 635,
+                "y": 585
+            },
+            "upperLeft": {
+                "x": 605,
+                "y": 555
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-68DD1C04-3B41-4F6B-9487-5E0482693767",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-D431237C-E2C2-425C-A166-6CB8F8B110A4"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 620,
+                "y": 554.75
+            },
+            "upperLeft": {
+                "x": 620,
+                "y": 510
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 15,
+            "y": 3
+        }],
+        "target": {
+            "resourceId": "sid-D431237C-E2C2-425C-A166-6CB8F8B110A4"
+        }
+    }, {
+        "resourceId": "sid-9E7F3E7A-FC34-4A47-BC8E-2456301527B6",
+        "properties": {
+            "title": "Ersatztermin ermitteln",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-93667197-BC40-4620-9563-3AE6B81AE2A0"
+        }, {
+            "resourceId": "sid-9FE80A5E-8D10-4133-BFBD-38BBE64EBF36"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 775,
+                "y": 690
+            },
+            "upperLeft": {
+                "x": 675,
+                "y": 630
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-473B93E7-07A6-41B5-912C-C93C1466C71C",
+        "properties": {
+            "title": "Ersatztermine ermittelt",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-E1188732-142E-4FB4-B5F8-FFE2E282781F"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 775,
+                "y": 780
+            },
+            "upperLeft": {
+                "x": 675,
+                "y": 720
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-93667197-BC40-4620-9563-3AE6B81AE2A0",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-473B93E7-07A6-41B5-912C-C93C1466C71C"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 725,
+                "y": 720
+            },
+            "upperLeft": {
+                "x": 725,
+                "y": 690
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-473B93E7-07A6-41B5-912C-C93C1466C71C"
+        }
+    }, {
+        "resourceId": "sid-B750D0EF-F31B-4F0D-A0E7-6E202243D604",
+        "properties": {
+            "title": "Überprüfe ob kopatibler Raum vorhanden",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-FF7F87A2-9126-4A93-BDD7-079DCDF6E6E0"
+        }, {
+            "resourceId": "sid-CCB9783F-FE58-4A03-A44C-2335659FC5C7"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 775,
+                "y": 855
+            },
+            "upperLeft": {
+                "x": 675,
+                "y": 795
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-E1188732-142E-4FB4-B5F8-FFE2E282781F",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-B750D0EF-F31B-4F0D-A0E7-6E202243D604"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 725,
+                "y": 795
+            },
+            "upperLeft": {
+                "x": 725,
+                "y": 780
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-B750D0EF-F31B-4F0D-A0E7-6E202243D604"
+        }
+    }, {
+        "resourceId": "sid-D10B7D97-AD2B-4D2C-9D57-4339983BE593",
+        "properties": {
+            "title": "Situation geklärt",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-C1A11EAC-AB84-4B64-86D9-8515ED143931"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 775,
+                "y": 930
+            },
+            "upperLeft": {
+                "x": 675,
+                "y": 870
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-A0730933-1B78-4C2C-9A40-5E99E8DB38D0",
+        "properties": {
+            "title": "Situation geklärt",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-E326CBD1-7F08-4CA5-BD61-9A25451081E5"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 565,
+                "y": 780
+            },
+            "upperLeft": {
+                "x": 465,
+                "y": 720
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-FF7F87A2-9126-4A93-BDD7-079DCDF6E6E0",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-D10B7D97-AD2B-4D2C-9D57-4339983BE593"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 725,
+                "y": 870
+            },
+            "upperLeft": {
+                "x": 725,
+                "y": 855
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-D10B7D97-AD2B-4D2C-9D57-4339983BE593"
+        }
+    }, {
+        "resourceId": "sid-FBC3F5E0-9B15-4512-8657-30FB280281A4",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A0730933-1B78-4C2C-9A40-5E99E8DB38D0"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 515,
+                "y": 720
+            },
+            "upperLeft": {
+                "x": 515,
+                "y": 690
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-A0730933-1B78-4C2C-9A40-5E99E8DB38D0"
+        }
+    }, {
+        "resourceId": "sid-2E409B27-0ECE-4141-9BBC-F674F6B00F80",
+        "properties": {
+            "bgcolor": "#ffffff"
+        },
+        "stencil": {
+            "id": "XorConnector"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-AFDAC6C2-0388-45BB-B7D4-A42918CE71D1"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 635,
+                "y": 945
+            },
+            "upperLeft": {
+                "x": 605,
+                "y": 915
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-C1A11EAC-AB84-4B64-86D9-8515ED143931",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-2E409B27-0ECE-4141-9BBC-F674F6B00F80"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 689.546875,
+                "y": 930
+            },
+            "upperLeft": {
+                "x": 635.765625,
+                "y": 930
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 15,
+            "y": 15
+        }],
+        "target": {
+            "resourceId": "sid-2E409B27-0ECE-4141-9BBC-F674F6B00F80"
+        }
+    }, {
+        "resourceId": "sid-E326CBD1-7F08-4CA5-BD61-9A25451081E5",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-2E409B27-0ECE-4141-9BBC-F674F6B00F80"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 604.234375,
+                "y": 930
+            },
+            "upperLeft": {
+                "x": 515,
+                "y": 780
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 515,
+            "y": 930
+        }, {
+            "x": 15,
+            "y": 15
+        }],
+        "target": {
+            "resourceId": "sid-2E409B27-0ECE-4141-9BBC-F674F6B00F80"
+        }
+    }, {
+        "resourceId": "sid-CDE610F0-ED42-4780-A5C3-5602E9620820",
+        "properties": {
+            "title": "Informiere Frau M.",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": [],
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-89FDD53E-F8CE-4BD6-B678-F11081CD6A6C"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 670,
+                "y": 1065
+            },
+            "upperLeft": {
+                "x": 570,
+                "y": 1005
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-AFDAC6C2-0388-45BB-B7D4-A42918CE71D1",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-CDE610F0-ED42-4780-A5C3-5602E9620820"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 620,
+                "y": 1005
+            },
+            "upperLeft": {
+                "x": 620,
+                "y": 945.0625
+            }
+        },
+        "dockers": [{
+            "x": 15,
+            "y": 15
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-CDE610F0-ED42-4780-A5C3-5602E9620820"
+        }
+    }, {
+        "resourceId": "sid-411B8020-C440-4559-ADF5-9F7C64D46816",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-903007E3-3806-4299-B235-A79D678A7661"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 439.2890625,
+                "y": 1019.9179697118311
+            },
+            "upperLeft": {
+                "x": 244,
+                "y": 314
+            }
+        },
+        "dockers": [{
+            "x": 5,
+            "y": 14
+        }, {
+            "x": 244,
+            "y": 314
+        }, {
+            "x": 15,
+            "y": 15
+        }],
+        "target": {
+            "resourceId": "sid-903007E3-3806-4299-B235-A79D678A7661"
+        }
+    }, {
+        "resourceId": "sid-8782CFCC-B194-4BB6-A285-164F3CEB0EC4",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-8077106E-E353-4853-ADAD-249278E760DF"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 620,
+                "y": 360
+            },
+            "upperLeft": {
+                "x": 470.390625,
+                "y": 315
+            }
+        },
+        "dockers": [{
+            "x": 27,
+            "y": 15
+        }, {
+            "x": 620,
+            "y": 315
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-8077106E-E353-4853-ADAD-249278E760DF"
+        }
+    }, {
+        "resourceId": "sid-903007E3-3806-4299-B235-A79D678A7661",
+        "properties": {
+            "bgcolor": "#ffffff"
+        },
+        "stencil": {
+            "id": "XorConnector"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-2E40C4E4-AA50-434D-9A1C-3D75A8C9AE24"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 260,
+                "y": 1050
+            },
+            "upperLeft": {
+                "x": 230,
+                "y": 1020
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-808C0BB7-FC4E-4A67-9783-A248C0FCE8B5",
+        "properties": {
+            "title": "Frau M. ist informiert",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-1667C71C-55CE-4E6C-86DD-305D8EABAF34"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 505,
+                "y": 1065
+            },
+            "upperLeft": {
+                "x": 405,
+                "y": 1005
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-89FDD53E-F8CE-4BD6-B678-F11081CD6A6C",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-808C0BB7-FC4E-4A67-9783-A248C0FCE8B5"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 570,
+                "y": 1035
+            },
+            "upperLeft": {
+                "x": 505,
+                "y": 1035
+            }
+        },
+        "dockers": [{
+            "x": 0,
+            "y": 30
+        }, {
+            "x": 100,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-808C0BB7-FC4E-4A67-9783-A248C0FCE8B5"
+        }
+    }, {
+        "resourceId": "sid-1667C71C-55CE-4E6C-86DD-305D8EABAF34",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-903007E3-3806-4299-B235-A79D678A7661"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 405,
+                "y": 1035
+            },
+            "upperLeft": {
+                "x": 260.6875,
+                "y": 1035
+            }
+        },
+        "dockers": [{
+            "x": 0,
+            "y": 30
+        }, {
+            "x": 25,
+            "y": 15
+        }],
+        "target": {
+            "resourceId": "sid-903007E3-3806-4299-B235-A79D678A7661"
+        }
+    }, {
+        "resourceId": "sid-2E40C4E4-AA50-434D-9A1C-3D75A8C9AE24",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-BBAC696C-E13D-4027-A58C-ECAAF9CE209D"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1095
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1050.0625
+            }
+        },
+        "dockers": [{
+            "x": 15,
+            "y": 15
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-BBAC696C-E13D-4027-A58C-ECAAF9CE209D"
+        }
+    }, {
+        "resourceId": "sid-A9839497-CE93-41A7-9BD4-D9AE4D4D3AA0",
+        "properties": {
+            "title": "Verlegungsplan liegt vor",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A67EFA80-C782-4547-8AD3-0FAED46E951F"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 295,
+                "y": 1230
+            },
+            "upperLeft": {
+                "x": 195,
+                "y": 1170
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-C89FB5C8-37C6-493F-A0AA-CC9EFC0DAED3",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A9839497-CE93-41A7-9BD4-D9AE4D4D3AA0"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1170
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1155
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-A9839497-CE93-41A7-9BD4-D9AE4D4D3AA0"
+        }
+    }, {
+        "resourceId": "sid-A67EFA80-C782-4547-8AD3-0FAED46E951F",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-50073611-568B-43A6-8BE7-175D47A615ED"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 245,
+                "y": 1245
+            },
+            "upperLeft": {
+                "x": 245,
+                "y": 1230
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 60
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-50073611-568B-43A6-8BE7-175D47A615ED"
+        }
+    }, {
+        "resourceId": "sid-98CF2884-9DD3-4281-A828-8E4FB6C7636A",
+        "properties": {
+            "title": "Frau M. or Frau P.",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#ffff80"
+        },
+        "stencil": {
+            "id": "Organization"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-8B503F62-BCBB-419D-A4BD-464778E8FE80"
+        }, {
+            "resourceId": "sid-4A5D606B-9D6C-42D4-B24B-DB69AAEF7B7D"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 165,
+                "y": 160
+            },
+            "upperLeft": {
+                "x": 45,
+                "y": 110
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-9368FDC0-ED52-4B58-BB25-57CC1EA5CB65",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-23B0DF08-8CE6-4B94-BCFD-806977993517"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 405,
+                "y": 135
+            },
+            "upperLeft": {
+                "x": 166,
+                "y": 134
+            }
+        },
+        "dockers": [{
+            "x": 166,
+            "y": 134
+        }, {
+            "x": 0,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-23B0DF08-8CE6-4B94-BCFD-806977993517"
+        }
+    }, {
+        "resourceId": "sid-8B503F62-BCBB-419D-A4BD-464778E8FE80",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-BBAC696C-E13D-4027-A58C-ECAAF9CE209D"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 195,
+                "y": 1125
+            },
+            "upperLeft": {
+                "x": 105,
+                "y": 160
+            }
+        },
+        "dockers": [{
+            "x": 60,
+            "y": 50
+        }, {
+            "x": 105,
+            "y": 1125
+        }, {
+            "x": 0,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-BBAC696C-E13D-4027-A58C-ECAAF9CE209D"
+        }
+    }, {
+        "resourceId": "sid-ABB711EC-9387-4546-A28E-C4DF79D919B6",
+        "properties": {
+            "title": "Sekreteriate",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#ffff80"
+        },
+        "stencil": {
+            "id": "Organization"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-380AA38B-8412-4B53-9066-2121E047D678"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1081.9500533231228,
+                "y": 794.1500412499629
+            },
+            "upperLeft": {
+                "x": 961.9500533231228,
+                "y": 744.1500412499629
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-04A75244-B042-4C30-8DCA-4487F91104EC",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-ABB711EC-9387-4546-A28E-C4DF79D919B6"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 961.9500533231228,
+                "y": 769.1500412499629
+            },
+            "upperLeft": {
+                "x": 565,
+                "y": 660
+            }
+        },
+        "dockers": [{
+            "x": 100,
+            "y": 30
+        }, {
+            "x": 0,
+            "y": 25
+        }],
+        "target": {
+            "resourceId": "sid-ABB711EC-9387-4546-A28E-C4DF79D919B6"
+        }
+    }, {
+        "resourceId": "sid-6C3195CE-C72D-44DD-911F-2A0D42014C1B",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-9E7F3E7A-FC34-4A47-BC8E-2456301527B6"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 725,
+                "y": 630
+            },
+            "upperLeft": {
+                "x": 634.359375,
+                "y": 576
+            }
+        },
+        "dockers": [{
+            "x": 18,
+            "y": 21
+        }, {
+            "x": 725,
+            "y": 576
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-9E7F3E7A-FC34-4A47-BC8E-2456301527B6"
+        }
+    }, {
+        "resourceId": "sid-4052BC1A-AD39-4CF6-891F-91E2398F52FC",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-8217CBCC-C8F2-4BD6-B7B7-0D0FFDAEEAAA"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 606,
+                "y": 630
+            },
+            "upperLeft": {
+                "x": 515,
+                "y": 576
+            }
+        },
+        "dockers": [{
+            "x": 2,
+            "y": 21
+        }, {
+            "x": 515,
+            "y": 576
+        }, {
+            "x": 50,
+            "y": 0
+        }],
+        "target": {
+            "resourceId": "sid-8217CBCC-C8F2-4BD6-B7B7-0D0FFDAEEAAA"
+        }
+    }, {
+        "resourceId": "sid-9FE80A5E-8D10-4133-BFBD-38BBE64EBF36",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-ABB711EC-9387-4546-A28E-C4DF79D919B6"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 961.9500533231228,
+                "y": 769.1500412499629
+            },
+            "upperLeft": {
+                "x": 775,
+                "y": 660
+            }
+        },
+        "dockers": [{
+            "x": 100,
+            "y": 30
+        }, {
+            "x": 0,
+            "y": 25
+        }],
+        "target": {
+            "resourceId": "sid-ABB711EC-9387-4546-A28E-C4DF79D919B6"
+        }
+    }, {
+        "resourceId": "sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911",
+        "properties": {
+            "title": "Verlegungsplan",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#dcdcdc"
+        },
+        "stencil": {
+            "id": "Data"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-22DA08AA-8BA1-43E2-8435-0A33E3CEBC03"
+        }, {
+            "resourceId": "sid-224E8FC1-6664-4E09-9E2C-B7CAFE290005"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 505.00000000000006,
+                "y": 1155
+            },
+            "upperLeft": {
+                "x": 404.99999999999994,
+                "y": 1095
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-AC2619AE-C735-4EA3-9AFB-4EA23F948084",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 404.99999999999994,
+                "y": 1125
+            },
+            "upperLeft": {
+                "x": 295,
+                "y": 1125
+            }
+        },
+        "dockers": [{
+            "x": 100,
+            "y": 30
+        }, {
+            "x": 0,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911"
+        }
+    }, {
+        "resourceId": "sid-8418CA40-88ED-4F0F-A1C0-86A0E94A42F5",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 455,
+                "y": 1275
+            },
+            "upperLeft": {
+                "x": 295,
+                "y": 1147
+            }
+        },
+        "dockers": [{
+            "x": 100,
+            "y": 30
+        }, {
+            "x": 50.00000000000006,
+            "y": 52
+        }],
+        "target": {
+            "resourceId": "sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911"
+        }
+    }, {
+        "resourceId": "sid-AD690702-43DC-4BD3-8FAC-2125D148FEFA",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 455,
+                "y": 1455
+            },
+            "upperLeft": {
+                "x": 295,
+                "y": 1147
+            }
+        },
+        "dockers": [{
+            "x": 100,
+            "y": 30
+        }, {
+            "x": 50.00000000000006,
+            "y": 52
+        }],
+        "target": {
+            "resourceId": "sid-EDA6C762-BA3C-458F-ACB5-B804DD57E911"
+        }
+    }, {
+        "resourceId": "sid-22DA08AA-8BA1-43E2-8435-0A33E3CEBC03",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-36532C8C-6A17-4631-B1E7-A4B3C7C4AD89"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 455,
+                "y": 1605
+            },
+            "upperLeft": {
+                "x": 295,
+                "y": 1147
+            }
+        },
+        "dockers": [{
+            "x": 50.00000000000006,
+            "y": 52
+        }, {
+            "x": 100,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-36532C8C-6A17-4631-B1E7-A4B3C7C4AD89"
+        }
+    }, {
+        "resourceId": "sid-224E8FC1-6664-4E09-9E2C-B7CAFE290005",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-714DB098-8665-4D48-B881-41278632B26E"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 455,
+                "y": 1755
+            },
+            "upperLeft": {
+                "x": 295,
+                "y": 1147
+            }
+        },
+        "dockers": [{
+            "x": 50.00000000000006,
+            "y": 52
+        }, {
+            "x": 100,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-714DB098-8665-4D48-B881-41278632B26E"
+        }
+    }, {
+        "resourceId": "sid-5902993F-B7E8-4003-B253-044CA0B48F83",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-98CF2884-9DD3-4281-A828-8E4FB6C7636A"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 570,
+                "y": 390
+            },
+            "upperLeft": {
+                "x": 151.58391841535186,
+                "y": 151.58180419007078
+            }
+        },
+        "dockers": [{
+            "x": 0,
+            "y": 30
+        }, {
+            "x": 86.89003295829724,
+            "y": 30.360006448990248
+        }],
+        "target": {
+            "resourceId": "sid-98CF2884-9DD3-4281-A828-8E4FB6C7636A"
+        }
+    }, {
+        "resourceId": "sid-CCB9783F-FE58-4A03-A44C-2335659FC5C7",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 966.2900502377597,
+                "y": 825
+            },
+            "upperLeft": {
+                "x": 775,
+                "y": 769.9500399085007
+            }
+        },
+        "dockers": [{
+            "x": 100,
+            "y": 30
+        }, {
+            "x": 966.2900502377597,
+            "y": 769.9500399085007
+        }]
+    }, {
+        "resourceId": "sid-4A5D606B-9D6C-42D4-B24B-DB69AAEF7B7D",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 194.8100098126174,
+                "y": 1755.7100861620352
+            },
+            "upperLeft": {
+                "x": 105,
+                "y": 160
+            }
+        },
+        "dockers": [{
+            "x": 60,
+            "y": 50
+        }, {
+            "x": 105,
+            "y": 1755.7100861620352
+        }, {
+            "x": 194.8100098126174,
+            "y": 1755.7100861620352
+        }]
+    }, {
+        "resourceId": "sid-96456856-62FA-48B7-80C3-4A98410C4B83",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 195,
+                "y": 1605
+            },
+            "upperLeft": {
+                "x": 106.48001138862935,
+                "y": 1605
+            }
+        },
+        "dockers": [{
+            "x": 0,
+            "y": 30
+        }, {
+            "x": 106.48001138862935,
+            "y": 1605
+        }]
+    }, {
+        "resourceId": "sid-82DD3B6D-C546-41D8-94F7-F157A88D6763",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-B345CC87-45D6-405D-998A-EF1F80D27B04"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 195,
+                "y": 1455
+            },
+            "upperLeft": {
+                "x": 106.48000567102461,
+                "y": 1454.420071404714
+            }
+        },
+        "dockers": [{
+            "x": 106.48000567102461,
+            "y": 1454.420071404714
+        }, {
+            "x": 0,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-B345CC87-45D6-405D-998A-EF1F80D27B04"
+        }
+    }, {
+        "resourceId": "sid-44E7FD7D-1A73-428A-8575-2605892FD922",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 193.60000957109924,
+                "y": 1276.5501120634442
+            },
+            "upperLeft": {
+                "x": 105.27000563287766,
+                "y": 1276.5501120634442
+            }
+        },
+        "dockers": [{
+            "x": 105.27000563287766,
+            "y": 1276.5501120634442
+        }, {
+            "x": 193.60000957109924,
+            "y": 1276.5501120634442
+        }]
+    }, {
+        "resourceId": "sid-380AA38B-8412-4B53-9066-2121E047D678",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-CDE610F0-ED42-4780-A5C3-5602E9620820"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 961.9500533231228,
+                "y": 1035
+            },
+            "upperLeft": {
+                "x": 670,
+                "y": 769.1500412499629
+            }
+        },
+        "dockers": [{
+            "x": 0,
+            "y": 25
+        }, {
+            "x": 833.6900606462422,
+            "y": 912.3400788763288
+        }, {
+            "x": 100,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-CDE610F0-ED42-4780-A5C3-5602E9620820"
+        }
+    }],
+    "bounds": {
+        "lowerRight": {
+            "x": 1485,
+            "y": 1960
+        },
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "stencilset": {
+        "url": "/stencilsets/epc/epc.json?version=4.3.4",
+        "namespace": "http://b3mn.org/stencilset/epc#"
+    },
+    "ssextensions": ["http://signavio.com/stencilsets/extensions/epc.basicsubset#"]
+}

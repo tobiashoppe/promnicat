@@ -41,7 +41,7 @@ public class DiagramWrapperTest {
 		assert wrapper.duplicate() != null;
 		wrapper = new DiagramWrapper(
 				DiagramBuilder.parseJson(
-						TestModelBuilder.readFromFile("resources/correction_test/improved_bundled_edges.json")));
+						TestModelBuilder.readFromFile("resources/testModels/improved_bundled_edges.json")));
 		assert wrapper.duplicate() != null;
 	}
 	

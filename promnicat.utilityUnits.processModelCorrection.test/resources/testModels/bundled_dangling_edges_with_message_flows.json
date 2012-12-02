@@ -1,0 +1,1794 @@
+{
+    "resourceId": "canvas",
+    "properties": {
+        "id": "",
+        "name": "",
+        "documentation": "",
+        "version": "",
+        "author": "",
+        "language": "English",
+        "expressionlanguage": "",
+        "querylanguage": "",
+        "creationdate": "",
+        "modificationdate": "",
+        "pools": ""
+    },
+    "stencil": {
+        "id": "BPMNDiagram"
+    },
+    "childShapes": [{
+        "resourceId": "sid-97759E68-B423-47C1-A356-50E26E4EAFB9",
+        "properties": {
+            "poolid": "",
+            "name": "Sale Team",
+            "poolcategories": "",
+            "pooldocumentation": "",
+            "participantref": "",
+            "lanes": "",
+            "boundaryvisible": true,
+            "mainpool": "",
+            "processref": "",
+            "processname": "",
+            "processtype": "None",
+            "status": "None",
+            "adhoc": "",
+            "adhocordering": "Parallel",
+            "adhoccompletioncondition": "",
+            "suppressjoinfailure": "",
+            "enableinstancecompensation": "",
+            "processcategories": "",
+            "processdocumentation": ""
+        },
+        "stencil": {
+            "id": "Pool"
+        },
+        "childShapes": [{
+            "resourceId": "sid-341D4A04-AC7A-411C-95DC-176FA12EAB9A",
+            "properties": {
+                "id": "",
+                "name": "",
+                "categories": "",
+                "documentation": "",
+                "parentpool": "",
+                "parentlane": "",
+                "showcaption": false
+            },
+            "stencil": {
+                "id": "Lane"
+            },
+            "childShapes": [],
+            "outgoing": [],
+            "bounds": {
+                "lowerRight": {
+                    "x": 1636.9230843178152,
+                    "y": 144
+                },
+                "upperLeft": {
+                    "x": 30,
+                    "y": 0
+                }
+            },
+            "dockers": []
+        }],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 1696.9230843178152,
+                "y": 329.0000056547998
+            },
+            "upperLeft": {
+                "x": 60,
+                "y": 185.0000056547998
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-6D07600A-34AA-4BC6-8474-2DC7F745C610",
+        "properties": {
+            "poolid": "",
+            "name": "Production Team Manufacture Motorcycle",
+            "poolcategories": "",
+            "pooldocumentation": "",
+            "participantref": "",
+            "lanes": "",
+            "boundaryvisible": true,
+            "mainpool": "",
+            "processref": "",
+            "processname": "",
+            "processtype": "None",
+            "status": "None",
+            "adhoc": "",
+            "adhocordering": "Parallel",
+            "adhoccompletioncondition": "",
+            "suppressjoinfailure": "",
+            "enableinstancecompensation": "",
+            "processcategories": "",
+            "processdocumentation": ""
+        },
+        "stencil": {
+            "id": "Pool"
+        },
+        "childShapes": [{
+            "resourceId": "sid-81450FFF-A0B0-4266-905D-0F2C48E10856",
+            "properties": {
+                "id": "",
+                "name": "",
+                "categories": "",
+                "documentation": "",
+                "parentpool": "",
+                "parentlane": "",
+                "showcaption": false
+            },
+            "stencil": {
+                "id": "Lane"
+            },
+            "childShapes": [{
+                "resourceId": "sid-68B38EC2-46AE-4D7C-A991-4ECE6C33666B",
+                "properties": {
+                    "id": "",
+                    "name": "Order Received\n",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "eventtype": "Start",
+                    "trigger": "None",
+                    "bgcolor": "#ffffff"
+                },
+                "stencil": {
+                    "id": "StartEvent"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-2282FCBA-FEB6-4052-9ACE-B0AEA80B8788"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 75,
+                        "y": 184.46155064110724
+                    },
+                    "upperLeft": {
+                        "x": 45,
+                        "y": 154.46155064110724
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-209E58F5-7B69-470C-AFF4-FF5322318AC1",
+                "properties": {
+                    "id": "",
+                    "name": "Stock Checked\n",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-8E080BA9-66D4-4389-88FA-99A937FC353D"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 232.9487247634765,
+                        "y": 189.46155064110724
+                    },
+                    "upperLeft": {
+                        "x": 137.6923146520612,
+                        "y": 149.46155064110724
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-59E98363-5CF1-4B9A-9D3D-A8EED9FEDDB2",
+                "properties": {
+                    "id": "",
+                    "name": "",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "gatewaytype": "XOR",
+                    "xortype": "Data",
+                    "markervisible": "true",
+                    "gates": "",
+                    "gates_outgoingsequenceflow": "",
+                    "gates_assignments": "",
+                    "defaultgate": "",
+                    "gate_outgoingsequenceflow": "",
+                    "gate_assignments": "",
+                    "bgcolor": "#ffffff"
+                },
+                "stencil": {
+                    "id": "Exclusive_Databased_Gateway"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-A90FCE41-1C7F-4B4A-A6EE-8B7192B4D7AD"
+                }, {
+                    "resourceId": "sid-C7D55420-ECD0-43AA-97FD-CEAD36A3F81F"
+                }, {
+                    "resourceId": "sid-B30B91E7-CCB6-44DD-90B5-9C33D1C3B06A"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 334.23078097535347,
+                        "y": 189.46155064110724
+                    },
+                    "upperLeft": {
+                        "x": 294.23078097535347,
+                        "y": 149.46155064110724
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-79273D9D-DA7D-418E-8AA3-BC35E1CC2309",
+                "properties": {
+                    "id": "",
+                    "name": "Materiel Requirement Planning(MRP)",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Sub-Process",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "isadhoc": "",
+                    "adhocordering": "Sequential",
+                    "adhoccompletioncondition": "",
+                    "iscompensation": "",
+                    "subprocesstype": "Embedded",
+                    "isatransaction": "",
+                    "transaction": "",
+                    "entry": "http://academic.signavio.com/p/model/9064861fb48e4d7aad67e29a36d33f12",
+                    "diagramref": "",
+                    "processref": "",
+                    "inputmaps": "",
+                    "outputmaps": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "CollapsedSubprocess"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-493B48B1-EEE0-419F-B36D-8F6AED05657B"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 410.10257591964586,
+                        "y": 355.0769383013841
+                    },
+                    "upperLeft": {
+                        "x": 241.10257591964586,
+                        "y": 254.07693830138408
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-F9CD6870-4321-461E-9C94-C41C97EB9437",
+                "properties": {
+                    "id": "",
+                    "name": "Created Order",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-FF30B16D-B057-4940-BDA1-D0136359FDC0"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 539.5384776328917,
+                        "y": 189.46155064110724
+                    },
+                    "upperLeft": {
+                        "x": 436.5384776328917,
+                        "y": 149.46155064110724
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-0322AA03-D6A2-4243-94CE-FD65DA5E0ADC",
+                "properties": {
+                    "id": "",
+                    "name": "Picking Motorcycle",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 972.6620045071836,
+                        "y": 123.49999999999994
+                    },
+                    "upperLeft": {
+                        "x": 855,
+                        "y": 76.60023317308998
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-D1BD86D2-7BF4-4B88-8B3F-352A48AB519D",
+                "properties": {
+                    "name_glossary_dirty": true,
+                    "id": "",
+                    "name": "glossary://e8532c42822b4954a5525fb7c84ad346/Send confirmation to the sale team;;",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-65511C32-61B9-415B-B4F7-DD56764698DC"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 696.5081787976137,
+                        "y": 126.89976682690997
+                    },
+                    "upperLeft": {
+                        "x": 578.8461742904301,
+                        "y": 73.10023317309003
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-F2C737C3-EB26-4B82-8B51-C036FFE8AA64",
+                "properties": {
+                    "id": "",
+                    "name": " Motorcycle Details/Picking Confirmation\n",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-C27CE6FB-9A36-4302-99D3-4D793608F601"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 1311.907964305135,
+                        "y": 57.29604639428544
+                    },
+                    "upperLeft": {
+                        "x": 1177.1690361990468,
+                        "y": 10.396279567375473
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-CB11EC1A-E776-44AB-8CA2-99CE67BF6050",
+                "properties": {
+                    "id": "",
+                    "name": "Prepare Invoice",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-3C5AD4F5-556C-4184-9BB1-B0B5122DB379"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 1311.938267098773,
+                        "y": 210.9999943452002
+                    },
+                    "upperLeft": {
+                        "x": 1176.6142580844057,
+                        "y": 170.9999943452002
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-17C8CF8F-78F4-430A-8FDA-B4DFA2CFBBD3",
+                "properties": {
+                    "id": "",
+                    "name": "",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "gatewaytype": "AND",
+                    "gates": "",
+                    "gates_outgoingsequenceflow": "",
+                    "gates_assignments": "",
+                    "bgcolor": "#ffffff"
+                },
+                "stencil": {
+                    "id": "AND_Gateway"
+                },
+                "childShapes": [],
+                "outgoing": [],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 1387.307736241137,
+                        "y": 125
+                    },
+                    "upperLeft": {
+                        "x": 1347.307736241137,
+                        "y": 85
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-0A0BE59F-C1FE-4E5D-B379-71F116699C04",
+                "properties": {
+                    "id": "",
+                    "name": "Send Details to Sale team\n",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-CE2DD314-7FD9-46D4-A7DB-E5A386773007"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 1568.016363250027,
+                        "y": 132.05011658654502
+                    },
+                    "upperLeft": {
+                        "x": 1450.3543587428435,
+                        "y": 67.05011658654502
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-8CC4CB18-C229-482E-AF50-E565DA32910B",
+                "properties": {
+                    "id": "",
+                    "name": "Contact Sale Team",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 361.8589860310611,
+                        "y": 94.84616298083046
+                    },
+                    "upperLeft": {
+                        "x": 266.60257591964586,
+                        "y": 54.84616298083046
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-0F0B246C-005F-498A-92E9-0F7B2D03007A",
+                "properties": {
+                    "id": "",
+                    "name": "End Process",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "eventtype": "End",
+                    "result": "None",
+                    "bgcolor": "#ffffff"
+                },
+                "stencil": {
+                    "id": "EndEvent"
+                },
+                "childShapes": [],
+                "outgoing": [],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 464.5384776328917,
+                        "y": 88.8461629808304
+                    },
+                    "upperLeft": {
+                        "x": 436.5384776328917,
+                        "y": 60.8461629808304
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-13894254-8FBB-4AE1-8D30-ED43F63BF7A6",
+                "properties": {
+                    "id": "",
+                    "name": "End Process",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "eventtype": "End",
+                    "result": "None",
+                    "bgcolor": "#ffffff"
+                },
+                "stencil": {
+                    "id": "EndEvent"
+                },
+                "childShapes": [],
+                "outgoing": [],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 1523.3543587428435,
+                        "y": 273.9999943452002
+                    },
+                    "upperLeft": {
+                        "x": 1495.3543587428435,
+                        "y": 245.9999943452002
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-2E8C1775-E2C6-4645-B6B5-8F4523FD65C3",
+                "properties": {
+                    "id": "",
+                    "name": "Shipping Details",
+                    "categories": "",
+                    "documentation": "",
+                    "assignments": "",
+                    "pool": "",
+                    "lanes": "",
+                    "activitytype": "Task",
+                    "status": "None",
+                    "performers": "",
+                    "properties": "",
+                    "inputsets": "",
+                    "inputs": "",
+                    "outputsets": "",
+                    "outputs": "",
+                    "iorules": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "looptype": "None",
+                    "loopcondition": "",
+                    "loopcounter": 1,
+                    "loopmaximum": 1,
+                    "testtime": "After",
+                    "mi_condition": "",
+                    "mi_ordering": "Sequential",
+                    "mi_flowcondition": "All",
+                    "complexmi_condition": "",
+                    "iscompensation": "",
+                    "tasktype": "None",
+                    "inmessage": "",
+                    "outmessage": "",
+                    "implementation": "Webservice",
+                    "messageref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "taskref": "",
+                    "bgcolor": "#ffffcc"
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 1307.8007379125925,
+                        "y": 128.44988341345504
+                    },
+                    "upperLeft": {
+                        "x": 1181.2762625915893,
+                        "y": 81.55011658654507
+                    }
+                },
+                "dockers": []
+            }],
+            "outgoing": [],
+            "bounds": {
+                "lowerRight": {
+                    "x": 1690.641033760738,
+                    "y": 466.35897867982135
+                },
+                "upperLeft": {
+                    "x": 30,
+                    "y": 0
+                }
+            },
+            "dockers": []
+        }],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 1750.641033760738,
+                "y": 895.3589843346211
+            },
+            "upperLeft": {
+                "x": 60,
+                "y": 429.0000056547998
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-2282FCBA-FEB6-4052-9ACE-B0AEA80B8788",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-209E58F5-7B69-470C-AFF4-FF5322318AC1"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 227.19631865570648,
+                "y": 596.4872228545947
+            },
+            "upperLeft": {
+                "x": 165.57292267730134,
+                "y": 596.4872228545947
+            }
+        },
+        "dockers": [{
+            "x": 26.28205736807348,
+            "y": 13.025666558687703
+        }, {
+            "x": 3.794869312873118,
+            "y": 18.025666558687703
+        }],
+        "target": {
+            "resourceId": "sid-209E58F5-7B69-470C-AFF4-FF5322318AC1"
+        }
+    }, {
+        "resourceId": "sid-FF30B16D-B057-4940-BDA1-D0136359FDC0",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 725.7692340161752,
+                "y": 598.461556295907
+            },
+            "upperLeft": {
+                "x": 629.6145908079997,
+                "y": 555.4608362009978
+            }
+        },
+        "dockers": [{
+            "x": 92.02563284322775,
+            "y": 20
+        }, {
+            "x": 725.7692340161752,
+            "y": 598.461556295907
+        }, {
+            "x": 725.7692340161752,
+            "y": 555.4608362009978
+        }]
+    }, {
+        "resourceId": "sid-493B48B1-EEE0-419F-B36D-8F6AED05657B",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-F9CD6870-4321-461E-9C94-C41C97EB9437"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 578.0384776328917,
+                "y": 733.5769439561839
+            },
+            "upperLeft": {
+                "x": 496.66733591304154,
+                "y": 619.3687077620029
+            }
+        },
+        "dockers": [{
+            "x": 163.2572815533981,
+            "y": 50.5
+        }, {
+            "x": 578.0384776328917,
+            "y": 733.5769439561839
+        }, {
+            "x": 51.5,
+            "y": 39
+        }],
+        "target": {
+            "resourceId": "sid-F9CD6870-4321-461E-9C94-C41C97EB9437"
+        }
+    }, {
+        "resourceId": "sid-3C5AD4F5-556C-4184-9BB1-B0B5122DB379",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-17C8CF8F-78F4-430A-8FDA-B4DFA2CFBBD3"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1457.2308599430037,
+                "y": 620
+            },
+            "upperLeft": {
+                "x": 1402.817838861964,
+                "y": 553.9797794940729
+            }
+        },
+        "dockers": [{
+            "x": 134.32400901436722,
+            "y": 20
+        }, {
+            "x": 1457.2308599430037,
+            "y": 620
+        }, {
+            "x": 19.923123701866643,
+            "y": 35.102571000087266
+        }],
+        "target": {
+            "resourceId": "sid-17C8CF8F-78F4-430A-8FDA-B4DFA2CFBBD3"
+        }
+    }, {
+        "resourceId": "sid-C27CE6FB-9A36-4302-99D3-4D793608F601",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-17C8CF8F-78F4-430A-8FDA-B4DFA2CFBBD3"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1459.1282453814435,
+                "y": 515.0825373548416
+            },
+            "upperLeft": {
+                "x": 1402.8176561969524,
+                "y": 462.84616863563025
+            }
+        },
+        "dockers": [{
+            "x": 133.73892810608822,
+            "y": 23.449883413454984
+        }, {
+            "x": 1459.1282453814435,
+            "y": 462.84616863563025
+        }, {
+            "x": 21.820509140306513,
+            "y": 7.589742257201635
+        }],
+        "target": {
+            "resourceId": "sid-17C8CF8F-78F4-430A-8FDA-B4DFA2CFBBD3"
+        }
+    }, {
+        "resourceId": "sid-8BD3CB28-5BC2-4CC0-8A27-A00109B8269F",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-0A0BE59F-C1FE-4E5D-B379-71F116699C04"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1540.073742262397,
+                "y": 534.8718139446544
+            },
+            "upperLeft": {
+                "x": 1477.153890350945,
+                "y": 534.8718139446544
+            }
+        },
+        "dockers": [{
+            "x": 1477.153890350945,
+            "y": 534.8718139446544
+        }, {
+            "x": 9.850790935475061,
+            "y": 38.82169170330951
+        }],
+        "target": {
+            "resourceId": "sid-0A0BE59F-C1FE-4E5D-B379-71F116699C04"
+        }
+    }, {
+        "resourceId": "sid-7D4022F7-B4C9-4002-8840-294810E8E931",
+        "properties": {
+            "id": "",
+            "name": "Send Invoice Detail\n",
+            "categories": "",
+            "documentation": "",
+            "source": "",
+            "target": "",
+            "message": ""
+        },
+        "stencil": {
+            "id": "MessageFlow"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 1563.4871826171875,
+                "y": 426.7179636177777
+            },
+            "upperLeft": {
+                "x": 1563.4871826171875,
+                "y": 332.79487898567663
+            }
+        },
+        "dockers": [{
+            "x": 1563.4871826171875,
+            "y": 426.7179636177777
+        }, {
+            "x": 1563.4871826171875,
+            "y": 332.79487898567663
+        }]
+    }, {
+        "resourceId": "sid-8E080BA9-66D4-4389-88FA-99A937FC353D",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-59E98363-5CF1-4B9A-9D3D-A8EED9FEDDB2"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 384.04168897541456,
+                "y": 598.461556295907
+            },
+            "upperLeft": {
+                "x": 323.45753899099213,
+                "y": 598.461556295907
+            }
+        },
+        "dockers": [{
+            "x": 94.25641011141528,
+            "y": 20
+        }, {
+            "x": 2.846164910123605,
+            "y": 20
+        }],
+        "target": {
+            "resourceId": "sid-59E98363-5CF1-4B9A-9D3D-A8EED9FEDDB2"
+        }
+    }, {
+        "resourceId": "sid-A4702B0B-107A-43EF-ABAE-E10C198168EF",
+        "properties": {
+            "name_glossary_dirty": true,
+            "id": "",
+            "name": "glossary://e8532c42822b4954a5525fb7c84ad346/Send Order ;;",
+            "categories": "",
+            "documentation": "",
+            "source": "",
+            "target": "",
+            "message": ""
+        },
+        "stencil": {
+            "id": "MessageFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-81450FFF-A0B0-4266-905D-0F2C48E10856"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 151.97117928762572,
+                "y": 428.50262632631564
+            },
+            "upperLeft": {
+                "x": 151.97117928762572,
+                "y": 331.1025695800781
+            }
+        },
+        "dockers": [{
+            "x": 151.97117928762572,
+            "y": 331.1025695800781
+        }, {
+            "x": 61.971179287625716,
+            "y": 0.5026206715158423
+        }],
+        "target": {
+            "resourceId": "sid-81450FFF-A0B0-4266-905D-0F2C48E10856"
+        }
+    }, {
+        "resourceId": "sid-91BA61E8-4335-4BD7-B76A-215E058A97A9",
+        "properties": {
+            "name_glossary_dirty": true,
+            "id": "",
+            "name": "glossary://e8532c42822b4954a5525fb7c84ad346/Send Order Confirmation\n;;",
+            "categories": "",
+            "documentation": "",
+            "source": "",
+            "target": "",
+            "message": ""
+        },
+        "stencil": {
+            "id": "MessageFlow"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 727.8461742904301,
+                "y": 434.51283932986223
+            },
+            "upperLeft": {
+                "x": 727.8461742904301,
+                "y": 333.0000028400183
+            }
+        },
+        "dockers": [{
+            "x": 727.8461742904301,
+            "y": 434.51283932986223
+        }, {
+            "x": 727.8461742904301,
+            "y": 333.0000028400183
+        }]
+    }, {
+        "resourceId": "sid-2C91A54A-3D9A-47E6-B7E2-054FCB4D1281",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": "false"
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 524.6410383350517,
+                "y": 503.7692470853067
+            },
+            "upperLeft": {
+                "x": 453.48720290565245,
+                "y": 503.7692470853067
+            }
+        },
+        "dockers": [{
+            "x": 453.48720290565245,
+            "y": 503.7692470853067
+        }, {
+            "x": 524.6410383350517,
+            "y": 503.7692470853067
+        }]
+    }, {
+        "resourceId": "sid-5BF763DE-2073-4A23-998D-75B5837AD89D",
+        "properties": {
+            "id": "",
+            "name": "Order Could not be fulfilled",
+            "categories": "",
+            "documentation": "",
+            "source": "",
+            "target": "",
+            "message": ""
+        },
+        "stencil": {
+            "id": "MessageFlow"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 408.8974451728749,
+                "y": 427.8718041743517
+            },
+            "upperLeft": {
+                "x": 408.8974451728749,
+                "y": 328.31369049753494
+            }
+        },
+        "dockers": [{
+            "x": 408.8974451728749,
+            "y": 427.8718041743517
+        }, {
+            "x": 408.8974451728749,
+            "y": 328.31369049753494
+        }]
+    }, {
+        "resourceId": "sid-A90FCE41-1C7F-4B4A-A6EE-8B7192B4D7AD",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "Stock Not Available",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 404.66719447159335,
+                "y": 577.7180201094669
+            },
+            "upperLeft": {
+                "x": 404.15386962890625,
+                "y": 523.6923217773438
+            }
+        },
+        "dockers": [{
+            "x": 20.500000000000057,
+            "y": 5.948727628731717
+        }, {
+            "x": 404.15386962890625,
+            "y": 523.6923217773438
+        }],
+        "labels": [{
+            "distance": 2.4132244381846255,
+            "x": 404.4131155145558,
+            "y": 550.977071797679,
+            "from": 0,
+            "to": 1,
+            "valign": "middle",
+            "align": "center",
+            "ref": "condition"
+        }]
+    }, {
+        "resourceId": "sid-B30B91E7-CCB6-44DD-90B5-9C33D1C3B06A",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "Stock Available",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-F9CD6870-4321-461E-9C94-C41C97EB9437"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 526.5384776328917,
+                "y": 598.461556295907
+            },
+            "upperLeft": {
+                "x": 424.6338339776712,
+                "y": 598.461556295907
+            }
+        },
+        "dockers": [{
+            "x": 36.051290303762244,
+            "y": 20
+        }, {
+            "x": 1,
+            "y": 20
+        }],
+        "labels": [{
+            "distance": -7.53844370409297,
+            "x": 426,
+            "y": 598.461556295907,
+            "from": 0,
+            "to": 1,
+            "orientation": "ul",
+            "valign": "top",
+            "align": "left",
+            "ref": "condition"
+        }],
+        "target": {
+            "resourceId": "sid-F9CD6870-4321-461E-9C94-C41C97EB9437"
+        }
+    }, {
+        "resourceId": "sid-CE2DD314-7FD9-46D4-A7DB-E5A386773007",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-13894254-8FBB-4AE1-8D30-ED43F63BF7A6"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1599.3358843410854,
+                "y": 674.9035288989313
+            },
+            "upperLeft": {
+                "x": 1599.1873317120208,
+                "y": 561.5538318425447
+            }
+        },
+        "dockers": [{
+            "x": 58.831002253591805,
+            "y": 63.99999999999994
+        }, {
+            "x": 14,
+            "y": 14
+        }],
+        "target": {
+            "resourceId": "sid-13894254-8FBB-4AE1-8D30-ED43F63BF7A6"
+        }
+    }, {
+        "resourceId": "sid-65511C32-61B9-415B-B4F7-DD56764698DC",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-0322AA03-D6A2-4243-94CE-FD65DA5E0ADC"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 944.373078872184,
+                "y": 529.0496142046555
+            },
+            "upperLeft": {
+                "x": 787.1350999254298,
+                "y": 529.0005136914891
+            }
+        },
+        "dockers": [{
+            "x": 116.66200450718361,
+            "y": 26.899766826909968
+        }, {
+            "x": 1,
+            "y": 23.449883413454984
+        }],
+        "target": {
+            "resourceId": "sid-0322AA03-D6A2-4243-94CE-FD65DA5E0ADC"
+        }
+    }, {
+        "resourceId": "sid-CC960E17-4B1F-4BB3-845D-A40703991934",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-F2C737C3-EB26-4B82-8B51-C036FFE8AA64"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1267.1690361990468,
+                "y": 532.772445533251
+            },
+            "upperLeft": {
+                "x": 1063,
+                "y": 462.84616863563025
+            }
+        },
+        "dockers": [{
+            "x": 1063,
+            "y": 532.772445533251
+        }, {
+            "x": 1212.4615325205111,
+            "y": 532.772445533251
+        }, {
+            "x": 1212.4615325205111,
+            "y": 462.84616863563025
+        }, {
+            "x": 1,
+            "y": 23.449883413454984
+        }],
+        "target": {
+            "resourceId": "sid-F2C737C3-EB26-4B82-8B51-C036FFE8AA64"
+        }
+    }, {
+        "resourceId": "sid-FE5840FC-66D2-4605-9319-FE76326474CD",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-CB11EC1A-E776-44AB-8CA2-99CE67BF6050"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1265.9076706710157,
+                "y": 624.9999943452002
+            },
+            "upperLeft": {
+                "x": 1212,
+                "y": 533
+            }
+        },
+        "dockers": [{
+            "x": 1212,
+            "y": 533
+        }, {
+            "x": 1212,
+            "y": 624.9999943452002
+        }, {
+            "x": 10.461499747909102,
+            "y": 24.999994345200207
+        }],
+        "target": {
+            "resourceId": "sid-CB11EC1A-E776-44AB-8CA2-99CE67BF6050"
+        }
+    }, {
+        "resourceId": "sid-C7D55420-ECD0-43AA-97FD-CEAD36A3F81F",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "Part Not Available",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-79273D9D-DA7D-418E-8AA3-BC35E1CC2309"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 404.2307809753535,
+                "y": 686.081735466795
+            },
+            "upperLeft": {
+                "x": 404.2307809753535,
+                "y": 618.4904128007697
+            }
+        },
+        "dockers": [{
+            "x": 20.000000000000057,
+            "y": 33.46155069158078
+        }, {
+            "x": 73.12820505570767,
+            "y": 17.923056043816132
+        }],
+        "labels": [{
+            "distance": 2.594495071743999,
+            "x": 404.2307809753535,
+            "y": 652.3367591545714,
+            "from": 0,
+            "to": 1,
+            "valign": "middle",
+            "align": "center",
+            "ref": "condition"
+        }],
+        "target": {
+            "resourceId": "sid-79273D9D-DA7D-418E-8AA3-BC35E1CC2309"
+        }
+    }, {
+        "resourceId": "sid-6A3C6666-8D7F-4142-9867-A5906AC1BEB0",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-2E8C1775-E2C6-4645-B6B5-8F4523FD65C3"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1271.2762625915893,
+                "y": 534.0000056547998
+            },
+            "upperLeft": {
+                "x": 1213,
+                "y": 534.0000056547998
+            }
+        },
+        "dockers": [{
+            "x": 1213,
+            "y": 534.0000056547998
+        }, {
+            "x": 1,
+            "y": 23.449883413454927
+        }],
+        "target": {
+            "resourceId": "sid-2E8C1775-E2C6-4645-B6B5-8F4523FD65C3"
+        }
+    }, {
+        "resourceId": "sid-E450FF62-0AB1-422A-848E-2EDBECF11487",
+        "properties": {
+            "id": "",
+            "name": "",
+            "categories": "",
+            "documentation": "",
+            "sourceref": "",
+            "targetref": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "quantity": 1,
+            "showdiamondmarker": false
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-17C8CF8F-78F4-430A-8FDA-B4DFA2CFBBD3"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 1441.25,
+                "y": 530
+            },
+            "upperLeft": {
+                "x": 1398,
+                "y": 530
+            }
+        },
+        "dockers": [{
+            "x": 1398,
+            "y": 530
+        }, {
+            "x": 8.692263758862964,
+            "y": 15.999994345200207
+        }],
+        "target": {
+            "resourceId": "sid-17C8CF8F-78F4-430A-8FDA-B4DFA2CFBBD3"
+        }
+    }],
+    "bounds": {
+        "lowerRight": {
+            "x": 1785,
+            "y": 1050
+        },
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "stencilset": {
+        "url": "/stencilsets/bpmn1.1/bpmn1.1.json?version=4.3.2",
+        "namespace": "http://b3mn.org/stencilset/bpmn1.1#"
+    },
+    "ssextensions": ["http://oryx-editor.org/stencilsets/extensions/bpmn1.1basicsubset#"]
+}

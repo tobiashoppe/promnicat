@@ -20,7 +20,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processMetrics.test.all.AllTests.class,
 //	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelConverter.test.all.AllTests.class,
-//	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.test.all.AllTests.class,
+	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelCorrection.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processEvolution.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.test.all.AllTests.class

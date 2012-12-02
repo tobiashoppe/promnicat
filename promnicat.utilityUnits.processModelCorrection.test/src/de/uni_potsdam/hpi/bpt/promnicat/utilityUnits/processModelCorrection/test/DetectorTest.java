@@ -79,13 +79,9 @@ public class DetectorTest {
 		HashMap<String, Integer>  incoming = result.get(MissingControlFlowConnectionDetector.Incoming.class.getSimpleName());
 		HashMap<String, Integer>  outgoing = result.get(MissingControlFlowConnectionDetector.Outgoing.class.getSimpleName());
 
-		Assert.assertEquals(3, incoming.size());
-		Assert.assertEquals(3, outgoing.size());
-		Assert.assertSame(1, outgoing.get("Task"));
+		Assert.assertEquals(1, incoming.size());
+		Assert.assertEquals(1, outgoing.size());
 		Assert.assertSame(1, outgoing.get("SequenceFlow"));
-		Assert.assertSame(1, outgoing.get("IntermediateMessageEventThrowing"));
-		Assert.assertSame(1, incoming.get("Task"));
 		Assert.assertSame(1, incoming.get("SequenceFlow"));
-		Assert.assertSame(1, incoming.get("IntermediateMessageEventCatching"));
 	}
 }

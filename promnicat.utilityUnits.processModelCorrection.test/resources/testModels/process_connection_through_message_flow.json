@@ -1,0 +1,589 @@
+{
+    "resourceId": "canvas",
+    "properties": {
+        "name": "",
+        "documentation": "",
+        "auditing": "",
+        "monitoring": "",
+        "version": "",
+        "author": "",
+        "language": "English",
+        "namespaces": "",
+        "targetnamespace": "http://www.signavio.com/bpmn20",
+        "expressionlanguage": "http://www.w3.org/1999/XPath",
+        "typelanguage": "http://www.w3.org/2001/XMLSchema",
+        "creationdate": "",
+        "modificationdate": "",
+        "orientation": "horizontal"
+    },
+    "stencil": {
+        "id": "BPMNDiagram"
+    },
+    "childShapes": [{
+        "resourceId": "sid-5C3C9324-0F03-4356-A1BB-CE9F1A0672F6",
+        "properties": {
+            "name": "Pool",
+            "documentation": "",
+            "auditing": "",
+            "monitoring": "",
+            "boundaryvisible": true,
+            "processname": "",
+            "status": "None",
+            "adhoc": "",
+            "adhocordering": "Parallel",
+            "adhoccompletioncondition": "",
+            "suppressjoinfailure": "",
+            "enableinstancecompensation": "",
+            "processcategories": "",
+            "processdocumentation": "",
+            "multiinstance": "",
+            "minimum": 2,
+            "maximum": 2,
+            "processtype": "None",
+            "isclosed": "",
+            "isexecutable": "",
+            "bgcolor": "#ffffff",
+            "processid": "sid-FBB87F84-6B80-492D-B664-C629491856CF",
+            "bordercolor": "#000000"
+        },
+        "stencil": {
+            "id": "Pool"
+        },
+        "childShapes": [{
+            "resourceId": "sid-59C0E1FC-5C3B-4A5F-A840-DF23829137A3",
+            "properties": {
+                "name": "Lane B",
+                "documentation": "",
+                "auditing": "",
+                "monitoring": "",
+                "parentpool": "",
+                "parentlane": "",
+                "showcaption": true,
+                "bgcolor": "",
+                "bordercolor": "#000000"
+            },
+            "stencil": {
+                "id": "Lane"
+            },
+            "childShapes": [{
+                "resourceId": "sid-24BE6192-8E21-410B-864F-70F6FBFF4B14",
+                "properties": {
+                    "processid": "",
+                    "name": "2",
+                    "documentation": "",
+                    "auditing": "",
+                    "monitoring": "",
+                    "categories": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "isforcompensation": "",
+                    "assignments": "",
+                    "callacitivity": "",
+                    "tasktype": "None",
+                    "implementation": "webService",
+                    "resources": "",
+                    "messageref": "",
+                    "operationref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "scriptformat": "",
+                    "bgcolor": "#ffffcc",
+                    "looptype": "None",
+                    "testbefore": "",
+                    "loopcondition": "",
+                    "loopmaximum": "",
+                    "loopcardinality": "",
+                    "loopdatainput": "",
+                    "loopdataoutput": "",
+                    "inputdataitem": "",
+                    "outputdataitem": "",
+                    "behavior": "all",
+                    "complexbehaviordefinition": "",
+                    "completioncondition": "",
+                    "onebehavioreventref:": "signal",
+                    "nonebehavioreventref": "signal",
+                    "properties": "",
+                    "datainputset": "",
+                    "dataoutputset": "",
+                    "operationname": "",
+                    "inmessagename": "",
+                    "inmsgitemkind": "Information",
+                    "inmsgstructure": "",
+                    "inmsgimport": "",
+                    "inmsgiscollection": "",
+                    "outmessagename": "",
+                    "outmsgitemkind": "Information",
+                    "outmsgstructure": "",
+                    "outmsgimport": "",
+                    "outmsgiscollection": "",
+                    "bordercolor": "#000000",
+                    "time": "",
+                    "costs": "",
+                    "costcenter": "",
+                    "applyincalc": true
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-BBE96DF0-5992-4A58-B186-69363C14B137"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 340,
+                        "y": 190
+                    },
+                    "upperLeft": {
+                        "x": 240,
+                        "y": 110
+                    }
+                },
+                "dockers": []
+            }],
+            "outgoing": [],
+            "bounds": {
+                "lowerRight": {
+                    "x": 600,
+                    "y": 500
+                },
+                "upperLeft": {
+                    "x": 30,
+                    "y": 250
+                }
+            },
+            "dockers": []
+        }, {
+            "resourceId": "sid-23C9C497-8122-4198-BC0C-C14CB03EB9FD",
+            "properties": {
+                "name": "Lane A",
+                "documentation": "",
+                "auditing": "",
+                "monitoring": "",
+                "parentpool": "",
+                "parentlane": "",
+                "showcaption": true,
+                "bgcolor": "",
+                "bordercolor": "#000000"
+            },
+            "stencil": {
+                "id": "Lane"
+            },
+            "childShapes": [{
+                "resourceId": "sid-05D8E588-2E96-44BE-8749-C75380C809DC",
+                "properties": {
+                    "processid": "",
+                    "name": "1",
+                    "documentation": "",
+                    "auditing": "",
+                    "monitoring": "",
+                    "categories": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "isforcompensation": "",
+                    "assignments": "",
+                    "callacitivity": "",
+                    "tasktype": "None",
+                    "implementation": "webService",
+                    "resources": "",
+                    "messageref": "",
+                    "operationref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "scriptformat": "",
+                    "bgcolor": "#ffffcc",
+                    "looptype": "None",
+                    "testbefore": "",
+                    "loopcondition": "",
+                    "loopmaximum": "",
+                    "loopcardinality": "",
+                    "loopdatainput": "",
+                    "loopdataoutput": "",
+                    "inputdataitem": "",
+                    "outputdataitem": "",
+                    "behavior": "all",
+                    "complexbehaviordefinition": "",
+                    "completioncondition": "",
+                    "onebehavioreventref:": "signal",
+                    "nonebehavioreventref": "signal",
+                    "properties": "",
+                    "datainputset": "",
+                    "dataoutputset": "",
+                    "operationname": "",
+                    "inmessagename": "",
+                    "inmsgitemkind": "Information",
+                    "inmsgstructure": "",
+                    "inmsgimport": "",
+                    "inmsgiscollection": "",
+                    "outmessagename": "",
+                    "outmsgitemkind": "Information",
+                    "outmsgstructure": "",
+                    "outmsgimport": "",
+                    "outmsgiscollection": "",
+                    "bordercolor": "#000000",
+                    "time": "",
+                    "costs": "",
+                    "costcenter": "",
+                    "applyincalc": true
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-339D6090-7DA3-4F1B-BA69-17C45723F8F0"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 235,
+                        "y": 165
+                    },
+                    "upperLeft": {
+                        "x": 135,
+                        "y": 85
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-AD2D884D-0D6A-4150-943C-1FC97D3358BC",
+                "properties": {
+                    "name": "",
+                    "documentation": "",
+                    "auditing": "",
+                    "monitoring": "",
+                    "dataoutputassociations": "",
+                    "dataoutput": "",
+                    "outputset": "",
+                    "bgcolor": "#ffffff",
+                    "bordercolor": "#000000",
+                    "processid": "",
+                    "trigger": "None",
+                    "frequency": "",
+                    "applyincalc": true
+                },
+                "stencil": {
+                    "id": "StartNoneEvent"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-62AF52E1-FC25-41C6-9A54-6BA8869A34E4"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 75,
+                        "y": 140
+                    },
+                    "upperLeft": {
+                        "x": 45,
+                        "y": 110
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-77D4B76A-ED58-42DD-8198-88E9E48764A1",
+                "properties": {
+                    "processid": "",
+                    "name": "3",
+                    "documentation": "",
+                    "auditing": "",
+                    "monitoring": "",
+                    "categories": "",
+                    "startquantity": 1,
+                    "completionquantity": 1,
+                    "isforcompensation": "",
+                    "assignments": "",
+                    "callacitivity": "",
+                    "tasktype": "None",
+                    "implementation": "webService",
+                    "resources": "",
+                    "messageref": "",
+                    "operationref": "",
+                    "instantiate": "",
+                    "script": "",
+                    "scriptformat": "",
+                    "bgcolor": "#ffffcc",
+                    "looptype": "None",
+                    "testbefore": "",
+                    "loopcondition": "",
+                    "loopmaximum": "",
+                    "loopcardinality": "",
+                    "loopdatainput": "",
+                    "loopdataoutput": "",
+                    "inputdataitem": "",
+                    "outputdataitem": "",
+                    "behavior": "all",
+                    "complexbehaviordefinition": "",
+                    "completioncondition": "",
+                    "onebehavioreventref:": "signal",
+                    "nonebehavioreventref": "signal",
+                    "properties": "",
+                    "datainputset": "",
+                    "dataoutputset": "",
+                    "operationname": "",
+                    "inmessagename": "",
+                    "inmsgitemkind": "Information",
+                    "inmsgstructure": "",
+                    "inmsgimport": "",
+                    "inmsgiscollection": "",
+                    "outmessagename": "",
+                    "outmsgitemkind": "Information",
+                    "outmsgstructure": "",
+                    "outmsgimport": "",
+                    "outmsgiscollection": "",
+                    "bordercolor": "#000000",
+                    "time": "",
+                    "costs": "",
+                    "costcenter": "",
+                    "applyincalc": true
+                },
+                "stencil": {
+                    "id": "Task"
+                },
+                "childShapes": [],
+                "outgoing": [{
+                    "resourceId": "sid-7AAE647E-9994-4454-BF52-5CA2D44F41B9"
+                }],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 445,
+                        "y": 165
+                    },
+                    "upperLeft": {
+                        "x": 345,
+                        "y": 85
+                    }
+                },
+                "dockers": []
+            }, {
+                "resourceId": "sid-EEC7A20A-39E0-4B44-BB42-E78D713416E8",
+                "properties": {
+                    "name": "",
+                    "documentation": "",
+                    "auditing": "",
+                    "monitoring": "",
+                    "datainputassociations": "",
+                    "datainput": "",
+                    "inputset": "",
+                    "bgcolor": "#ffffff",
+                    "bordercolor": "#000000",
+                    "trigger": "None"
+                },
+                "stencil": {
+                    "id": "EndNoneEvent"
+                },
+                "childShapes": [],
+                "outgoing": [],
+                "bounds": {
+                    "lowerRight": {
+                        "x": 518,
+                        "y": 139
+                    },
+                    "upperLeft": {
+                        "x": 490,
+                        "y": 111
+                    }
+                },
+                "dockers": []
+            }],
+            "outgoing": [],
+            "bounds": {
+                "lowerRight": {
+                    "x": 600,
+                    "y": 250
+                },
+                "upperLeft": {
+                    "x": 30,
+                    "y": 0
+                }
+            },
+            "dockers": []
+        }],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 660,
+                "y": 545
+            },
+            "upperLeft": {
+                "x": 60,
+                "y": 45
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-62AF52E1-FC25-41C6-9A54-6BA8869A34E4",
+        "properties": {
+            "name": "",
+            "documentation": "",
+            "auditing": "",
+            "monitoring": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "isimmediate": "",
+            "showdiamondmarker": "",
+            "bordercolor": "#000000",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-05D8E588-2E96-44BE-8749-C75380C809DC"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 224.1953125,
+                "y": 170
+            },
+            "upperLeft": {
+                "x": 165.6484375,
+                "y": 170
+            }
+        },
+        "dockers": [{
+            "x": 15,
+            "y": 15
+        }, {
+            "x": 50,
+            "y": 40
+        }],
+        "target": {
+            "resourceId": "sid-05D8E588-2E96-44BE-8749-C75380C809DC"
+        }
+    }, {
+        "resourceId": "sid-7AAE647E-9994-4454-BF52-5CA2D44F41B9",
+        "properties": {
+            "name": "",
+            "documentation": "",
+            "auditing": "",
+            "monitoring": "",
+            "conditiontype": "None",
+            "conditionexpression": "",
+            "isimmediate": "",
+            "showdiamondmarker": "",
+            "bordercolor": "#000000",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "SequenceFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-EEC7A20A-39E0-4B44-BB42-E78D713416E8"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 579.375,
+                "y": 170
+            },
+            "upperLeft": {
+                "x": 535,
+                "y": 170
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 40
+        }, {
+            "x": 14,
+            "y": 14
+        }],
+        "target": {
+            "resourceId": "sid-EEC7A20A-39E0-4B44-BB42-E78D713416E8"
+        }
+    }, {
+        "resourceId": "sid-339D6090-7DA3-4F1B-BA69-17C45723F8F0",
+        "properties": {
+            "name": "",
+            "documentation": "",
+            "auditing": "",
+            "monitoring": "",
+            "bordercolor": "#000000"
+        },
+        "stencil": {
+            "id": "MessageFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-24BE6192-8E21-410B-864F-70F6FBFF4B14"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 329.78125,
+                "y": 445
+            },
+            "upperLeft": {
+                "x": 275,
+                "y": 210
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 40
+        }, {
+            "x": 275,
+            "y": 445
+        }, {
+            "x": 50,
+            "y": 40
+        }],
+        "target": {
+            "resourceId": "sid-24BE6192-8E21-410B-864F-70F6FBFF4B14"
+        }
+    }, {
+        "resourceId": "sid-BBE96DF0-5992-4A58-B186-69363C14B137",
+        "properties": {
+            "name": "",
+            "documentation": "",
+            "auditing": "",
+            "monitoring": "",
+            "bordercolor": "#000000"
+        },
+        "stencil": {
+            "id": "MessageFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-77D4B76A-ED58-42DD-8198-88E9E48764A1"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 485,
+                "y": 445
+            },
+            "upperLeft": {
+                "x": 430,
+                "y": 210
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 40
+        }, {
+            "x": 485,
+            "y": 445
+        }, {
+            "x": 50,
+            "y": 40
+        }],
+        "target": {
+            "resourceId": "sid-77D4B76A-ED58-42DD-8198-88E9E48764A1"
+        }
+    }],
+    "bounds": {
+        "lowerRight": {
+            "x": 1485,
+            "y": 1300
+        },
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "stencilset": {
+        "url": "/stencilsets/bpmn2.0/bpmn2.0.json?version=6.0.0",
+        "namespace": "http://b3mn.org/stencilset/bpmn2.0#"
+    },
+    "ssextensions": ["http://oryx-editor.org/stencilsets/extensions/bpmn2.0basicsubset#"]
+}

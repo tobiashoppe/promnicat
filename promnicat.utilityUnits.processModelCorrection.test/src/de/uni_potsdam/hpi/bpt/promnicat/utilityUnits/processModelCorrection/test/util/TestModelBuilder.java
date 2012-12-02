@@ -35,7 +35,7 @@ public class TestModelBuilder {
 	}
 
 	public static Diagram getModelFromFile(String filename) throws Exception {
-		String stringModel = readFromFile("resources/correction_test/"+filename+".json");
+		String stringModel = readFromFile("resources/testModels/"+filename+".json");
 		Diagram model = DiagramBuilder.parseJson(stringModel);
 		// this fix is necessary because the DiagramBuilder does not set the StencilSet Url in case a specification is attachted, but needs it for exports
 		JSONObject jsonModel = new JSONObject(stringModel);

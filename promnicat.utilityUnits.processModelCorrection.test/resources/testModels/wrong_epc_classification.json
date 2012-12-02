@@ -1,0 +1,928 @@
+{
+    "resourceId": "canvas",
+    "properties": {
+        "title": "",
+        "description": "",
+        "entry": "",
+        "version": "",
+        "author": ""
+    },
+    "stencil": {
+        "id": "Diagram"
+    },
+    "childShapes": [{
+        "resourceId": "sid-E6258C01-9FF1-4E2E-9796-364A8B146522",
+        "properties": {
+            "title": "Bewerbung geht ein",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A09CF8A2-F5BB-405B-B52D-0C4128BE9412"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 385,
+                "y": 135
+            },
+            "upperLeft": {
+                "x": 285,
+                "y": 75
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-7DCEE68A-FF75-4D20-8E16-016453EBEB82",
+        "properties": {
+            "title": "Noten einsehen",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": "",
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-59E6B1AD-C9A5-4B4D-9C58-A31D7E734B74"
+        }, {
+            "resourceId": "sid-321EF18A-95AA-4BBD-AD35-C6150AF46CBC"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 385,
+                "y": 240
+            },
+            "upperLeft": {
+                "x": 285,
+                "y": 180
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-A09CF8A2-F5BB-405B-B52D-0C4128BE9412",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-7DCEE68A-FF75-4D20-8E16-016453EBEB82"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 335,
+                "y": 179.46875
+            },
+            "upperLeft": {
+                "x": 335,
+                "y": 135
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-7DCEE68A-FF75-4D20-8E16-016453EBEB82"
+        }
+    }, {
+        "resourceId": "sid-3086C120-9DDF-4A8A-AAA7-5A47A16B5869",
+        "properties": {
+            "bgcolor": "#ffffff"
+        },
+        "stencil": {
+            "id": "XorConnector"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-76FFC952-5BC8-42B2-994D-51FA30FE7A37"
+        }, {
+            "resourceId": "sid-39D1DE2D-F4FB-4225-925D-D8D5A7FC6702"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 350,
+                "y": 315
+            },
+            "upperLeft": {
+                "x": 320,
+                "y": 285
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-59E6B1AD-C9A5-4B4D-9C58-A31D7E734B74",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-3086C120-9DDF-4A8A-AAA7-5A47A16B5869"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 335,
+                "y": 284.9375
+            },
+            "upperLeft": {
+                "x": 335,
+                "y": 240
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 15,
+            "y": 15
+        }],
+        "target": {
+            "resourceId": "sid-3086C120-9DDF-4A8A-AAA7-5A47A16B5869"
+        }
+    }, {
+        "resourceId": "sid-E02C7874-2894-46C2-9877-7F5F2DF1F5F4",
+        "properties": {
+            "title": "Notendurchschnitt >= 3.0",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-D57F641F-E459-40D6-B244-DB7F2DDB716A"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 325,
+                "y": 420
+            },
+            "upperLeft": {
+                "x": 225,
+                "y": 360
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-76FFC952-5BC8-42B2-994D-51FA30FE7A37",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-E02C7874-2894-46C2-9877-7F5F2DF1F5F4"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 319.9375,
+                "y": 359.46875
+            },
+            "upperLeft": {
+                "x": 275,
+                "y": 300
+            }
+        },
+        "dockers": [{
+            "x": 15,
+            "y": 15
+        }, {
+            "x": 275,
+            "y": 300
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-E02C7874-2894-46C2-9877-7F5F2DF1F5F4"
+        }
+    }, {
+        "resourceId": "sid-0D7D30E2-ABC2-4BDA-97D5-E59862DD132C",
+        "properties": {
+            "title": "Notendurchschnitt < 3.0",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-0D493A99-4A88-4E61-8D1E-691AB94868B5"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 475,
+                "y": 420
+            },
+            "upperLeft": {
+                "x": 375,
+                "y": 360
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-08E50723-356E-4218-9452-0F265B25D164",
+        "properties": {
+            "title": "Absage schreiben",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": "",
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-8B1C9189-AF21-4C81-8062-5FD9930CE708"
+        }, {
+            "resourceId": "sid-D79DA59F-353F-4FE3-B8BF-487872457268"
+        }, {
+            "resourceId": "sid-6C0D7BA2-DEA7-4A3C-8682-ABFAF0C58786"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 475,
+                "y": 525
+            },
+            "upperLeft": {
+                "x": 375,
+                "y": 465
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-0D493A99-4A88-4E61-8D1E-691AB94868B5",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-08E50723-356E-4218-9452-0F265B25D164"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 425,
+                "y": 464.46875
+            },
+            "upperLeft": {
+                "x": 425,
+                "y": 420
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-08E50723-356E-4218-9452-0F265B25D164"
+        }
+    }, {
+        "resourceId": "sid-3EF52501-0E1E-460B-B30C-D5930E8DAEE1",
+        "properties": {
+            "title": "Bewerbung mit Absage zurückgesendet",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "bgcolor": "#ffafff"
+        },
+        "stencil": {
+            "id": "Event"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 475,
+                "y": 630
+            },
+            "upperLeft": {
+                "x": 375,
+                "y": 570
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-8B1C9189-AF21-4C81-8062-5FD9930CE708",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-3EF52501-0E1E-460B-B30C-D5930E8DAEE1"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 425,
+                "y": 569.46875
+            },
+            "upperLeft": {
+                "x": 425,
+                "y": 525
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-3EF52501-0E1E-460B-B30C-D5930E8DAEE1"
+        }
+    }, {
+        "resourceId": "sid-A899C7DF-E498-44A4-86BE-0DBFD860D826",
+        "properties": {
+            "title": "Absageformular002",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#dcdcdc"
+        },
+        "stencil": {
+            "id": "Data"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 640,
+                "y": 525
+            },
+            "upperLeft": {
+                "x": 540,
+                "y": 465
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-D79DA59F-353F-4FE3-B8BF-487872457268",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A899C7DF-E498-44A4-86BE-0DBFD860D826"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 539.37109375,
+                "y": 495
+            },
+            "upperLeft": {
+                "x": 475,
+                "y": 495
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-A899C7DF-E498-44A4-86BE-0DBFD860D826"
+        }
+    }, {
+        "resourceId": "sid-FC4CD1DA-E039-41D8-9556-2A198713AC34",
+        "properties": {
+            "title": "Terminvorschlag per Email senden",
+            "description": "",
+            "entry": "",
+            "time": "",
+            "costs": "",
+            "costcenter": "",
+            "applyincalc": true,
+            "refuri": "",
+            "bgcolor": "#96ff96",
+            "externaldocuments": "",
+            "risklevel": ""
+        },
+        "stencil": {
+            "id": "Function"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A88C51E9-4757-4556-8940-099A1E6BE312"
+        }, {
+            "resourceId": "sid-EC01B844-BA4F-4ADE-88BF-31F28E89DFCE"
+        }, {
+            "resourceId": "sid-83E2AB90-0B0C-440A-A29C-6C590343E836"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 325,
+                "y": 525
+            },
+            "upperLeft": {
+                "x": 225,
+                "y": 465
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-D57F641F-E459-40D6-B244-DB7F2DDB716A",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-FC4CD1DA-E039-41D8-9556-2A198713AC34"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 275,
+                "y": 464.46875
+            },
+            "upperLeft": {
+                "x": 275,
+                "y": 420
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-FC4CD1DA-E039-41D8-9556-2A198713AC34"
+        }
+    }, {
+        "resourceId": "sid-C3801F11-4071-45D5-81D7-61FFF5125550",
+        "properties": {
+            "title": "Bewerbungsterminvorschlag Formular 001",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#dcdcdc"
+        },
+        "stencil": {
+            "id": "Data"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 180,
+                "y": 525
+            },
+            "upperLeft": {
+                "x": 80,
+                "y": 465
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-A88C51E9-4757-4556-8940-099A1E6BE312",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-C3801F11-4071-45D5-81D7-61FFF5125550"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 224.15625,
+                "y": 495
+            },
+            "upperLeft": {
+                "x": 180,
+                "y": 495
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-C3801F11-4071-45D5-81D7-61FFF5125550"
+        }
+    }, {
+        "resourceId": "sid-39D1DE2D-F4FB-4225-925D-D8D5A7FC6702",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-0D7D30E2-ABC2-4BDA-97D5-E59862DD132C"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 425,
+                "y": 359.46875
+            },
+            "upperLeft": {
+                "x": 350.0625,
+                "y": 300
+            }
+        },
+        "dockers": [{
+            "x": 15,
+            "y": 15
+        }, {
+            "x": 425,
+            "y": 300
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-0D7D30E2-ABC2-4BDA-97D5-E59862DD132C"
+        }
+    }, {
+        "resourceId": "sid-A60E9C0D-9AE6-48CF-B285-0DC02AE6D2D8",
+        "properties": {
+            "title": "Notentabelle Durchschnitt errechnen",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#b0b0ff"
+        },
+        "stencil": {
+            "id": "System"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 240,
+                "y": 240
+            },
+            "upperLeft": {
+                "x": 140,
+                "y": 180
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-321EF18A-95AA-4BBD-AD35-C6150AF46CBC",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A60E9C0D-9AE6-48CF-B285-0DC02AE6D2D8"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 284.15625,
+                "y": 210
+            },
+            "upperLeft": {
+                "x": 240,
+                "y": 210
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-A60E9C0D-9AE6-48CF-B285-0DC02AE6D2D8"
+        }
+    }, {
+        "resourceId": "sid-164F099F-BE3C-4DAF-9BCC-DE9CAC89E595",
+        "properties": {
+            "title": "Sachberarbeiter",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#ffff80"
+        },
+        "stencil": {
+            "id": "Organization"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 190,
+                "y": 455
+            },
+            "upperLeft": {
+                "x": 70,
+                "y": 405
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-EC01B844-BA4F-4ADE-88BF-31F28E89DFCE",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-164F099F-BE3C-4DAF-9BCC-DE9CAC89E595"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 224.24374067548504,
+                "y": 472.2471940959071
+            },
+            "upperLeft": {
+                "x": 171.69375932451496,
+                "y": 448.6903059040929
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 60,
+            "y": 25
+        }],
+        "target": {
+            "resourceId": "sid-164F099F-BE3C-4DAF-9BCC-DE9CAC89E595"
+        }
+    }, {
+        "resourceId": "sid-A43DA4E2-F6C3-41E0-93BF-5F55266D80E5",
+        "properties": {
+            "title": "Sachbearbeiter",
+            "description": "",
+            "entry": "",
+            "bgcolor": "#ffff80"
+        },
+        "stencil": {
+            "id": "Organization"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 650,
+                "y": 455
+            },
+            "upperLeft": {
+                "x": 530,
+                "y": 405
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-6C0D7BA2-DEA7-4A3C-8682-ABFAF0C58786",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-A43DA4E2-F6C3-41E0-93BF-5F55266D80E5"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 545.8859978571829,
+                "y": 475.3030303030303
+            },
+            "upperLeft": {
+                "x": 475,
+                "y": 447.3782432683825
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 60,
+            "y": 25
+        }],
+        "target": {
+            "resourceId": "sid-A43DA4E2-F6C3-41E0-93BF-5F55266D80E5"
+        }
+    }, {
+        "resourceId": "sid-DC617D09-12DF-4207-B85C-8DF8F9B4A056",
+        "properties": {
+            "title": "Berwerbungsprozess 2.Runde",
+            "description": "",
+            "entry": "",
+            "frequency": "",
+            "refuri": "",
+            "bgcolor": "#ffffff"
+        },
+        "stencil": {
+            "id": "ProcessInterface"
+        },
+        "childShapes": [],
+        "outgoing": [],
+        "bounds": {
+            "lowerRight": {
+                "x": 325,
+                "y": 630
+            },
+            "upperLeft": {
+                "x": 225,
+                "y": 570
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-83E2AB90-0B0C-440A-A29C-6C590343E836",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "probability": ""
+        },
+        "stencil": {
+            "id": "ControlFlow"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-DC617D09-12DF-4207-B85C-8DF8F9B4A056"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 275,
+                "y": 569.46875
+            },
+            "upperLeft": {
+                "x": 275,
+                "y": 525
+            }
+        },
+        "dockers": [{
+            "x": 50,
+            "y": 30
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-DC617D09-12DF-4207-B85C-8DF8F9B4A056"
+        }
+    }, {
+        "resourceId": "sid-8249885F-941E-48F3-A26D-174EF502064F",
+        "properties": {
+            "title": "",
+            "description": "",
+            "entry": ""
+        },
+        "stencil": {
+            "id": "Mail"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-AE035203-3852-4F26-869D-B6B7AD9F3EC3"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 147.87650001049042,
+                "y": 562.5
+            },
+            "upperLeft": {
+                "x": 112.12349998950958,
+                "y": 540
+            }
+        },
+        "dockers": []
+    }, {
+        "resourceId": "sid-AE035203-3852-4F26-869D-B6B7AD9F3EC3",
+        "properties": {
+            "description": "",
+            "entry": "",
+            "type": "none",
+            "informationflow": "False"
+        },
+        "stencil": {
+            "id": "Relation"
+        },
+        "childShapes": [],
+        "outgoing": [{
+            "resourceId": "sid-FC4CD1DA-E039-41D8-9556-2A198713AC34"
+        }],
+        "bounds": {
+            "lowerRight": {
+                "x": 224.1824725521097,
+                "y": 544.5137388050275
+            },
+            "upperLeft": {
+                "x": 148.3813731638415,
+                "y": 514.8720033824725
+            }
+        },
+        "dockers": [{
+            "x": 17.753000020980835,
+            "y": 11.75
+        }, {
+            "x": 50,
+            "y": 30
+        }],
+        "target": {
+            "resourceId": "sid-FC4CD1DA-E039-41D8-9556-2A198713AC34"
+        }
+    }],
+    "bounds": {
+        "lowerRight": {
+            "x": 1485,
+            "y": 1050
+        },
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "stencilset": {
+        "url": "/stencilsets/epc/epc.json?version=4.4.1",
+        "namespace": "http://b3mn.org/stencilset/epc#"
+    },
+    "ssextensions": ["http://signavio.com/stencilsets/extensions/epc.normal#"]
+}

@@ -61,7 +61,7 @@ public abstract class AbstractAssignment implements Assignment {
 	 *  as necessary and removing them after assignment. 
 	 *  @see AbstractAssignment#assignWithEquallySizedSets(SimilarityMatrix)  */
 	public ISimilarityMatrix<IEntity> assign(ISimilarityMatrix<IEntity> similarities) {
-		//TODO: threshold bei assignments (bzw. alle die 0 sind)
+		//TODO: threshold in case of an assignment (=all that are not zero)
 		boolean firstHasMore = similarities.getFirstSet().size() > similarities.getSecondSet().size();
 		HashSet<DummyEntity> dummies = addDummies(similarities, firstHasMore);
 		ISimilarityMatrix<IEntity> result = assignWithEquallySizedSets(similarities);
