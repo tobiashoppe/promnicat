@@ -55,7 +55,7 @@ public class StopWords {
 	}
 	
 	private void populateSupportedLanguagesArray(HashMap<String, String> supportedLanguages) {
-		String prefix = "lib/stopWords/";
+		String prefix = "../promnicat.utilityUnits.bpmTranslator/resources/stopWords/";
 		supportedLanguages.put("german", prefix + "germanStopWords");
 		supportedLanguages.put("english", prefix +  "englishStopWords");
 		supportedLanguages.put("test", prefix +  "stopWordsTest");

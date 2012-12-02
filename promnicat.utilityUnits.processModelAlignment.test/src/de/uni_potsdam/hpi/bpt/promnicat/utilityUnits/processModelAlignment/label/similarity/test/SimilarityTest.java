@@ -6,10 +6,12 @@ import static org.junit.Assert.assertTrue;
 import java.util.logging.Logger;
 
 import org.jbpt.alignment.LabelEntity;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.label.similarity.LabelSimilarity;
 
+@Ignore
 public abstract class SimilarityTest<Similarity extends LabelSimilarity> {
 	private static final LabelEntity REFERENCE = new LabelEntity("Buy Fish");
 	private static final LabelEntity DISTINCT = new LabelEntity("idea");

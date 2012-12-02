@@ -8,3 +8,4 @@ bin
 *.prefs
 *.db4o
 *.db4o
+/promnicat.utilityUnits.processModelAlignment.test/resources/processes/dummy

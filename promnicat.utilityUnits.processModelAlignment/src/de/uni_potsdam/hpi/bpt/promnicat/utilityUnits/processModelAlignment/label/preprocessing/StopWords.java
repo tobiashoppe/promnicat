@@ -18,9 +18,9 @@ public class StopWords extends TokenBasedPreProcessingStep {
 	/** stopword lists which are provided by default */
 	public enum StopWordList {
 		/** A list of english stop words by Ranks.nl */
-		EN("stopwords/EN.txt"),
+		EN("../promnicat.utilityUnits.processModelAlignment/stopwords/EN.txt"),
 		/** A list of english stop words, a little more extensive than EN.txt */
-		EN_extended("stopwords/EN_extended.txt");
+		EN_extended("../promnicat.utilityUnits.processModelAlignment/stopwords/EN_extended.txt");
 		
 		private final String path;
 		StopWordList(String path) {

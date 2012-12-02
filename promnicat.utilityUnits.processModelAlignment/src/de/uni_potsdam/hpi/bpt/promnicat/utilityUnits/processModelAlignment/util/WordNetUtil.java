@@ -23,9 +23,9 @@ public class WordNetUtil {
 
 	private static final Logger LOGGER = Logger.getLogger(WordNetUtil.class.getName());
 
-	private static final String WORDNET_CONFIG_FILE = "lib/wordnet/config/my_properties.xml";
+	private static final String WORDNET_CONFIG_FILE = "../promnicat.utilityUnits.processModelAlignment/lib/wordnet/config/my_properties.xml";
 
-	public static final String LIB_PATH = "lib/wordnet";
+	public static final String LIB_PATH = "../promnicat.utilityUnits.processModelAlignment/lib/wordnet";
 
 	private static Dictionary dict;
 

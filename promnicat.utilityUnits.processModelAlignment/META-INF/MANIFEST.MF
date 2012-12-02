@@ -8,5 +8,6 @@ Require-Bundle: promnicat.externals;bundle-version="0.0.0";visibility:=reexport
 Export-Package: de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment
 Bundle-ClassPath: .,
  lib/simmetrics.jar,
+ lib/jws/edu.mit.jwi_2.1.4.jar,
  lib/jws/edu.sussex.nlp.jws.beta.11.jar
 Eclipse-ExtensibleAPI: true

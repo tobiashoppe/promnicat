@@ -4,10 +4,12 @@ import java.util.HashSet;
 
 import org.jbpt.alignment.LabelEntity;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.label.preprocessing.SinglePreProcessingStep;
 
+@Ignore
 public abstract class SinglePreProcessingStepTest<Step extends SinglePreProcessingStep> {
 	
 	private final Step step;

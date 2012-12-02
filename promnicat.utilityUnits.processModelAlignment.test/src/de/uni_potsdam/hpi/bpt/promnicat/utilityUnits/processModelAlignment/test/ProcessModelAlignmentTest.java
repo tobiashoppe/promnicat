@@ -112,7 +112,7 @@ public class ProcessModelAlignmentTest {
 	public static void setUp() {
 		level = log.getLevel();
 		log.setLevel(Level.INFO);		
-		File rootDir = new File("processes/");
+		File rootDir = new File("resources/processes/");
 		BPMAIExport directoryWalker = BPMAIExportBuilder.parseDirectory(rootDir);
 		ModelParser parser = new ModelParser();
 		for (Model bpmAiModel : directoryWalker.getModels()) {

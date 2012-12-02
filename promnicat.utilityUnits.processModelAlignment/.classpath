@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="lib/jws/edu.mit.jwi_2.1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jws/edu.sussex.nlp.jws.beta.11.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/simmetrics.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>

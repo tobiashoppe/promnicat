@@ -15,7 +15,7 @@ public class WordNet {
 	private HashMap<String, SynsetType> posMap;
 	
 	public WordNet() {
-		System.setProperty("wordnet.database.dir", "lib/dict/");
+		System.setProperty("wordnet.database.dir", "../promnicat.utilityUnits.bpmTranslator/resources/dict/");
 		database = WordNetDatabase.getFileInstance();
 		posMap = new HashMap<String, SynsetType>();
 		populatePOSHashMap(posMap);

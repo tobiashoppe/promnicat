@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	//FIXME uncomment if tests get working
 //	de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.orientdb.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.persistenceAPI.test.all.AllTests.class,
-//	de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.tests.all.AllTests.class,
+	de.uni_potsdam.hpi.bpt.promnicat.bpmTranslator.tests.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.builder.test.all.AllTests.class,
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.clustering.test.all.AllTests.class,	
 	de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.collector.test.all.AllTests.class,
