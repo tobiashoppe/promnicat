@@ -21,10 +21,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.jbpt.petri.PetriNet;
 import org.jbpt.pm.ProcessModel;
 import org.jbpt.pm.bpmn.Bpmn;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
@@ -48,10 +51,22 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataClass
 public class ProcessModelToPetriNetUnitTest {
 	
 	private ModelToPetriNetUnit unit = new ModelToPetriNetUnit();
-	private ProcessModel model = TestModelBuilder.getModelWithoutOrGateway(Bpmn.class);
-	private IPersistenceApi persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
+	private static ProcessModel model;
+	private static IPersistenceApi persistenceApi;
 
-	public ProcessModelToPetriNetUnitTest() throws Exception {		
+	@BeforeClass
+	public static void setUp() {
+		try {
+			model = TestModelBuilder.getModelWithoutOrGateway(Bpmn.class);
+			persistenceApi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		persistenceApi.dropDb();
 	}
 	
 	@Test
@@ -71,7 +86,7 @@ public class ProcessModelToPetriNetUnitTest {
 
 	@Test
 	public void testExecuteWithoutDbAccess() throws IllegalTypeException {
-		IUnitDataClassification<Object> unitData = new UnitDataClassification<Object>(this.model);
+		IUnitDataClassification<Object> unitData = new UnitDataClassification<Object>(model);
 		unit.execute(unitData);
 		PetriNet pn = unitData.getPetriNet();
 		
@@ -91,9 +106,9 @@ public class ProcessModelToPetriNetUnitTest {
 	public void testExecuteWithDbAccess() throws IllegalTypeException {
 		IRepresentation repr = RepresentationFactory.createLightweightRepresentation();
 		persistenceApi.savePojo(repr.getModel());
-		IUnitDataClassification<Object> unitData = new UnitDataClassification<Object>(this.model);
+		IUnitDataClassification<Object> unitData = new UnitDataClassification<Object>(model);
 		unitData.setDbId(repr.getDbId());
-		ModelToPetriNetUnit unitPm2Pn = new ModelToPetriNetUnit(this.persistenceApi);
+		ModelToPetriNetUnit unitPm2Pn = new ModelToPetriNetUnit(persistenceApi);
 		unitPm2Pn.execute(unitData);
 		
 		//ensure successful parsing

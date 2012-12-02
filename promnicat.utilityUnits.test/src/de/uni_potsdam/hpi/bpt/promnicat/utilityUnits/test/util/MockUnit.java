@@ -29,11 +29,14 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  */
 public class MockUnit extends AbstractUnit implements IUnit<IUnitData<Object>, IUnitData<Object>> {
 	
+	private String name = "";
+	
 	/**
 	 * Mock for an {@link IUnit} implementation without any functionality.
-	 * @param clazz unused
+	 * @param name name to be used by this unit
 	 */
-	public MockUnit(Class<?> clazz) {
+	public MockUnit(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -49,7 +52,7 @@ public class MockUnit extends AbstractUnit implements IUnit<IUnitData<Object>, I
 
 	@Override
 	public String getName() {
-		return MockUnit.class.getName();
+		return this.name;
 	}
 
 	@Override

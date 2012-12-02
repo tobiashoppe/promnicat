@@ -17,6 +17,9 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.clustering.test;
 
+import org.junit.Ignore;
+
+@Ignore
 public class HierarchicalProcessClustererTest {
  //TODO implement me
 }

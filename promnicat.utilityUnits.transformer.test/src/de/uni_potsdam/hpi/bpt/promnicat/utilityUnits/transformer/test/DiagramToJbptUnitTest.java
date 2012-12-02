@@ -23,10 +23,12 @@ import static org.junit.Assert.fail;
 import java.io.File;
 
 import org.jbpt.pm.epc.Epc;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
 import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
@@ -44,22 +46,28 @@ public class DiagramToJbptUnitTest {
 
 	private DiagramToJbptUnit unit = new DiagramToJbptUnit(false);
 	private static UnitDataJbpt<Object> diagram;
+	private static IPersistenceApi papi;
 
 	@BeforeClass
 	public static void setUp() throws IllegalTypeException{
 		BpmaiJsonToDiagramUnit parserUnit = new BpmaiJsonToDiagramUnit();
 		IRepresentation representation = null;
 		try{
-			representation = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).
-					getDbInstance().getPojoFactory().createRepresentation();
+			papi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
+			representation = papi.getPojoFactory().createRepresentation();
 			File file = new File("../promnicat/resources/BPMAI/model_epc1/model_2_.json");
 			representation.importFile(file);
-		}catch (Exception e){
+		} catch (Exception e){
 			fail(e.getMessage());
 		}	
 
 		UnitDataJbpt<Object> input = new UnitDataJbpt<Object>(representation);
 		DiagramToJbptUnitTest.diagram = (UnitDataJbpt<Object>) parserUnit.execute(input);		
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		papi.dropDb();
 	}
 
 	@Test

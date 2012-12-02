@@ -22,12 +22,16 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.ai.diagram.Diagram;
 import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
+import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IPersistenceApi;
 import de.uni_potsdam.hpi.bpt.promnicat.persistenceApi.IRepresentation;
 import de.uni_potsdam.hpi.bpt.promnicat.util.Constants;
+import de.uni_potsdam.hpi.bpt.promnicat.util.IllegalTypeException;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.transformer.BpmaiJsonToDiagramUnit;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataJbpt;
@@ -40,6 +44,25 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.impl.UnitDataJbpt;
 public class BpmaiJsonToDiagramUnitTest {
 
 	private BpmaiJsonToDiagramUnit unit = new BpmaiJsonToDiagramUnit();
+	private static IPersistenceApi papi;
+	private static IRepresentation representation;
+	
+	@BeforeClass
+	public static void setUp() throws IllegalTypeException{		
+		try{
+			papi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
+			representation = papi.getPojoFactory().createRepresentation();
+			File file = new File("../promnicat/resources/BPMAI/model_epc1/model_2_.json");
+			representation.importFile(file);			
+		} catch (Exception e){
+			fail(e.getMessage());
+		}	
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		papi.dropDb();
+	}
 	
 	@Test
 	public void testGetName(){
@@ -49,14 +72,8 @@ public class BpmaiJsonToDiagramUnitTest {
 	@Test
 	public void testExecute() {
 		try{
-			IRepresentation representation = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).
-					getDbInstance().getPojoFactory().createRepresentation();
-			File file = new File("../promnicat/resources/BPMAI/model_epc1/model_2_.json");
-			representation.importFile(file);
-
 			IUnitData<Object> input = new UnitDataJbpt<Object>(representation);
-			IUnitData<Object> result = null;
-			
+			IUnitData<Object> result = null;		
 			result = unit.execute(input);
 			assertTrue(result.getValue() instanceof Diagram);
 		}catch (Exception e){

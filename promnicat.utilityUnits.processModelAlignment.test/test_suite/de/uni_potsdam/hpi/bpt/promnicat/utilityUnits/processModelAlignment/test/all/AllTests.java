@@ -4,7 +4,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.assignment.test.AssignmentTest;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.assignment.test.DirectAssignmentTest;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.assignment.test.HungarianAlgorithmTest;
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.assignment.test.StableMarriageTest;
@@ -25,7 +24,6 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.processModelAlignment.test.
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	AssignmentTest.class,
 	DirectAssignmentTest.class,
 	HungarianAlgorithmTest.class,
 	StableMarriageTest.class,

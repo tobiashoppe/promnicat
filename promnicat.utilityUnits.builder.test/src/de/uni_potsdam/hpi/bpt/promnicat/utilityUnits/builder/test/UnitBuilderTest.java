@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 import org.jbpt.pm.FlowNode;
 import org.jbpt.pm.bpmn.Task;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.configuration.ConfigurationParser;
@@ -54,7 +56,23 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  *
  */
 public class UnitBuilderTest {
+	
+	private static IPersistenceApi papi;
 
+	@BeforeClass
+	public static void setUpClass() {
+		try {
+			papi  = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
+		} catch (IOException e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	@AfterClass
+	public static void tearDownClass() {
+		papi.dropDb();
+	}
+	
 	@Test
 	public void initializationTest(){
 		try {
@@ -63,7 +81,6 @@ public class UnitBuilderTest {
 			assertTrue(chain.getFirstUnit() instanceof DatabaseFilterUnit);
 			assertTrue(chain.getLastUnit() instanceof ICollectorUnit<?,?>);
 			assertTrue(chain.getUnits().size() == 2);
-			IPersistenceApi papi = new ConfigurationParser(Constants.TEST_DB_CONFIG_PATH).getDbInstance();
 			IUnitChainBuilder builderWithPersistenceApi = new UnitChainBuilder(papi, 0, null);
 			IUnitChain<IUnitData<Object>,IUnitData<Object>> chainWithPersistenceApi = builderWithPersistenceApi.getChain();
 			assertTrue(chainWithPersistenceApi.getFirstUnit() instanceof DatabaseFilterUnit);
@@ -78,7 +95,7 @@ public class UnitBuilderTest {
 	@Test
 	public void addDbFilterConfigTest(){
 		try {
-			IUnitChainBuilder builder = new UnitChainBuilder("", null);
+			IUnitChainBuilder builder = new UnitChainBuilder(papi, 0, null);
 			IUnit<IUnitData<Object>, IUnitData<Object>> dbUnit = builder.getChain().getFirstUnit();
 			assertTrue(dbUnit instanceof DatabaseFilterUnit);
 			((DatabaseFilterUnit) dbUnit).setDatabaseConfig(null);
@@ -94,7 +111,7 @@ public class UnitBuilderTest {
 	@Test
 	public void addUnitChainTest(){
 		try {
-			IUnitChainBuilder builder = new UnitChainBuilder("", null);
+			IUnitChainBuilder builder = new UnitChainBuilder(papi, 0, null);
 			
 			//build chain without builder
 			IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = new UnitChain(null);
@@ -122,7 +139,7 @@ public class UnitBuilderTest {
 	@Test
 	public void buildChainTest(){
 		try {
-			IUnitChainBuilder builder = new UnitChainBuilder("", null);
+			IUnitChainBuilder builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createProcessModelFilterUnit(FlowNode.class);
@@ -145,7 +162,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createLabelFilterUnit("");
@@ -154,9 +171,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 4);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 	
@@ -164,7 +178,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest2(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createLabelFilterUnit("");
 			
@@ -172,9 +186,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 2);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 	
@@ -182,7 +193,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest3(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createProcessModelFilterUnit(new Task());
 			
@@ -190,9 +201,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 2);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 	
@@ -200,7 +208,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest4(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createConnectednessFilterUnit();
 			
@@ -208,9 +216,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 2);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 	
@@ -218,7 +223,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest5(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createBpmaiJsonToJbptUnit();
@@ -227,9 +232,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 4);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 
@@ -237,7 +239,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest6(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createBpmaiJsonToJbptUnit();
 			builder.createProcessModelLabelExtractorUnit();
@@ -247,9 +249,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 5);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 	
@@ -257,7 +256,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest7(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createProcessModelLabelExtractorUnit();
 			
@@ -265,9 +264,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 2);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 	
@@ -275,7 +271,7 @@ public class UnitBuilderTest {
 	public void buildErrorFullChainTest8(){
 		IUnitChainBuilder builder = null;		
 		try {
-			builder = new UnitChainBuilder("", null);
+			builder = new UnitChainBuilder(papi, 0, null);
 			//build chain
 			builder.createElementExtractorUnit(FlowNode.class);
 			
@@ -283,9 +279,6 @@ public class UnitBuilderTest {
 		} catch (IllegalTypeException e) {
 			assertTrue(builder.getChain().getUnits().size() == 2);
 			assertTrue(builder.getChain().getLastUnit() instanceof ICollectorUnit<?,?>);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail("Unexpected error: " + e.getMessage());
 		}
 	}
 	

@@ -22,7 +22,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.jbpt.pm.FlowNode;
 import org.junit.Test;
 
 import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.IUnit;
@@ -38,6 +37,9 @@ import de.uni_potsdam.hpi.bpt.promnicat.utilityUnits.unitData.IUnitData;
  */
 public class UnitChainTest {
 
+	private static final String SECOND_NAME = "second name";
+	private static final String FIRST_NAME = "first name";
+
 	@Test
 	public void testGetUnits(){
 		IUnitChain<IUnitData<Object>, IUnitData<Object>> chain = new UnitChain(null);
@@ -51,17 +53,17 @@ public class UnitChainTest {
 	@Test
 	public void testGetFirstUnit(){
 		IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = new UnitChain(null);	
-		chain.register(new MockUnit(FlowNode.class));
-		chain.register(new MockUnit());	
-		assertTrue(chain.getFirstUnit().getName().equals("ProcessModelFilterUnit"));
+		chain.register(new MockUnit(FIRST_NAME));
+		chain.register(new MockUnit(SECOND_NAME));	
+		assertTrue(chain.getFirstUnit().getName().equals(FIRST_NAME));
 	}
 	
 	@Test
 	public void testGetLastUnit(){
 		IUnitChain<IUnitData<Object>,IUnitData<Object>> chain = new UnitChain(null);
-		chain.register(new MockUnit());	
-		chain.register(new MockUnit(FlowNode.class));
-		assertTrue(chain.getLastUnit().getName().equals("ProcessModelFilterUnit"));
+		chain.register(new MockUnit(FIRST_NAME));	
+		chain.register(new MockUnit(SECOND_NAME));
+		assertTrue(chain.getLastUnit().getName().equals(SECOND_NAME));
 	}
 	
 	@Test
