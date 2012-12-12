@@ -57,7 +57,7 @@ public class ConnectedEPC implements IAnalysisModule {
 		long startTime = System.currentTimeMillis();
 		
 		//build up chain
-		IUnitChainBuilder chainBuilder = new UnitChainBuilder("configuration(full).properties", UnitDataJbpt.class);
+		IUnitChainBuilder chainBuilder = new UnitChainBuilder("../promnicat/configuration(full).properties", UnitDataJbpt.class);
 		buildUpUnitChain(chainBuilder);
 		
 		logger.info(chainBuilder.getChain().toString());

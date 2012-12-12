@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/PromniCAT/src/de/uni_potsdam/hpi/bpt/promnicat/importer/ModelImporter.java"/>
+<listEntry value="/promnicat.importer/src/de/uni_potsdam/hpi/bpt/promnicat/importer/ModelImporter.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.uni_potsdam.hpi.bpt.promnicat.importer.ModelImporter"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;${project_loc}/configuration(full).properties&quot;  BPMAI &quot;${project_loc}/resources/models_with_errors_before_edge_attachment_correction&quot;"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="PromniCAT"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;${project_loc}/../promnicat/configuration(full).properties&quot;  BPMAI &quot;${project_loc}/../promnicat/resources/models_with_errors_before_edge_attachment_correction&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="promnicat.importer"/>
 </launchConfiguration>
