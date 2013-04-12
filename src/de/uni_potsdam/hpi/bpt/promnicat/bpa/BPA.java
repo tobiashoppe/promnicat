@@ -1,5 +1,6 @@
 package de.uni_potsdam.hpi.bpt.promnicat.bpa;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.util.AbstractSet;
 import java.util.ArrayList;
@@ -33,3 +34,8 @@ public void removeRelation(){
 }
 
 }
+=======
+public class BPA {
+
+}
+>>>>>>> branch 'bpa' of https://rami.hpi%40gmail.com@code.google.com/p/promnicat/
