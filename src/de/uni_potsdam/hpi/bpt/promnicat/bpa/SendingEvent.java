@@ -16,6 +16,7 @@ public class SendingEvent extends Event{
 	public SendingEvent(int eventid, int bpid, String label, int[] mult) {
 		super(eventid, bpid, label, mult);
 		
+
 		// TODO Auto-generated constructor stub
 	}
 
