@@ -74,7 +74,7 @@ public class ProcessMetrics implements IAnalysisModule {
 		
 		//build up chain
 		//set to true if the whole DB data should be used for analysis otherwise only a small sub set is used.
-		boolean useFullDB = false;
+		boolean useFullDB = true;
 		IUnitChainBuilder chainBuilder = buildUpUnitChain(useFullDB);
 		
 		logger.info(chainBuilder.getChain().toString() + "\n");
@@ -88,7 +88,7 @@ public class ProcessMetrics implements IAnalysisModule {
 		//run chain
 		@SuppressWarnings("unchecked")
 		Collection<IUnitDataProcessMetrics<Object> > result = (Collection<IUnitDataProcessMetrics<Object>>) chainBuilder.getChain().execute();
-
+		logger.info("i was here"+result);
 		//finish time measurement
 		long time = System.currentTimeMillis() - startTime;
 		
