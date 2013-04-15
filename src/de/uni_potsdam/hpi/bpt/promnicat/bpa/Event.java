@@ -4,8 +4,10 @@ public abstract class Event {
 private int id;
 private String label;
 private int[] multiplicity;
+private EVENTTYPE type;
+public int owner; 
 
-private enum EVENTTYPE{
+public enum EVENTTYPE{
 	STARTEVENT,
 	THROWINGINTEVENT,
 	CATCHINGINTEVENT,
@@ -13,9 +15,9 @@ private enum EVENTTYPE{
 	
 }
 
-private void setID(int newid){
-	this.id = newid;
-}
+//private void setID(int newid){
+//	this.id = newid;
+//}
 
 public int getID(){
 	return this.id;
@@ -40,21 +42,25 @@ public int[] getMultiplicity(){
 	return this.multiplicity;
 }
 
-public void getOwner(){ 
-	
+public int getOwner(){ 
+	return this.owner;
 }
 
-private void setOwner(){
+//private void setOwner(int bpid){
+//	this.owner = bpid;
+//}
+
+public EVENTTYPE getType(){
 	
+	return this.type;
 }
 
-public Event(int id, String label, int[] mult){
-	this.id = id;
+public Event(int eventid,int bpid, String label, int[] mult){
+	this.id = eventid;
+	this.owner = bpid;
 	this.label = label;
 	this.multiplicity = mult;
 }
 
-private void setEventType(){
-	EVENTTYPE;
-}
+
 }
