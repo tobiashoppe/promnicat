@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.AbstractSet;
 import java.util.ArrayList;
 import java.util.logging.Logger;
-import de.uni_potsdam.hpi.bpt.promnicat.bpa.BusinessProcess;;
+import de.uni_potsdam.hpi.bpt.promnicat.bpa.BusinessProcess;
+
 
 public class BPA {
 
@@ -33,3 +34,4 @@ public void removeRelation(){
 }
 
 }
+
