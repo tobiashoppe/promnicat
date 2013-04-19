@@ -1,11 +1,16 @@
 package de.uni_potsdam.hpi.bpt.promnicat.bpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author rami.eidsabbagh
  *
  */
 public class SendingEvent extends Event{
-
+	
+	List<ReceivingEvent> postset = new ArrayList<ReceivingEvent>();
+	
 	/**
 	 * @param eventid
 	 * @param bpid
@@ -18,11 +23,11 @@ public class SendingEvent extends Event{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setPostset(){
-		
+	public void setPostset(List<ReceivingEvent> successors){
+		postset = successors;
 	}
 	
-	public void getPostset(){
-		
+	public List<ReceivingEvent> getPostset(){
+		return postset;
 	}
 }

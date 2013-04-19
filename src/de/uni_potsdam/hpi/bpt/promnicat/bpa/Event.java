@@ -62,5 +62,9 @@ public Event(int eventid,int bpid, String label, int[] mult){
 	this.multiplicity = mult;
 }
 
+public boolean hasTrivialMultiplicity() {
+	return (multiplicity.length == 1 && multiplicity[0] == 1);
+}
+
 
 }
