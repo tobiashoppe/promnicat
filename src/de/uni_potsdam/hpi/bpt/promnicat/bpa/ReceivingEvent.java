@@ -3,6 +3,8 @@
  */
 package de.uni_potsdam.hpi.bpt.promnicat.bpa;
 
+import java.util.List;
+
 /**
  * @author rami.eidsabbagh
  *
@@ -15,19 +17,18 @@ public class ReceivingEvent extends Event {
 	 * @param label
 	 * @param mult
 	 */
-	private int[] preset;
+	private List<SendingEvent> preset;
 	
 	public ReceivingEvent(int eventid, int bpid, String label, int[] mult) {
 		super(eventid, bpid, label, mult);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int[] getPreSet(){
-	return this.preset;
-	
+	public List<SendingEvent> getPreset(){
+		return preset;
 	}
     
-	public void setPreset(int[] preset){
-		
+	public void setPreset(List<SendingEvent> predecessors){
+		preset = predecessors;
 	}
 }

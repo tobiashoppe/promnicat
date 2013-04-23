@@ -1,18 +1,16 @@
 package de.uni_potsdam.hpi.bpt.promnicat.bpa;
 
-import java.io.IOException;
-import java.util.AbstractSet;
 import java.util.ArrayList;
-import java.util.logging.Logger;
-import de.uni_potsdam.hpi.bpt.promnicat.bpa.BusinessProcess;
+import java.util.List;
 
 
 public class BPA {
 
 String name = "";
 String organisation = "";
-ArrayList<BusinessProcess> processlist;
-ArrayList<Relation> relation;
+List<BusinessProcess> processlist;
+List<Relation> relation;
+private List<Event> events = new ArrayList<Event>();
 
 public void addProcess(BusinessProcess BP){
 	BusinessProcess process = BP;
@@ -31,6 +29,23 @@ public void removeProcess(){
 
 public void removeRelation(){
 	
+}
+
+
+
+public List<Event> getEvents() {
+	return events;
+}
+
+public List<BusinessProcess> getAllProcesses() {
+	return processlist;
+}
+
+public void setProcesslist(List<BusinessProcess> processlist) {
+	this.processlist = processlist;
+	for (BusinessProcess bp : processlist) {
+		events.addAll(bp.getEvents());
+	}
 }
 
 }
