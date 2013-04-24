@@ -35,7 +35,7 @@ public class BPATransformer {
 	public PetriNet transform(BPA bpa) {
 		List<BusinessProcess> processes = bpa.getAllProcesses();
 		Map<BusinessProcess,PetriNet> resultingNets = new HashMap<BusinessProcess,PetriNet>();
-		Map<Event,PetriNet> intermediaryNets = new HashMap<Event, PetriNet>();
+		Map<Event, List<PetriNet>> intermediaryNets = new HashMap<Event, List<PetriNet>>();
 		PetriNet bpaNet = new PetriNet();
 		
 		// process nets
@@ -45,15 +45,17 @@ public class BPATransformer {
 		// intermediary nets
 		List<Event> allEvents = bpa.getEvents();
 		for (Event event : allEvents) {
-			PetriNet transformed = transform(event);
-			if (transformed != null) {
+			List<PetriNet> transformed = transform(event);
+			if (!transformed.isEmpty()) {
 				intermediaryNets.put(event, transformed);
 			}
 		}
-		// now compose them ... TODO
+		// now compose them 
 		Collection<PetriNet> allNets = new ArrayList<PetriNet>(); 
 		allNets.addAll(resultingNets.values());
-		allNets.addAll(intermediaryNets.values());
+		for (List<PetriNet>	nets : intermediaryNets.values()) {
+			allNets.addAll(nets);
+		}
 		bpaNet = compose(allNets);
 		
 		return bpaNet;
@@ -170,33 +172,42 @@ public class BPATransformer {
 		// some events
 		final ReceivingEvent e0 = new ReceivingEvent(0, 2, "p", new int[]{1});
 		final SendingEvent e1 = new SendingEvent(1,2,"q", new int[]{1,2} );
-		final ReceivingEvent e2 = new ReceivingEvent(3, 4, "r",new int[]{1} );
+		
+		final ReceivingEvent e2 = new ReceivingEvent(3, 4, "r",new int[]{3,4} );
 		final SendingEvent e3 = new SendingEvent(5,4,"s", new int[]{1});
-		final SendingEvent e4 = new SendingEvent(6, 4, "t", new int[]{1,2});
+		final SendingEvent e4 = new SendingEvent(6, 4, "t", new int[]{1});
 
-		List<ReceivingEvent> tmpPost = new ArrayList<ReceivingEvent>() {{ add(e2); }};
+		final ReceivingEvent e5 = new ReceivingEvent(7, 9, "u", new int[]{1});
+		final SendingEvent e6 = new SendingEvent(8,9,"v", new int[]{1} );
+		
+		List<ReceivingEvent> tmpPost = new ArrayList<ReceivingEvent>() {{ add(e2); add(e5); }};
 		List<SendingEvent> tmpPre = new ArrayList<SendingEvent>() {{ add(e1); }};
 		e1.setPostset(tmpPost);
 		e2.setPreset(tmpPre);
+		e5.setPreset(tmpPre);
 		
 		// two business processes make the bpa
 		BusinessProcess p1 = new BusinessProcess(Arrays.asList(e2,e4,e3));
 		BusinessProcess p2 = new BusinessProcess(Arrays.asList(e0, e1));
+		BusinessProcess p3 = new BusinessProcess(Arrays.asList(e5, e6));
 		BPA bpa = new BPA();
-		bpa.setProcesslist(Arrays.asList(p1,p2));
+		bpa.setProcesslist(Arrays.asList(p1,p2,p3));
 		
 		// transform it
 		BPATransformer trans = new BPATransformer();
 		PetriNet result = trans.transform(bpa);
 		
 		//jbpt serializing PNML requires NetSystem instead of PetriNet
-		NetSystem pns = new NetSystem();
+		NetSystem pns = new NetSystem(result);
 		pns.setName("Testnetz");
 		//add nodes manually because constructor does not work as supposed
 		for (Node n : result.getNodes())
 			pns.addNode(n);
-		for (AbstractDirectedEdge<Node> f : result.getFlow())
-			pns.addFreshFlow(f.getSource(), f.getTarget());
+		for (AbstractDirectedEdge<Node> f : result.getFlow()) {
+			Flow newFlow = pns.addFreshFlow(f.getSource(), f.getTarget());
+			if (f.getName() != "") 
+				newFlow.setName(f.getName());
+		}
 		
 		// serialize and write to file
 		try {
@@ -218,13 +229,14 @@ public class BPATransformer {
 	
 
 	/**
-	 * Generates the intermediary net for a given event. Because not every 
-	 * event needs an intermediary net, {@code null} might be returned.
+	 * Generates the intermediary nets for a given event. This needs to be
+	 * a list because some events produce e.g. multicast and splitter net.
+	 * If the given event needs has no intermediary net, an empty list is returned.
 	 * @param event
-	 * @return a intermediary {@link PetriNet} or {@code null}
+	 * @return a list of intermediary {@link PetriNet}s or an empty list
 	 */
-	private PetriNet transform(Event event) {
-		PetriNet intermediaryNet = null;
+	private List<PetriNet> transform(Event event) {
+		List<PetriNet> intermediaryNet = new ArrayList<PetriNet>();
 		
 		//complicated distinction of cases
 		// for SendingEvents
@@ -234,10 +246,10 @@ public class BPATransformer {
 				if (!event.hasTrivialMultiplicity() || // non-trivial or...
 					(post.size() == 1 && // exactly one successor with trivial multiplicity 
 					 post.get(0).hasTrivialMultiplicity())) {
-					intermediaryNet = createMulticastNet((SendingEvent) event);
+					intermediaryNet.add(createMulticastNet((SendingEvent) event));
 				}
 				if (post.size() > 1) { // multiple successors
-					intermediaryNet = createSplitterNet((SendingEvent) event);
+					intermediaryNet.add(createSplitterNet((SendingEvent) event));
 				}
 			}
 		// now for ReceivingEvents
@@ -245,10 +257,10 @@ public class BPATransformer {
 			List<SendingEvent> pre = ((ReceivingEvent) event).getPreset();
 			if (pre != null && !pre.isEmpty()) { //preset not empty
 				if (!event.hasTrivialMultiplicity()) { // non-trivial
-					intermediaryNet = createMultireceiverNet((ReceivingEvent) event);
+					intermediaryNet.add(createMultireceiverNet((ReceivingEvent) event));
 				}
 				if (pre.size() > 1) { // multiple predecessors
-					intermediaryNet = createCollectorNet((ReceivingEvent) event);
+					intermediaryNet.add(createCollectorNet((ReceivingEvent) event));
 				}
 			}
 		}
@@ -260,14 +272,87 @@ public class BPATransformer {
 		return null;
 	}
 
+	/**
+	 * Creates the multireceiver net for the given event assuming
+	 * the event requires such a net (not checked here!)
+	 * @param {@link ReceivingEvent}, that requires multireceiver net
+	 * @return the multireceiver {@link PetriNet}
+	 */
 	private PetriNet createMultireceiverNet(ReceivingEvent event) {
-		// TODO Auto-generated method stub
-		return null;
+		PetriNet multireceiver = new PetriNet();
+		List<SendingEvent> pre = event.getPreset();
+		String eventLabel = event.getLabel();
+		
+		Place outPlace = new Place("p_"+eventLabel); 
+		multireceiver.addPlace(outPlace);
+		Place inPlace = new Place();
+		if (pre.size() == 1) {
+			SendingEvent predecessor = pre.get(0);
+			if (predecessor.getPostset().size() == 1) {
+				if (predecessor.hasTrivialMultiplicity()) {
+					inPlace.setLabel("p_"+predecessor.getLabel());
+				} else {
+					inPlace.setLabel("p_"+predecessor.getLabel()+"_"+eventLabel);
+				}
+			} else {
+				inPlace.setLabel("p''_"+eventLabel);
+			}
+		} else if (pre.size() > 1) { 
+			inPlace.setLabel("p''_"+eventLabel);
+		}
+		multireceiver.addPlace(inPlace);
+		
+		// now create and connect transitions
+		Transition tmp;
+		AbstractDirectedEdge<Node> inFlow;
+		for (int mult : event.getMultiplicity()) {
+			tmp =  new Transition(event.getLabel()+"_"+mult);
+			multireceiver.addTransition(tmp);
+			multireceiver.addEdge(tmp, outPlace);
+			inFlow = multireceiver.addEdge(inPlace,tmp);
+			inFlow.setTag(new Integer(mult));
+			inFlow.setName("2");
+		}
+		
+		return multireceiver;
 	}
-
+	
+	/**
+	 * Creates the splitter net for given event assuming it requires
+	 * such a net (Not checked here!)
+	 * @param {@link SendingEvent} which requires splitter net
+	 * @return the splitter {@link PetriNet}
+	 */
 	private PetriNet createSplitterNet(SendingEvent event) {
-		// TODO Auto-generated method stub
-		return null;
+		PetriNet splitter = new PetriNet();
+		List<ReceivingEvent> post = event.getPostset();
+		
+		Place inPlace = new Place();
+		String eventLabel = event.getLabel();
+		if (event.hasTrivialMultiplicity()) {
+			inPlace.setLabel("p_"+eventLabel);
+		} else {
+			inPlace.setLabel("p''_"+eventLabel);
+		}
+		splitter.addPlace(inPlace);
+		Transition t = new Transition("t_"+eventLabel);
+		splitter.addTransition(t);
+		splitter.addFlow(inPlace, t);
+		Place tmpPlace;
+		for (ReceivingEvent successor : post) {
+			tmpPlace = new Place();
+			if (successor.getPreset().size() == 1) {
+				if (successor.hasTrivialMultiplicity()) {
+					tmpPlace.setLabel("p_"+successor.getLabel());
+				} else {
+					tmpPlace.setLabel("p''_"+successor.getLabel());
+				}
+			} else {
+				tmpPlace.setLabel("p''_"+eventLabel+"_"+successor.getLabel());
+			}
+			splitter.addFlow(t, tmpPlace);
+		}
+		return splitter;
 	}
 	
 	/**
@@ -308,6 +393,7 @@ public class BPATransformer {
 			multicaster.addEdge(inPlace, tmp);
 			outFlow = multicaster.addEdge(tmp, outPlace);
 			outFlow.setTag(new Integer(mult));
+			outFlow.setName("2");
 		}
 		return multicaster;
 	}
