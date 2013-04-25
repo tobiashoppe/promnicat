@@ -7,13 +7,13 @@ public abstract class Event {
 private int id;
 private String label;
 private int[] multiplicity;
-private EVENTTYPE type;
+private EventType type;
 public int owner; 
 
 private static Map<Event, Integer> ids = new HashMap<Event, Integer>();
 private static Integer maxId = 0;
 
-public enum EVENTTYPE{
+public enum EventType{
 	STARTEVENT,
 	THROWINGINTEVENT,
 	CATCHINGINTEVENT,
@@ -99,7 +99,7 @@ public int getOwner(){
 //	this.owner = bpid;
 //}
 
-public EVENTTYPE getType(){
+public EventType getType(){
 	
 	return this.type;
 }
