@@ -178,20 +178,28 @@ public class BPATransformer {
 		final SendingEvent e4 = new SendingEvent(6, 4, "t", new int[]{1});
 
 		final ReceivingEvent e5 = new ReceivingEvent(7, 9, "u", new int[]{1});
-		final SendingEvent e6 = new SendingEvent(8,9,"v", new int[]{1} );
+		final ReceivingEvent e6 = new ReceivingEvent(8,9,"v", new int[]{1} );
+		final SendingEvent e9 = new SendingEvent(13,9,"z", new int[]{1} );
 		
-		List<ReceivingEvent> tmpPost = new ArrayList<ReceivingEvent>() {{ add(e2); add(e5); }};
-		List<SendingEvent> tmpPre = new ArrayList<SendingEvent>() {{ add(e1); }};
-		e1.setPostset(tmpPost);
-		e2.setPreset(tmpPre);
-		e5.setPreset(tmpPre);
+		final ReceivingEvent e7 = new ReceivingEvent(10, 12, "x", new int[]{1});
+		final SendingEvent e8 = new SendingEvent(11,12,"y", new int[]{1} );
+		
+		e1.setPostset(Arrays.asList(e2,e5));
+		e2.setPreset(Arrays.asList(e1));
+		e5.setPreset(Arrays.asList(e1,e8));
+		e8.setPostset(Arrays.asList(e5));
+//		e3.setPostset(Arrays.asList(e7));
+//		e7.setPreset(Arrays.asList(e3));
+//		e4.setPostset(Arrays.asList(e6));
+//		e6.setPreset(Arrays.asList(e4));
 		
 		// two business processes make the bpa
 		BusinessProcess p1 = new BusinessProcess(Arrays.asList(e2,e4,e3));
 		BusinessProcess p2 = new BusinessProcess(Arrays.asList(e0, e1));
-		BusinessProcess p3 = new BusinessProcess(Arrays.asList(e5, e6));
+		BusinessProcess p3 = new BusinessProcess(Arrays.asList(e5, e6, e9));
+		BusinessProcess p4 = new BusinessProcess(Arrays.asList(e7, e8));
 		BPA bpa = new BPA();
-		bpa.setProcesslist(Arrays.asList(p1,p2,p3));
+		bpa.setProcesslist(Arrays.asList(p1,p2,p3,p4));
 		
 		// transform it
 		BPATransformer trans = new BPATransformer();
@@ -245,7 +253,8 @@ public class BPATransformer {
 			if (post != null && !post.isEmpty()) { // postset not empty
 				if (!event.hasTrivialMultiplicity() || // non-trivial or...
 					(post.size() == 1 && // exactly one successor with trivial multiplicity 
-					 post.get(0).hasTrivialMultiplicity())) {
+					 post.get(0).hasTrivialMultiplicity() &&
+					 post.get(0).getPreset().size() == 1)) {
 					intermediaryNet.add(createMulticastNet((SendingEvent) event));
 				}
 				if (post.size() > 1) { // multiple successors
@@ -266,10 +275,43 @@ public class BPATransformer {
 		}
 		return intermediaryNet;
 	}
-
+	
+	/**
+	 * Creates the collector net for the given {@link ReceivingEvent} assuming
+	 * it requires such a net (this is not checked here). 
+	 * @param a {@link ReceivingEvent} which requires a collector net
+	 * @return the collector {@link PetriNet}
+	 */
 	private PetriNet createCollectorNet(ReceivingEvent event) {
-		// TODO Auto-generated method stub
-		return null;
+		PetriNet collector = new PetriNet();
+		List<SendingEvent> pre = event.getPreset();
+		String eventLabel = event.getLabel();
+		
+		Place outPlace = new Place();
+		if (event.hasTrivialMultiplicity()) {
+			outPlace.setLabel("p_"+eventLabel);
+		} else {
+			outPlace.setLabel("p''_"+eventLabel);
+		}
+		for (SendingEvent predecessor : pre) {
+			Place inPlace = new Place();
+			Transition tmpTransition = new Transition("t_"+eventLabel);
+			List<ReceivingEvent> predecessorPost = predecessor.getPostset();
+			if (predecessorPost != null && predecessorPost.size() > 1) {
+				inPlace.setLabel("p''_"+predecessor.getLabel()+"_"+eventLabel);
+			} else {	
+				if (!predecessor.hasTrivialMultiplicity()) {
+					inPlace.setLabel("p''_"+predecessor.getLabel());
+				} else {
+					inPlace.setLabel("p_"+predecessor.getLabel());
+				}
+			}
+			collector.addFlow(inPlace, tmpTransition);
+			collector.addFlow(tmpTransition, outPlace);
+		}
+	
+		
+ 		return collector;
 	}
 
 	/**
